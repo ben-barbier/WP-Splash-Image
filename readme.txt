@@ -4,7 +4,7 @@ Donate link: http://www.dark-sides.com
 Tags: Splash, Image, LightBox
 Requires at least: 2.9.2
 Tested up to: 3.0-RC3
-Stable tag: 0.2
+Stable tag: 0.3
  
 WP Splash Image est un plugin pour Wordpress permettant d'afficher une image avec un effet de type Lightbox à l'ouverture du blog.
  
