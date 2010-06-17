@@ -6,11 +6,11 @@ Requires at least: 2.7
 Tested up to: 3.0
 Stable tag: 0.4
  
-WP Splash Image est un plugin pour Wordpress permettant d'afficher une image avec un effet de type Lightbox à l'ouverture du blog.
+WP Splash Image est un plugin pour Wordpress permettant d'afficher une image avec un effet de type Lightbox Ã  l'ouverture du blog.
  
 == Description ==
  
-WP Splash Image est un plugin pour Wordpress permettant d'afficher une image avec un effet de type Lightbox à l'ouverture du blog.
+WP Splash Image est un plugin pour Wordpress permettant d'afficher une image avec un effet de type Lightbox Ã  l'ouverture du blog.
 
 == Installation ==
  
@@ -19,7 +19,7 @@ TODO...
 == Frequently Asked Questions ==
 
 = Une Question ? =
-Une réponse...
+Une rÃ©ponse...
 
 == Screenshots ==
  
@@ -36,8 +36,8 @@ Une réponse...
 * Activation configurable
 
 = 0.2 =
-* Création d'un mode de test
-* Ajout de dates de validités
+* CrÃ©ation d'un mode de test
+* Ajout de dates de validitÃ©s
 * Taille de l'image configurable (par calandar)
 * Choix de la couleur de fond possible (par color picker)
 * Mise en place de l'I18N (FR/EN) 
@@ -46,7 +46,7 @@ Une réponse...
 * Ajout des screenshots du plugin
 
 = 0.4 =
-* Compatibilité Wordpress 3.0
+* CompatibilitÃ© Wordpress 3.0
 
 == Upgrade Notice ==
 
