@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: WP Splash Image
-Plugin URI: http://code.google.com/p/wp-splash-image/
+Plugin URI: http://wordpress.org/extend/plugins/wsi/
 Description: WP Splash Image est un plugin pour Wordpress permettant d'afficher une image avec un effet de type Lightbox à l'ouverture du blog.
-Version: 0.1
+Version: 0.4
 Author: Benjamin Barbier
 Author URI: http://www.dark-sides.com/
 */
