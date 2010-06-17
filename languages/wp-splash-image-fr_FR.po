@@ -1,0 +1,73 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wp-splash-image\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-06-17 04:18+0200\n"
+"PO-Revision-Date: 2010-06-17 04:29+0100\n"
+"Last-Translator: Benjamin Barbier <benjamin.barbier@dark-sides.com>\n"
+"Language-Team: Benjamin Barbier <benjamin.barbier@dark-sides.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: wp-splash-image.php:123
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Vous n'avez pas les droits nécessaires pour accéder à cette page."
+
+#: wp-splash-image.php:182
+msgid "For information:"
+msgstr "Pour info:"
+
+#: wp-splash-image.php:189
+msgid "Splash image activated:"
+msgstr "Splash image activé:"
+
+#: wp-splash-image.php:197
+msgid "Test mode activated:"
+msgstr "Mode test activé:"
+
+#: wp-splash-image.php:203
+msgid "(for tests only, open splash image whenever)"
+msgstr "(Pour les tests, ouvre la splash image à chaque fois)"
+
+#: wp-splash-image.php:206
+msgid "Picture URL:"
+msgstr "URL de l'image:"
+
+#: wp-splash-image.php:214
+msgid "Picture height:"
+msgstr "Hauteur de l'image:"
+
+#: wp-splash-image.php:222
+msgid "Picture width:"
+msgstr "Largeur de l'image:"
+
+#: wp-splash-image.php:230
+msgid "Splash color:"
+msgstr "Couleur de fond:"
+
+#: wp-splash-image.php:238
+msgid "Start date:"
+msgstr "Date de début:"
+
+#: wp-splash-image.php:243
+#: wp-splash-image.php:251
+msgid "(stay empty if not required)"
+msgstr "(laisser vide si non nécessaire)"
+
+#: wp-splash-image.php:246
+msgid "End date:"
+msgstr "Date de fin:"
+
+#: wp-splash-image.php:257
+msgid "Options Updated..."
+msgstr "Options mises à jour..."
+
