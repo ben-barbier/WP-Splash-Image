@@ -129,7 +129,7 @@ function wp_splash_image_options() {
 	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery-ui-1.8.2.custom.min.js"></script>
 	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery.ui.datepicker-fr.js"></script>
-	<script type="text/javascript" src="<?=wsi_url()?>/colorpicker/mColorPicker_min.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="http://plugins.meta100.com/mcolorpicker/javascripts/mColorPicker_min.js" charset="UTF-8"></script>
 	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/ui-lightness/jquery-ui-1.8.2.custom.css"/> 
 	
 	<script type="text/javascript">
