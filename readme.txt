@@ -37,6 +37,9 @@ a response...
  
 == Changelog ==
 
+= 0.6.1 =
+* CSS Bug Fix
+
 = 0.6 =
 * Improvement made for I18N
 
@@ -63,6 +66,9 @@ a response...
 * Activation configurable
 
 == Upgrade Notice ==
+
+= 0.6.1 =
+* RAS
 
 = 0.6 =
 * RAS
