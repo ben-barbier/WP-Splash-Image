@@ -6,20 +6,30 @@ Requires at least: 2.7
 Tested up to: 3.0
 Stable tag: 0.4
  
-WP Splash Image est un plugin pour Wordpress permettant d'afficher une image avec un effet de type Lightbox à l'ouverture du blog.
+WP Splash Image is a plugin for Wordpress to display an image with a lightbox type effect at the opening of the blog.
  
 == Description ==
- 
+
+WP Splash Image is a plugin for Wordpress to display an image with a lightbox type effect at the opening of the blog.
+---
 WP Splash Image est un plugin pour Wordpress permettant d'afficher une image avec un effet de type Lightbox à l'ouverture du blog.
 
 == Installation ==
  
-TODO...
+You can use the built in installer and upgrader, or you can install the plugin manually.
+
+1. You can either use the automatic plugin installer or your FTP program to upload it to your wp-content/plugins directory the top-level folder. Don't just upload all the php files and put them in /wp-content/plugins/.
+1. Activate the plugin through the 'Plugins' menu in WordPress.
+1. Visit your WP-Splash-Image options.
+1. Configure any options as desired, and then enable the plugin.
+1. That's it!
+
+If you have to upgrade manually simply repeat the installation steps and re-enable the plugin.
 
 == Frequently Asked Questions ==
 
-= Une Question ? =
-Une réponse...
+= a Question ? =
+a response...
 
 == Screenshots ==
  
@@ -28,6 +38,19 @@ Une réponse...
 3. Splash Image
  
 == Changelog ==
+
+= 0.4 =
+* Compatibility with Wordpress 3.0 : OK
+
+= 0.3 =
+* Add screenshots.
+
+= 0.2 =
+* Add test mode
+* Add dates validities
+* Image size configurable (with calandar)
+* Background color configurable (with color picker)
+* Mise en place de l'I18N (FR/EN)
  
 = 0.1 =
 * Init
@@ -35,31 +58,18 @@ Une réponse...
 * Image configurable
 * Activation configurable
 
-= 0.2 =
-* Création d'un mode de test
-* Ajout de dates de validités
-* Taille de l'image configurable (par calandar)
-* Choix de la couleur de fond possible (par color picker)
-* Mise en place de l'I18N (FR/EN) 
-
-= 0.3 =
-* Ajout des screenshots du plugin
+== Upgrade Notice ==
 
 = 0.4 =
-* Compatibilité Wordpress 3.0
+* RAS
 
-== Upgrade Notice ==
+= 0.3 =
+* RAS
+
+= 0.2 =
+* RAS
 
 = 0.1 =
 * Init
-
-= 0.2 =
-* RAS
-
-= 0.3 =
-* RAS
-
-= 0.4 =
-* RAS
 
 `<?php code(); // goes in backticks ?>`
