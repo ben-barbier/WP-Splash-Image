@@ -140,7 +140,7 @@ function wp_splash_image_options() {
 		
 		// Gestion de l'affichage de la zone "block_splash_test_active"
 		if($("#splash_active").attr("checked")==true) {
-			$("#block_splash_test_active").css("display","run-in");
+			$("#block_splash_test_active").css("display","table-row");
 		}else{
 			$("#block_splash_test_active").css("display","none");
 		}
