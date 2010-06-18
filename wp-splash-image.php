@@ -185,73 +185,74 @@ function wp_splash_image_options() {
 	<form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>">
 		<input type="hidden" name="action" value="update" />
 		
-		<div>
-			<div style="display:inline-block;width:140px;"><?=__('Splash image activated:','wp-splash-image')?></div>
-			<input 
-				type="checkbox" 
-				name="splash_active" 
-				id="splash_active" 
-				<?php if(get_option('splash_active')=='true') {echo("checked='checked'");} ?> />
-		</div>
-		<div id="block_splash_test_active">
-			<div style="display:inline-block;width:140px;"><?=__('Test mode activated:','wp-splash-image')?></div>
-			<input 
-				type="checkbox" 
-				name="splash_test_active" 
-				id="splash_test_active" 
-				<?php if(get_option('splash_test_active')=='true') {echo("checked='checked'");} ?> />
-			<?=__('(for tests only, open splash image whenever)','wp-splash-image')?>
-		</div>
-		<div>
-			<div style="display:inline-block;"><?=__("Picture URL:",'wp-splash-image')?></div>
-			<input 
-				type="text" 
-				name="url_splash_image" 
-				size="120" 
-				value="<?=get_option('url_splash_image')?>" />
-		</div>
-		<div>
-			<div style="display:inline-block;width:130px;"><?=__("Picture height:",'wp-splash-image')?></div>
-			<input
-				type="text"
-				name="splash_image_height"
-				size="10"
-				value="<?=get_option('splash_image_height')?>" />px (min = 210px)
-		</div>
-		<div>
-			<div style="display:inline-block;width:130px;"><?=__("Picture width:",'wp-splash-image')?></div>
-			<input
-				type="text"
-				name="splash_image_width"
-				size="10"
-				value="<?=get_option('splash_image_width')?>" />px
-		</div>
-		<div>
-			<div style="display:inline-block;width:130px;"><?=__('Splash color:','wp-splash-image')?></div>
-			<input
-				type="color"
-				name="splash_color"
-				size="20"
-				value="<?=get_option('splash_color')?>" />
-		</div>
-		<div>
-			<div style="display:inline-block;width:130px;"><?=__('Start date:','wp-splash-image')?></div>
-			<input 
-				type="text" 
-				name="datepicker_start" 
-				id="datepicker_start"
-				value="<?=get_option('datepicker_start')?>" /> <?=__('(stay empty if not required)','wp-splash-image')?>
-		</div>
-		<div>
-			<div style="display:inline-block;width:130px;"><?=__('End date:','wp-splash-image')?></div>
-			<input 
-				type="text" 
-				name="datepicker_end" 
-				id="datepicker_end"
-				value="<?=get_option('datepicker_end')?>" /> <?=__('(stay empty if not required)','wp-splash-image')?>
-		</div>
-		<br />
-		<input type="submit" value="Enregistrer" />
+		<table>
+			<tr>
+				<td><?=__('Splash image activated:','wp-splash-image')?></td>
+				<td><input 
+					type="checkbox" 
+					name="splash_active" 
+					id="splash_active" 
+					<?php if(get_option('splash_active')=='true') {echo("checked='checked'");} ?> /></td>
+			</tr>
+			<tr id="block_splash_test_active">
+				<td><?=__('Test mode activated:','wp-splash-image')?></td>
+				<td><input 
+					type="checkbox" 
+					name="splash_test_active" 
+					id="splash_test_active" 
+					<?php if(get_option('splash_test_active')=='true') {echo("checked='checked'");} ?> />
+				<?=__('(for tests only, open splash image whenever)','wp-splash-image')?></td>
+			</tr>
+			<tr>
+				<td><?=__("Picture URL:",'wp-splash-image')?></td>
+				<td><input 
+					type="text" 
+					name="url_splash_image" 
+					size="120" 
+					value="<?=get_option('url_splash_image')?>" /></td>
+			</tr>
+			<tr>
+				<td><?=__("Picture height:",'wp-splash-image')?></td>
+				<td><input
+					type="text"
+					name="splash_image_height"
+					size="10"
+					value="<?=get_option('splash_image_height')?>" />px (min = 210px)</td>
+			</tr>
+			<tr>
+				<td><?=__("Picture width:",'wp-splash-image')?></td>
+				<td><input
+					type="text"
+					name="splash_image_width"
+					size="10"
+					value="<?=get_option('splash_image_width')?>" />px</td>
+			</tr>
+			<tr>
+				<td><?=__('Splash color:','wp-splash-image')?></td>
+				<td><input
+					type="color"
+					name="splash_color"
+					size="20"
+					value="<?=get_option('splash_color')?>" /></td>
+			</tr>
+			<tr>
+				<td><?=__('Start date:','wp-splash-image')?></td>
+				<td><input 
+					type="text" 
+					name="datepicker_start" 
+					id="datepicker_start"
+					value="<?=get_option('datepicker_start')?>" /> <?=__('(stay empty if not required)','wp-splash-image')?></td>
+			</tr>
+			<tr>
+				<td><?=__('End date:','wp-splash-image')?></td>
+				<td><input 
+					type="text" 
+					name="datepicker_end" 
+					id="datepicker_end"
+					value="<?=get_option('datepicker_end')?>" /> <?=__('(stay empty if not required)','wp-splash-image')?></td>
+			</tr>
+		</table>
+		<p class="submit"><input type="submit" value="<?=__('Update Options','wp-splash-image')?>" /></p>
 	</form>
 	<?php if ($updated) { ?>
 		<p style="color:green;"><?=__('Options Updated...','wp-splash-image')?></p>
