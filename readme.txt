@@ -38,7 +38,7 @@ a response...
 == Changelog ==
 
 = 0.6 =
-* Improvement made to the I18N
+* Improvement made for I18N
 
 = 0.5 =
 * Use colorpicker of http://blog.meta100.com/post/600571131/mcolorpicker
