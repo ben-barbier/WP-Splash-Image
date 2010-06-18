@@ -10,9 +10,7 @@ WP Splash Image is a plugin for Wordpress to display an image with a lightbox ty
  
 == Description ==
 
-WP Splash Image is a plugin for Wordpress to display an image with a lightbox type effect at the opening of the blog.
----
-WP Splash Image est un plugin pour Wordpress permettant d'afficher une image avec un effet de type Lightbox à l'ouverture du blog.
+**WP Splash Image** is a plugin for Wordpress to display an image with a lightbox type effect at the opening of the blog.
 
 == Installation ==
  
