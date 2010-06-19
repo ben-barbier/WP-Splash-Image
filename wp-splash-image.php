@@ -3,7 +3,7 @@
 Plugin Name: WP Splash Image
 Plugin URI: http://wordpress.org/extend/plugins/wsi/
 Description: WP Splash Image is a plugin for Wordpress to display an image with a lightbox type effect at the opening of the blog.
-Version: 0.6.1
+Version: 0.7
 Author: Benjamin Barbier
 Author URI: http://www.dark-sides.com/
 */
@@ -55,13 +55,11 @@ function wsi_addSplashImageWpHead() {
 	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/overlay-basic.css"/> 
 	<script src="<?=wsi_url()?>/js/jquery.tools.min.js"></script>
 	<script type="text/javascript">
-	$(function() {
-		$("#splashLink").overlay({
-			expose: '<?=get_option('splash_color')?>'
-		});
-	});
 	$(document).ready(function () {
-		$("#splashLink").click();
+		$("#splashLink").overlay({
+			expose: '<?=get_option('splash_color')?>',
+			load: true // Lance la Splash Image à l'ouverture
+		});
 	});
 	</script>
 	<!-- /WP Splash-Image -->
@@ -76,26 +74,44 @@ function wsi_addSplashImageWpFooter() {
 
 	// Si le plugin n'est pas activé dans ses options, on ne fait rien
 	if(get_option('splash_active')!='true') return;
+
+	// Si on est pas en "mode test", on effectue quelques tests supplémentaires
+	if(get_option('splash_test_active')!='true') {
 	
-	// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
-	$today = date('d/m/Y');
-	if((get_option('datepicker_start')!='') && ($today < get_option('datepicker_start'))) return;
-	if((get_option('datepicker_end')!='')   && ($today > get_option('datepicker_end')))   return;
+		// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
+		$today = date('d/m/Y');
+		if((get_option('datepicker_start')!='') && ($today < get_option('datepicker_start'))) return;
+		if((get_option('datepicker_end')!='')   && ($today > get_option('datepicker_end')))   return;
 
-	// Si la Splash image a déjà été vue, on ne fait rien (sauf si on est en mode test)
-	if(($_SESSION['splash_seen']=='Yes') && (get_option('splash_test_active')!='true'))  return;
+		// Si la Splash image a déjà été vue, on ne fait rien
+		if($_SESSION['splash_seen']=='Yes')  return;
 
+	}
+	
 	// On indique que la Splash Image a été vue
 	$_SESSION['splash_seen']='Yes';
 	
-	$url_splash_image = get_option ('url_splash_image');
+	$url_splash_image = get_option('url_splash_image');
+	$splash_image_height = get_option('splash_image_height');
+	$splash_image_width = get_option('splash_image_width');
+	$wsi_display_time = get_option('wsi_display_time');
+		
 ?>	
 
 	<!-- WP Splash-Image -->
 	<a style="display:none;" id="splashLink" href="#" rel="#miesSPLASH"></a>
-	<div class="simple_overlay" style="text-align:center;color:#FFFFFF;margin-top:15px;height:<?=get_option('splash_image_height')?>px;width:<?=get_option('splash_image_width')?>px;" id="miesSPLASH">
-		<img style="height:<?=get_option('splash_image_height')?>px;width:<?=get_option('splash_image_width')?>px;" src="<?=$url_splash_image?>" />
-	</div> 
+	<div class="simple_overlay" style="text-align:center;color:#FFFFFF;margin-top:15px;height:<?=$splash_image_height?>px;width:<?=$splash_image_width?>px;" id="miesSPLASH">
+		<img style="height:<?=$splash_image_height?>px;width:<?=$splash_image_width?>px;" src="<?=$url_splash_image?>" />
+	</div>
+	<?php if ($wsi_display_time > 0) { ?>
+	<script type="text/javascript">
+	// Autoclose de la Splash Image
+	$(document).ready(function () {
+		setTimeout("$('#miesSPLASH').fadeOut()",<?=($wsi_display_time*1000)?>);
+		setTimeout("$('#exposeMask').fadeOut()",<?=($wsi_display_time*1000)?>);
+	});
+	</script>
+	<? } ?>
 	<!-- /WP Splash-Image -->
 	
 <?php
@@ -135,8 +151,8 @@ function wp_splash_image_options() {
 	<script type="text/javascript">
 	$(document).ready(function () {
 		// Chargement des calendriers
-		$("#datepicker_start").datepicker($.datepicker.regional['fr']);
-		$("#datepicker_end").datepicker($.datepicker.regional['fr']);
+		$("#datepicker_start").datepicker({minDate: 0, maxDate: '+1Y'},$.datepicker.regional['fr']);
+		$("#datepicker_end").datepicker({minDate: 0, maxDate: '+1Y +6M'},  $.datepicker.regional['fr']);
 		
 		// Gestion de l'affichage de la zone "block_splash_test_active"
 		if($("#splash_active").attr("checked")==true) {
@@ -169,6 +185,7 @@ function wp_splash_image_options() {
 		update_option('splash_color',        $_POST['splash_color']);
 		update_option('datepicker_start',    $_POST['datepicker_start']);
 		update_option('datepicker_end',      $_POST['datepicker_end']);
+		update_option('wsi_display_time',    $_POST['wsi_display_time']);
 		$updated = true;
 	} else {
 		$updated = false;
@@ -216,7 +233,8 @@ function wp_splash_image_options() {
 				<td><input
 					type="text"
 					name="splash_image_height"
-					size="10"
+					size="6"
+					maxlength="3"
 					value="<?=get_option('splash_image_height')?>" />px (min = 210px)</td>
 			</tr>
 			<tr>
@@ -224,7 +242,8 @@ function wp_splash_image_options() {
 				<td><input
 					type="text"
 					name="splash_image_width"
-					size="10"
+					size="6"
+					maxlength="3"
 					value="<?=get_option('splash_image_width')?>" />px</td>
 			</tr>
 			<tr>
@@ -241,7 +260,8 @@ function wp_splash_image_options() {
 					type="text" 
 					name="datepicker_start" 
 					id="datepicker_start"
-					value="<?=get_option('datepicker_start')?>" /> <?=__('(stay empty if not required)','wp-splash-image')?></td>
+					value="<?=get_option('datepicker_start')?>" />&nbsp;
+					<?=__('(stay empty if not required)','wp-splash-image')?></td>
 			</tr>
 			<tr>
 				<td><?=__('End date:','wp-splash-image')?></td>
@@ -249,7 +269,19 @@ function wp_splash_image_options() {
 					type="text" 
 					name="datepicker_end" 
 					id="datepicker_end"
-					value="<?=get_option('datepicker_end')?>" /> <?=__('(stay empty if not required)','wp-splash-image')?></td>
+					value="<?=get_option('datepicker_end')?>" />&nbsp;
+					<?=__('(stay empty if not required)','wp-splash-image')?></td>
+			</tr>
+			<tr>
+				<td><?=__('Display time:','wp-splash-image')?></td>
+				<td><input
+					type="text"
+					name="wsi_display_time"
+					size="5"
+					maxlength="5"
+					value="<?=get_option('wsi_display_time')?>" />&nbsp;
+					<?=__('seconds','wp-splash-image')?>&nbsp;
+					<?=__('(0 or empty don’t close automaticly the splash image)','wp-splash-image')?></td>
 			</tr>
 		</table>
 		<p class="submit"><input type="submit" value="<?=__('Update Options','wp-splash-image')?>" /></p>
