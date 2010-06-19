@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: wp-splash-image v0.6\n"
+"Project-Id-Version: wp-splash-image v0.7\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wsi\n"
-"POT-Creation-Date: 2010-06-18 18:02+0000\n"
-"PO-Revision-Date: 2010-06-18 20:07+0100\n"
+"POT-Creation-Date: 2010-06-19 04:40+0000\n"
+"PO-Revision-Date: 2010-06-19 07:00+0100\n"
 "Last-Translator: Benjamin Barbier <benjamin.barbier@dark-sides.com>\n"
 "Language-Team: Benjamin Barbier <benjamin.barbier@dark-sides.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,60 +18,72 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: wp-splash-image.php:123
+#: wp-splash-image.php:139
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Vous n'avez pas les droits nécessaires pour accéder à cette page."
 
-#: wp-splash-image.php:182
+#: wp-splash-image.php:199
 msgid "For information:"
 msgstr "Pour info:"
 
-#: wp-splash-image.php:190
+#: wp-splash-image.php:207
 msgid "Splash image activated:"
 msgstr "Splash image activé:"
 
-#: wp-splash-image.php:198
+#: wp-splash-image.php:215
 msgid "Test mode activated:"
 msgstr "Mode test activé:"
 
-#: wp-splash-image.php:204
+#: wp-splash-image.php:221
 msgid "(for tests only, open splash image whenever)"
 msgstr "(Pour les tests, ouvre la splash image à chaque fois)"
 
-#: wp-splash-image.php:207
+#: wp-splash-image.php:224
 msgid "Picture URL:"
 msgstr "URL de l'image:"
 
-#: wp-splash-image.php:215
+#: wp-splash-image.php:232
 msgid "Picture height:"
 msgstr "Hauteur de l'image:"
 
-#: wp-splash-image.php:223
+#: wp-splash-image.php:241
 msgid "Picture width:"
 msgstr "Largeur de l'image:"
 
-#: wp-splash-image.php:231
+#: wp-splash-image.php:250
 msgid "Splash color:"
 msgstr "Couleur de fond:"
 
-#: wp-splash-image.php:239
+#: wp-splash-image.php:258
 msgid "Start date:"
 msgstr "Date de début:"
 
-#: wp-splash-image.php:244
-#: wp-splash-image.php:252
+#: wp-splash-image.php:264
+#: wp-splash-image.php:273
 msgid "(stay empty if not required)"
 msgstr "(laisser vide si non nécessaire)"
 
-#: wp-splash-image.php:247
+#: wp-splash-image.php:267
 msgid "End date:"
 msgstr "Date de fin:"
 
-#: wp-splash-image.php:255
+#: wp-splash-image.php:276
+msgid "Display time:"
+msgstr "Temps d'affichage:"
+
+#: wp-splash-image.php:283
+msgid "seconds"
+msgstr "secondes"
+
+#: wp-splash-image.php:284
+msgid "(0 or empty don't close automaticly the splash image)"
+msgstr "(si le champ est vide ou a 0, pas de fermeture automatique)"
+
+#: wp-splash-image.php:287
 msgid "Update Options"
 msgstr "Enregistrer"
 
-#: wp-splash-image.php:258
+#: wp-splash-image.php:290
 msgid "Options Updated..."
 msgstr "Options mises à jour..."
 
