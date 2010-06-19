@@ -281,7 +281,7 @@ function wp_splash_image_options() {
 					maxlength="5"
 					value="<?=get_option('wsi_display_time')?>" />&nbsp;
 					<?=__('seconds','wp-splash-image')?>&nbsp;
-					<?=__('(0 or empty don’t close automaticly the splash image)','wp-splash-image')?></td>
+					<?=__("(0 or empty don't close automaticly the splash image)",'wp-splash-image')?></td>
 			</tr>
 		</table>
 		<p class="submit"><input type="submit" value="<?=__('Update Options','wp-splash-image')?>" /></p>
