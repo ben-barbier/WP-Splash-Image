@@ -189,7 +189,7 @@ function wp_splash_image_options() {
 			}
 		});
 		
-		// Gestion du tooltip du feedback
+		// Gestion du tooltip du fidback
 		$('#feedback_img2').tooltip();
 		
 		// Gestion du bouton "close" du feedback
@@ -223,13 +223,16 @@ function wp_splash_image_options() {
 
 	// Send Feedback ?
 	if ($_POST ['action'] == 'feedback') {
+		
 		//Send feedback by mail
 		$to      = 'feedback@dark-sides.com';
 		$subject = 'Feedback WSI';
 		$message = $_POST['feedback_message'];
 		$headers = 'From: '.$_POST['feedback_email'];
-
 		mail($to, $subject, $message, $headers);
+		$feedbacked = true;
+	} else {
+		$feedbacked = false;
 	}
 	
 ?>
@@ -326,9 +329,15 @@ function wp_splash_image_options() {
 		</table>
 		<p class="submit"><input type="submit" value="<?=__('Update Options','wp-splash-image')?>" /></p>
 	</form>
+
+	<?/* Information message */?>
 	<?php if ($updated) { ?>
 		<p style="color:green;"><?=__('Options Updated...','wp-splash-image')?></p>
 	<?php } ?>
+	<?php if ($feedbacked) { ?>
+		<p style="color:green;"><?=__("Thank's for your feedback...",'wp-splash-image')?></p>
+	<?php } ?>
+
 	<br />
 	<div id="display_feedback" style="float:left;margin-top:16px;">
 		<img id="feedback_img1" alt="<?=__('Feedback','wp-splash-image')?>" src="<?=wsi_url()?>/style/feedback_logo_1.png" style="position:absolute;" />
