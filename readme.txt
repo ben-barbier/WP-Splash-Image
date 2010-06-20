@@ -37,6 +37,12 @@ a response...
  
 == Changelog ==
 
+= 0.9 =
+* Add link to wsi settings in plugins page.
+* Add link to donate in plugin page.
+* Vertical align of splash images.
+* Compatibility with new wordpress 3.0 themes
+
 = 0.8 =
 * add feedback form
 
@@ -73,6 +79,9 @@ a response...
 * Activation configurable
 
 == Upgrade Notice ==
+
+= 0.9 =
+* RAS
 
 = 0.8 =
 * RAS
