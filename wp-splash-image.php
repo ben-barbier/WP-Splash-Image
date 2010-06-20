@@ -16,13 +16,9 @@ function wsi_menu() {
 }
 
 /**
- * Ajoute entrée dans la page des extensions
+ * Ajoute entrée dans la page des extensions (partie gauche)
  */
 function wsi_filter_plugin_actions( $links ) { 
-	
-	/* Donate de PayPal */
-	$donate_link = '<a target="_blank" style="font-weight:bold;" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C">'.__('Donate','wp-splash-image').'</a>';
-	array_unshift( $links, $donate_link );
 	
 	/* Lien vers la partie admin */
 	$settings_link = '<a href="options-general.php?page=wp_splash_image">'.__('Settings','wp-splash-image').'</a>'; 
@@ -31,6 +27,23 @@ function wsi_filter_plugin_actions( $links ) {
 	return $links; 
 }
 
+/**
+ * Ajoute entrée dans la page des extensions (partie droite)
+ */
+function set_plugin_meta($links, $file) {
+ 
+	$plugin = plugin_basename(__FILE__);
+	if ($file == $plugin) {
+		return array_merge(
+			$links,
+			array( 
+				/* Donate de PayPal */
+				'<a target="_blank" style="font-weight:bold;" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C">'.__('Donate','wp-splash-image').'</a>'
+				//,'un autre lien...'
+	));}
+	return $links;
+}
+ 
 /**
  * Fontion qui retourne l'URL du plugin
  */
@@ -398,3 +411,4 @@ add_action ( 'wp_head',    'wsi_addSplashImageWpHead' );
 add_action ( 'wp_footer',  'wsi_addSplashImageWpFooter' );
 add_action ( 'template_redirect', 'wsi_init_session', 0);
 add_filter ( 'plugin_action_links_'.plugin_basename(__FILE__), 'wsi_filter_plugin_actions' );
+add_filter( 'plugin_row_meta', 'set_plugin_meta', 10, 2 );
