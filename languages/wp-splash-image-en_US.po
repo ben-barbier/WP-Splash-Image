@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: wp-splash-image v0.7\n"
+"Project-Id-Version: wsi v0.8\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wsi\n"
-"POT-Creation-Date: 2010-06-19 04:40+0000\n"
-"PO-Revision-Date: 2010-06-19 07:00+0100\n"
+"POT-Creation-Date: 2010-06-20 02:39+0000\n"
+"PO-Revision-Date: 2010-06-20 04:52+0100\n"
 "Last-Translator: Benjamin Barbier <benjamin.barbier@dark-sides.com>\n"
 "Language-Team: Benjamin Barbier <benjamin.barbier@dark-sides.com>\n"
 "MIME-Version: 1.0\n"
@@ -22,68 +22,99 @@ msgstr ""
 msgid "You do not have sufficient permissions to access this page."
 msgstr "You do not have sufficient permissions to access this page."
 
-#: wp-splash-image.php:199
+#: wp-splash-image.php:243
 msgid "For information:"
 msgstr "For information:"
 
-#: wp-splash-image.php:207
+#: wp-splash-image.php:245
+msgid "Configuration"
+msgstr "Configuration"
+
+#: wp-splash-image.php:250
 msgid "Splash image activated:"
 msgstr "Splash image activated:"
 
-#: wp-splash-image.php:215
+#: wp-splash-image.php:258
 msgid "Test mode activated:"
 msgstr "Test mode activated:"
 
-#: wp-splash-image.php:221
+#: wp-splash-image.php:264
 msgid "(for tests only, open splash image whenever)"
 msgstr "(for tests only, open splash image whenever)"
 
-#: wp-splash-image.php:224
+#: wp-splash-image.php:267
 msgid "Picture URL:"
 msgstr "Picture URL:"
 
-#: wp-splash-image.php:232
+#: wp-splash-image.php:275
 msgid "Picture height:"
 msgstr "Picture height:"
 
-#: wp-splash-image.php:241
+#: wp-splash-image.php:284
 msgid "Picture width:"
 msgstr "Picture width:"
 
-#: wp-splash-image.php:250
+#: wp-splash-image.php:293
 msgid "Splash color:"
 msgstr "Splash color:"
 
-#: wp-splash-image.php:258
+#: wp-splash-image.php:301
 msgid "Start date:"
 msgstr "Start date:"
 
-#: wp-splash-image.php:264
-#: wp-splash-image.php:273
+#: wp-splash-image.php:307
+#: wp-splash-image.php:316
 msgid "(stay empty if not required)"
 msgstr "(stay empty if not required)"
 
-#: wp-splash-image.php:267
+#: wp-splash-image.php:310
 msgid "End date:"
 msgstr "End date:"
 
-#: wp-splash-image.php:276
+#: wp-splash-image.php:319
 msgid "Display time:"
 msgstr "Display time:"
 
-#: wp-splash-image.php:283
+#: wp-splash-image.php:326
 msgid "seconds"
 msgstr "seconds"
 
-#: wp-splash-image.php:284
+#: wp-splash-image.php:327
 msgid "(0 or empty don't close automaticly the splash image)"
 msgstr "(0 or empty don't close automaticly the splash image)"
 
-#: wp-splash-image.php:287
+#: wp-splash-image.php:330
 msgid "Update Options"
 msgstr "Update Options"
 
-#: wp-splash-image.php:290
+#: wp-splash-image.php:335
 msgid "Options Updated..."
 msgstr "Options Updated..."
+
+#: wp-splash-image.php:338
+msgid "Thank's for your feedback..."
+msgstr "Thank's for your feedback..."
+
+#: wp-splash-image.php:343
+#: wp-splash-image.php:344
+#: wp-splash-image.php:347
+#: wp-splash-image.php:353
+msgid "Feedback"
+msgstr "Feedback"
+
+#: wp-splash-image.php:359
+msgid "Your Email:"
+msgstr "Your Email:"
+
+#: wp-splash-image.php:363
+msgid "Message:"
+msgstr "Message:"
+
+#: wp-splash-image.php:368
+msgid "Close"
+msgstr "Close"
+
+#: wp-splash-image.php:369
+msgid "Send Feedback"
+msgstr "Send Feedback"
 
