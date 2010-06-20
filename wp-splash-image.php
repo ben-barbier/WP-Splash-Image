@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*
 Plugin Name: WP Splash Image
 Plugin URI: http://wordpress.org/extend/plugins/wsi/
