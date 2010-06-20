@@ -16,6 +16,17 @@ function wsi_menu() {
 }
 
 /**
+ * Ajoute un lien vers la partie admin de wsi dans la page des extensions
+ */
+ function wsi_filter_plugin_actions( $links ) { 
+	$settings_link = '<a href="options-general.php?page=wp_splash_image">'.__('Settings','wp-splash-image').'</a>'; 
+	array_unshift( $links, $settings_link ); 
+	return $links; 
+}
+$plugin = plugin_basename(__FILE__); 
+add_filter("plugin_action_links", 'wsi_filter_plugin_actions');
+
+/**
  * Fontion qui retourne l'URL du plugin
  */
 function wsi_url() {
