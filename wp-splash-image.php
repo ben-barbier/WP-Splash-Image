@@ -3,7 +3,7 @@
 Plugin Name: WP Splash Image
 Plugin URI: http://wordpress.org/extend/plugins/wsi/
 Description: WP Splash Image is a plugin for Wordpress to display an image with a lightbox type effect at the opening of the blog.
-Version: 0.7
+Version: 0.8
 Author: Benjamin Barbier
 Author URI: http://www.dark-sides.com/
 */
@@ -145,11 +145,14 @@ function wp_splash_image_options() {
 	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery-ui-1.8.2.custom.min.js"></script>
 	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery.ui.datepicker-fr.js"></script>
+	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery.timer.js"></script>
+	<script type="text/javascript" src="<?=wsi_url()?>/js/tooltip.jquery.js"></script>
 	<script type="text/javascript" src="http://plugins.meta100.com/mcolorpicker/javascripts/mColorPicker_min.js" charset="UTF-8"></script>
 	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/ui-lightness/jquery-ui-1.8.2.custom.css"/> 
 	
 	<script type="text/javascript">
 	$(document).ready(function () {
+		
 		// Chargement des calendriers
 		$("#datepicker_start").datepicker({minDate: 0, maxDate: '+1Y'},$.datepicker.regional['fr']);
 		$("#datepicker_end").datepicker({minDate: 0, maxDate: '+1Y +6M'},  $.datepicker.regional['fr']);
@@ -166,7 +169,34 @@ function wp_splash_image_options() {
 			}else{
 				$("#block_splash_test_active").fadeOut("slow");
 			}
-		});		
+		});
+		
+		// Gestion de l'affichage de la zone "feedback"
+		$("#display_feedback").click(function() {
+			if($("#feedback").css("display")=="none") {
+				$("#feedback").fadeIn("slow");
+			}else{
+				$("#feedback").fadeOut("slow");
+			}
+		});
+		
+		// Gestion du clignotement du feedback
+		$(document).everyTime(1000, function(i) {
+			if (i%2>0) {
+				$("#feedback_img2").fadeOut(1000);
+			} else {
+				$("#feedback_img2").fadeIn(1000);
+			}
+		});
+		
+		// Gestion du tooltip du feedback
+		$('#feedback_img2').tooltip();
+		
+		// Gestion du bouton "close" du feedback
+		$('#close_feedback').click(function() {
+			$('#feedback').fadeOut("slow");
+		});
+		
 	});
 	</script>
 	
@@ -191,6 +221,17 @@ function wp_splash_image_options() {
 		$updated = false;
 	}
 
+	// Send Feedback ?
+	if ($_POST ['action'] == 'feedback') {
+		//Send feedback by mail
+		$to      = 'feedback@dark-sides.com';
+		$subject = 'Feedback WSI';
+		$message = $_POST['feedback_message'];
+		$headers = 'From: '.$_POST['feedback_email'];
+
+		mail($to, $subject, $message, $headers);
+	}
+	
 ?>
 
 <div class="wrap">
@@ -198,10 +239,9 @@ function wp_splash_image_options() {
 	<p>
 		<?=__('For information:','wp-splash-image')?> <a target="_blank" href="http://fr.wikipedia.org/wiki/Splash_screen">Splash Screen</a>
 	</p>
-	<h3>Configuration</h3>
+	<h3><?=__('Configuration','wp-splash-image')?></h3>
 	<form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>">
 		<input type="hidden" name="action" value="update" />
-		
 		<table>
 			<tr>
 				<td><?=__('Splash image activated:','wp-splash-image')?></td>
@@ -235,7 +275,7 @@ function wp_splash_image_options() {
 					name="splash_image_height"
 					size="6"
 					maxlength="3"
-					value="<?=get_option('splash_image_height')?>" />px (min = 210px)</td>
+					value="<?=get_option('splash_image_height')?>" />&nbsp;px (min = 210px)</td>
 			</tr>
 			<tr>
 				<td><?=__("Picture width:",'wp-splash-image')?></td>
@@ -244,7 +284,7 @@ function wp_splash_image_options() {
 					name="splash_image_width"
 					size="6"
 					maxlength="3"
-					value="<?=get_option('splash_image_width')?>" />px</td>
+					value="<?=get_option('splash_image_width')?>" />&nbsp;px</td>
 			</tr>
 			<tr>
 				<td><?=__('Splash color:','wp-splash-image')?></td>
@@ -290,6 +330,38 @@ function wp_splash_image_options() {
 		<p style="color:green;"><?=__('Options Updated...','wp-splash-image')?></p>
 	<?php } ?>
 	<br />
+	<div id="display_feedback" style="float:left;margin-top:16px;">
+		<img id="feedback_img1" alt="<?=__('Feedback','wp-splash-image')?>" src="<?=wsi_url()?>/style/feedback_logo_1.png" style="position:absolute;" />
+		<img id="feedback_img2" alt="<?=__('Feedback','wp-splash-image')?>" src="<?=wsi_url()?>/style/feedback_logo_2.png" style="position:absolute;" />
+		<!-- Tooltip FeedBack -->
+		<div id="data_feedback_img2"style="display:none;"> 
+			<?=__('Feedback','wp-splash-image')?>
+		</div> 
+	</div>
+	<div id="feedback" style="display:none;margin-left:40px;">
+		<fieldset style="border:1px solid black; padding:20px 20px 5px 20px; display:inline;">
+			<legend style="display:block;font-size:1.17em;font-weight:bold;margin:1em 0;margin-top:22px;" >
+				&nbsp;<?=__('Feedback','wp-splash-image')?>&nbsp;
+			</legend>
+			<form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>">
+				<input type="hidden" name="action" value="feedback" />
+				<table>
+					<tr>
+						<td><?=__('Your Email:','wp-splash-image')?></td>
+						<td><input type="text" name="feedback_email" size="50" /></td>
+					</tr>
+					<tr>
+						<td><?=__('Message:','wp-splash-image')?></td>
+						<td><textarea name="feedback_message" rows="10" cols="40"></textarea></td>
+					</tr>
+				</table>
+				<p class="submit">
+					<input type="button" value="<?=__('Close','wp-splash-image')?>" id="close_feedback" />
+					<input type="submit" value="<?=__('Send Feedback','wp-splash-image')?>" />
+				</p>
+			</form>
+		</fieldset>
+	</div>
 </div>
 
 <?php 
