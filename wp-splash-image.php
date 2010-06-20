@@ -1,9 +1,9 @@
-﻿<?php
+<?php
 /*
 Plugin Name: WP Splash Image
 Plugin URI: http://wordpress.org/extend/plugins/wsi/
 Description: WP Splash Image is a plugin for Wordpress to display an image with a lightbox type effect at the opening of the blog.
-Version: 0.8
+Version: 0.9
 Author: Benjamin Barbier
 Author URI: http://www.dark-sides.com/
 */
@@ -16,15 +16,20 @@ function wsi_menu() {
 }
 
 /**
- * Ajoute un lien vers la partie admin de wsi dans la page des extensions
+ * Ajoute entrée dans la page des extensions
  */
- function wsi_filter_plugin_actions( $links ) { 
+function wsi_filter_plugin_actions( $links ) { 
+	
+	/* Donate de PayPal */
+	$donate_link = '<a target="_blank" style="font-weight:bold;" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C">'.__('Donate','wp-splash-image').'</a>';
+	array_unshift( $links, $donate_link );
+	
+	/* Lien vers la partie admin */
 	$settings_link = '<a href="options-general.php?page=wp_splash_image">'.__('Settings','wp-splash-image').'</a>'; 
-	array_unshift( $links, $settings_link ); 
+	array_unshift( $links, $settings_link );
+	
 	return $links; 
 }
-$plugin = plugin_basename(__FILE__); 
-add_filter("plugin_action_links", 'wsi_filter_plugin_actions');
 
 /**
  * Fontion qui retourne l'URL du plugin
@@ -392,3 +397,4 @@ add_action ( 'admin_init', 'wp_splash_image_options_init');
 add_action ( 'wp_head',    'wsi_addSplashImageWpHead' );
 add_action ( 'wp_footer',  'wsi_addSplashImageWpFooter' );
 add_action ( 'template_redirect', 'wsi_init_session', 0);
+add_filter ( 'plugin_action_links_'.plugin_basename(__FILE__), 'wsi_filter_plugin_actions' );
