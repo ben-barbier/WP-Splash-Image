@@ -40,8 +40,7 @@ a response...
 = 0.9 =
 * Add link to wsi settings in plugins page.
 * Add link to donate in plugin page.
-* Vertical align of splash images.
-* Compatibility with new wordpress 3.0 themes
+* Compatibility with new wordpress 3.0 themes (http://wordpress.org/extend/themes/mystique)
 
 = 0.8 =
 * add feedback form
