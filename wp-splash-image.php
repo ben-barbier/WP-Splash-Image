@@ -350,10 +350,11 @@ function wp_splash_image_options() {
 					type="checkbox" 
 					name="wsi_close_esc_function" 
 					<?php if(get_option('wsi_close_esc_function')=='true') {echo("checked='checked'");} ?> />
-					<?=__('(except picture link)','wp-splash-image')?></td>
+					(<?=__('except picture link and','wp-splash-image')?>
+					<img src="<?=wsi_url()?>/style/close.png" style="height:20px;margin-bottom:-4px;" />)</td>
 			</tr>
 			<tr>
-				<td><?=__('Hide','wp-splash-image')?>&nbsp;<img src="<?=wsi_url()?>/style/close.png" style="height:20px;" />&nbsp;:</td>
+				<td><?=__('Hide','wp-splash-image')?>&nbsp;<img src="<?=wsi_url()?>/style/close.png" style="height:20px;margin-bottom:-4px;" />&nbsp;:</td>
 				<td><input 
 					type="checkbox" 
 					name="wsi_hide_cross" 
