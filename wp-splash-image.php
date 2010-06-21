@@ -6,6 +6,7 @@ Description: WP Splash Image is a plugin for Wordpress to display an image with 
 Version: 0.9
 Author: Benjamin Barbier
 Author URI: http://www.dark-sides.com/
+Donate URI: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C
 */
 
 /**
@@ -37,7 +38,7 @@ function set_plugin_meta($links, $file) {
 		return array_merge(
 			$links,
 			array( 
-				/* Donate de PayPal */
+				/* Lien "Donate" de PayPal */
 				'<a target="_blank" style="font-weight:bold;" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C">'.__('Donate','wp-splash-image').'</a>'
 				//,'un autre lien...'
 	));}
@@ -82,6 +83,7 @@ function wsi_addSplashImageWpHead() {
 
 	<!-- WP Splash-Image -->
 	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/overlay-basic.css"/> 
+	<script src="<?=wsi_url()?>/js/jquery-1.4.2.min.js"></script>
 	<script src="<?=wsi_url()?>/js/jquery.tools.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function () {
@@ -124,13 +126,16 @@ function wsi_addSplashImageWpFooter() {
 	$splash_image_height = get_option('splash_image_height');
 	$splash_image_width = get_option('splash_image_width');
 	$wsi_display_time = get_option('wsi_display_time');
-		
+	$wsi_picture_link_url = get_option('wsi_picture_link_url');
+	
 ?>	
 
 	<!-- WP Splash-Image -->
 	<a style="display:none;" id="splashLink" href="#" rel="#miesSPLASH"></a>
 	<div class="simple_overlay" style="text-align:center;color:#FFFFFF;margin-top:15px;height:<?=$splash_image_height?>px;width:<?=$splash_image_width?>px;" id="miesSPLASH">
+		<?php if($wsi_picture_link_url!="") { echo ('<a href="'.$wsi_picture_link_url.'">'); } ?>
 		<img style="height:<?=$splash_image_height?>px;width:<?=$splash_image_width?>px;" src="<?=$url_splash_image?>" />
+		<?php if($wsi_picture_link_url!="") { echo('</a>'); } ?>
 	</div>
 	<?php if ($wsi_display_time > 0) { ?>
 	<script type="text/javascript">
@@ -171,13 +176,15 @@ function wp_splash_image_options() {
 ?>
 
 	<?/* Import des librairies JQuery + CSS pour la partie admin */?>
-	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery-1.4.2.min.js"></script>
-	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery-ui-1.8.2.custom.min.js"></script>
-	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery.ui.datepicker-fr.js"></script>
-	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery.timer.js"></script>
-	<script type="text/javascript" src="<?=wsi_url()?>/js/tooltip.jquery.js"></script>
-	<script type="text/javascript" src="http://plugins.meta100.com/mcolorpicker/javascripts/mColorPicker_min.js" charset="UTF-8"></script>
-	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/ui-lightness/jquery-ui-1.8.2.custom.css"/> 
+	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery-1.4.2.min.js"></script><?/*Base de JQuery*/?>
+	<script type="text/javascript" src="<?=wsi_url()?>/js/validator.min.js"></script><?/*Validation du formulaire feedback*/?>
+	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery-ui-1.8.2.custom.min.js"></script><?/*Base JQuery-UI*/?>
+	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery.ui.datepicker-fr.js"></script><?/*Calendrier des dates de validités*/?>
+	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery.timer.js"></script><?/*Chrono pour clignotement du logo feedback*/?>
+	<script type="text/javascript" src="<?=wsi_url()?>/js/tooltip.jquery.js"></script><?/*Infobulle(tooltip) pour feedback*/?>
+	<script type="text/javascript" src="http://plugins.meta100.com/mcolorpicker/javascripts/mColorPicker_min.js" charset="UTF-8"></script><?/*Colorpicker*/?>
+	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/ui-lightness/jquery-ui-1.8.2.custom.css"/><?/*Style pour Calendrier des dates de validités*/?>
+	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/validator-error.css"/><?/*Style pour le validator du feedback*/?>
 	
 	<script type="text/javascript">
 	$(document).ready(function () {
@@ -206,6 +213,7 @@ function wp_splash_image_options() {
 				$("#feedback").fadeIn("slow");
 			}else{
 				$("#feedback").fadeOut("slow");
+				$(".error").fadeOut("slow"); //On masque également les errors du validator
 			}
 		});
 		
@@ -218,12 +226,19 @@ function wp_splash_image_options() {
 			}
 		});
 		
-		// Gestion du tooltip du fidback
+		// Activation du tooltip du fidback
 		$('#feedback_img2').tooltip();
 		
 		// Gestion du bouton "close" du feedback
 		$('#close_feedback').click(function() {
 			$('#feedback').fadeOut("slow");
+			$(".error").fadeOut("slow"); //On masque également les errors du validator
+		});
+		
+		// Activation du validator du formulaire de feedback
+		$('#feedback_form').validator({
+			position: 'center right',
+			offset: [0, -30]
 		});
 		
 	});
@@ -238,13 +253,14 @@ function wp_splash_image_options() {
 		update_option('splash_active', $active);
 		if ($_POST['splash_test_active']) {$test_active='true';} else {$test_active='false';}
 		update_option('splash_test_active', $test_active);
-		update_option('url_splash_image',    $_POST['url_splash_image']);
-		update_option('splash_image_width',  $_POST['splash_image_width']);
-		update_option('splash_image_height', $_POST['splash_image_height']);
-		update_option('splash_color',        $_POST['splash_color']);
-		update_option('datepicker_start',    $_POST['datepicker_start']);
-		update_option('datepicker_end',      $_POST['datepicker_end']);
-		update_option('wsi_display_time',    $_POST['wsi_display_time']);
+		update_option('url_splash_image',     $_POST['url_splash_image']);
+		update_option('splash_image_width',   $_POST['splash_image_width']);
+		update_option('splash_image_height',  $_POST['splash_image_height']);
+		update_option('splash_color',         $_POST['splash_color']);
+		update_option('datepicker_start',     $_POST['datepicker_start']);
+		update_option('datepicker_end',       $_POST['datepicker_end']);
+		update_option('wsi_display_time',     $_POST['wsi_display_time']);
+		update_option('wsi_picture_link_url', $_POST['wsi_picture_link_url']);
 		$updated = true;
 	} else {
 		$updated = false;
@@ -297,8 +313,16 @@ function wp_splash_image_options() {
 				<td><input 
 					type="text" 
 					name="url_splash_image" 
-					size="120" 
+					size="80" 
 					value="<?=get_option('url_splash_image')?>" /></td>
+			</tr>
+			<tr>
+				<td><?=__("Picture link URL:",'wp-splash-image')?></td>
+				<td><input 
+					type="text" 
+					name="wsi_picture_link_url" 
+					size="80" 
+					value="<?=get_option('wsi_picture_link_url')?>" /><?=__('(stay empty if not required)','wp-splash-image')?></td>
 			</tr>
 			<tr>
 				<td><?=__("Picture height:",'wp-splash-image')?></td>
@@ -381,16 +405,16 @@ function wp_splash_image_options() {
 			<legend style="display:block;font-size:1.17em;font-weight:bold;margin:1em 0;margin-top:22px;" >
 				&nbsp;<?=__('Feedback','wp-splash-image')?>&nbsp;
 			</legend>
-			<form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>">
+			<form method="post" id="feedback_form" action="<?php echo $_SERVER ['REQUEST_URI']?>">
 				<input type="hidden" name="action" value="feedback" />
 				<table>
 					<tr>
 						<td><?=__('Your Email:','wp-splash-image')?></td>
-						<td><input type="text" name="feedback_email" size="50" /></td>
+						<td><input type="email" required="required" name="feedback_email" size="50" /></td>
 					</tr>
 					<tr>
 						<td><?=__('Message:','wp-splash-image')?></td>
-						<td><textarea name="feedback_message" rows="10" cols="40"></textarea></td>
+						<td><textarea name="feedback_message" required="required" rows="10" cols="40"></textarea></td>
 					</tr>
 				</table>
 				<p class="submit">
