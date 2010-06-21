@@ -79,6 +79,8 @@ function wsi_addSplashImageWpHead() {
 	if(($_SESSION['splash_seen']=='Yes') && (get_option('splash_test_active')!='true'))  return;
 	
 	$url_splash_image = get_option ('url_splash_image');
+	$wsi_close_esc_function = get_option ('wsi_close_esc_function');
+	
 ?>
 
 	<!-- WP Splash-Image -->
@@ -89,6 +91,7 @@ function wsi_addSplashImageWpHead() {
 	$(document).ready(function () {
 		$("#splashLink").overlay({
 			expose: '<?=get_option('splash_color')?>',
+			<?php if ($wsi_close_esc_function=='true') { echo('closeOnClick: false,'); } ?>
 			load: true // Lance la Splash Image à l'ouverture
 		});
 	});
@@ -127,6 +130,7 @@ function wsi_addSplashImageWpFooter() {
 	$splash_image_width = get_option('splash_image_width');
 	$wsi_display_time = get_option('wsi_display_time');
 	$wsi_picture_link_url = get_option('wsi_picture_link_url');
+	$wsi_hide_cross = get_option('wsi_hide_cross');
 	
 ?>	
 
@@ -137,15 +141,26 @@ function wsi_addSplashImageWpFooter() {
 		<img style="height:<?=$splash_image_height?>px;width:<?=$splash_image_width?>px;" src="<?=$url_splash_image?>" />
 		<?php if($wsi_picture_link_url!="") { echo('</a>'); } ?>
 	</div>
+	
+	<?/* Autoclose de la Splash Image */?>
 	<?php if ($wsi_display_time > 0) { ?>
 	<script type="text/javascript">
-	// Autoclose de la Splash Image
 	$(document).ready(function () {
 		setTimeout("$('#miesSPLASH').fadeOut()",<?=($wsi_display_time*1000)?>);
 		setTimeout("$('#exposeMask').fadeOut()",<?=($wsi_display_time*1000)?>);
 	});
 	</script>
 	<? } ?>
+	
+	<?/* On masque la croix en haut à droite si besoin */?>
+	<?php if($wsi_hide_cross=='true') { ?>
+	<script type="text/javascript">
+	$(document).ready(function () {
+		$('.simple_overlay .close').css('display','none');
+	});
+	</script>
+	<? } ?>
+	
 	<!-- /WP Splash-Image -->
 	
 <?php
@@ -261,6 +276,10 @@ function wp_splash_image_options() {
 		update_option('datepicker_end',       $_POST['datepicker_end']);
 		update_option('wsi_display_time',     $_POST['wsi_display_time']);
 		update_option('wsi_picture_link_url', $_POST['wsi_picture_link_url']);
+		if ($_POST['wsi_close_esc_function']) {$wsi_close_esc_function='true';} else {$wsi_close_esc_function='false';}
+		update_option('wsi_close_esc_function', $wsi_close_esc_function);
+		if ($_POST['wsi_hide_cross']) {$wsi_hide_cross='true';} else {$wsi_hide_cross='false';}
+		update_option('wsi_hide_cross', $wsi_hide_cross);
 		$updated = true;
 	} else {
 		$updated = false;
@@ -306,7 +325,7 @@ function wp_splash_image_options() {
 					name="splash_test_active" 
 					id="splash_test_active" 
 					<?php if(get_option('splash_test_active')=='true') {echo("checked='checked'");} ?> />
-				<?=__('(for tests only, open splash image whenever)','wp-splash-image')?></td>
+					<?=__('(for tests only, open splash image whenever)','wp-splash-image')?></td>
 			</tr>
 			<tr>
 				<td><?=__("Picture URL:",'wp-splash-image')?></td>
@@ -322,7 +341,23 @@ function wp_splash_image_options() {
 					type="text" 
 					name="wsi_picture_link_url" 
 					size="80" 
-					value="<?=get_option('wsi_picture_link_url')?>" /><?=__('(stay empty if not required)','wp-splash-image')?></td>
+					value="<?=get_option('wsi_picture_link_url')?>" />
+					<?=__('(stay empty if not required)','wp-splash-image')?></td>
+			</tr>
+			<tr>
+				<td><?=__('Close esc function:','wp-splash-image')?></td>
+				<td><input 
+					type="checkbox" 
+					name="wsi_close_esc_function" 
+					<?php if(get_option('wsi_close_esc_function')=='true') {echo("checked='checked'");} ?> />
+					<?=__('(except picture link)','wp-splash-image')?></td>
+			</tr>
+			<tr>
+				<td><?=__('Hide','wp-splash-image')?>&nbsp;<img src="<?=wsi_url()?>/style/close.png" style="height:20px;" />&nbsp;:</td>
+				<td><input 
+					type="checkbox" 
+					name="wsi_hide_cross" 
+					<?php if(get_option('wsi_hide_cross')=='true') {echo("checked='checked'");} ?> /></td>
 			</tr>
 			<tr>
 				<td><?=__("Picture height:",'wp-splash-image')?></td>
