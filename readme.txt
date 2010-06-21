@@ -42,6 +42,7 @@ a response...
 * Add link to donate in plugins page.
 * Add feedback fields validator
 * Add optional picture link URL
+* Add the ability to close 'ESC' function
 * Compatibility with new wordpress 3.0 themes (http://wordpress.org/extend/themes/mystique) : TODO
 
 = 0.8 =
