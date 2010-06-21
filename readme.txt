@@ -39,8 +39,10 @@ a response...
 
 = 0.9 =
 * Add link to wsi settings in plugins page.
-* Add link to donate in plugin page.
-* Compatibility with new wordpress 3.0 themes (http://wordpress.org/extend/themes/mystique)
+* Add link to donate in plugins page.
+* Add feedback fields validator
+* Add optional picture link URL
+* Compatibility with new wordpress 3.0 themes (http://wordpress.org/extend/themes/mystique) : TODO
 
 = 0.8 =
 * add feedback form
