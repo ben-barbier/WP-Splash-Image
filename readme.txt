@@ -37,9 +37,6 @@ a response...
  
 == Changelog ==
 
-= 0.9.1 =
-* Compatibility with new wordpress 3.0 themes (http://wordpress.org/extend/themes/mystique) : TODO
-
 = 0.9 =
 * Add link to wsi settings in plugins page.
 * Add link to donate in plugins page.
