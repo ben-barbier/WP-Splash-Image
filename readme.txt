@@ -37,6 +37,9 @@ a response...
  
 == Changelog ==
 
+= 0.9.3 =
+* Add NL Language (Thank you to Andre Arends for this too).
+
 = 0.9.2 =
 * Little bugfix (Jquery compatibility) : Thank you to Andre Arends for his info.
 
