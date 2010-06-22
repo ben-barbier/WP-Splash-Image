@@ -1,0 +1,120 @@
+# Translation of the WordPress plugin   by .
+# Copyright (C) 2010
+# This file is distributed under the same license as the  package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wsi v0.8\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/wsi\n"
+"POT-Creation-Date: 2010-06-20 02:39+0000\n"
+"PO-Revision-Date: 2010-06-22 13:44+0100\n"
+"Last-Translator: Andre Arends <Helpdesk@vernum.nl>\n"
+"Language-Team: Benjamin Barbier <benjamin.barbier@dark-sides.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: wp-splash-image.php:139
+msgid "You do not have sufficient permissions to access this page."
+msgstr "u bezit onvoldoende rechten om deze pagina te bezoeken"
+
+#: wp-splash-image.php:243
+msgid "For information:"
+msgstr "Ter informatie:"
+
+#: wp-splash-image.php:245
+msgid "Configuration"
+msgstr "Configuratie"
+
+#: wp-splash-image.php:250
+msgid "Splash image activated:"
+msgstr "Splash image geactiveerd:"
+
+#: wp-splash-image.php:258
+msgid "Test mode activated:"
+msgstr "Test mode geactiveerd:"
+
+#: wp-splash-image.php:264
+msgid "(for tests only, open splash image whenever)"
+msgstr "(splash image wordt altijd openen. Advies is alleen voor test doeleinden gebruiken )"
+
+#: wp-splash-image.php:267
+msgid "Picture URL:"
+msgstr "URL plaatje:"
+
+#: wp-splash-image.php:275
+msgid "Picture height:"
+msgstr "Hoogte plaatje:"
+
+#: wp-splash-image.php:284
+msgid "Picture width:"
+msgstr "Breedte plaatje:"
+
+#: wp-splash-image.php:293
+msgid "Splash color:"
+msgstr "Splash kleur:"
+
+#: wp-splash-image.php:301
+msgid "Start date:"
+msgstr "Start datum:"
+
+#: wp-splash-image.php:307
+#: wp-splash-image.php:316
+msgid "(stay empty if not required)"
+msgstr "(Leeg laten indien deze niet nodig is)"
+
+#: wp-splash-image.php:310
+msgid "End date:"
+msgstr "Eind datum:"
+
+#: wp-splash-image.php:319
+msgid "Display time:"
+msgstr "Tijd splash zichtbaar:"
+
+#: wp-splash-image.php:326
+msgid "seconds"
+msgstr "seconden"
+
+#: wp-splash-image.php:327
+msgid "(0 or empty don't close automaticly the splash image)"
+msgstr "(0 of leeg laten dan sluit het splash scherm zich niet vanzelf)"
+
+#: wp-splash-image.php:330
+msgid "Update Options"
+msgstr "Update Opties"
+
+#: wp-splash-image.php:335
+msgid "Options Updated..."
+msgstr "Opties aangepast..."
+
+#: wp-splash-image.php:338
+msgid "Thank's for your feedback..."
+msgstr "Dank je wel voor de feedback..."
+
+#: wp-splash-image.php:343
+#: wp-splash-image.php:344
+#: wp-splash-image.php:347
+#: wp-splash-image.php:353
+msgid "Feedback"
+msgstr "Feedback"
+
+#: wp-splash-image.php:359
+msgid "Your Email:"
+msgstr "Jouw Email:"
+
+#: wp-splash-image.php:363
+msgid "Message:"
+msgstr "Bericht:"
+
+#: wp-splash-image.php:368
+msgid "Close"
+msgstr "Sluiten"
+
+#: wp-splash-image.php:369
+msgid "Send Feedback"
+msgstr "Verstuur Feedback"
+
