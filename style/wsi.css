@@ -1,0 +1,13 @@
+.plugin_title {
+	color: #7FFF00;
+	font-weight: bold;
+}
+.plugin_number {
+	color: red;
+	font-weight: bold;
+	font-size: 20px;
+}
+.little_cross {
+	height:20px;
+	margin-bottom:-4px;
+}

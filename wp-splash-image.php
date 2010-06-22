@@ -86,7 +86,7 @@ function wsi_addSplashImageWpHead() {
 	<!-- WP Splash-Image -->
 	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/overlay-basic.css"/> 
 	<script src="<?=wsi_url()?>/js/jquery-1.4.2.min.js"></script>
-	<script src="<?=wsi_url()?>/js/jquery.tools.min.js"></script>
+	<script src="<?=wsi_url()?>/js/jquery.tools.min.wp-front.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function () {
 		$("#splashLink").overlay({
@@ -193,6 +193,7 @@ function wp_splash_image_options() {
 	<?/* Import des librairies JQuery + CSS pour la partie admin */?>
 	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery-1.4.2.min.js"></script><?/*Base de JQuery*/?>
 	<script type="text/javascript" src="<?=wsi_url()?>/js/validator.min.js"></script><?/*Validation du formulaire feedback*/?>
+	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery.tools.min.wp-back.js"></script><?/*Overlay + apple effect*/?>
 	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery-ui-1.8.2.custom.min.js"></script><?/*Base JQuery-UI*/?>
 	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery.ui.datepicker-fr.js"></script><?/*Calendrier des dates de validités*/?>
 	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery.timer.js"></script><?/*Chrono pour clignotement du logo feedback*/?>
@@ -200,7 +201,8 @@ function wp_splash_image_options() {
 	<script type="text/javascript" src="http://plugins.meta100.com/mcolorpicker/javascripts/mColorPicker_min.js" charset="UTF-8"></script><?/*Colorpicker*/?>
 	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/ui-lightness/jquery-ui-1.8.2.custom.css"/><?/*Style pour Calendrier des dates de validités*/?>
 	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/validator-error.css"/><?/*Style pour le validator du feedback*/?>
-	
+	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/overlay-basic.css"/> 
+	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/wsi.css"/>
 	<script type="text/javascript">
 	$(document).ready(function () {
 		
@@ -241,8 +243,11 @@ function wp_splash_image_options() {
 			}
 		});
 		
-		// Activation du tooltip du fidback
+		// Activation du tooltip du feedback
 		$('#feedback_img2').tooltip();
+		
+		// Activation du tooltip de "Info"
+		$('#info_img').tooltip();
 		
 		// Gestion du bouton "close" du feedback
 		$('#close_feedback').click(function() {
@@ -255,6 +260,10 @@ function wp_splash_image_options() {
 			position: 'center right',
 			offset: [0, -30]
 		});
+		
+		// Activation de l'overlay de l'info
+		//$('#info_img').overlay();
+		$("#info_img[rel]").overlay({mask: '#000', effect: 'apple'});
 		
 	});
 	</script>
@@ -311,7 +320,7 @@ function wp_splash_image_options() {
 		<input type="hidden" name="action" value="update" />
 		<table>
 			<tr>
-				<td><?=__('Splash image activated:','wp-splash-image')?></td>
+				<td><?=__('Splash image activated','wp-splash-image')?>:</td>
 				<td><input 
 					type="checkbox" 
 					name="splash_active" 
@@ -336,7 +345,7 @@ function wp_splash_image_options() {
 					value="<?=get_option('url_splash_image')?>" /></td>
 			</tr>
 			<tr>
-				<td><?=__("Picture link URL:",'wp-splash-image')?></td>
+				<td><?=__("Picture link URL",'wp-splash-image')?>:</td>
 				<td><input 
 					type="text" 
 					name="wsi_picture_link_url" 
@@ -345,23 +354,23 @@ function wp_splash_image_options() {
 					<?=__('(stay empty if not required)','wp-splash-image')?></td>
 			</tr>
 			<tr>
-				<td><?=__('Close esc function:','wp-splash-image')?></td>
+				<td><?=__('Close esc function','wp-splash-image')?>:</td>
 				<td><input 
 					type="checkbox" 
 					name="wsi_close_esc_function" 
 					<?php if(get_option('wsi_close_esc_function')=='true') {echo("checked='checked'");} ?> />
 					(<?=__('except picture link and','wp-splash-image')?>
-					<img src="<?=wsi_url()?>/style/close.png" style="height:20px;margin-bottom:-4px;" />)</td>
+					<img src="<?=wsi_url()?>/style/close.png" class="little_cross" />)</td>
 			</tr>
 			<tr>
-				<td><?=__('Hide','wp-splash-image')?>&nbsp;<img src="<?=wsi_url()?>/style/close.png" style="height:20px;margin-bottom:-4px;" />&nbsp;:</td>
+				<td><?=__('Hide','wp-splash-image')?>&nbsp;<img src="<?=wsi_url()?>/style/close.png" class="little_cross" />&nbsp;:</td>
 				<td><input 
 					type="checkbox" 
 					name="wsi_hide_cross" 
 					<?php if(get_option('wsi_hide_cross')=='true') {echo("checked='checked'");} ?> /></td>
 			</tr>
 			<tr>
-				<td><?=__("Picture height:",'wp-splash-image')?></td>
+				<td><?=__("Picture height",'wp-splash-image')?>:</td>
 				<td><input
 					type="text"
 					name="splash_image_height"
@@ -370,7 +379,7 @@ function wp_splash_image_options() {
 					value="<?=get_option('splash_image_height')?>" />&nbsp;px (min = 210px)</td>
 			</tr>
 			<tr>
-				<td><?=__("Picture width:",'wp-splash-image')?></td>
+				<td><?=__("Picture width",'wp-splash-image')?>:</td>
 				<td><input
 					type="text"
 					name="splash_image_width"
@@ -379,7 +388,7 @@ function wp_splash_image_options() {
 					value="<?=get_option('splash_image_width')?>" />&nbsp;px</td>
 			</tr>
 			<tr>
-				<td><?=__('Splash color:','wp-splash-image')?></td>
+				<td><?=__('Background color','wp-splash-image')?>:</td>
 				<td><input
 					type="color"
 					name="splash_color"
@@ -387,7 +396,7 @@ function wp_splash_image_options() {
 					value="<?=get_option('splash_color')?>" /></td>
 			</tr>
 			<tr>
-				<td><?=__('Start date:','wp-splash-image')?></td>
+				<td><?=__('Start date','wp-splash-image')?>:</td>
 				<td><input 
 					type="text" 
 					name="datepicker_start" 
@@ -396,7 +405,7 @@ function wp_splash_image_options() {
 					<?=__('(stay empty if not required)','wp-splash-image')?></td>
 			</tr>
 			<tr>
-				<td><?=__('End date:','wp-splash-image')?></td>
+				<td><?=__('End date','wp-splash-image')?>:</td>
 				<td><input 
 					type="text" 
 					name="datepicker_end" 
@@ -405,7 +414,7 @@ function wp_splash_image_options() {
 					<?=__('(stay empty if not required)','wp-splash-image')?></td>
 			</tr>
 			<tr>
-				<td><?=__('Display time:','wp-splash-image')?></td>
+				<td><?=__('Display time','wp-splash-image')?>:</td>
 				<td><input
 					type="text"
 					name="wsi_display_time"
@@ -434,7 +443,7 @@ function wp_splash_image_options() {
 		<!-- Tooltip FeedBack -->
 		<div id="data_feedback_img2"style="display:none;"> 
 			<?=__('Feedback','wp-splash-image')?>
-		</div> 
+		</div>
 	</div>
 	<div id="feedback" style="display:none;margin-left:40px;">
 		<fieldset style="border:1px solid black; padding:20px 20px 5px 20px; display:inline;">
@@ -459,6 +468,44 @@ function wp_splash_image_options() {
 				</p>
 			</form>
 		</fieldset>
+	</div>
+	<div id="display_info" style="float:left;margin-top:16px;margin-left:40px;">
+		<img id="info_img" rel="#info" src="<?=wsi_url()?>/style/info.png" />
+		<!-- Tooltip Info -->
+		<div id="data_info_img"style="display:none;"> 
+			<?=__('Infos','wp-splash-image')?>
+		</div>
+	</div>
+	<div id="info" class="overlay" style="display:none;background-image:url(<?=wsi_url()?>/style/petrol.png);color:#fff;width:620px;height:530px;margin:40px;">
+		<div style="font-weight:bold;font-size:20px;margin-bottom:10px;">Infos :</div>
+		<img src="<?=wsi_url()?>/style/info_legende.jpg" style="float:left;margin-right:15px;" />
+		WP Splash Image display picture if 3 conditions are OK: <br />
+		<ul style="list-style-type:disc;list-style-position:inside;">
+			<li><span class="plugin_title"><?=__('Splash image activated','wp-splash-image')?></span> is checked</li>
+			<li>Current date is less than or equal to <span class="plugin_title"><?=__('End date','wp-splash-image')?></span>.</li>
+			<li>Current date is greater than or equal to <span class="plugin_title"><?=__('Start date','wp-splash-image')?></span>.</li>
+		</ul>
+		<span class="plugin_number">1)</span>
+		We can change the <span class="plugin_title"><?=__('Background color','wp-splash-image')?></span> with the colorpicker.<br />
+		If you click on the background, you'll quit the splash image except if <span class="plugin_title"><?=__('Close esc function','wp-splash-image')?></span> is checked.
+		<br /><br />
+		<span class="plugin_number">2)</span>
+		The <img src="<?=wsi_url()?>/style/close.png" class="little_cross" /> can be <span class="plugin_title"><?=__('Hide','wp-splash-image')?></span>.
+		We can use this option with :
+		<ul style="list-style-type:disc;list-style-position:inside;">
+			<li><span class="plugin_title"><?=__('Close esc function','wp-splash-image')?></span></li>
+			<li><span class="plugin_title"><?=__("Picture link URL",'wp-splash-image')?></span></li>
+		</ul>
+		for advertisment for exemple.
+		<br />
+		<span class="plugin_number">3)</span>
+		For the picture, we can specify the
+		<span class="plugin_title"><?=__("Picture height",'wp-splash-image')?></span>
+		and the
+		<span class="plugin_title"><?=__("Picture width",'wp-splash-image')?></span>.
+		<br />
+		If we fill the <span class="plugin_title"><?=__('Display time','wp-splash-image')?></span> field, the splash screen disappear after this value (in second).
+		<br />
 	</div>
 </div>
 

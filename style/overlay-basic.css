@@ -30,3 +30,14 @@
 	height:35px;
 	width:35px;
 }
+
+/* close button positioned on upper right corner */
+.overlay .close {
+	background-image:url(../style/close.png);
+	position:absolute;
+	right:-31px;
+	top:-33px;
+	cursor:pointer;
+	height:35px;
+	width:35px;
+}
