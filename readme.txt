@@ -37,6 +37,9 @@ a response...
  
 == Changelog ==
 
+= 0.9.2 =
+* Little bugfix (Jquery compatibility) : Thank you to Andre Arends for his info.
+
 = 0.9.1 =
 * Add Documentation in plugin
 

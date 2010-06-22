@@ -3,7 +3,7 @@
 Plugin Name: WP Splash Image
 Plugin URI: http://wordpress.org/extend/plugins/wsi/
 Description: WP Splash Image is a plugin for Wordpress to display an image with a lightbox type effect at the opening of the blog.
-Version: 0.9.1
+Version: 0.9.2
 Author: Benjamin Barbier
 Author URI: http://www.dark-sides.com/
 Donate URI: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C
@@ -88,8 +88,10 @@ function wsi_addSplashImageWpHead() {
 	<script src="<?=wsi_url()?>/js/jquery-1.4.2.min.js"></script>
 	<script src="<?=wsi_url()?>/js/jquery.tools.min.wp-front.js"></script>
 	<script type="text/javascript">
-	$(document).ready(function () {
-		$("#splashLink").overlay({
+	
+	var $j = jQuery.noConflict();
+	$j(document).ready(function () {
+		$j("#splashLink").overlay({
 			expose: '<?=get_option('splash_color')?>',
 			<?php if ($wsi_close_esc_function=='true') { echo('closeOnClick: false,'); } ?>
 			load: true // Lance la Splash Image à l'ouverture
