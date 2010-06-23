@@ -10,10 +10,65 @@ Donate URI: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id
 */
 
 /**
+ * Fonction utilisée dans la partie Admin (initialisation)
+ */
+function wp_splash_image_options_init() {
+	
+	// Chargement de l' I18n
+	if (function_exists('load_plugin_textdomain')) {
+		load_plugin_textdomain('wp-splash-image', wsi_url().'/languages', $wsi_plugin_dir.'/languages' );
+	}
+	
+	// Déclaration des styles de la partie Admin (utilisés dans enqueue_wsi_styles)
+	wp_register_style('tabs', wsi_url().'/style/tabs.css'); /*Style pour les onglets*/
+	wp_register_style('validator-error', wsi_url().'/style/validator-error.css'); /*Style pour le validator du feedback*/
+	wp_register_style('overlay-basic', wsi_url().'/style/overlay-basic.css'); /*Style pour la la box de documentation*/
+	wp_register_style('date-input', wsi_url().'/style/dateinput.css'); /*Style pour les calendriers*/
+	wp_register_style('range', wsi_url().'/style/range.css'); /*Style pour le curseur de temps*/
+	
+	wp_register_style('wsi', wsi_url().'/style/wsi.css');
+	
+	// Déclaration des scripts de la partie Admin (utilisés dans enqueue_wsi_scripts)
+    wp_register_script('jquery142', wsi_url().'/js/jquery-1.4.2.min.js'); /*Base de JQuery*/
+	wp_register_script('jquery.tools', wsi_url().'/js/jquery.tools.min.wp-back.js'); /*Overlay + apple effect + Validation + Tabs*/
+	wp_register_script('jquery.tooltip', wsi_url().'/js/tooltip.jquery.js'); /*Infobulle(tooltip) pour feedback*/
+	wp_register_script('mcolorpicker', 'http://plugins.meta100.com/mcolorpicker/javascripts/mColorPicker_min.js'); /*Colorpicker*/
+	
+}
+
+/**
  * Crée l'entrée dans le menu "Réglages" de la partie admin de wordpress
  */
 function wsi_menu() {
-	add_options_page('WP Splash Image Options', 'WP Splash Image', 'manage_options', 'wp_splash_image', 'wp_splash_image_options');
+	$page = add_options_page('WP Splash Image Options', 'WP Splash Image', 'manage_options', 'wp_splash_image', 'wp_splash_image_options');
+	
+	/* Using registered $page handle to hook stylesheet loading */
+    add_action('admin_print_styles-' . $page, 'enqueue_wsi_styles');
+	
+	/* Using registered $page handle to hook script load */
+	add_action('admin_print_scripts-' . $page, 'enqueue_wsi_scripts');
+}
+
+/**
+ * Utilisation des styles de la partie Admin
+ */
+function enqueue_wsi_styles() {
+	wp_enqueue_style('tabs');
+	wp_enqueue_style('validator-error');
+	wp_enqueue_style('overlay-basic');
+	wp_enqueue_style('date-input');
+	wp_enqueue_style('range');
+	wp_enqueue_style('wsi');
+}
+
+/**
+ * Utilisation des scripts de la partie Admin
+ */
+function enqueue_wsi_scripts() {
+	wp_enqueue_script('jquery142');
+	wp_enqueue_script('jquery.tools');
+	wp_enqueue_script('jquery.tooltip');
+	wp_enqueue_script('mcolorpicker');
 }
 
 /**
@@ -169,18 +224,6 @@ function wsi_addSplashImageWpFooter() {
 }
 
 /**
- * Fonction utilisée dans la partie Admin (initialisation)
- */
-function wp_splash_image_options_init()
-{
-	$wsi_plugin_dir = dirname(plugin_basename(__FILE__));
-	// Chargement de l' I18n
-	if (function_exists('load_plugin_textdomain')) {
-		load_plugin_textdomain('wp-splash-image', PLUGINDIR.'/'.$wsi_plugin_dir.'/languages', $wsi_plugin_dir.'/languages' );
-	}
-}
-
-/**
  * Fonction utilisée dans la partie Admin 
  */
 function wp_splash_image_options() {
@@ -192,25 +235,36 @@ function wp_splash_image_options() {
 	
 ?>
 
-	<?/* Import des librairies JQuery + CSS pour la partie admin */?>
-	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery-1.4.2.min.js"></script><?/*Base de JQuery*/?>
-	<script type="text/javascript" src="<?=wsi_url()?>/js/validator.min.js"></script><?/*Validation du formulaire feedback*/?>
-	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery.tools.min.wp-back.js"></script><?/*Overlay + apple effect*/?>
-	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery-ui-1.8.2.custom.min.js"></script><?/*Base JQuery-UI*/?>
-	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery.ui.datepicker-fr.js"></script><?/*Calendrier des dates de validités*/?>
-	<script type="text/javascript" src="<?=wsi_url()?>/js/jquery.timer.js"></script><?/*Chrono pour clignotement du logo feedback*/?>
-	<script type="text/javascript" src="<?=wsi_url()?>/js/tooltip.jquery.js"></script><?/*Infobulle(tooltip) pour feedback*/?>
-	<script type="text/javascript" src="http://plugins.meta100.com/mcolorpicker/javascripts/mColorPicker_min.js" charset="UTF-8"></script><?/*Colorpicker*/?>
-	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/ui-lightness/jquery-ui-1.8.2.custom.css"/><?/*Style pour Calendrier des dates de validités*/?>
-	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/validator-error.css"/><?/*Style pour le validator du feedback*/?>
-	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/overlay-basic.css"/> 
-	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/wsi.css"/>
 	<script type="text/javascript">
 	$(document).ready(function () {
 		
 		// Chargement des calendriers
-		$("#datepicker_start").datepicker({minDate: 0, maxDate: '+1Y'},$.datepicker.regional['fr']);
-		$("#datepicker_end").datepicker({minDate: 0, maxDate: '+1Y +6M'},  $.datepicker.regional['fr']);
+				
+		// example French localization
+		/*
+		$.tools.dateinput.localize("en", {
+			months: 'January,February,March,April,May,June,July,August,September,October,November,December',
+			shortMonths:  'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec',
+			days:         'Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday',
+			shortDays:    'Sun,Mon,Tue,Wed,Thu,Fri,Sat'
+		});
+		$.tools.dateinput.localize("fr",  {
+		   months:      'janvier,f&eacute;vrier,mars,avril,mai,juin,juillet,ao&ucirc;t,septembre,octobre,novembre,d&eacute;cembre',
+		   shortMonths: 'jan,f&eacute;v,mar,avr,mai,jun,jul,ao&ucirc;,sep,oct,nov,d&eacute;c',
+		   days:        'dimanche,lundi,mardi,mercredi,jeudi,vendredi,samedi',
+		   shortDays:   'dim,lun,mar,mer,jeu,ven,sam'
+		});
+		*/
+		// Choix de la langue du calendrier
+				
+		$(":date").dateinput();
+		//{
+		//	lang: 'fr',
+		//	format: 'dd mmm yyyy'
+		//});
+		
+		// Chargement des onglets
+		$("ul.tabs").tabs("div.panes > div");
 		
 		// Gestion de l'affichage de la zone "block_splash_test_active"
 		if($("#splash_active").attr("checked")==true) {
@@ -226,36 +280,11 @@ function wp_splash_image_options() {
 			}
 		});
 		
-		// Gestion de l'affichage de la zone "feedback"
-		$("#display_feedback").click(function() {
-			if($("#feedback").css("display")=="none") {
-				$("#feedback").fadeIn("slow");
-			}else{
-				$("#feedback").fadeOut("slow");
-				$(".error").fadeOut("slow"); //On masque également les errors du validator
-			}
-		});
-		
-		// Gestion du clignotement du feedback
-		$(document).everyTime(1000, function(i) {
-			if (i%2>0) {
-				$("#feedback_img2").fadeOut(1000);
-			} else {
-				$("#feedback_img2").fadeIn(1000);
-			}
-		});
-		
 		// Activation du tooltip du feedback
-		$('#feedback_img2').tooltip();
+		$('#feedback_img').tooltip();
 		
 		// Activation du tooltip de "Info"
 		$('#info_img').tooltip();
-		
-		// Gestion du bouton "close" du feedback
-		$('#close_feedback').click(function() {
-			$('#feedback').fadeOut("slow");
-			$(".error").fadeOut("slow"); //On masque également les errors du validator
-		});
 		
 		// Activation du validator du formulaire de feedback
 		$('#feedback_form').validator({
@@ -264,8 +293,13 @@ function wp_splash_image_options() {
 		});
 		
 		// Activation de l'overlay de l'info
-		//$('#info_img').overlay();
 		$("#info_img[rel]").overlay({mask: '#000', effect: 'apple'});
+		
+		// Activation de l'overlay du feedback
+		$("#feedback_img[rel]").overlay({mask: '#000', effect: 'apple'});
+		
+		// Activation 
+		//$(":range").rangeinput();
 		
 	});
 	</script>
@@ -313,7 +347,25 @@ function wp_splash_image_options() {
 ?>
 
 <div class="wrap">
+
 	<h2>WP Splash Image</h2>
+	
+	<div id="display_info" style="float:left;margin-top:-35px;margin-left:200px;">
+		<img id="info_img" rel="#info" src="<?=wsi_url()?>/style/info.png" />
+		<!-- Tooltip Info -->
+		<div id="data_info_img"style="display:none;"> 
+			<?=__('Infos','wp-splash-image')?>
+		</div>
+	</div>
+	
+	<div id="display_feedback" style="float:left;margin-top:-35px;margin-left:240px;">
+		<img id="feedback_img" rel="#feedback" alt="<?=__('Feedback','wp-splash-image')?>" src="<?=wsi_url()?>/style/feedback_logo.png" />
+		<!-- Tooltip FeedBack -->
+		<div id="data_feedback_img" style="display:none;"> 
+			<?=__('Feedback','wp-splash-image')?>
+		</div>
+	</div>
+	
 	<p>
 		<?=__('For information:','wp-splash-image')?> <a target="_blank" href="http://fr.wikipedia.org/wiki/Splash_screen">Splash Screen</a>
 	</p>
@@ -338,23 +390,60 @@ function wp_splash_image_options() {
 					<?php if(get_option('splash_test_active')=='true') {echo("checked='checked'");} ?> />
 					<?=__('(for tests only, open splash image whenever)','wp-splash-image')?></td>
 			</tr>
-			<tr>
-				<td><?=__("Picture URL:",'wp-splash-image')?></td>
-				<td><input 
-					type="text" 
-					name="url_splash_image" 
-					size="80" 
-					value="<?=get_option('url_splash_image')?>" /></td>
-			</tr>
-			<tr>
-				<td><?=__("Picture link URL",'wp-splash-image')?>:</td>
-				<td><input 
-					type="text" 
-					name="wsi_picture_link_url" 
-					size="80" 
-					value="<?=get_option('wsi_picture_link_url')?>" />
-					<?=__('(stay empty if not required)','wp-splash-image')?></td>
-			</tr>
+		</table>	
+
+		<br />
+		<!-- ----------------------------------------------------------------------------- --> 
+		<div style="width:850px;">
+			<!-- the tabs --> 
+			<ul class="tabs"> 
+				<li><a href="#">Image</a></li> 
+				<li><a href="#">Video</a></li> 
+				<li><a href="#">HTML</a></li> 
+			</ul> 
+			<!-- tab "panes" --> 
+			<div class="panes"> 
+				<div id="tab_picture">
+					<table>
+						<tr>
+							<td><?=__("Picture URL:",'wp-splash-image')?></td>
+							<td><input 
+								type="text" 
+								name="url_splash_image" 
+								size="80" 
+								value="<?=get_option('url_splash_image')?>" /></td>
+						</tr>
+						<tr>
+							<td><?=__("Picture link URL",'wp-splash-image')?>:</td>
+							<td><input 
+								type="text" 
+								name="wsi_picture_link_url" 
+								size="80" 
+								value="<?=get_option('wsi_picture_link_url')?>" />
+								<?=__('(stay empty if not required)','wp-splash-image')?></td>
+						</tr>
+					</table>
+				</div> 
+				<div id="tab_video">
+					<table>
+						<tr>
+							<td><span>Youtube code: </span></td>
+							<td><input type="text" value="9UBwmUXTwuY" /></td>
+						</tr>
+						<tr>
+							<td><span>Yahoo video code:</span></td>
+							<td><input type="text" value="7698070" /></td>
+						</tr>
+					</table>
+				</div> 
+				<div id="tab_HTML">
+					<textarea>Mon code HTML</textarea>
+				</div> 
+			</div>
+		</div>
+		<!-- ----------------------------------------------------------------------------- --> 
+		<br />
+		<table>
 			<tr>
 				<td><?=__('Close esc function','wp-splash-image')?>:</td>
 				<td><input 
@@ -400,31 +489,27 @@ function wp_splash_image_options() {
 			<tr>
 				<td><?=__('Start date','wp-splash-image')?>:</td>
 				<td><input 
-					type="text" 
+					type="date" 
 					name="datepicker_start" 
-					id="datepicker_start"
 					value="<?=get_option('datepicker_start')?>" />&nbsp;
 					<?=__('(stay empty if not required)','wp-splash-image')?></td>
 			</tr>
 			<tr>
 				<td><?=__('End date','wp-splash-image')?>:</td>
 				<td><input 
-					type="text" 
+					type="date" 
 					name="datepicker_end" 
-					id="datepicker_end"
 					value="<?=get_option('datepicker_end')?>" />&nbsp;
 					<?=__('(stay empty if not required)','wp-splash-image')?></td>
 			</tr>
 			<tr>
 				<td><?=__('Display time','wp-splash-image')?>:</td>
-				<td><input
-					type="text"
-					name="wsi_display_time"
-					size="5"
-					maxlength="5"
-					value="<?=get_option('wsi_display_time')?>" />&nbsp;
+				<td>
+					<input type="range" name="wsi_display_time" min="0" max="30" value="<?=get_option('wsi_display_time')?>" />&nbsp;
 					<?=__('seconds','wp-splash-image')?>&nbsp;
-					<?=__("(0 or empty don't close automaticly the splash image)",'wp-splash-image')?></td>
+					<?=__("(0 don't close automaticly the splash image)",'wp-splash-image')?>
+					<script>$(":range").rangeinput();</script> 
+				</td>
 			</tr>
 		</table>
 		<p class="submit"><input type="submit" value="<?=__('Update Options','wp-splash-image')?>" /></p>
@@ -438,16 +523,9 @@ function wp_splash_image_options() {
 		<p style="color:green;"><?=__("Thank's for your feedback...",'wp-splash-image')?></p>
 	<?php } ?>
 
-	<br />
-	<div id="display_feedback" style="float:left;margin-top:16px;">
-		<img id="feedback_img1" alt="<?=__('Feedback','wp-splash-image')?>" src="<?=wsi_url()?>/style/feedback_logo_1.png" style="position:absolute;" />
-		<img id="feedback_img2" alt="<?=__('Feedback','wp-splash-image')?>" src="<?=wsi_url()?>/style/feedback_logo_2.png" style="position:absolute;" />
-		<!-- Tooltip FeedBack -->
-		<div id="data_feedback_img2"style="display:none;"> 
-			<?=__('Feedback','wp-splash-image')?>
-		</div>
-	</div>
-	<div id="feedback" style="display:none;margin-left:40px;">
+	<!-- ----------------------------------------------------------------------------- --> 
+	
+	<div id="feedback" class="overlay" style="display:none;background-image:url(<?=wsi_url()?>/style/petrol.png);color:#fff;width:620px;height:530px;margin:40px;">
 		<fieldset style="border:1px solid black; padding:20px 20px 5px 20px; display:inline;">
 			<legend style="display:block;font-size:1.17em;font-weight:bold;margin:1em 0;margin-top:22px;" >
 				&nbsp;<?=__('Feedback','wp-splash-image')?>&nbsp;
@@ -465,19 +543,14 @@ function wp_splash_image_options() {
 					</tr>
 				</table>
 				<p class="submit">
-					<input type="button" value="<?=__('Close','wp-splash-image')?>" id="close_feedback" />
 					<input type="submit" value="<?=__('Send Feedback','wp-splash-image')?>" />
 				</p>
 			</form>
 		</fieldset>
 	</div>
-	<div id="display_info" style="float:left;margin-top:16px;margin-left:40px;">
-		<img id="info_img" rel="#info" src="<?=wsi_url()?>/style/info.png" />
-		<!-- Tooltip Info -->
-		<div id="data_info_img"style="display:none;"> 
-			<?=__('Infos','wp-splash-image')?>
-		</div>
-	</div>
+	
+	<!-- ----------------------------------------------------------------------------- --> 
+	
 	<div id="info" class="overlay" style="display:none;background-image:url(<?=wsi_url()?>/style/petrol.png);color:#fff;width:620px;height:530px;margin:40px;">
 		<div style="font-weight:bold;font-size:20px;margin-bottom:10px;">Infos :</div>
 		<img src="<?=wsi_url()?>/style/info_legende.jpg" style="float:left;margin-right:15px;" />
@@ -509,15 +582,20 @@ function wp_splash_image_options() {
 		If we fill the <span class="plugin_title"><?=__('Display time','wp-splash-image')?></span> field, the splash screen disappear after this value (in second).
 		<br />
 	</div>
+	
+	<!-- ----------------------------------------------------------------------------- --> 
+	
 </div>
 
 <?php 
 }
 
-add_action ( 'admin_menu', 'wsi_menu' );
 add_action ( 'admin_init', 'wp_splash_image_options_init');
+add_action ( 'admin_menu', 'wsi_menu' );
 add_action ( 'wp_head',    'wsi_addSplashImageWpHead' );
 add_action ( 'wp_footer',  'wsi_addSplashImageWpFooter' );
 add_action ( 'template_redirect', 'wsi_init_session', 0);
 add_filter ( 'plugin_action_links_'.plugin_basename(__FILE__), 'wsi_filter_plugin_actions' );
-add_filter( 'plugin_row_meta', 'set_plugin_meta', 10, 2 );
+add_filter( 'plugin_row_meta',  'set_plugin_meta', 10, 2 );
+add_action( 'wp_print_scripts', 'enqueue_wsi_scripts' );
+add_action( 'wp_print_styles',  'enqueue_wsi_styles' );
