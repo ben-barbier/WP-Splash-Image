@@ -1,0 +1,33 @@
+﻿/* slider root */
+.slider { 
+	background:url(range.png) no-repeat  0 -5px; 
+	width:94px; 
+	height:5px; 
+	cursor:pointer; 
+	position: relative; 
+	float:left;
+	margin-top:10px;
+}
+
+/* drag handle */
+.handle { 
+	background:transparent url(range.png) no-repeat scroll -97px 0; 
+	height:13px; 
+	position:absolute; 
+	top:-5px; 
+	width:12px; 
+	cursor:move; 
+}
+
+/* the input field */
+.range {
+	border:1px inset #ddd;
+	float:left;
+	font-size:12px;
+	margin:0 0 0 15px;
+	padding:3px 0;
+	text-align:center;
+	width:35px;
+	-moz-border-radius:5px; 
+	-webkit-border-radius:5px; 		
+}
