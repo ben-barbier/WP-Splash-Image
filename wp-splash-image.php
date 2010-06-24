@@ -3,7 +3,7 @@
 Plugin Name: WP Splash Image
 Plugin URI: http://wordpress.org/extend/plugins/wsi/
 Description: WP Splash Image is a plugin for Wordpress to display an image with a lightbox type effect at the opening of the blog.
-Version: 0.9.2
+Version: 1.0.0
 Author: Benjamin Barbier
 Author URI: http://www.dark-sides.com/
 Donate URI: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C
@@ -182,21 +182,78 @@ function wsi_addSplashImageWpFooter() {
 	// On indique que la Splash Image a été vue
 	$_SESSION['splash_seen']='Yes';
 	
+	// Chargement des données en base
 	$url_splash_image = get_option('url_splash_image');
 	$splash_image_height = get_option('splash_image_height');
 	$splash_image_width = get_option('splash_image_width');
 	$wsi_display_time = get_option('wsi_display_time');
 	$wsi_picture_link_url = get_option('wsi_picture_link_url');
 	$wsi_hide_cross = get_option('wsi_hide_cross');
+	$wsi_type = get_option('wsi_type');
+	
+	$wsi_youtube = get_option('wsi_youtube');
+	$wsi_yahoo = get_option('wsi_yahoo');
+	$wsi_dailymotion = get_option('wsi_dailymotion');
+	$wsi_metacafe = get_option('wsi_metacafe');
+	$wsi_swf = get_option('wsi_swf');
+	$wsi_html = get_option('wsi_html');
 	
 ?>	
 
 	<!-- WP Splash-Image -->
 	<a style="display:none;" id="splashLink" href="#" rel="#miesSPLASH"></a>
 	<div class="simple_overlay" style="text-align:center;color:#FFFFFF;margin-top:15px;height:<?=$splash_image_height?>px;width:<?=$splash_image_width?>px;" id="miesSPLASH">
+		
+<?php
+	switch ($wsi_type) {
+    case "picture": ?>
+
 		<?php if($wsi_picture_link_url!="") { echo ('<a href="'.$wsi_picture_link_url.'">'); } ?>
 		<img style="height:<?=$splash_image_height?>px;width:<?=$splash_image_width?>px;" src="<?=$url_splash_image?>" />
 		<?php if($wsi_picture_link_url!="") { echo('</a>'); } ?>
+	
+    <?php break; case "youtube": ?>
+
+		<object width="<?=$splash_image_width?>" height="<?=$splash_image_height?>">
+			<param name="movie" value="http://www.youtube.com/v/<?=$wsi_youtube?>&hl=<?=get_locale()?>&fs=1&rel=0"></param>
+			<param name="allowFullScreen" value="true"></param>
+			<param name="allowscriptaccess" value="always"></param>
+			<embed src="http://www.youtube.com/v/<?=$wsi_youtube?>&hl=<?=get_locale()?>&fs=1&rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="<?=$splash_image_width?>" height="<?=$splash_image_height?>"></embed>
+		</object>
+		    
+	<?php break; case "yahoo": ?>
+	
+		<object width="<?=$splash_image_width?>" height="<?=$splash_image_height?>"><param name="movie" value="http://d.yimg.com/static.video.yahoo.com/yep/YV_YEP.swf?ver=2.2.46" />
+			<param name="allowFullScreen" value="true" />
+			<param name="AllowScriptAccess" VALUE="always" />
+			<param name="bgcolor" value="#000000" />
+			<param name="flashVars" value="id=20476969&vid=<?=$wsi_yahoo?>&lang=<?=get_locale()?>&embed=1" />
+			<embed src="http://d.yimg.com/static.video.yahoo.com/yep/YV_YEP.swf?ver=2.2.46" type="application/x-shockwave-flash" width="<?=$splash_image_width?>" height="<?=$splash_image_height?>" allowFullScreen="true" AllowScriptAccess="always" bgcolor="#000000" flashVars="id=20476969&vid=<?=$wsi_yahoo?>&lang=<?=get_locale()?>&embed=1" ></embed>
+		</object>
+	
+	<?php break; case "dailymotion": ?>
+	
+		<object width="<?=$splash_image_width?>" height="<?=$splash_image_height?>">
+			<param name="movie" value="http://www.dailymotion.com/swf/video/<?=$wsi_dailymotion?>"></param>
+			<param name="allowFullScreen" value="true"></param>
+			<param name="allowScriptAccess" value="always"></param>
+			<embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/<?=$wsi_dailymotion?>" width="<?=$splash_image_width?>" height="<?=$splash_image_height?>" allowfullscreen="true" allowscriptaccess="always"></embed>
+		</object>
+		
+	<?php break; case "metacafe": ?>
+	
+		<?=$wsi_metacafe?>
+		
+	<?php break; case "swf": ?>
+	
+		<?=$wsi_swf?>
+		
+	<?php break; case "html": ?>
+	
+		<?=$wsi_html?>
+	
+	<? } ?>
+		
 	</div>
 	
 	<?/* Autoclose de la Splash Image */?>
@@ -239,29 +296,7 @@ function wp_splash_image_options() {
 	$(document).ready(function () {
 		
 		// Chargement des calendriers
-				
-		// example French localization
-		/*
-		$.tools.dateinput.localize("en", {
-			months: 'January,February,March,April,May,June,July,August,September,October,November,December',
-			shortMonths:  'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec',
-			days:         'Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday',
-			shortDays:    'Sun,Mon,Tue,Wed,Thu,Fri,Sat'
-		});
-		$.tools.dateinput.localize("fr",  {
-		   months:      'janvier,f&eacute;vrier,mars,avril,mai,juin,juillet,ao&ucirc;t,septembre,octobre,novembre,d&eacute;cembre',
-		   shortMonths: 'jan,f&eacute;v,mar,avr,mai,jun,jul,ao&ucirc;,sep,oct,nov,d&eacute;c',
-		   days:        'dimanche,lundi,mardi,mercredi,jeudi,vendredi,samedi',
-		   shortDays:   'dim,lun,mar,mer,jeu,ven,sam'
-		});
-		*/
-		// Choix de la langue du calendrier
-				
-		$(":date").dateinput();
-		//{
-		//	lang: 'fr',
-		//	format: 'dd mmm yyyy'
-		//});
+		$(":date").dateinput({format: 'dd mmm yyyy'});
 		
 		// Chargement des onglets
 		$("ul.tabs").tabs("div.panes > div");
@@ -299,7 +334,7 @@ function wp_splash_image_options() {
 		$("#feedback_img[rel]").overlay({mask: '#000', effect: 'apple'});
 		
 		// Activation 
-		//$(":range").rangeinput();
+		$(":range").rangeinput();
 		
 	});
 	</script>
@@ -325,6 +360,16 @@ function wp_splash_image_options() {
 		update_option('wsi_close_esc_function', $wsi_close_esc_function);
 		if ($_POST['wsi_hide_cross']) {$wsi_hide_cross='true';} else {$wsi_hide_cross='false';}
 		update_option('wsi_hide_cross', $wsi_hide_cross);
+		update_option('wsi_type',     $_POST['wsi_type']);
+		
+		// Valeurs des onglets
+		update_option('wsi_youtube',     $_POST['wsi_youtube']);
+		update_option('wsi_yahoo',       $_POST['wsi_yahoo']);
+		update_option('wsi_dailymotion', $_POST['wsi_dailymotion']);
+		update_option('wsi_metacafe',    $_POST['wsi_metacafe']);
+		update_option('wsi_swf',         $_POST['wsi_swf']);
+		update_option('wsi_html',        $_POST['wsi_html']);
+		
 		$updated = true;
 	} else {
 		$updated = false;
@@ -402,10 +447,11 @@ function wp_splash_image_options() {
 				<li><a href="#">HTML</a></li> 
 			</ul> 
 			<!-- tab "panes" --> 
-			<div class="panes"> 
+			<div class="panes">
 				<div id="tab_picture">
 					<table>
 						<tr>
+							<td><input type="radio" name="wsi_type" value="picture" <? if(get_option('wsi_type')=="picture") echo('checked="checked"') ?> /></td>
 							<td><?=__("Picture URL:",'wp-splash-image')?></td>
 							<td><input 
 								type="text" 
@@ -414,6 +460,7 @@ function wp_splash_image_options() {
 								value="<?=get_option('url_splash_image')?>" /></td>
 						</tr>
 						<tr>
+							<td>&nbsp;</td>
 							<td><?=__("Picture link URL",'wp-splash-image')?>:</td>
 							<td><input 
 								type="text" 
@@ -427,17 +474,35 @@ function wp_splash_image_options() {
 				<div id="tab_video">
 					<table>
 						<tr>
+							<td><input type="radio" name="wsi_type" value="youtube" <? if(get_option('wsi_type')=="youtube") echo('checked="checked"') ?> /></td>
 							<td><span>Youtube code: </span></td>
-							<td><input type="text" value="9UBwmUXTwuY" /></td>
+							<td><input type="text" name="wsi_youtube" value="<?=get_option('wsi_youtube')?>" /></td>
 						</tr>
 						<tr>
+							<td><input type="radio" name="wsi_type" value="yahoo" <? if(get_option('wsi_type')=="yahoo") echo('checked="checked"') ?> /></td>
 							<td><span>Yahoo video code:</span></td>
-							<td><input type="text" value="7698070" /></td>
+							<td><input type="text" name="wsi_yahoo" value="<?=get_option('wsi_yahoo')?>" /></td>
+						</tr>
+						<tr>
+							<td><input type="radio" name="wsi_type" value="dailymotion" <? if(get_option('wsi_type')=="dailymotion") echo('checked="checked"') ?> /></td>
+							<td><span>Dailymotion code:</span></td>
+							<td><input type="text" name="wsi_dailymotion" value="<?=get_option('wsi_dailymotion')?>" /></td>
+						</tr>
+						<tr>
+							<td><input type="radio" name="wsi_type" value="metacafe" <? if(get_option('wsi_type')=="metacafe") echo('checked="checked"') ?> /></td>
+							<td><span>Metacafe code:</span></td>
+							<td><input type="text" name="wsi_metacafe" value="<?=get_option('wsi_metacafe')?>" /></td>
+						</tr>
+						<tr>
+							<td><input type="radio" name="wsi_type" value="swf" <? if(get_option('wsi_type')=="swf") echo('checked="checked"') ?> /></td>
+							<td><span>Video Flash (URL):</span></td>
+							<td><input size="80" type="text" name="wsi_swf" value="<?=get_option('wsi_swf')?>" /></td>
 						</tr>
 					</table>
 				</div> 
 				<div id="tab_HTML">
-					<textarea>Mon code HTML</textarea>
+					<input type="radio" name="wsi_type" value="html" <? if(get_option('wsi_type')=="html") echo('checked="checked"') ?> />
+					<textarea cols="75" rows="6" name="wsi_html"><?=get_option('wsi_html')?></textarea>
 				</div> 
 			</div>
 		</div>
@@ -450,8 +515,7 @@ function wp_splash_image_options() {
 					type="checkbox" 
 					name="wsi_close_esc_function" 
 					<?php if(get_option('wsi_close_esc_function')=='true') {echo("checked='checked'");} ?> />
-					(<?=__('except picture link and','wp-splash-image')?>
-					<img src="<?=wsi_url()?>/style/close.png" class="little_cross" />)</td>
+					(<?=__('if you click on background','wp-splash-image')?>)</td>
 			</tr>
 			<tr>
 				<td><?=__('Hide','wp-splash-image')?>&nbsp;<img src="<?=wsi_url()?>/style/close.png" class="little_cross" />&nbsp;:</td>
@@ -461,7 +525,7 @@ function wp_splash_image_options() {
 					<?php if(get_option('wsi_hide_cross')=='true') {echo("checked='checked'");} ?> /></td>
 			</tr>
 			<tr>
-				<td><?=__("Picture height",'wp-splash-image')?>:</td>
+				<td><?=__("Splash height",'wp-splash-image')?>:</td>
 				<td><input
 					type="text"
 					name="splash_image_height"
@@ -470,7 +534,7 @@ function wp_splash_image_options() {
 					value="<?=get_option('splash_image_height')?>" />&nbsp;px (min = 210px)</td>
 			</tr>
 			<tr>
-				<td><?=__("Picture width",'wp-splash-image')?>:</td>
+				<td><?=__("Splash width",'wp-splash-image')?>:</td>
 				<td><input
 					type="text"
 					name="splash_image_width"
@@ -508,7 +572,6 @@ function wp_splash_image_options() {
 					<input type="range" name="wsi_display_time" min="0" max="30" value="<?=get_option('wsi_display_time')?>" />&nbsp;
 					<?=__('seconds','wp-splash-image')?>&nbsp;
 					<?=__("(0 don't close automaticly the splash image)",'wp-splash-image')?>
-					<script>$(":range").rangeinput();</script> 
 				</td>
 			</tr>
 		</table>
