@@ -4,11 +4,13 @@
 /* the input field */
 .date {
 	border:1px solid #ccc;
-	font-size:18px;
-	padding:4px;
+	font-size:12px;
+	padding:3px 0;
 	text-align:center;
-	width:194px;		
+	width:135px;		
 	-moz-box-shadow:0 0 10px #eee inset;
+	-moz-border-radius:5px; 
+	-webkit-border-radius:5px; 		
 }
 
 /* calendar root element */
@@ -19,6 +21,7 @@
 	background-color:#fff;
 	font-size:11px;
 	border:1px solid #ccc;
+	z-index:2;/* Pour passer au dessus du range qui est a 1 */
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	-moz-box-shadow: 0 0 15px #666;
