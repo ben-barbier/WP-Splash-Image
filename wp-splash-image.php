@@ -25,7 +25,6 @@ function wp_splash_image_options_init() {
 	wp_register_style('overlay-basic', wsi_url().'/style/overlay-basic.css'); /*Style pour la la box de documentation*/
 	wp_register_style('date-input', wsi_url().'/style/dateinput.css'); /*Style pour les calendriers*/
 	wp_register_style('range', wsi_url().'/style/range.css'); /*Style pour le curseur de temps*/
-	
 	wp_register_style('wsi', wsi_url().'/style/wsi.css');
 	
 	// Déclaration des scripts de la partie Admin (utilisés dans enqueue_wsi_scripts)
@@ -363,7 +362,14 @@ function wp_splash_image_options() {
 		// Activation du validator du formulaire de feedback
 		$('#feedback_form').validator({
 			position: 'center right',
-			offset: [0, -30]
+			offset: [0, -30],
+		// Désactivation du bouton d'envoi de feedback après envoi
+		}).submit(function(e) {
+			var form = $(this);
+			// client-side validation OK.
+			if (!e.isDefaultPrevented()) {
+				$("#feedback_img[rel]").overlay().close();
+			}
 		});
 		
 		// Activation de l'overlay de l'info
