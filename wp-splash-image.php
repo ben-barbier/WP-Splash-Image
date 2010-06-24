@@ -241,12 +241,51 @@ function wsi_addSplashImageWpFooter() {
 		</object>
 		
 	<?php break; case "metacafe": ?>
+			
+		<embed 
+			src="http://www.metacafe.com/fplayer/<?=$wsi_metacafe?>/.swf" 
+			width="<?=$splash_image_width?>" 
+			height="<?=$splash_image_height?>" 
+			wmode="transparent" 
+			pluginspage="http://www.macromedia.com/go/getflashplayer" 
+			type="application/x-shockwave-flash" 
+			allowFullScreen="true" 
+			allowScriptAccess="always" 
+			name="Metacafe_<?=$wsi_metacafe?>"></embed>
 	
-		<?=$wsi_metacafe?>
-		
 	<?php break; case "swf": ?>
-	
-		<?=$wsi_swf?>
+		
+		<object id='player' name='player' width='<?=$splash_image_width?>' height='<?=$splash_image_height?>' >
+			<param name='FileName' value='<?=$wsi_swf?>'> 
+			<param name='ShowControls' value='TRUE'> 
+			<param name='AutoStart' value='FALSE'> 
+			<param name='AnimationAtStart' value='TRUE'> 
+			<param name='ShowDisplay' value='FALSE'> 
+			<param name='TransparentAtStart' value='FALSE'> 
+			<param name='ShowStatusbar' value='TRUE'> 
+			<param name='enableContextMenu' value='FALSE'> 
+			<param name='AllowChangeDisplaySize' value='TRUE'> 
+			<param name='AutoSize' value='FALSE'> 
+			<param name='EnableFullScreenControls' value='TRUE'> 
+			<embed type='video/x-ms-asf-plugin' 
+				src='<?=$wsi_swf?>' 
+				name='player' 
+				autostart='0' 
+				showcontrols='1' 
+				showdisplay='0' 
+				showstatusbar='1' 
+				animationatstart='1' 
+				transparentatstart='0' 
+				allowchangedisplaysize='1' 
+				autosize='0' 
+				displaysize='0' 
+				enablecontextmenu='0' 
+				windowless='1' 
+				width='<?=$splash_image_width?>' 
+				height='<?=$splash_image_height?>' 
+				enablefullscreencontrols='1'> 
+			</embed> 
+		</object>
 		
 	<?php break; case "html": ?>
 	
@@ -336,6 +375,41 @@ function wp_splash_image_options() {
 		// Activation 
 		$(":range").rangeinput();
 		
+		// Color on select input radio
+		$("#radio_picture").click(function() {
+			$(".box_type").animate({    backgroundColor: "#FFFFFF" }, 200);
+			$("#box_picture").animate({ backgroundColor: "#7FFF00" }, 500);
+		});
+		$("#radio_youtube").click(function() {
+			$(".box_type").animate({    backgroundColor: "#FFFFFF" }, 200);
+			$("#box_youtube").animate({ backgroundColor: "#7FFF00" }, 500);
+		});
+		$("#radio_yahoo").click(function() {
+			$(".box_type").animate({  backgroundColor: "#FFFFFF" }, 200);
+			$("#box_yahoo").animate({ backgroundColor: "#7FFF00" }, 500);
+		});
+		$("#radio_dailymotion").click(function() {
+			$(".box_type").animate({        backgroundColor: "#FFFFFF" }, 200);
+			$("#box_dailymotion").animate({ backgroundColor: "#7FFF00" }, 500);
+		});
+		$("#radio_metacafe").click(function() {
+			$(".box_type").animate({     backgroundColor: "#FFFFFF" }, 200);
+			$("#box_metacafe").animate({ backgroundColor: "#7FFF00" }, 500);
+		});
+		$("#radio_swf").click(function() {
+			$(".box_type").animate({ backgroundColor: "#FFFFFF" }, 200);
+			$("#box_swf").animate({  backgroundColor: "#7FFF00" }, 500);
+		});
+		$("#radio_html").click(function() {
+			$(".box_type").animate({ backgroundColor: "#FFFFFF" }, 200);
+			$("#box_html").animate({  backgroundColor: "#7FFF00" }, 500);
+		});
+		// Color au chargement du plugin
+		<? if ($_POST['wsi_type'] == "") { ?>
+			$("#box_<?=get_option('wsi_type')?>").animate({ backgroundColor: "#7FFF00" }, 500);
+		<? } else { ?>
+			$("#box_<?=$_POST['wsi_type']?>").animate({ backgroundColor: "#7FFF00" }, 500);
+		<? } ?>
 	});
 	</script>
 	
@@ -449,9 +523,9 @@ function wp_splash_image_options() {
 			<!-- tab "panes" --> 
 			<div class="panes">
 				<div id="tab_picture">
-					<table>
+					<table id="box_picture" class="box_type">
 						<tr>
-							<td><input type="radio" name="wsi_type" value="picture" <? if(get_option('wsi_type')=="picture") echo('checked="checked"') ?> /></td>
+							<td><input type="radio" id="radio_picture" name="wsi_type" value="picture" <? if(get_option('wsi_type')=="picture") echo('checked="checked"') ?> /></td>
 							<td><?=__("Picture URL:",'wp-splash-image')?></td>
 							<td><input 
 								type="text" 
@@ -473,36 +547,43 @@ function wp_splash_image_options() {
 				</div> 
 				<div id="tab_video">
 					<table>
-						<tr>
-							<td><input type="radio" name="wsi_type" value="youtube" <? if(get_option('wsi_type')=="youtube") echo('checked="checked"') ?> /></td>
+						<tr id="box_youtube" class="box_type">
+							<td><input type="radio" id="radio_youtube" name="wsi_type" value="youtube" <? if(get_option('wsi_type')=="youtube") echo('checked="checked"') ?> /></td>
+							<td><img src="<?=wsi_url()?>/style/youtube.png" alt="" /></td>
 							<td><span>Youtube code: </span></td>
 							<td><input type="text" name="wsi_youtube" value="<?=get_option('wsi_youtube')?>" /></td>
 						</tr>
-						<tr>
-							<td><input type="radio" name="wsi_type" value="yahoo" <? if(get_option('wsi_type')=="yahoo") echo('checked="checked"') ?> /></td>
+						<tr id="box_yahoo" class="box_type">
+							<td><input type="radio" id="radio_yahoo" name="wsi_type" value="yahoo" <? if(get_option('wsi_type')=="yahoo") echo('checked="checked"') ?> /></td>
+							<td><img src="<?=wsi_url()?>/style/yahoo.png" alt="" /></td>
 							<td><span>Yahoo video code:</span></td>
 							<td><input type="text" name="wsi_yahoo" value="<?=get_option('wsi_yahoo')?>" /></td>
 						</tr>
-						<tr>
-							<td><input type="radio" name="wsi_type" value="dailymotion" <? if(get_option('wsi_type')=="dailymotion") echo('checked="checked"') ?> /></td>
+						<tr id="box_dailymotion" class="box_type">
+							<td><input type="radio" id="radio_dailymotion" name="wsi_type" value="dailymotion" <? if(get_option('wsi_type')=="dailymotion") echo('checked="checked"') ?> /></td>
+							<td><img src="<?=wsi_url()?>/style/dailymotion.png" alt="" /></td>
 							<td><span>Dailymotion code:</span></td>
 							<td><input type="text" name="wsi_dailymotion" value="<?=get_option('wsi_dailymotion')?>" /></td>
 						</tr>
-						<tr>
-							<td><input type="radio" name="wsi_type" value="metacafe" <? if(get_option('wsi_type')=="metacafe") echo('checked="checked"') ?> /></td>
+						<tr id="box_metacafe" class="box_type">
+							<td><input type="radio" id="radio_metacafe" name="wsi_type" value="metacafe" <? if(get_option('wsi_type')=="metacafe") echo('checked="checked"') ?> /></td>
+							<td><img src="<?=wsi_url()?>/style/metacafe.png" alt="" /></td>
 							<td><span>Metacafe code:</span></td>
 							<td><input type="text" name="wsi_metacafe" value="<?=get_option('wsi_metacafe')?>" /></td>
 						</tr>
-						<tr>
-							<td><input type="radio" name="wsi_type" value="swf" <? if(get_option('wsi_type')=="swf") echo('checked="checked"') ?> /></td>
+						<tr id="box_swf" class="box_type">
+							<td><input type="radio" id="radio_swf" name="wsi_type" value="swf" <? if(get_option('wsi_type')=="swf") echo('checked="checked"') ?> /></td>
+							<td><img src="<?=wsi_url()?>/style/swf.png" alt="" /></td>
 							<td><span>Video Flash (URL):</span></td>
 							<td><input size="80" type="text" name="wsi_swf" value="<?=get_option('wsi_swf')?>" /></td>
 						</tr>
 					</table>
 				</div> 
 				<div id="tab_HTML">
-					<input type="radio" name="wsi_type" value="html" <? if(get_option('wsi_type')=="html") echo('checked="checked"') ?> />
-					<textarea cols="75" rows="6" name="wsi_html"><?=get_option('wsi_html')?></textarea>
+					<span id="box_html" class="box_type">
+						<input type="radio" id="radio_html" name="wsi_type" value="html" <? if(get_option('wsi_type')=="html") echo('checked="checked"') ?> />
+						<textarea cols="75" rows="10" name="wsi_html"><?=get_option('wsi_html')?></textarea>
+					</span>
 				</div> 
 			</div>
 		</div>
