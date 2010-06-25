@@ -4,7 +4,7 @@ Donate link: http://www.dark-sides.com
 Tags: Splash, Image, LightBox
 Requires at least: 2.7
 Tested up to: 3.0
-Stable tag: 0.9.2
+Stable tag: 1.0.0
  
 WP Splash Image is a plugin for Wordpress to display an image with a lightbox type effect at the opening of the blog.
  
@@ -37,8 +37,10 @@ a response...
  
 == Changelog ==
 
-= 0.9.3 =
-* Add NL Language (Thank you to Andre Arends for this too).
+= 1.0.0 =
+* Add Video Splash
+* Add HTML Splah
+* Modify IHM (http://flowplayer.org/tools/index.html)
 
 = 0.9.2 =
 * Little bugfix (Jquery compatibility) : Thank you to Andre Arends for his info.
@@ -90,6 +92,12 @@ a response...
 * Activation configurable
 
 == Upgrade Notice ==
+
+= 1.0.0 =
+* RAS
+
+= 0.9.2 =
+* RAS
 
 = 0.9.1 =
 * RAS
