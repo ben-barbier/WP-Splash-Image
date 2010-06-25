@@ -336,8 +336,33 @@ function wp_splash_image_options() {
 		// Chargement des calendriers
 		$(":date").dateinput({format: 'dd mmm yyyy'});
 		
+		// Récupération du type de splash
+		<? if ($_POST['wsi_type'] != "") { ?>
+			var wsi_type = '<?=$_POST['wsi_type']?>';
+			<? $wsi_type = $_POST['wsi_type']; ?>
+		<? } else if(get_option('wsi_type') != "") { ?>	
+			var wsi_type = '<?=get_option('wsi_type')?>';
+			<? $wsi_type = get_option('wsi_type'); ?>
+		<? } else { ?>
+			var wsi_type = 'picture';
+			<? $wsi_type = get_option('wsi_type'); ?>
+		<? } ?>
+		
 		// Chargement des onglets
-		$("ul.tabs").tabs("div.panes > div");
+		var index_tab = new Array() ;
+		index_tab["picture"] = 0;
+		index_tab["youtube"] = 1;
+		index_tab["yahoo"] = 1;
+		index_tab["dailymotion"] = 1;
+		index_tab["metacafe"] = 1;
+		index_tab["swf"] = 1;
+		index_tab["html"] = 2;
+		
+		$("ul.tabs").tabs("div.panes > div", {
+		// Ouverture du bon onglet au démarrage
+			effect: 'default', //TODO: Make my own effect : http://flowplayer.org/tools/tabs/index.html#effects
+			initialIndex: index_tab[wsi_type]
+		});
 		
 		// Gestion de l'affichage de la zone "block_splash_test_active"
 		if($("#splash_active").attr("checked")==true) {
@@ -359,24 +384,31 @@ function wp_splash_image_options() {
 		// Activation du tooltip de "Info"
 		$('#info_img').tooltip();
 		
-		// Activation du validator du formulaire de feedback
-		$('#feedback_form').validator({
-			position: 'center right',
-			offset: [0, -30],
-		// Désactivation du bouton d'envoi de feedback après envoi
-		}).submit(function(e) {
-			var form = $(this);
-			// client-side validation OK.
-			if (!e.isDefaultPrevented()) {
-				$("#feedback_img[rel]").overlay().close();
-			}
-		});
+		function reset_validator() {
+			// Activation du validator du formulaire de feedback
+			return validator = $('#feedback_form').validator({
+				position: 'center right',
+				offset: [0, -30],
+			// Désactivation du bouton d'envoi de feedback après envoi
+			}).submit(function(e) {
+				// Validation OK.
+				if (!e.isDefaultPrevented()) {
+					$("#feedback_img[rel]").overlay().close();
+				}
+			});
+		}
+		reset_validator();
 		
 		// Activation de l'overlay de l'info
 		$("#info_img[rel]").overlay({mask: '#000', effect: 'apple'});
 		
 		// Activation de l'overlay du feedback
-		$("#feedback_img[rel]").overlay({mask: '#000', effect: 'apple'});
+		$("#feedback_img[rel]").overlay({
+			mask: '#000', 
+			effect: 'apple',
+			// Si on ferme l'overlay, on supprime les messages d'erreur du validator
+			onClose: function() {reset_validator();}
+		})
 		
 		// Activation 
 		$(":range").rangeinput();
@@ -411,11 +443,8 @@ function wp_splash_image_options() {
 			$("#box_html").animate({  backgroundColor: "#7FFF00" }, 500);
 		});
 		// Color au chargement du plugin
-		<? if ($_POST['wsi_type'] == "") { ?>
-			$("#box_<?=get_option('wsi_type')?>").animate({ backgroundColor: "#7FFF00" }, 500);
-		<? } else { ?>
-			$("#box_<?=$_POST['wsi_type']?>").animate({ backgroundColor: "#7FFF00" }, 500);
-		<? } ?>
+		$("#box_<?=$wsi_type?>").animate({ backgroundColor: "#7FFF00" }, 500);
+
 	});
 	</script>
 	
@@ -475,6 +504,7 @@ function wp_splash_image_options() {
 
 	<h2>WP Splash Image</h2>
 	
+	<?/* Logo Info */?>
 	<div id="display_info" style="float:left;margin-top:-35px;margin-left:200px;">
 		<img id="info_img" rel="#info" src="<?=wsi_url()?>/style/info.png" />
 		<!-- Tooltip Info -->
@@ -483,6 +513,7 @@ function wp_splash_image_options() {
 		</div>
 	</div>
 	
+	<?/* Logo Feedback */?>
 	<div id="display_feedback" style="float:left;margin-top:-35px;margin-left:240px;">
 		<img id="feedback_img" rel="#feedback" alt="<?=__('Feedback','wp-splash-image')?>" src="<?=wsi_url()?>/style/feedback_logo.png" />
 		<!-- Tooltip FeedBack -->
@@ -490,6 +521,11 @@ function wp_splash_image_options() {
 			<?=__('Feedback','wp-splash-image')?>
 		</div>
 	</div>
+	
+	<?/* Information message */?>
+	<?php if ($feedbacked) { ?>
+		<p style="color:green;float:left;margin-top:-28px;margin-left:290px;"><?=__("Thank's for your feedback...",'wp-splash-image')?></p>
+	<?php } ?>
 	
 	<p>
 		<?=__('For information:','wp-splash-image')?> <a target="_blank" href="http://fr.wikipedia.org/wiki/Splash_screen">Splash Screen</a>
@@ -522,9 +558,9 @@ function wp_splash_image_options() {
 		<div style="width:850px;">
 			<!-- the tabs --> 
 			<ul class="tabs"> 
-				<li><a href="#">Image</a></li> 
-				<li><a href="#">Video</a></li> 
-				<li><a href="#">HTML</a></li> 
+				<li><a href="#"><?=__('Image')?></a></li> 
+				<li><a href="#"><?=__('Video')?></a></li> 
+				<li><a href="#"><?=__('HTML')?></a></li> 
 			</ul> 
 			<!-- tab "panes" --> 
 			<div class="panes">
@@ -536,17 +572,17 @@ function wp_splash_image_options() {
 							<td><input 
 								type="text" 
 								name="url_splash_image" 
-								size="80" 
+								size="100" 
 								value="<?=get_option('url_splash_image')?>" /></td>
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-							<td><?=__("Picture link URL",'wp-splash-image')?>:</td>
+							<td style="vertical-align:top;"><?=__("Picture link URL",'wp-splash-image')?>:</td>
 							<td><input 
 								type="text" 
 								name="wsi_picture_link_url" 
-								size="80" 
-								value="<?=get_option('wsi_picture_link_url')?>" />
+								size="100" 
+								value="<?=get_option('wsi_picture_link_url')?>" /><br />
 								<?=__('(stay empty if not required)','wp-splash-image')?></td>
 						</tr>
 					</table>
@@ -556,39 +592,43 @@ function wp_splash_image_options() {
 						<tr id="box_youtube" class="box_type">
 							<td><input type="radio" id="radio_youtube" name="wsi_type" value="youtube" <? if(get_option('wsi_type')=="youtube") echo('checked="checked"') ?> /></td>
 							<td><img src="<?=wsi_url()?>/style/youtube.png" alt="" /></td>
-							<td><span>Youtube code: </span></td>
+							<td><span><?=__('Youtube code')?>:</span></td>
 							<td><input type="text" name="wsi_youtube" value="<?=get_option('wsi_youtube')?>" /></td>
 						</tr>
 						<tr id="box_yahoo" class="box_type">
 							<td><input type="radio" id="radio_yahoo" name="wsi_type" value="yahoo" <? if(get_option('wsi_type')=="yahoo") echo('checked="checked"') ?> /></td>
 							<td><img src="<?=wsi_url()?>/style/yahoo.png" alt="" /></td>
-							<td><span>Yahoo video code:</span></td>
+							<td><span><?=__('Yahoo video code')?>:</span></td>
 							<td><input type="text" name="wsi_yahoo" value="<?=get_option('wsi_yahoo')?>" /></td>
 						</tr>
 						<tr id="box_dailymotion" class="box_type">
 							<td><input type="radio" id="radio_dailymotion" name="wsi_type" value="dailymotion" <? if(get_option('wsi_type')=="dailymotion") echo('checked="checked"') ?> /></td>
 							<td><img src="<?=wsi_url()?>/style/dailymotion.png" alt="" /></td>
-							<td><span>Dailymotion code:</span></td>
+							<td><span><?=__('Dailymotion code')?>:</span></td>
 							<td><input type="text" name="wsi_dailymotion" value="<?=get_option('wsi_dailymotion')?>" /></td>
 						</tr>
 						<tr id="box_metacafe" class="box_type">
 							<td><input type="radio" id="radio_metacafe" name="wsi_type" value="metacafe" <? if(get_option('wsi_type')=="metacafe") echo('checked="checked"') ?> /></td>
 							<td><img src="<?=wsi_url()?>/style/metacafe.png" alt="" /></td>
-							<td><span>Metacafe code:</span></td>
+							<td><span><?=__('Metacafe code')?>:</span></td>
 							<td><input type="text" name="wsi_metacafe" value="<?=get_option('wsi_metacafe')?>" /></td>
 						</tr>
 						<tr id="box_swf" class="box_type">
 							<td><input type="radio" id="radio_swf" name="wsi_type" value="swf" <? if(get_option('wsi_type')=="swf") echo('checked="checked"') ?> /></td>
 							<td><img src="<?=wsi_url()?>/style/swf.png" alt="" /></td>
-							<td><span>Video Flash (URL):</span></td>
+							<td><span><?=__('Video Flash (URL)')?>:</span></td>
 							<td><input size="80" type="text" name="wsi_swf" value="<?=get_option('wsi_swf')?>" /></td>
 						</tr>
 					</table>
 				</div> 
 				<div id="tab_HTML">
-					<span id="box_html" class="box_type">
-						<input type="radio" id="radio_html" name="wsi_type" value="html" <? if(get_option('wsi_type')=="html") echo('checked="checked"') ?> />
-						<textarea cols="75" rows="10" name="wsi_html"><?=get_option('wsi_html')?></textarea>
+					<span>
+						<table>
+						<tr id="box_html" class="box_type" style="height:220px;">
+						<td><input type="radio" id="radio_html" name="wsi_type" value="html" <? if(get_option('wsi_type')=="html") echo('checked="checked"') ?> /></td>
+						<td style="padding-left: 15px; width: 590px;"><textarea cols="75" rows="10" name="wsi_html"><?=get_option('wsi_html')?></textarea></td>
+						</tr>
+						</table
 					</span>
 				</div> 
 			</div>
@@ -669,13 +709,10 @@ function wp_splash_image_options() {
 	<?php if ($updated) { ?>
 		<p style="color:green;"><?=__('Options Updated...','wp-splash-image')?></p>
 	<?php } ?>
-	<?php if ($feedbacked) { ?>
-		<p style="color:green;"><?=__("Thank's for your feedback...",'wp-splash-image')?></p>
-	<?php } ?>
 
 	<!-- ----------------------------------------------------------------------------- --> 
 	
-	<div id="feedback" class="overlay" style="display:none;background-image:url(<?=wsi_url()?>/style/petrol.png);color:#fff;width:620px;height:530px;margin:40px;">
+	<div id="feedback" class="overlay" style="display:none;background-image:url(<?=wsi_url()?>/style/petrol.png);color:#fff;width:500px;margin:40px;">
 		<fieldset style="border:1px solid black; padding:20px 20px 5px 20px; display:inline;">
 			<legend style="display:block;font-size:1.17em;font-weight:bold;margin:1em 0;margin-top:22px;" >
 				&nbsp;<?=__('Feedback','wp-splash-image')?>&nbsp;
