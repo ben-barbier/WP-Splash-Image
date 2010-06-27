@@ -1,6 +1,6 @@
 === WP Splash Image ===
 Contributors: agent022
-Donate link: http://www.dark-sides.com
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C
 Tags: Splash, Image, LightBox, Picture, Video, HTML, Start, Open
 Requires at least: 2.7
 Tested up to: 3.0
