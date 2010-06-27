@@ -40,6 +40,9 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
  
 == Changelog ==
 
+= 1.0.1 =
+* Correct date-input display bug
+
 = 1.0.0 =
 * Add Video Splash
 * Add HTML Splah
