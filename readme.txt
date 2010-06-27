@@ -10,7 +10,7 @@ WP Splash Image is a plugin for Wordpress to display picture, video (youtube, ya
  
 == Description ==
 
-**WP Splash Image** is a plugin for Wordpress to display an image with a lightbox type effect at the opening of the blog.
+**WP Splash Image** is a plugin for Wordpress to display picture, video (youtube, yahoo video, dailymotion, metacafe, your own swf file) or html code with a lightbox effect at the opening of the blog.
 
 == Installation ==
  
