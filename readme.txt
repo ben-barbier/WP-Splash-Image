@@ -26,8 +26,12 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 
 == Frequently Asked Questions ==
 
-= a Question ? =
-a response...
+= What's next ? =
+* Add uninstall option
+* Compatibility with Mystique (http://wordpress.org/extend/themes/mystique)
+* Add Correct French translation
+* Update Documentation
+* Update Screenshots for WP.
 
 == Screenshots ==
  
