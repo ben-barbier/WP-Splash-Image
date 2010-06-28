@@ -29,7 +29,6 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 = What's next ? =
 * Add uninstall option
 * Compatibility with Mystique (http://wordpress.org/extend/themes/mystique)
-* Add Correct French translation
 * Update Documentation
 * Adding a warning when the current date is not between the dates of validities.
 
@@ -43,6 +42,7 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 
 = 1.0.1 =
 * Correct date-input display bug
+* Add Correct French translation
 
 = 1.0.0 =
 * Add Video Splash
