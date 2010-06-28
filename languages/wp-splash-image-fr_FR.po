@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: wsi v0.8\n"
+"Project-Id-Version: wsi v1.0.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wsi\n"
 "POT-Creation-Date: 2010-06-20 02:44+0000\n"
-"PO-Revision-Date: 2010-06-20 04:52+0100\n"
+"PO-Revision-Date: 2010-06-29 01:12+0100\n"
 "Last-Translator: Benjamin Barbier <benjamin.barbier@dark-sides.com>\n"
 "Language-Team: Benjamin Barbier <benjamin.barbier@dark-sides.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,103 +18,176 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: wp-splash-image.php:139
+#: wp-splash-image.php:79
+msgid "Settings"
+msgstr "Options"
+
+#: wp-splash-image.php:96
+msgid "Donate"
+msgstr "Faire un don"
+
+#: wp-splash-image.php:328
 msgid "You do not have sufficient permissions to access this page."
-msgstr "Vous n'avez pas les droits nécessaires pour accéder à cette page."
+msgstr "You do not have sufficient permissions to access this page."
 
-#: wp-splash-image.php:243
-msgid "For information:"
-msgstr "Pour info:"
+#: wp-splash-image.php:512
+msgid "Infos"
+msgstr "Infos"
 
-#: wp-splash-image.php:245
-msgid "Configuration"
-msgstr "Configuration"
-
-#: wp-splash-image.php:250
-msgid "Splash image activated:"
-msgstr "Splash image activé:"
-
-#: wp-splash-image.php:258
-msgid "Test mode activated:"
-msgstr "Mode test activé:"
-
-#: wp-splash-image.php:264
-msgid "(for tests only, open splash image whenever)"
-msgstr "(Pour les tests, ouvre la splash image à chaque fois)"
-
-#: wp-splash-image.php:267
-msgid "Picture URL:"
-msgstr "URL de l'image:"
-
-#: wp-splash-image.php:275
-msgid "Picture height:"
-msgstr "Hauteur de l'image:"
-
-#: wp-splash-image.php:284
-msgid "Picture width:"
-msgstr "Largeur de l'image:"
-
-#: wp-splash-image.php:293
-msgid "Splash color:"
-msgstr "Couleur de fond:"
-
-#: wp-splash-image.php:301
-msgid "Start date:"
-msgstr "Date de début:"
-
-#: wp-splash-image.php:307
-#: wp-splash-image.php:316
-msgid "(stay empty if not required)"
-msgstr "(laisser vide si non nécessaire)"
-
-#: wp-splash-image.php:310
-msgid "End date:"
-msgstr "Date de fin:"
-
-#: wp-splash-image.php:319
-msgid "Display time:"
-msgstr "Temps d'affichage:"
-
-#: wp-splash-image.php:326
-msgid "seconds"
-msgstr "secondes"
-
-#: wp-splash-image.php:327
-msgid "(0 or empty don't close automaticly the splash image)"
-msgstr "(si le champ est vide ou a 0, pas de fermeture automatique)"
-
-#: wp-splash-image.php:330
-msgid "Update Options"
-msgstr "Enregistrer"
-
-#: wp-splash-image.php:335
-msgid "Options Updated..."
-msgstr "Options mises à jour..."
-
-#: wp-splash-image.php:338
-msgid "Thank's for your feedback..."
-msgstr "Merci pour votre remarque..."
-
-#: wp-splash-image.php:343
-#: wp-splash-image.php:344
-#: wp-splash-image.php:347
-#: wp-splash-image.php:353
+#: wp-splash-image.php:518
+#: wp-splash-image.php:521
+#: wp-splash-image.php:718
 msgid "Feedback"
 msgstr "Feedback"
 
-#: wp-splash-image.php:359
-msgid "Your Email:"
-msgstr "Votre email:"
+#: wp-splash-image.php:527
+msgid "Thank's for your feedback..."
+msgstr "Merci pour votre feedback..."
 
-#: wp-splash-image.php:363
+#: wp-splash-image.php:531
+msgid "For information:"
+msgstr "Pour information:"
+
+#: wp-splash-image.php:533
+msgid "Configuration"
+msgstr "Configuration"
+
+#: wp-splash-image.php:538
+#: wp-splash-image.php:746
+msgid "Splash image activated"
+msgstr "Splash image activé"
+
+#: wp-splash-image.php:546
+msgid "Test mode activated:"
+msgstr "Mode test activé"
+
+#: wp-splash-image.php:552
+msgid "(for tests only, open splash image whenever)"
+msgstr "(Ouvre la splash image à chaque fois)"
+
+#: wp-splash-image.php:561
+msgid "Image"
+msgstr "Image"
+
+#: wp-splash-image.php:562
+msgid "Video"
+msgstr "Video"
+
+#: wp-splash-image.php:563
+msgid "HTML"
+msgstr "HTML"
+
+#: wp-splash-image.php:571
+msgid "Picture URL:"
+msgstr "URL de l'image:"
+
+#: wp-splash-image.php:580
+#: wp-splash-image.php:759
+msgid "Picture link URL"
+msgstr "URL du lien de l'image"
+
+#: wp-splash-image.php:586
+#: wp-splash-image.php:686
+#: wp-splash-image.php:694
+msgid "(stay empty if not required)"
+msgstr "(Laisser vide si inutile)"
+
+#: wp-splash-image.php:595
+msgid "Youtube code"
+msgstr "Code de la vidéo youtube"
+
+#: wp-splash-image.php:601
+msgid "Yahoo video code"
+msgstr "Code de la vidéo yahoo"
+
+#: wp-splash-image.php:607
+msgid "Dailymotion code"
+msgstr "Code de la vidéo Dailymotion"
+
+#: wp-splash-image.php:613
+msgid "Metacafe code"
+msgstr "Code de la vidéo Metacafe"
+
+#: wp-splash-image.php:619
+msgid "Video Flash (URL)"
+msgstr "Video Flash (URL)"
+
+#: wp-splash-image.php:640
+#: wp-splash-image.php:752
+#: wp-splash-image.php:758
+msgid "Close esc function"
+msgstr "Désactiver la fonction d'échapement"
+
+#: wp-splash-image.php:645
+msgid "if you click on background"
+msgstr "en cliquant sur la couleur de fond"
+
+#: wp-splash-image.php:648
+#: wp-splash-image.php:755
+msgid "Hide"
+msgstr "Cacher"
+
+#: wp-splash-image.php:655
+msgid "Splash height"
+msgstr "Hauteur du wsi"
+
+#: wp-splash-image.php:664
+msgid "Splash width"
+msgstr "Largeur du wsi"
+
+#: wp-splash-image.php:673
+#: wp-splash-image.php:751
+msgid "Background color"
+msgstr "Couleur de fond"
+
+#: wp-splash-image.php:681
+#: wp-splash-image.php:748
+msgid "Start date"
+msgstr "Date de début"
+
+#: wp-splash-image.php:689
+#: wp-splash-image.php:747
+msgid "End date"
+msgstr "Date de fin"
+
+#: wp-splash-image.php:697
+#: wp-splash-image.php:769
+msgid "Display time"
+msgstr "Temps d'affichage"
+
+#: wp-splash-image.php:700
+msgid "seconds"
+msgstr "secondes"
+
+#: wp-splash-image.php:701
+msgid "(0 don't close automaticly the splash image)"
+msgstr "(0 ne ferme pas automatiquement wsi)"
+
+#: wp-splash-image.php:705
+msgid "Update Options"
+msgstr "Enregistrer"
+
+#: wp-splash-image.php:710
+msgid "Options Updated..."
+msgstr "Modifications enregistrées"
+
+#: wp-splash-image.php:724
+msgid "Your Email:"
+msgstr "Votre Email:"
+
+#: wp-splash-image.php:728
 msgid "Message:"
 msgstr "Message:"
 
-#: wp-splash-image.php:368
-msgid "Close"
-msgstr "Fermer"
-
-#: wp-splash-image.php:369
+#: wp-splash-image.php:733
 msgid "Send Feedback"
-msgstr "Envoyer"
+msgstr "Options"
+
+#: wp-splash-image.php:765
+msgid "Picture height"
+msgstr "Hauteur de l'image"
+
+#: wp-splash-image.php:767
+msgid "Picture width"
+msgstr "Largeur de l'image"
 
