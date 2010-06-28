@@ -31,6 +31,7 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 * Compatibility with Mystique (http://wordpress.org/extend/themes/mystique)
 * Add Correct French translation
 * Update Documentation
+* Adding a warning when the current date is not between the dates of validities.
 
 == Screenshots ==
  
