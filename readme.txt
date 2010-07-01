@@ -33,6 +33,7 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 * Add opacity of background selector
 * Add option for "exclude" some pages (for flash conflict for exemple)
 * Resolve conflict with jquery.cycle.all.min.js (http://jquery.malsup.com/cycle/)
+* Update include JS method in front-office part (OK in WP admin part)
 
 == Screenshots ==
  
