@@ -3,7 +3,7 @@
 Plugin Name: WP Splash Image
 Plugin URI: http://wordpress.org/extend/plugins/wsi/
 Description: WP Splash Image is a plugin for Wordpress to display an image with a lightbox type effect at the opening of the blog.
-Version: 1.1.0
+Version: 1.1.1
 Author: Benjamin Barbier
 Author URI: http://www.dark-sides.com/
 Donate URI: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C
@@ -327,9 +327,9 @@ function wsi_addSplashImageWpFooter() {
 	<?/* Autoclose de la Splash Image */?>
 	<?php if ($wsi_display_time > 0) { ?>
 	<script type="text/javascript">
-	$(document).ready(function () {
-		setTimeout("$('#miesSPLASH').fadeOut()",<?=($wsi_display_time*1000)?>);
-		setTimeout("$('#exposeMask').fadeOut()",<?=($wsi_display_time*1000)?>);
+	$j(document).ready(function () {
+		setTimeout("$j('#miesSPLASH').fadeOut()",<?=($wsi_display_time*1000)?>);
+		setTimeout("$j('#exposeMask').fadeOut()",<?=($wsi_display_time*1000)?>);
 	});
 	</script>
 	<? } ?>
@@ -337,8 +337,8 @@ function wsi_addSplashImageWpFooter() {
 	<?/* On masque la croix en haut à droite si besoin */?>
 	<?php if($wsi_hide_cross=='true') { ?>
 	<script type="text/javascript">
-	$(document).ready(function () {
-		$('.simple_overlay .close').css('display','none');
+	$j(document).ready(function () {
+		$j('.simple_overlay .close').css('display','none');
 	});
 	</script>
 	<? } ?>

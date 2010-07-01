@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: Splash, Image, LightBox, Picture, Video, HTML, Start, Open
 Requires at least: 2.7
 Tested up to: 3.0
-Stable tag: 1.1.0
+Stable tag: 1.1.1
  
 WP Splash Image is a plugin for Wordpress to display picture, video (youtube, yahoo video, dailymotion, metacafe, your own swf file) or html code with a lightbox effect at the opening of the blog.
  
@@ -41,6 +41,9 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 3. Splash Image
  
 == Changelog ==
+
+= 1.1.1 =
+* Correct "Hide Cross" bug (compatibility jquery)
 
 = 1.1.0 =
 * Add background opacity selector
@@ -105,6 +108,9 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 * Activation configurable
 
 == Upgrade Notice ==
+
+= 1.1.1 =
+* RAS
 
 = 1.1.0 =
 * RAS
