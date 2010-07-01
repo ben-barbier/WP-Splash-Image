@@ -30,6 +30,7 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 * Add uninstall option
 * Compatibility with Mystique (http://wordpress.org/extend/themes/mystique)
 * Update Documentation
+* Add opacity of background selector
 
 == Screenshots ==
  
