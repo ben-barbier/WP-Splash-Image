@@ -144,7 +144,10 @@ function wsi_addSplashImageWpHead() {
 	var $j = jQuery.noConflict();
 	$j(document).ready(function () {
 		$j("#splashLink").overlay({
-			expose: '<?=get_option('splash_color')?>',
+			mask: {
+				color: '<?=get_option('splash_color')?>',
+				opacity: <?=(get_option('wsi_opacity')/100)?> 
+			},
 			<?php if ($wsi_close_esc_function=='true') { echo('closeOnClick: false,'); } ?>
 			load: true // Lance la Splash Image à l'ouverture
 		});
@@ -375,6 +378,7 @@ function wp_splash_image_options() {
 		if ($_POST['wsi_hide_cross']) {$wsi_hide_cross='true';} else {$wsi_hide_cross='false';}
 		update_option('wsi_hide_cross', $wsi_hide_cross);
 		update_option('wsi_type',     $_POST['wsi_type']);
+		update_option('wsi_opacity',     $_POST['wsi_opacity']);
 		
 		// Valeurs des onglets
 		update_option('wsi_youtube',     $_POST['wsi_youtube']);
@@ -580,6 +584,12 @@ function wp_splash_image_options() {
 					name="splash_color"
 					size="20"
 					value="<?=get_option('splash_color')?>" /></td>
+			</tr>
+			<tr>
+				<td><?=__('Background opacity','wp-splash-image')?>:</td>
+				<td colspan="3">
+					<input type="range" name="wsi_opacity" min="0" max="100" value="<?=get_option('wsi_opacity')?>" />&nbsp;%
+				</td>
 			</tr>
 			<tr>
 				<td><?=__('Start date','wp-splash-image')?>:</td>
