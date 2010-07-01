@@ -32,6 +32,7 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 * Update Documentation
 * Add opacity of background selector
 * Add option for "exclude" some pages (for flash conflict for exemple)
+* Resolve conflict with jquery.cycle.all.min.js (http://jquery.malsup.com/cycle/)
 
 == Screenshots ==
  
