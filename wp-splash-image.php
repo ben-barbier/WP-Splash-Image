@@ -125,9 +125,7 @@ function wsi_addSplashImageWpHead() {
 	if(get_option('splash_active')!='true') return;
 	
 	// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
-	$today = date('d/m/Y');
-	if((get_option('datepicker_start')!='') && ($today < get_option('datepicker_start'))) return;
-	if((get_option('datepicker_end')!='')   && ($today > get_option('datepicker_end')))   return;
+	if (getdate_is_in_validities_dates() == "false") return;
 	
 	// Si la Splash image a déjà été vue, on ne fait rien (sauf si on est en mode test)
 	if(($_SESSION['splash_seen']=='Yes') && (get_option('splash_test_active')!='true'))  return;
@@ -157,6 +155,37 @@ function wsi_addSplashImageWpHead() {
 <?php
 }
 
+/*
+ * Si la Splash Image n'est pas dans sa plage de validité, on retourne false (sinon true)
+ */
+function getdate_is_in_validities_dates() {
+	
+	$today = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
+	
+	// En cas de modication des paramètres dans la partie admin
+	if ($_POST ['action'] == 'update') {
+		if ($_POST['datepicker_start']!='') {
+			$dpStart = strtotime($_POST['datepicker_start']);
+			if ($today < $dpStart) {return "false";}
+		}
+		if ($_POST['datepicker_end']!='') {
+			$dpEnd = strtotime($_POST['datepicker_end']);
+			if ($today > $dpEnd) {return "false";}
+		}
+	// Sinon (front office)
+	} else {
+		if (get_option('datepicker_start')!='') {
+			$dpStart = strtotime(get_option('datepicker_start'));
+			if ($today < $dpStart) {return "false";}
+		}
+		if (get_option('datepicker_end')!='') {
+			$dpEnd = strtotime(get_option('datepicker_end'));
+			if ($today > $dpEnd) {return "false";}
+		}
+	}
+	return "true";
+}
+
 /**
  * Fontion utililée dans le blog (dans le footer)
  */
@@ -169,9 +198,7 @@ function wsi_addSplashImageWpFooter() {
 	if(get_option('splash_test_active')!='true') {
 	
 		// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
-		$today = date('d/m/Y');
-		if((get_option('datepicker_start')!='') && ($today < get_option('datepicker_start'))) return;
-		if((get_option('datepicker_end')!='')   && ($today > get_option('datepicker_end')))   return;
+		if (getdate_is_in_validities_dates() == "false") return;
 
 		// Si la Splash image a déjà été vue, on ne fait rien
 		if($_SESSION['splash_seen']=='Yes')  return;
@@ -328,128 +355,6 @@ function wp_splash_image_options() {
 		wp_die( __("You do not have sufficient permissions to access this page.",'wp-splash-image') );
 	}
 	
-?>
-
-	<script type="text/javascript">
-	$(document).ready(function () {
-		
-		// Chargement des calendriers
-		$(":date").dateinput({format: 'dd mmm yyyy'});
-		
-		// Récupération du type de splash
-		<? if ($_POST['wsi_type'] != "") { ?>
-			var wsi_type = '<?=$_POST['wsi_type']?>';
-			<? $wsi_type = $_POST['wsi_type']; ?>
-		<? } else if(get_option('wsi_type') != "") { ?>	
-			var wsi_type = '<?=get_option('wsi_type')?>';
-			<? $wsi_type = get_option('wsi_type'); ?>
-		<? } else { ?>
-			var wsi_type = 'picture';
-			<? $wsi_type = get_option('wsi_type'); ?>
-		<? } ?>
-		
-		// Chargement des onglets
-		var index_tab = new Array() ;
-		index_tab["picture"] = 0;
-		index_tab["youtube"] = 1;
-		index_tab["yahoo"] = 1;
-		index_tab["dailymotion"] = 1;
-		index_tab["metacafe"] = 1;
-		index_tab["swf"] = 1;
-		index_tab["html"] = 2;
-		
-		$("ul.tabs").tabs("div.panes > div", {
-		// Ouverture du bon onglet au démarrage
-			effect: 'default', //TODO: Make my own effect : http://flowplayer.org/tools/tabs/index.html#effects
-			initialIndex: index_tab[wsi_type]
-		});
-		
-		// Gestion de l'affichage de la zone "block_splash_test_active"
-		if($("#splash_active").attr("checked")==true) {
-			$("#block_splash_test_active").css("display","table-row");
-		}else{
-			$("#block_splash_test_active").css("display","none");
-		}
-		$("#splash_active").click(function() {
-			if($("#splash_active").attr("checked")==true) {
-				$("#block_splash_test_active").fadeIn("slow");
-			}else{
-				$("#block_splash_test_active").fadeOut("slow");
-			}
-		});
-		
-		// Activation du tooltip du feedback
-		$('#feedback_img').tooltip();
-		
-		// Activation du tooltip de "Info"
-		$('#info_img').tooltip();
-		
-		function reset_validator() {
-			// Activation du validator du formulaire de feedback
-			return validator = $('#feedback_form').validator({
-				position: 'center right',
-				offset: [0, -30],
-			// Désactivation du bouton d'envoi de feedback après envoi
-			}).submit(function(e) {
-				// Validation OK.
-				if (!e.isDefaultPrevented()) {
-					$("#feedback_img[rel]").overlay().close();
-				}
-			});
-		}
-		reset_validator();
-		
-		// Activation de l'overlay de l'info
-		$("#info_img[rel]").overlay({mask: '#000', effect: 'apple'});
-		
-		// Activation de l'overlay du feedback
-		$("#feedback_img[rel]").overlay({
-			mask: '#000', 
-			effect: 'apple',
-			// Si on ferme l'overlay, on supprime les messages d'erreur du validator
-			onClose: function() {reset_validator();}
-		})
-		
-		// Activation 
-		$(":range").rangeinput();
-		
-		// Color on select input radio
-		$("#radio_picture").click(function() {
-			$(".box_type").animate({    backgroundColor: "#FFFFFF" }, 200);
-			$("#box_picture").animate({ backgroundColor: "#7FFF00" }, 500);
-		});
-		$("#radio_youtube").click(function() {
-			$(".box_type").animate({    backgroundColor: "#FFFFFF" }, 200);
-			$("#box_youtube").animate({ backgroundColor: "#7FFF00" }, 500);
-		});
-		$("#radio_yahoo").click(function() {
-			$(".box_type").animate({  backgroundColor: "#FFFFFF" }, 200);
-			$("#box_yahoo").animate({ backgroundColor: "#7FFF00" }, 500);
-		});
-		$("#radio_dailymotion").click(function() {
-			$(".box_type").animate({        backgroundColor: "#FFFFFF" }, 200);
-			$("#box_dailymotion").animate({ backgroundColor: "#7FFF00" }, 500);
-		});
-		$("#radio_metacafe").click(function() {
-			$(".box_type").animate({     backgroundColor: "#FFFFFF" }, 200);
-			$("#box_metacafe").animate({ backgroundColor: "#7FFF00" }, 500);
-		});
-		$("#radio_swf").click(function() {
-			$(".box_type").animate({ backgroundColor: "#FFFFFF" }, 200);
-			$("#box_swf").animate({  backgroundColor: "#7FFF00" }, 500);
-		});
-		$("#radio_html").click(function() {
-			$(".box_type").animate({ backgroundColor: "#FFFFFF" }, 200);
-			$("#box_html").animate({  backgroundColor: "#7FFF00" }, 500);
-		});
-		// Color au chargement du plugin
-		$("#box_<?=$wsi_type?>").animate({ backgroundColor: "#7FFF00" }, 500);
-
-	});
-	</script>
-	
-<?php
-	
 	// Mise à jour ?
 	if ($_POST ['action'] == 'update') {
 		// On met à jour la base de données (table: options) avec la fonction de wp: update_option
@@ -552,13 +457,12 @@ function wp_splash_image_options() {
 					<?=__('(for tests only, open splash image whenever)','wp-splash-image')?></td>
 			</tr>
 		</table>	
-
 		<br />
-		<!-- ----------------------------------------------------------------------------- --> 
+		<!-- Tabs --> 
 		<div style="width:850px;">
 			<!-- the tabs --> 
 			<ul class="tabs"> 
-				<li><a href="#"><?=__('Image')?></a></li> 
+				<li><a href="#"><?=__('Picture')?></a></li> 
 				<li><a href="#"><?=__('Video')?></a></li> 
 				<li><a href="#"><?=__('HTML')?></a></li> 
 			</ul> 
@@ -633,7 +537,7 @@ function wp_splash_image_options() {
 				</div> 
 			</div>
 		</div>
-		<!-- ----------------------------------------------------------------------------- --> 
+		<!-- /Tabs --> 
 		<br />
 		<table>
 			<tr>
@@ -682,20 +586,28 @@ function wp_splash_image_options() {
 				<td><input 
 					type="date" 
 					name="datepicker_start" 
+					id="datepicker_start" 
 					value="<?=get_option('datepicker_start')?>" />&nbsp;
 					<?=__('(stay empty if not required)','wp-splash-image')?></td>
+				<td style="width:15px;"></td>
+				<td rowspan="2" style="padding:10px;border:2px solid #FF0000;display:none;background-color:#ff8b88" id="box_datepickers_warning">
+					<?=__('Warning: WSI does not currently work.','wp-splash-image')?><br />
+					<?=__('Check if dates are OK.','wp-splash-image')?>
+				</td>
 			</tr>
 			<tr>
 				<td><?=__('End date','wp-splash-image')?>:</td>
 				<td><input 
 					type="date" 
 					name="datepicker_end" 
+					id="datepicker_end" 
 					value="<?=get_option('datepicker_end')?>" />&nbsp;
 					<?=__('(stay empty if not required)','wp-splash-image')?></td>
+				<td colspan="2"></td>
 			</tr>
 			<tr>
 				<td><?=__('Display time','wp-splash-image')?>:</td>
-				<td>
+				<td colspan="3">
 					<input type="range" name="wsi_display_time" min="0" max="30" value="<?=get_option('wsi_display_time')?>" />&nbsp;
 					<?=__('seconds','wp-splash-image')?>&nbsp;
 					<?=__("(0 don't close automaticly the splash image)",'wp-splash-image')?>
@@ -710,7 +622,9 @@ function wp_splash_image_options() {
 		<p style="color:green;"><?=__('Options Updated...','wp-splash-image')?></p>
 	<?php } ?>
 
-	<!-- ----------------------------------------------------------------------------- --> 
+	<!-- -------------- -->
+	<!-- Feedback Form  -->
+	<!-- -------------- -->
 	
 	<div id="feedback" class="overlay" style="display:none;background-image:url(<?=wsi_url()?>/style/petrol.png);color:#fff;width:500px;margin:40px;">
 		<fieldset style="border:1px solid black; padding:20px 20px 5px 20px; display:inline;">
@@ -736,7 +650,9 @@ function wp_splash_image_options() {
 		</fieldset>
 	</div>
 	
-	<!-- ----------------------------------------------------------------------------- --> 
+	<!-- ------------------- -->
+	<!-- Documentation Form  -->
+	<!-- ------------------- -->
 	
 	<div id="info" class="overlay" style="display:none;background-image:url(<?=wsi_url()?>/style/petrol.png);color:#fff;width:620px;height:530px;margin:40px;">
 		<div style="font-weight:bold;font-size:20px;margin-bottom:10px;">Infos :</div>
@@ -774,15 +690,140 @@ function wp_splash_image_options() {
 	
 </div>
 
+<script type="text/javascript">
+
+	$(document).ready(function () {
+		
+		// Chargement des calendriers
+		$(":date").dateinput({
+			format: 'dd mmm yyyy'/*,
+			// Affichage de la box indiquant un pb en live
+			change: function() {
+				// OK sous FF mais KO sous chrome
+				// TODO: Chrome fix...
+				var today = new Date();
+				if (today < $('#datepicker_start').data("dateinput").getValue()) {
+					alert("1");
+					$("#box_datepickers_warning").fadeIn("slow");
+				} else if (today > $('#datepicker_end').data("dateinput").getValue()) {
+					alert("2");
+					$("#box_datepickers_warning").fadeIn("slow");
+				} else {
+					alert("3");
+					$("#box_datepickers_warning").fadeOut("slow");
+				}
+			}*/
+		});
+				
+		// Récupération du type de splash
+		<? if ($_POST['wsi_type'] != "") { ?>
+			var wsi_type = '<?=$_POST['wsi_type']?>';
+			<? $wsi_type = $_POST['wsi_type']; ?>
+		<? } else if(get_option('wsi_type') != "") { ?>	
+			var wsi_type = '<?=get_option('wsi_type')?>';
+			<? $wsi_type = get_option('wsi_type'); ?>
+		<? } else { ?>
+			var wsi_type = 'picture';
+			<? $wsi_type = get_option('wsi_type'); ?>
+		<? } ?>
+		
+		// Chargement des onglets
+		var index_tab = new Array() ;
+		index_tab["picture"]     = 0;
+		index_tab["youtube"]     = 1;
+		index_tab["yahoo"]       = 1;
+		index_tab["dailymotion"] = 1;
+		index_tab["metacafe"]    = 1;
+		index_tab["swf"]         = 1;
+		index_tab["html"]        = 2;
+		
+		$("ul.tabs").tabs("div.panes > div", {
+		// Ouverture du bon onglet au démarrage
+			effect: 'default', //TODO: Make my own effect : http://flowplayer.org/tools/tabs/index.html#effects
+			initialIndex: index_tab[wsi_type]
+		});
+		
+		// Gestion de l'affichage de la zone "block_splash_test_active"
+		if($("#splash_active").attr("checked")==true) {
+			$("#block_splash_test_active").css("display","table-row");
+		}else{
+			$("#block_splash_test_active").css("display","none");
+		}
+		$("#splash_active").click(function() {
+			if($("#splash_active").attr("checked")==true) {
+				$("#block_splash_test_active").fadeIn("slow");
+			}else{
+				$("#block_splash_test_active").fadeOut("slow");
+			}
+		});
+		
+		// Activation du tooltip du feedback
+		$('#feedback_img').tooltip();
+		
+		// Activation du tooltip de "Info"
+		$('#info_img').tooltip();
+		
+		function reset_validator() {
+			// Activation du validator du formulaire de feedback
+			return validator = $('#feedback_form').validator({
+				position: 'center right',
+				offset: [0, -30],
+			// Désactivation du bouton d'envoi de feedback après envoi
+			}).submit(function(e) {
+				// Validation OK.
+				if (!e.isDefaultPrevented()) {
+					$("#feedback_img[rel]").overlay().close();
+				}
+			});
+		}
+		reset_validator();
+		
+		// Activation de l'overlay de l'info
+		$("#info_img[rel]").overlay({mask: '#000', effect: 'apple'});
+		
+		// Activation de l'overlay du feedback
+		$("#feedback_img[rel]").overlay({
+			mask: '#000', 
+			effect: 'apple',
+			// Si on ferme l'overlay, on supprime les messages d'erreur du validator
+			onClose: function() {reset_validator();}
+		})
+		
+		// Activation du curseur pour la durée d'affichage
+		$(":range").rangeinput();
+		
+		// Color on select input radio
+		function color_box(boxId) {
+			$(".box_type").animate({ backgroundColor: "#FFFFFF" }, 200);
+			$(boxId).animate({       backgroundColor: "#7FFF00" }, 500);
+		}
+		
+		$("#radio_picture").click(function() {     color_box("#box_picture")});
+		$("#radio_youtube").click(function() {     color_box("#box_youtube")});
+		$("#radio_yahoo").click(function() {       color_box("#box_yahoo")});
+		$("#radio_dailymotion").click(function() { color_box("#box_dailymotion")});
+		$("#radio_metacafe").click(function() {    color_box("#box_metacafe")});
+		$("#radio_swf").click(function() {         color_box("#box_swf")});
+		$("#radio_html").click(function() {        color_box("#box_html")});
+		
+		// Color au chargement du plugin
+		$("#box_<?=$wsi_type?>").animate({ backgroundColor: "#7FFF00" }, 500);
+		
+		// Warning sur les dates de validités
+		if ("<?=getdate_is_in_validities_dates()?>"=="false") {$("#box_datepickers_warning").fadeIn("slow");}
+	
+	});
+</script>
+
 <?php 
 }
 
-add_action ( 'admin_init', 'wp_splash_image_options_init');
+add_action ( 'admin_init', 'wp_splash_image_options_init' );
 add_action ( 'admin_menu', 'wsi_menu' );
 add_action ( 'wp_head',    'wsi_addSplashImageWpHead' );
 add_action ( 'wp_footer',  'wsi_addSplashImageWpFooter' );
-add_action ( 'template_redirect', 'wsi_init_session', 0);
+add_action ( 'template_redirect', 'wsi_init_session', 0 );
 add_filter ( 'plugin_action_links_'.plugin_basename(__FILE__), 'wsi_filter_plugin_actions' );
-add_filter( 'plugin_row_meta',  'set_plugin_meta', 10, 2 );
-add_action( 'wp_print_scripts', 'enqueue_wsi_scripts' );
-add_action( 'wp_print_styles',  'enqueue_wsi_styles' );
+add_filter ( 'plugin_row_meta',  'set_plugin_meta', 10, 2 );
+add_action ( 'wp_print_scripts', 'enqueue_wsi_scripts' );
+add_action ( 'wp_print_styles',  'enqueue_wsi_styles' );
