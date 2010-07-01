@@ -28,7 +28,7 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 
 = What's next ? =
 * Add uninstall option
-* Compatibility with Mystique (http://wordpress.org/extend/themes/mystique)
+* Compatibility with Mystique(pb with footer and settings -> http://wordpress.org/extend/themes/mystique)
 * Update Documentation
 * Add opacity of background selector
 
