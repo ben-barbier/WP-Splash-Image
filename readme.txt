@@ -31,6 +31,7 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 * Compatibility with Mystique (http://wordpress.org/extend/themes/mystique)
 * Update Documentation
 * Add opacity of background selector
+* Add option for "exclude" some pages (for flash conflict for exemple)
 
 == Screenshots ==
  
