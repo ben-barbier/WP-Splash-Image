@@ -3,7 +3,7 @@
 Plugin Name: WP Splash Image
 Plugin URI: http://wordpress.org/extend/plugins/wsi/
 Description: WP Splash Image is a plugin for Wordpress to display an image with a lightbox type effect at the opening of the blog.
-Version: 1.1.2
+Version: 1.2.0
 Author: Benjamin Barbier
 Author URI: http://www.dark-sides.com/
 Donate URI: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C
@@ -381,6 +381,29 @@ function wp_splash_image_options() {
 		wp_die( __("You do not have sufficient permissions to access this page.",'wp-splash-image') );
 	}
 	
+	// Liste des options qui apparait dans le formulaire "uninstall" (et qui sont supprimées)
+	$list_options = array(
+		'splash_active', 
+		'splash_test_active', 
+		'url_splash_image', 
+		'splash_image_width',
+		'splash_image_height',
+		'splash_color',
+		'datepicker_start',
+		'datepicker_end',
+		'wsi_display_time',
+		'wsi_picture_link_url',
+		'wsi_close_esc_function',
+		'wsi_hide_cross',
+		'wsi_type',
+		'wsi_opacity',
+		'wsi_youtube',
+		'wsi_yahoo',
+		'wsi_dailymotion',
+		'wsi_metacafe',
+		'wsi_swf',
+		'wsi_html');
+		
 	// Mise à jour ?
 	if ($_POST ['action'] == 'update') {
 		// On met à jour la base de données (table: options) avec la fonction de wp: update_option
@@ -430,6 +453,29 @@ function wp_splash_image_options() {
 		$feedbacked = false;
 	}
 	
+	// Uninstall ?
+	if ($_POST ['action'] == 'uninstall') {
+		if(trim($_POST['uninstall_stats_yes']) == 'yes') {
+			echo '<div id="message" class="updated fade">';
+			echo '<p>';
+			foreach($list_options as $option) {
+				$delete_option = delete_option($option);
+				if($delete_option) {
+					echo '<font color="green">';
+					printf(__('Setting Key \'%s\' has been deleted.', 'wp-stats'), "<strong><em>{$option}</em></strong>");
+					echo '</font><br />';
+				} else {
+					echo '<font color="red">';
+					printf(__('Error deleting Setting Key \'%s\'.', 'wp-stats'), "<strong><em>{$option}</em></strong>");
+					echo '</font><br />';
+				}
+			}
+			echo '</p>';
+			echo '</div>'; 
+			$mode = 'end-UNINSTALL';
+		}
+	}
+	
 ?>
 
 <div class="wrap">
@@ -454,9 +500,19 @@ function wp_splash_image_options() {
 		</div>
 	</div>
 	
+	<?/* Logo Uninstall */?>
+	<div id="display_uninstall" style="float:left;margin-top:-35px;margin-left:283px;">
+		<img id="uninstall_img" rel="#uninstall" alt="<?=__('Uninstall','wp-splash-image')?>" src="<?=wsi_url()?>/style/uninstall.png" />
+		<!-- Tooltip FeedBack -->
+		<div id="data_uninstall_img" style="display:none;"> 
+			<?=__('Uninstall','wp-splash-image')?>
+		</div>
+	</div>
+	
+	
 	<?/* Information message */?>
 	<?php if ($feedbacked) { ?>
-		<p style="color:green;float:left;margin-top:-28px;margin-left:290px;"><?=__("Thank's for your feedback...",'wp-splash-image')?></p>
+		<p style="color:green;float:left;margin-top:-28px;margin-left:333px;"><?=__("Thank's for your feedback...",'wp-splash-image')?></p>
 	<?php } ?>
 	
 	<p>
@@ -655,6 +711,43 @@ function wp_splash_image_options() {
 		<p style="color:green;"><?=__('Options Updated...','wp-splash-image')?></p>
 	<?php } ?>
 
+	<!-- --------------- -->
+	<!-- Uninstall Form  -->
+	<!-- --------------- -->
+	
+	<div id="uninstall" class="overlay" style="display:none;background-image:url(<?=wsi_url()?>/style/petrol.png);color:#fff;width:620px;height:530px;margin:40px;">
+		<form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>">
+			<div class="wrap"> 
+				<h3><?=__('Uninstall WP-Splash-Image', 'wp-splash-image'); ?></h3>
+				<p><?=__('Deactivating WP-Splash-Image plugin does not remove any data that may have been created, such as the stats options. To completely remove this plugin, you can uninstall it here.', 'wp-splash-image'); ?></p>
+				<p style="color: red">
+					<strong><?=__('WARNING:', 'wp-splash-image'); ?></strong><br />
+					<?=__('Once uninstalled, this cannot be undone. You should use a Database Backup plugin of WordPress to back up all the data first.', 'wp-splash-image'); ?>
+				</p>
+				<p style="color: red"><strong><?=__('The following WordPress Options will be DELETED:', 'wp-splash-image'); ?></strong><br /></p>
+				<table class="widefat">
+					<thead><tr><th><?=__('WordPress Options', 'wp-splash-image'); ?></th></tr></thead>
+					<tr>
+						<td valign="top" style="color: black;">
+							<ol style="height:150px;overflow:auto;padding-left:40px">
+							<?php
+								foreach($list_options as $option) {
+									echo '<li>'.$option.'</li>'."\n";
+								}
+							?>
+							</ol>
+						</td>
+					</tr>
+				</table>
+				<p>&nbsp;</p>
+				<p style="text-align: center;">
+					<input type="checkbox" name="uninstall_stats_yes" value="yes" />&nbsp;<?=__('OK', 'wp-splash-image'); ?><br /><br />
+					<input type="submit" name="do" value="<?=__('UNINSTALL WP-Splash Image', 'wp-splash-image'); ?>" class="button" onclick="return confirm('<?=__('You Are About To Uninstall WP-Splash-Image From WordPress.\nThis Action Is Not Reversible.\n\n Choose [Cancel] To Stop, [OK] To Uninstall.', 'wp-splash-image'); ?>')" />
+				</p>
+			</div> 
+		</form>
+	</div>
+	
 	<!-- -------------- -->
 	<!-- Feedback Form  -->
 	<!-- -------------- -->
@@ -796,6 +889,9 @@ function wp_splash_image_options() {
 		// Activation du tooltip de "Info"
 		$('#info_img').tooltip();
 		
+		// Activation du tooltip de "Uninstall"
+		$('#uninstall_img').tooltip();
+		
 		function reset_validator() {
 			// Activation du validator du formulaire de feedback
 			return validator = $('#feedback_form').validator({
@@ -821,6 +917,9 @@ function wp_splash_image_options() {
 			// Si on ferme l'overlay, on supprime les messages d'erreur du validator
 			onClose: function() {reset_validator();}
 		})
+		
+		// Activation de l'overlay du "Uninstall"
+		$("#uninstall_img[rel]").overlay({mask: '#000', effect: 'apple'});
 		
 		// Activation du curseur pour la durée d'affichage
 		$(":range").rangeinput();
