@@ -3,16 +3,41 @@
 Plugin Name: WP Splash Image
 Plugin URI: http://wordpress.org/extend/plugins/wsi/
 Description: WP Splash Image is a plugin for Wordpress to display an image with a lightbox type effect at the opening of the blog.
-Version: 1.1.1
+Version: 1.1.2
 Author: Benjamin Barbier
 Author URI: http://www.dark-sides.com/
 Donate URI: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C
 */
 
 /**
- * Fonction utilisée dans la partie Admin (initialisation)
+ * Init du Front end
  */
-function wp_splash_image_options_init() {
+function wp_splash_image_front_init() {
+
+	if (!is_admin()) {
+		
+		// Déclaration des styles de la partie front end.
+		wp_register_style('overlay-basic', wsi_url().'/style/overlay-basic.css'); /*Style pour la splash image */
+	
+		// Déclaration des scripts de la partie front end.
+		wp_register_script('jquery.tools.front', wsi_url().'/js/jquery.tools.min.wp-front.js'); /*[overlay, toolbox.expose]*/
+		wp_deregister_script('jquery');
+		wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js');
+		
+		// Chargement des scripts du front end.
+		wp_enqueue_script('jquery'); 
+		wp_enqueue_script('jquery.tools.front',false,array('jquery'));
+		
+		// Chargement des styles du front end.
+		wp_enqueue_style('overlay-basic');
+		
+	}
+}
+
+/**
+ * Init de la partie Admin
+ */
+function wp_splash_image_back_init() {
 	
 	// Chargement de l' I18n
 	if (function_exists('load_plugin_textdomain')) {
@@ -22,17 +47,15 @@ function wp_splash_image_options_init() {
 	// Déclaration des styles de la partie Admin (utilisés dans enqueue_wsi_styles)
 	wp_register_style('tabs', wsi_url().'/style/tabs.css'); /*Style pour les onglets*/
 	wp_register_style('validator-error', wsi_url().'/style/validator-error.css'); /*Style pour le validator du feedback*/
-	wp_register_style('overlay-basic', wsi_url().'/style/overlay-basic.css'); /*Style pour la la box de documentation*/
+	wp_register_style('overlay-basic', wsi_url().'/style/overlay-basic.css'); /*Style pour la box de documentation + feedback*/
 	wp_register_style('date-input', wsi_url().'/style/dateinput.css'); /*Style pour les calendriers*/
 	wp_register_style('range', wsi_url().'/style/range.css'); /*Style pour le curseur de temps*/
 	wp_register_style('wsi', wsi_url().'/style/wsi.css');
 	
 	// Déclaration des scripts de la partie Admin (utilisés dans enqueue_wsi_scripts)
-    wp_register_script('jquery142', wsi_url().'/js/jquery-1.4.2.min.js'); /*Base de JQuery*/
-	wp_register_script('jquery.tools', wsi_url().'/js/jquery.tools.min.wp-back.js'); /*Overlay + apple effect + Validation + Tabs*/
+	wp_register_script('jquery.tools.back', wsi_url().'/js/jquery.tools.min.wp-back.js'); /*[tabs, overlay, overlay.apple, dateinput, rangeinput, validator]*/
 	wp_register_script('jquery.tooltip', wsi_url().'/js/tooltip.jquery.js'); /*Infobulle(tooltip) pour feedback*/
 	wp_register_script('mcolorpicker', 'http://plugins.meta100.com/mcolorpicker/javascripts/mColorPicker_min.js'); /*Colorpicker*/
-	
 }
 
 /**
@@ -45,7 +68,7 @@ function wsi_menu() {
     add_action('admin_print_styles-' . $page, 'enqueue_wsi_styles');
 	
 	/* Using registered $page handle to hook script load */
-	add_action('admin_print_scripts-' . $page, 'enqueue_wsi_scripts');
+	add_action('admin_print_scripts-' . $page, 'enqueue_wsi_back_scripts');
 }
 
 /**
@@ -63,11 +86,15 @@ function enqueue_wsi_styles() {
 /**
  * Utilisation des scripts de la partie Admin
  */
-function enqueue_wsi_scripts() {
-	wp_enqueue_script('jquery142');
-	wp_enqueue_script('jquery.tools');
-	wp_enqueue_script('jquery.tooltip');
-	wp_enqueue_script('mcolorpicker');
+function enqueue_wsi_back_scripts() {
+	if (isset($_GET['page']) && $_GET['page'] == 'wp_splash_image') {
+		wp_deregister_script('jquery');
+		wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js');
+		wp_enqueue_script('jquery'); 
+		wp_enqueue_script('jquery.tools.back',false,array('jquery'));
+		wp_enqueue_script('jquery.tooltip',false,array('jquery'));
+		wp_enqueue_script('mcolorpicker',false,array('jquery'));
+	}
 }
 
 /**
@@ -136,11 +163,7 @@ function wsi_addSplashImageWpHead() {
 ?>
 
 	<!-- WP Splash-Image -->
-	<link rel="stylesheet" type="text/css" href="<?=wsi_url()?>/style/overlay-basic.css"/> 
-	<script src="<?=wsi_url()?>/js/jquery-1.4.2.min.js"></script>
-	<script src="<?=wsi_url()?>/js/jquery.tools.min.wp-front.js"></script>
 	<script type="text/javascript">
-	
 	var $j = jQuery.noConflict();
 	$j(document).ready(function () {
 		$j("#splashLink").overlay({
@@ -828,12 +851,11 @@ function wp_splash_image_options() {
 <?php 
 }
 
-add_action ( 'admin_init', 'wp_splash_image_options_init' );
+add_action ( 'admin_init', 'wp_splash_image_back_init' );
+add_action ( 'init',       'wp_splash_image_front_init' );
 add_action ( 'admin_menu', 'wsi_menu' );
 add_action ( 'wp_head',    'wsi_addSplashImageWpHead' );
 add_action ( 'wp_footer',  'wsi_addSplashImageWpFooter' );
 add_action ( 'template_redirect', 'wsi_init_session', 0 );
 add_filter ( 'plugin_action_links_'.plugin_basename(__FILE__), 'wsi_filter_plugin_actions' );
 add_filter ( 'plugin_row_meta',  'set_plugin_meta', 10, 2 );
-add_action ( 'wp_print_scripts', 'enqueue_wsi_scripts' );
-add_action ( 'wp_print_styles',  'enqueue_wsi_styles' );
