@@ -455,25 +455,28 @@ function wp_splash_image_options() {
 	
 	// Uninstall ?
 	if ($_POST ['action'] == 'uninstall') {
-		if(trim($_POST['uninstall_stats_yes']) == 'yes') {
-			echo '<div id="message" class="updated fade">';
-			echo '<p>';
+		if(trim($_POST['uninstall_wsi_yes']) == 'yes') {
+			$uninstalled_message .= '<p>';
 			foreach($list_options as $option) {
 				$delete_option = delete_option($option);
 				if($delete_option) {
-					echo '<font color="green">';
-					printf(__('Setting Key \'%s\' has been deleted.', 'wp-stats'), "<strong><em>{$option}</em></strong>");
-					echo '</font><br />';
+					$uninstalled_message .= '<font color="green">';
+					$uninstalled_message .= sprintf(__('Setting Key \'%s\' has been deleted.', 'wp-splash-image'), "<strong><em>{$option}</em></strong>");
+					$uninstalled_message .= '</font><br />';
 				} else {
-					echo '<font color="red">';
-					printf(__('Error deleting Setting Key \'%s\'.', 'wp-stats'), "<strong><em>{$option}</em></strong>");
-					echo '</font><br />';
+					$uninstalled_message .= '<font color="red">';
+					$uninstalled_message .= sprintf(__('Error deleting Setting Key \'%s\'.', 'wp-splash-image'), "<strong><em>{$option}</em></strong>");
+					$uninstalled_message .= '</font><br />';
 				}
 			}
-			echo '</p>';
-			echo '</div>'; 
-			$mode = 'end-UNINSTALL';
+			$uninstalled_message .= '</p>';
+			$mode = 'end-UNINSTALL'; //TODO: et apres ???
+			$uninstalled = true;
+		} else {
+			$uninstalled = false;
 		}
+	} else {
+		$uninstalled = false;
 	}
 	
 ?>
@@ -512,7 +515,11 @@ function wp_splash_image_options() {
 	
 	<?/* Information message */?>
 	<?php if ($feedbacked) { ?>
-		<p style="color:green;float:left;margin-top:-28px;margin-left:333px;"><?=__("Thank's for your feedback...",'wp-splash-image')?></p>
+		<div id="message" class="updated fade" style="color:green;"><?=__("Thank's for your feedback...",'wp-splash-image')?></div>
+	<?php } else if ($updated) { ?>
+		<div id="message" class="updated fade" style="color:green;"><?=__('Options Updated...','wp-splash-image')?></div>
+	<?php } else if ($uninstalled) { ?>
+		<div id="message" class="updated fade"><?=$uninstalled_message?></div>
 	<?php } ?>
 	
 	<p>
@@ -706,17 +713,13 @@ function wp_splash_image_options() {
 		<p class="submit"><input type="submit" value="<?=__('Update Options','wp-splash-image')?>" /></p>
 	</form>
 
-	<?/* Information message */?>
-	<?php if ($updated) { ?>
-		<p style="color:green;"><?=__('Options Updated...','wp-splash-image')?></p>
-	<?php } ?>
-
 	<!-- --------------- -->
 	<!-- Uninstall Form  -->
 	<!-- --------------- -->
 	
 	<div id="uninstall" class="overlay" style="display:none;background-image:url(<?=wsi_url()?>/style/petrol.png);color:#fff;width:620px;height:530px;margin:40px;">
 		<form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>">
+			<input type="hidden" name="action" value="uninstall" />
 			<div class="wrap"> 
 				<h3><?=__('Uninstall WP-Splash-Image', 'wp-splash-image'); ?></h3>
 				<p><?=__('Deactivating WP-Splash-Image plugin does not remove any data that may have been created, such as the stats options. To completely remove this plugin, you can uninstall it here.', 'wp-splash-image'); ?></p>
@@ -741,8 +744,10 @@ function wp_splash_image_options() {
 				</table>
 				<p>&nbsp;</p>
 				<p style="text-align: center;">
-					<input type="checkbox" name="uninstall_stats_yes" value="yes" />&nbsp;<?=__('OK', 'wp-splash-image'); ?><br /><br />
-					<input type="submit" name="do" value="<?=__('UNINSTALL WP-Splash Image', 'wp-splash-image'); ?>" class="button" onclick="return confirm('<?=__('You Are About To Uninstall WP-Splash-Image From WordPress.\nThis Action Is Not Reversible.\n\n Choose [Cancel] To Stop, [OK] To Uninstall.', 'wp-splash-image'); ?>')" />
+					<input type="checkbox" name="uninstall_wsi_yes" value="yes" />&nbsp;<?=__('OK', 'wp-splash-image'); ?><br /><br />
+					<input type="submit" class="button"
+						value="<?=__('UNINSTALL WP-Splash Image', 'wp-splash-image'); ?>" 
+						onclick="return confirm('<?=__('You Are About To Uninstall WP-Splash-Image From WordPress.\nThis Action Is Not Reversible.\n\n Choose [Cancel] To Stop, [OK] To Uninstall.', 'wp-splash-image'); ?>')" />
 				</p>
 			</div> 
 		</form>
