@@ -32,6 +32,7 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 * Update Documentation
 * Add option for "exclude" some pages (for flash conflict for exemple)
 * Resolve conflict with jquery.cycle.all.min.js (http://jquery.malsup.com/cycle/)
+* Add option for choise the picture link destination (_blank or _self) 
 
 == Screenshots ==
  
