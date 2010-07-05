@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: Splash, Image, LightBox, Picture, Video, HTML, Start, Open
 Requires at least: 2.7
 Tested up to: 3.0
-Stable tag: 1.2.3
+Stable tag: 1.2.4
  
 WP Splash Image is a plugin for Wordpress to display picture, video (youtube, yahoo video, dailymotion, metacafe, your own swf file) or html code with a lightbox effect at the opening of the blog.
  
@@ -34,10 +34,16 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 
 = Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
 **NO !**
-If we use WSI with the standards options ("Test mode activated:" = not check), the splah screen will appear once by user (I use a top in HTTP Session) everywhere on your website (when you enter on the site).
-If the user close his browser and if he returns on your website, the WSI returns come back.
-I'll working to an option for "exclude" some pages.
-For exemple, we can use this option for have no confict with some pages with flash.
+ If we use WSI with the standards options ("Test mode activated:" = not check), the splah screen will appear once by user (I use a top in HTTP Session) everywhere on your website (when you enter on the site).
+ If the user close his browser and if he returns on your website, the WSI returns come back.
+ I'll working to an option for "exclude" some pages.
+ For exemple, we can use this option for have no confict with some pages with flash.
+
+= None of the tabs not working. What's happend ? =
+ I worked on the loading javascript scripts using the best practices described in the codex. 
+ However, all the wordpress plugins that do not use these best practices for loading scripts, some problems may actually occur.
+ Try disabling your other plugins to determine the one (or ones) that cause problems and reactivating one by one.
+ Good luck.
 
 == Screenshots ==
  
@@ -46,6 +52,9 @@ For exemple, we can use this option for have no confict with some pages with fla
 3. Splash Image
  
 == Changelog ==
+
+= 1.2.4 =
+* Correct little display problem on Chrome
 
 = 1.2.3 =
 * Correct Range Input display problem
@@ -129,6 +138,9 @@ For exemple, we can use this option for have no confict with some pages with fla
 * Activation configurable
 
 == Upgrade Notice ==
+
+= 1.2.4 =
+* RAS
 
 = 1.2.3 =
 * RAS
