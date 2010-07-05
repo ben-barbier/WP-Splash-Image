@@ -455,26 +455,28 @@ function wp_splash_image_options() {
 	
 	// Uninstall ?
 	if ($_POST ['action'] == 'uninstall') {
-		if(trim($_POST['uninstall_wsi_yes']) == 'yes') {
-			$uninstalled_message .= '<p>';
-			foreach($list_options as $option) {
-				$delete_option = delete_option($option);
-				if($delete_option) {
-					$uninstalled_message .= '<font color="green">';
-					$uninstalled_message .= sprintf(__('Setting Key \'%s\' has been deleted.', 'wp-splash-image'), "<strong><em>{$option}</em></strong>");
-					$uninstalled_message .= '</font><br />';
-				} else {
-					$uninstalled_message .= '<font color="red">';
-					$uninstalled_message .= sprintf(__('Error deleting Setting Key \'%s\'.', 'wp-splash-image'), "<strong><em>{$option}</em></strong>");
-					$uninstalled_message .= '</font><br />';
-				}
+		$uninstalled_message .= '<p>';
+		foreach($list_options as $option) {
+			$delete_option = delete_option($option);
+			if($delete_option) {
+				$uninstalled_message .= '<font color="green">';
+				$uninstalled_message .= sprintf(__('Setting Key \'%s\' has been deleted.', 'wp-splash-image'), "<strong><em>{$option}</em></strong>");
+				$uninstalled_message .= '</font><br />';
+			} else {
+				$uninstalled_message .= '<font color="red">';
+				$uninstalled_message .= sprintf(__('Error deleting Setting Key \'%s\'.', 'wp-splash-image'), "<strong><em>{$option}</em></strong>");
+				$uninstalled_message .= '</font><br />';
 			}
-			$uninstalled_message .= '</p>';
-			$mode = 'end-UNINSTALL'; //TODO: et apres ???
-			$uninstalled = true;
-		} else {
-			$uninstalled = false;
 		}
+		$uninstalled_message .= '</p>';
+		
+		// Find uninstall URL
+		$deactivate_url = 'plugins.php?action=deactivate&plugin=wsi%2Fwp-splash-image.php&plugin_status=all&paged=1';
+		if(function_exists('wp_nonce_url')) { 
+			$deactivate_url = wp_nonce_url($deactivate_url, 'deactivate-plugin_wsi/wp-splash-image.php');
+		}
+		
+		$uninstalled = true;		
 	} else {
 		$uninstalled = false;
 	}
@@ -518,13 +520,12 @@ function wp_splash_image_options() {
 		<div id="message" class="updated fade" style="color:green;"><?=__("Thank's for your feedback...",'wp-splash-image')?></div>
 	<?php } else if ($updated) { ?>
 		<div id="message" class="updated fade" style="color:green;"><?=__('Options Updated...','wp-splash-image')?></div>
-	<?php } else if ($uninstalled) { ?>
-		<div id="message" class="updated fade"><?=$uninstalled_message?></div>
 	<?php } ?>
-	
+		
 	<p>
 		<?=__('For information:','wp-splash-image')?> <a target="_blank" href="http://fr.wikipedia.org/wiki/Splash_screen">Splash Screen</a>
 	</p>
+	
 	<h3><?=__('Configuration','wp-splash-image')?></h3>
 	<form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>">
 		<input type="hidden" name="action" value="update" />
@@ -732,7 +733,7 @@ function wp_splash_image_options() {
 					<thead><tr><th><?=__('WordPress Options', 'wp-splash-image'); ?></th></tr></thead>
 					<tr>
 						<td valign="top" style="color: black;">
-							<ol style="height:150px;overflow:auto;padding-left:40px">
+							<ol style="height:200px;overflow:auto;padding-left:40px">
 							<?php
 								foreach($list_options as $option) {
 									echo '<li>'.$option.'</li>'."\n";
@@ -742,9 +743,8 @@ function wp_splash_image_options() {
 						</td>
 					</tr>
 				</table>
-				<p>&nbsp;</p>
+				<br />
 				<p style="text-align: center;">
-					<input type="checkbox" name="uninstall_wsi_yes" value="yes" />&nbsp;<?=__('OK', 'wp-splash-image'); ?><br /><br />
 					<input type="submit" class="button"
 						value="<?=__('UNINSTALL WP-Splash Image', 'wp-splash-image'); ?>" 
 						onclick="return confirm('<?=__('You Are About To Uninstall WP-Splash-Image From WordPress.\nThis Action Is Not Reversible.\n\n Choose [Cancel] To Stop, [OK] To Uninstall.', 'wp-splash-image'); ?>')" />
@@ -752,6 +752,34 @@ function wp_splash_image_options() {
 			</div> 
 		</form>
 	</div>
+	
+	<!-- ----------------------- -->
+	<!-- Uninstall Confirm Form  -->
+	<!-- ----------------------- -->
+	
+	<?php if ($uninstalled) { ?>
+		
+		<a style="display:none;" id="uninstall_confirm_link" href="#" rel="#uninstall_confirm"></a>
+		<div id="uninstall_confirm" class="overlay" style="display:none;background-image:url(<?=wsi_url()?>/style/petrol.png);color:#fff;width:595px;height:465px;padding:30px;z-index:2">
+		<div class="close" style="right:5px;top:5px;"></div>
+		
+			<h3 style="margin-left:15px;"><?=__('Uninstall WP-Splash-Image', 'wp-splash-image'); ?></h3>
+			<div class="uninstallCheckList"><?=$uninstalled_message?></div>
+			<br />
+			<p style="text-align:center;">
+				<strong><?=__('To finish the uninstallation and deactivate automatically WP-Splash-Image :', 'wp-splash-image')?></strong>
+				<br /><br /><br />
+				<input type="button" class="button" 
+					value="<?=__('Click Here', 'wp-splash-image')?>" 
+					onClick="javascript:window.open('<?=$deactivate_url?>','_self');" />
+			</p>
+			
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function (){$("#uninstall_confirm_link").overlay({load:true});});
+		</script>
+		
+	<?php } ?>
 	
 	<!-- -------------- -->
 	<!-- Feedback Form  -->
