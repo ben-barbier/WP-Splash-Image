@@ -27,23 +27,31 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 == Frequently Asked Questions ==
 
 = What's next ? =
-* Compatibility with Mystique(pb with footer and settings -> http://wordpress.org/extend/themes/mystique)
+* Compatibility with [Mystique](http://wordpress.org/extend/themes/mystique) (pb with footer and settings)
 * Update Documentation
 * Add option for "exclude" some pages (for flash conflict for exemple)
-* Resolve conflict with jquery.cycle.all.min.js (http://jquery.malsup.com/cycle/)
+* Resolve conflict with [jquery.cycle.all.min.js](http://jquery.malsup.com/cycle/)
+* Add an information box indicating whether a new version of WSI exists.
 
 = Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
 **NO !**
- If we use WSI with the standards options ("Test mode activated:" = not check), the splah screen will appear once by user (I use a top in HTTP Session) everywhere on your website (when you enter on the site).
- If the user close his browser and if he returns on your website, the WSI returns come back.
- I'll working to an option for "exclude" some pages.
- For exemple, we can use this option for have no confict with some pages with flash.
+If we use WSI with the standards options ("Test mode activated:" = not check), the splah screen will appear once by user (I use a top in HTTP Session) everywhere on your website (when you enter on the site).  return
+If the user close his browser and if he returns on your website, the WSI returns come back.  return
+I'll working to an option for "exclude" some pages.  return
+For exemple, we can use this option for have no confict with some pages with flash.  return
 
 = None of the tabs not working. What's happend ? =
- I worked on the loading javascript scripts using the best practices described in the codex. 
- However, all the wordpress plugins that do not use these best practices for loading scripts, some problems may actually occur.
- Try disabling your other plugins to determine the one (or ones) that cause problems and reactivating one by one.
- Good luck.
+I worked on the loading javascript scripts using the best practices described in the codex.  return
+However, all the wordpress plugins that do not use these best practices for loading scripts, some problems may actually occur.  return
+Try disabling your other plugins to determine the one (or ones) that cause problems and reactivating one by one.  return
+Good luck.
+
+If we have too many plugins, find it problematic can be really difficult, here's a hint:
+1. Go to the configuration page of WSI.
+2. View the source of the page.
+3. Search "jQuery".
+For information, WSI uses: http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=3.0 (through [wp_register_script() and wp_enqueue_script()](http://codex.wordpress.org/Function_Reference/wp_register_script)).  return
+If you see other jquery, look what plugin they are stored and try to disable the plugin.
 
 == Screenshots ==
  
