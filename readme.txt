@@ -37,6 +37,8 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 ** NO ! **
 If we use WSI with the standards options ("Test mode activated:" = not check), the splah screen will appear once by user (I use a top in HTTP Session) everywhere on your website (when you enter on the site).
 If the user close his browser and if he returns on your website, the WSI returns come back.
+I'll working to an option for "exclude" some pages.
+For exemple, we can use this option for have no confict with some pages with flash.
 
 == Screenshots ==
  
