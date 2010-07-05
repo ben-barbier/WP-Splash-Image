@@ -55,8 +55,8 @@ Good luck.
 
 If we have too many plugins, find it problematic can be really difficult, here's a hint:
 1. Go to the configuration page of WSI.
-2. View the source of the page.
-3. Search "jQuery".
+1. View the source of the page.
+1. Search "jQuery".
 For information, WSI uses: http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=3.0 (through [wp_register_script() and wp_enqueue_script()](http://codex.wordpress.org/Function_Reference/wp_register_script)).
 
 If you see other jquery, look what plugin they are stored and try to disable the plugin.
