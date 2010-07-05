@@ -6,7 +6,7 @@ Requires at least: 2.7
 Tested up to: 3.0
 Stable tag: 1.2.4
  
-WP Splash Image is a plugin for Wordpress to display picture, video (youtube, yahoo video, dailymotion, metacafe, your own swf file) or html code with a lightbox effect at the opening of the blog.
+**WP Splash Image** is a plugin for Wordpress to display picture, video (youtube, yahoo video, dailymotion, metacafe, your own swf file) or html code with a lightbox effect at the opening of the blog.
  
 == Description ==
 
@@ -34,21 +34,15 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 * Add an information box indicating whether a new version of WSI exists.
 
 = Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
-**NO !**
-
-If we use WSI with the standards options ("Test mode activated:" = not check), the splah screen will appear once by user (I use a top in HTTP Session) everywhere on your website (when you enter on the site).
-
-If the user close his browser and if he returns on your website, the WSI returns come back.
-
-I'll working to an option for "exclude" some pages.
-
+**NO !**   
+If we use WSI with the standards options ("Test mode activated:" = not check), the splah screen will appear once by user (I use a top in HTTP Session) everywhere on your website (when you enter on the site).   
+If the user close his browser and if he returns on your website, the WSI returns come back.   
+I'll working to an option for "exclude" some pages.   
 For exemple, we can use this option for have no confict with some pages with flash.
 
 = None of the tabs not working. What's happend ? =
-I worked on the loading javascript scripts using the best practices described in the codex.
-
-However, all the wordpress plugins that do not use these best practices for loading scripts, some problems may actually occur.
-
+I worked on the loading javascript scripts using the best practices described in the codex.   
+However, all the wordpress plugins that do not use these best practices for loading scripts, some problems may actually occur.   
 Try disabling your other plugins to determine the one (or ones) that cause problems and reactivating one by one.
 
 Good luck.
@@ -57,8 +51,7 @@ If we have too many plugins, find it problematic can be really difficult, here's
 1. Go to the configuration page of WSI.
 1. View the source of the page.
 1. Search "jQuery".
-For information, WSI uses: http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=3.0 (through [wp_register_script() and wp_enqueue_script()](http://codex.wordpress.org/Function_Reference/wp_register_script)).
-
+For information, WSI uses: http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=3.0 (through [wp_register_script() and wp_enqueue_script()](http://codex.wordpress.org/Function_Reference/wp_register_script)).   
 If you see other jquery, look what plugin they are stored and try to disable the plugin.
 
 == Screenshots ==
