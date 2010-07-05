@@ -17,7 +17,7 @@
 	position:absolute; 
 	top:-5px; 
 	width:12px; 
-	cursor:move;
+	cursor:e-resize;
 	z-index:1; /*On met le calendrier a 2 pour qu'il passe au dessus*/
 }
 
@@ -32,4 +32,9 @@
 	width:35px;
 	-moz-border-radius:5px; 
 	-webkit-border-radius:5px; 		
+}
+
+.progress  {
+	height:8px;
+	cursor:pointer;
 }
