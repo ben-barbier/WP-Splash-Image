@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: Splash, Image, LightBox, Picture, Video, HTML, Start, Open
 Requires at least: 2.7
 Tested up to: 3.0
-Stable tag: 1.2.1
+Stable tag: 1.2.2
  
 WP Splash Image is a plugin for Wordpress to display picture, video (youtube, yahoo video, dailymotion, metacafe, your own swf file) or html code with a lightbox effect at the opening of the blog.
  
@@ -31,7 +31,6 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 * Update Documentation
 * Add option for "exclude" some pages (for flash conflict for exemple)
 * Resolve conflict with jquery.cycle.all.min.js (http://jquery.malsup.com/cycle/)
-* Correct the bug with "HTML" options and "\" added
 
 = Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
 **NO !**
@@ -47,6 +46,9 @@ For exemple, we can use this option for have no confict with some pages with fla
 3. Splash Image
  
 == Changelog ==
+
+= 1.2.2 =
+* Correct the bug with "HTML" options and "\" added.
 
 = 1.2.1 =
 * Add option for choise the picture link destination (_blank or _self) 
@@ -124,6 +126,9 @@ For exemple, we can use this option for have no confict with some pages with fla
 * Activation configurable
 
 == Upgrade Notice ==
+
+= 1.2.2 =
+* RAS
 
 = 1.2.1 =
 * RAS
