@@ -3,7 +3,7 @@
 Plugin Name: WP Splash Image
 Plugin URI: http://wordpress.org/extend/plugins/wsi/
 Description: WP Splash Image is a plugin for Wordpress to display an image with a lightbox type effect at the opening of the blog.
-Version: 1.2.0
+Version: 1.2.1
 Author: Benjamin Barbier
 Author URI: http://www.dark-sides.com/
 Donate URI: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C
@@ -240,6 +240,7 @@ function wsi_addSplashImageWpFooter() {
 	$splash_image_width = get_option('splash_image_width');
 	$wsi_display_time = get_option('wsi_display_time');
 	$wsi_picture_link_url = get_option('wsi_picture_link_url');
+	$wsi_picture_link_target = get_option('wsi_picture_link_target');
 	$wsi_hide_cross = get_option('wsi_hide_cross');
 	$wsi_type = get_option('wsi_type');
 	
@@ -260,7 +261,7 @@ function wsi_addSplashImageWpFooter() {
 	switch ($wsi_type) {
     case "picture": ?>
 
-		<?php if($wsi_picture_link_url!="") { echo ('<a href="'.$wsi_picture_link_url.'">'); } ?>
+		<?php if($wsi_picture_link_url!="") { echo ('<a href="'.$wsi_picture_link_url.'" target="_'.$wsi_picture_link_target.'">'); } ?>
 		<img style="height:<?=$splash_image_height?>px;width:<?=$splash_image_width?>px;" src="<?=$url_splash_image?>" />
 		<?php if($wsi_picture_link_url!="") { echo('</a>'); } ?>
 	
@@ -393,6 +394,7 @@ function wp_splash_image_options() {
 		'datepicker_end',
 		'wsi_display_time',
 		'wsi_picture_link_url',
+		'wsi_picture_link_target',
 		'wsi_close_esc_function',
 		'wsi_hide_cross',
 		'wsi_type',
@@ -411,14 +413,15 @@ function wp_splash_image_options() {
 		update_option('splash_active', $active);
 		if ($_POST['splash_test_active']) {$test_active='true';} else {$test_active='false';}
 		update_option('splash_test_active', $test_active);
-		update_option('url_splash_image',     $_POST['url_splash_image']);
-		update_option('splash_image_width',   $_POST['splash_image_width']);
-		update_option('splash_image_height',  $_POST['splash_image_height']);
-		update_option('splash_color',         $_POST['splash_color']);
-		update_option('datepicker_start',     $_POST['datepicker_start']);
-		update_option('datepicker_end',       $_POST['datepicker_end']);
-		update_option('wsi_display_time',     $_POST['wsi_display_time']);
-		update_option('wsi_picture_link_url', $_POST['wsi_picture_link_url']);
+		update_option('url_splash_image',        $_POST['url_splash_image']);
+		update_option('splash_image_width',      $_POST['splash_image_width']);
+		update_option('splash_image_height',     $_POST['splash_image_height']);
+		update_option('splash_color',            $_POST['splash_color']);
+		update_option('datepicker_start',        $_POST['datepicker_start']);
+		update_option('datepicker_end',          $_POST['datepicker_end']);
+		update_option('wsi_display_time',        $_POST['wsi_display_time']);
+		update_option('wsi_picture_link_url',    $_POST['wsi_picture_link_url']);
+		update_option('wsi_picture_link_target', $_POST['wsi_picture_link_target']);
 		if ($_POST['wsi_close_esc_function']) {$wsi_close_esc_function='true';} else {$wsi_close_esc_function='false';}
 		update_option('wsi_close_esc_function', $wsi_close_esc_function);
 		if ($_POST['wsi_hide_cross']) {$wsi_hide_cross='true';} else {$wsi_hide_cross='false';}
@@ -579,6 +582,16 @@ function wp_splash_image_options() {
 								size="100" 
 								value="<?=get_option('wsi_picture_link_url')?>" /><br />
 								<?=__('(stay empty if not required)','wp-splash-image')?></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td style="vertical-align:top;"><?=__("Picture link target",'wp-splash-image')?>:</td>
+							<td>
+								<select name="wsi_picture_link_target" value="<?=get_option('wsi_picture_link_target')?>">
+									<option value="self">Self</option>
+									<option value="blank">Blank</option>
+								</select>
+							</td>
 						</tr>
 					</table>
 				</div> 
