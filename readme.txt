@@ -33,6 +33,11 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 * Resolve conflict with jquery.cycle.all.min.js (http://jquery.malsup.com/cycle/)
 * Correct the bug with "HTML" options and "\" added
 
+= Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
+** NO ! **
+If we use WSI with the standards options ("Test mode activated:" = not check), the splah screen will appear once by user (I use a top in HTTP Session) everywhere on your website (when you enter on the site).
+If the user close his browser and if he returns on your website, the WSI returns come back.
+
 == Screenshots ==
  
 1. Administration
