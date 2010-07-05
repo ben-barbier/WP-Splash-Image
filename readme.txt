@@ -31,6 +31,7 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 * Update Documentation
 * Add option for "exclude" some pages (for flash conflict for exemple)
 * Resolve conflict with jquery.cycle.all.min.js (http://jquery.malsup.com/cycle/)
+* Add an information box indicating whether a new version of WSI exists.
 
 = Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
 **NO !**
