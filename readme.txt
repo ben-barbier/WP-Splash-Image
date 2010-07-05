@@ -34,7 +34,7 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 * Add an information box indicating whether a new version of WSI exists.
 
 = Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
-**NO !**
+**NO !**  return
 If we use WSI with the standards options ("Test mode activated:" = not check), the splah screen will appear once by user (I use a top in HTTP Session) everywhere on your website (when you enter on the site).  return
 If the user close his browser and if he returns on your website, the WSI returns come back.  return
 I'll working to an option for "exclude" some pages.  return
