@@ -41,7 +41,7 @@ I'll working to an option for "exclude" some pages.
 For exemple, we can use this option for have no confict with some pages with flash.
 
 = None of the tabs not working. What's happend ? =
-I worked on the loading javascript scripts using the best practices described in the codex.   
+I worked on the loading javascript scripts using the [best practices](http://codex.wordpress.org/Function_Reference/wp_enqueue_script) described in the codex.   
 However, all the wordpress plugins that do not use these best practices for loading scripts, some problems may actually occur.   
 Try disabling your other plugins to determine the one (or ones) that cause problems and reactivating one by one.
 
@@ -51,7 +51,7 @@ If we have too many plugins, find it problematic can be really difficult, here's
 1. Go to the configuration page of WSI.
 1. View the source of the page.
 1. Search "jQuery".
-For information, WSI uses: http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=3.0 (through [wp_register_script() and wp_enqueue_script()](http://codex.wordpress.org/Function_Reference/wp_register_script)).   
+For information, WSI uses: http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=3.0 (through [wp_register_script() and wp_enqueue_script()](http://codex.wordpress.org/Function_Reference/wp_enqueue_script).   
 If you see other jquery, look what plugin they are stored and try to disable the plugin.
 
 == Screenshots ==
