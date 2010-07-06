@@ -27,10 +27,8 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 == Frequently Asked Questions ==
 
 = What's next ? =
-* Compatibility with [Mystique](http://wordpress.org/extend/themes/mystique) (pb with footer and settings)
 * Update Documentation
 * Add option for "exclude" some pages (for flash conflict for exemple)
-* Resolve conflict with [jquery.cycle.all.min.js](http://jquery.malsup.com/cycle/)
 * Add an information box indicating whether a new version of WSI exists.
 
 = Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
@@ -53,6 +51,21 @@ If we have too many plugins, find it problematic can be really difficult, here's
 1. Search "jQuery".
 For information, WSI uses: http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=3.0 (through [wp_register_script() and wp_enqueue_script()](http://codex.wordpress.org/Function_Reference/wp_enqueue_script).   
 If you see other jquery, look what plugin they are stored and try to disable the plugin.
+
+= I have a problem with others javascripts functions of my theme. What can I do for resolve it ? =
+
+use code:   
+	<?php wp_head(); ?>   
+before your others scripts imports.   
+
+= In my blog, nothing happens. Idea? =
+
+Yes, verify if:
+	<?php wp_head(); ?>   
+and:
+	<?php wp_footer(); ?>
+exist in your theme...   
+These two methods are necessary for the proper functioning of WSI.
 
 == Screenshots ==
  
@@ -91,6 +104,7 @@ If you see other jquery, look what plugin they are stored and try to disable the
 * Correct date-input display & behavior bug
 * Add Correct French translation
 * Adding a warning when the current date is not between the dates of validities.
+* Compatibility with [Mystique](http://wordpress.org/extend/themes/mystique) (pb with footer and settings)
 
 = 1.0.0 =
 * Add Video Splash
