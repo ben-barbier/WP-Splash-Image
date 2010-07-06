@@ -54,17 +54,11 @@ If you see other jquery, look what plugin they are stored and try to disable the
 
 = I have a problem with others javascripts functions of my theme. What can I do for resolve it ? =
 
-use code:   
-	<?php wp_head(); ?>   
-before your others scripts imports.   
+Use code `<?php wp_head(); ?>` before your others scripts imports like `<script type="text/javascript" src="<?php bloginfo('template_directory');?>/scripts/jquery.cycle.all.min.js"></script>`.
 
 = In my blog, nothing happens. Idea? =
 
-Yes, verify if:
-	<?php wp_head(); ?>   
-and:
-	<?php wp_footer(); ?>
-exist in your theme...   
+Yes, verify if `<?php wp_head(); ?>` and `<?php wp_footer(); ?>` exist in your theme...   
 These two methods are necessary for the proper functioning of WSI.
 
 == Screenshots ==
