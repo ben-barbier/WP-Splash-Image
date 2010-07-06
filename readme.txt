@@ -32,6 +32,7 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 * Add an information box indicating whether a new version of WSI exists.
 
 = Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
+
 **NO !**   
 If we use WSI with the standards options ("Test mode activated:" = not check), the splah screen will appear once by user (I use a top in HTTP Session) everywhere on your website (when you enter on the site).   
 If the user close his browser and if he returns on your website, the WSI returns come back.   
@@ -46,9 +47,11 @@ Try disabling your other plugins to determine the one (or ones) that cause probl
 Good luck.
 
 If we have too many plugins, find it problematic can be really difficult, here's a hint:
+
 1. Go to the configuration page of WSI.
 1. View the source of the page.
 1. Search "jQuery".
+
 For information, WSI uses: http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=3.0 (through [wp_register_script() and wp_enqueue_script()](http://codex.wordpress.org/Function_Reference/wp_enqueue_script).   
 If you see other jquery, look what plugin they are stored and try to disable the plugin.
 
