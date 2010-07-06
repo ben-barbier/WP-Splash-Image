@@ -6,7 +6,7 @@ Requires at least: 2.7
 Tested up to: 3.0
 Stable tag: 1.2.4
  
-**WP Splash Image** is a plugin for Wordpress to display picture, video (youtube, yahoo video, dailymotion, metacafe, your own swf file) or html code with a lightbox effect at the opening of the blog.
+**WP Splash Image** is a plugin for Wordpress to display picture, video or html code with a lightbox effect at the opening of the blog.
  
 == Description ==
 
@@ -44,8 +44,6 @@ I worked on the loading javascript scripts using the [best practices](http://cod
 However, all the wordpress plugins that do not use these best practices for loading scripts, some problems may actually occur.   
 Try disabling your other plugins to determine the one (or ones) that cause problems and reactivating one by one.
 
-Good luck.
-
 If we have too many plugins, find it problematic can be really difficult, here's a hint:
 
 1. Go to the configuration page of WSI.
@@ -54,6 +52,8 @@ If we have too many plugins, find it problematic can be really difficult, here's
 
 For information, WSI uses: http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=3.0 (through [wp_register_script() and wp_enqueue_script()](http://codex.wordpress.org/Function_Reference/wp_enqueue_script).   
 If you see other jquery, look what plugin they are stored and try to disable the plugin.
+
+Good luck.
 
 = I have a problem with others javascripts functions of my theme. What can I do for resolve it ? =
 
