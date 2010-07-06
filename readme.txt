@@ -58,7 +58,7 @@ Use code `<?php wp_head(); ?>` before your others scripts imports like `<script 
 
 = In my blog, nothing happens. Idea? =
 
-Yes, verify if `<?php wp_head(); ?>` and `<?php wp_footer(); ?>` exist in your theme...   
+Yes, verify if `<?php wp_head(); ?>` and `<?php wp_footer(); ?>` exist in your theme...    
 These two methods are necessary for the proper functioning of WSI.
 
 == Screenshots ==
