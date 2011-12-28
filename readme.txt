@@ -64,6 +64,9 @@ Use code `<?php wp_head(); ?>` before your others scripts imports like `<script 
 Yes, verify if `<?php wp_head(); ?>` and `<?php wp_footer(); ?>` exist in your theme...    
 These two methods are necessary for the proper functioning of WSI.
 
+= Sometimes, my splash image is not well centered. Idea ? =
+Yes, verify if "Splash height" and "Splash width" properties are properly filled.
+
 == Screenshots ==
  
 1. Administration
