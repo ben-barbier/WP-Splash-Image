@@ -3,10 +3,10 @@ Contributors: agent022
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C
 Tags: Splash, Image, LightBox, Picture, Video, HTML, Start, Open
 Requires at least: 2.7
-Tested up to: 3.0
-Stable tag: 1.2.4
+Tested up to: 3.3
+Stable tag: 1.3.0
  
-**WP Splash Image** is a plugin for Wordpress to display picture, video or html code with a lightbox effect at the opening of the blog.
+WP Splash Image is a plugin for Wordpress to display picture, video or html code with a lightbox effect at the opening of the blog.
  
 == Description ==
 
@@ -71,6 +71,9 @@ These two methods are necessary for the proper functioning of WSI.
 3. Splash Image
  
 == Changelog ==
+
+= 1.3.0 =
+* Update plugin to PHP5 (Object Oriented Design).
 
 = 1.2.4 =
 * Correct little display problem on Chrome
