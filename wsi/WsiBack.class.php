@@ -159,6 +159,8 @@ class WsiBack {
 			'wsi_type',
 			'wsi_opacity',
 			'wsi_youtube',
+			'wsi_youtube_autoplay',
+			'wsi_youtube_loop',
 			'wsi_yahoo',
 			'wsi_dailymotion',
 			'wsi_metacafe',
@@ -187,6 +189,10 @@ class WsiBack {
 			update_option('wsi_hide_cross', $wsi_hide_cross);
 			if ($_POST['wsi_disable_shadow_border']) {$wsi_disable_shadow_border='true';} else {$wsi_disable_shadow_border='false';}
 			update_option('wsi_disable_shadow_border', $wsi_disable_shadow_border);
+			if ($_POST['wsi_youtube_autoplay']) {$wsi_youtube_autoplay='true';} else {$wsi_youtube_autoplay='false';}
+			update_option('wsi_youtube_autoplay', $wsi_youtube_autoplay);
+			if ($_POST['wsi_youtube_loop']) {$wsi_youtube_loop='true';} else {$wsi_youtube_loop='false';}
+			update_option('wsi_youtube_loop', $wsi_youtube_loop);
 			update_option('wsi_type',     $_POST['wsi_type']);
 			update_option('wsi_opacity',     $_POST['wsi_opacity']);
 			
@@ -362,7 +368,23 @@ class WsiBack {
 								<td><input type="radio" id="radio_youtube" name="wsi_type" value="youtube" <? if(get_option('wsi_type')=="youtube") echo('checked="checked"') ?> /></td>
 								<td><img src="<?=WsiCommons::getURL()?>/style/youtube.png" alt="" /></td>
 								<td><span><?=__('Youtube code')?>:</span></td>
-								<td><input type="text" name="wsi_youtube" value="<?=get_option('wsi_youtube')?>" /></td>
+								<td>
+									<input type="text" name="wsi_youtube" value="<?=get_option('wsi_youtube')?>" />
+									&nbsp;&nbsp;&nbsp;
+									<span><?=__('Autoplay')?>:</span>
+									<input 
+										type="checkbox" 
+										name="wsi_youtube_autoplay" 
+										id="wsi_youtube_autoplay" 
+										<?php if(get_option('wsi_youtube_autoplay')=='true') {echo("checked='checked'");} ?> />
+									&nbsp;&nbsp;&nbsp;
+									<span><?=__('Loop')?>:</span>
+									<input 
+										type="checkbox" 
+										name="wsi_youtube_loop" 
+										id="wsi_youtube_loop" 
+										<?php if(get_option('wsi_youtube_loop')=='true') {echo("checked='checked'");} ?> />
+								</td>
 							</tr>
 							<tr id="box_yahoo" class="box_type">
 								<td><input type="radio" id="radio_yahoo" name="wsi_type" value="yahoo" <? if(get_option('wsi_type')=="yahoo") echo('checked="checked"') ?> /></td>
@@ -386,7 +408,7 @@ class WsiBack {
 								<td><input type="radio" id="radio_swf" name="wsi_type" value="swf" <? if(get_option('wsi_type')=="swf") echo('checked="checked"') ?> /></td>
 								<td><img src="<?=WsiCommons::getURL()?>/style/swf.png" alt="" /></td>
 								<td><span><?=__('Video Flash (URL)')?>:</span></td>
-								<td><input size="80" type="text" name="wsi_swf" value="<?=get_option('wsi_swf')?>" /></td>
+								<td><input size="70" type="text" name="wsi_swf" value="<?=get_option('wsi_swf')?>" /></td>
 							</tr>
 						</table>
 					</div> 

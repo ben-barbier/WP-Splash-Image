@@ -136,6 +136,8 @@ class WsiFront {
 		$wsi_type = get_option('wsi_type');
 		
 		$wsi_youtube = get_option('wsi_youtube');
+		$wsi_youtube_autoplay = get_option('wsi_youtube_autoplay');
+		$wsi_youtube_loop = get_option('wsi_youtube_loop');
 		$wsi_yahoo = get_option('wsi_yahoo');
 		$wsi_dailymotion = get_option('wsi_dailymotion');
 		$wsi_metacafe = get_option('wsi_metacafe');
@@ -162,7 +164,7 @@ class WsiFront {
 				<param name="movie" value="http://www.youtube.com/v/<?=$wsi_youtube?>&hl=<?=get_locale()?>&fs=1&rel=0"></param>
 				<param name="allowFullScreen" value="true"></param>
 				<param name="allowscriptaccess" value="always"></param>
-				<embed src="http://www.youtube.com/v/<?=$wsi_youtube?>&hl=<?=get_locale()?>&fs=1&rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="<?=$splash_image_width?>" height="<?=$splash_image_height?>"></embed>
+				<embed src="http://www.youtube.com/v/<?=$wsi_youtube?>&hl=<?=get_locale()?>&fs=1&rel=0<?php if($wsi_youtube_autoplay=='true'){ ?>&autoplay=1<?php } if($wsi_youtube_loop=='true'){ ?>&loop=1<?php } ?>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="<?=$splash_image_width?>" height="<?=$splash_image_height?>"></embed>
 			</object>
 			    
 		<?php break; case "yahoo": ?>
