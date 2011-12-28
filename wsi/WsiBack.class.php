@@ -332,32 +332,39 @@ class WsiBack {
 					<div id="tab_picture">
 						<table id="box_picture" class="box_type">
 							<tr>
-								<td><input type="radio" id="radio_picture" name="wsi_type" value="picture" <? if(get_option('wsi_type')=="picture") echo('checked="checked"') ?> /></td>
-								<td><?=__("Picture URL:",'wp-splash-image')?></td>
+								<td rowspan="4"><input type="radio" id="radio_picture" name="wsi_type" value="picture" <? if(get_option('wsi_type')=="picture") echo('checked="checked"') ?> /></td>
+								<td><span><?=__("Picture URL:",'wp-splash-image')?></span></td>
 								<td><input 
 									type="text" 
-									name="url_splash_image" 
-									size="90" 
+									name="url_splash_image"
+									id="url_splash_image"
+									size="80" 
 									value="<?=get_option('url_splash_image')?>" /></td>
 							</tr>
 							<tr>
-								<td>&nbsp;</td>
-								<td style="vertical-align:top;"><?=__("Picture link URL",'wp-splash-image')?>:</td>
+								<td><span><?=__("Picture link URL",'wp-splash-image')?>:</span></td>
 								<td><input 
 									type="text" 
 									name="wsi_picture_link_url" 
-									size="90" 
-									value="<?=get_option('wsi_picture_link_url')?>" /><br />
+									size="50" 
+									value="<?=get_option('wsi_picture_link_url')?>" />
 									<?=__('(stay empty if not required)','wp-splash-image')?></td>
 							</tr>
 							<tr>
-								<td>&nbsp;</td>
-								<td style="vertical-align:top;"><?=__("Picture link target",'wp-splash-image')?>:</td>
+								<td><span><?=__("Picture link target",'wp-splash-image')?>:</span></td>
 								<td>
 									<select name="wsi_picture_link_target" value="<?=get_option('wsi_picture_link_target')?>">
 										<option value="self">Self</option>
 										<option value="blank">Blank</option>
 									</select>
+								</td>
+							</tr>
+							<tr>
+								<td><span><?=__("Fill picture size",'wp-splash-image')?>:</span></td>
+								<td>
+									<input type="button" value="<?=__('Fill')?>" id="fill_picture_size_button" />
+									<!-- This picture is here only for fill the picture size by script -->
+									<img src="" id="img_splash_image" style="display:none;" />
 								</td>
 							</tr>
 						</table>
@@ -455,8 +462,9 @@ class WsiBack {
 					<td><input
 						type="text"
 						name="splash_image_height"
+						id="splash_image_height"
 						size="6"
-						maxlength="3"
+						maxlength="4"
 						value="<?=get_option('splash_image_height')?>" />&nbsp;px (min = 210px)</td>
 				</tr>
 				<tr>
@@ -464,8 +472,9 @@ class WsiBack {
 					<td><input
 						type="text"
 						name="splash_image_width"
+						id="splash_image_width"
 						size="6"
-						maxlength="3"
+						maxlength="4"
 						value="<?=get_option('splash_image_width')?>" />&nbsp;px</td>
 				</tr>
 				<tr>
@@ -780,7 +789,14 @@ class WsiBack {
 			
 			// Warning sur les dates de validités
 			if ("<?=WsiCommons::getdate_is_in_validities_dates()?>"=="false") {$("#box_datepickers_warning").fadeIn("slow");}
-		
+
+			// Fill Picture size
+			$("#fill_picture_size_button").click(function() {
+				$("#img_splash_image").attr("src", $("#url_splash_image").val());
+				$("#splash_image_height").val($("#img_splash_image").attr("height"));
+				$("#splash_image_width").val($("#img_splash_image").attr("width"));
+			});
+			
 		});
 	</script>
 
