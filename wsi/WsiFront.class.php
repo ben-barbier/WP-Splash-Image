@@ -132,6 +132,7 @@ class WsiFront {
 		$wsi_picture_link_url = get_option('wsi_picture_link_url');
 		$wsi_picture_link_target = get_option('wsi_picture_link_target');
 		$wsi_hide_cross = get_option('wsi_hide_cross');
+		$wsi_disable_shadow_border = get_option('wsi_disable_shadow_border');
 		$wsi_type = get_option('wsi_type');
 		
 		$wsi_youtube = get_option('wsi_youtube');
@@ -253,6 +254,17 @@ class WsiFront {
 		<script type="text/javascript">
 		$j(document).ready(function () {
 			$j('.simple_overlay .close').css('display','none');
+		});
+		</script>
+		<? } ?>
+		
+		<?/* On masque la bordure d'ombre si besoin */?>
+		<?php if($wsi_disable_shadow_border=='true') { ?>
+		<script type="text/javascript">
+		$j(document).ready(function () {
+			$j('.simple_overlay').css('-moz-box-shadow','none');
+			$j('.simple_overlay').css('-webkit-box-shadow','none');
+			$j('.simple_overlay').css('box-shadow','none');
 		});
 		</script>
 		<? } ?>

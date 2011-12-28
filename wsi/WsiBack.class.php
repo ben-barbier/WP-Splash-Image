@@ -155,6 +155,7 @@ class WsiBack {
 			'wsi_picture_link_target',
 			'wsi_close_esc_function',
 			'wsi_hide_cross',
+			'wsi_disable_shadow_border',
 			'wsi_type',
 			'wsi_opacity',
 			'wsi_youtube',
@@ -184,6 +185,8 @@ class WsiBack {
 			update_option('wsi_close_esc_function', $wsi_close_esc_function);
 			if ($_POST['wsi_hide_cross']) {$wsi_hide_cross='true';} else {$wsi_hide_cross='false';}
 			update_option('wsi_hide_cross', $wsi_hide_cross);
+			if ($_POST['wsi_disable_shadow_border']) {$wsi_disable_shadow_border='true';} else {$wsi_disable_shadow_border='false';}
+			update_option('wsi_disable_shadow_border', $wsi_disable_shadow_border);
 			update_option('wsi_type',     $_POST['wsi_type']);
 			update_option('wsi_opacity',     $_POST['wsi_opacity']);
 			
@@ -416,6 +419,14 @@ class WsiBack {
 						type="checkbox" 
 						name="wsi_hide_cross" 
 						<?php if(get_option('wsi_hide_cross')=='true') {echo("checked='checked'");} ?> /></td>
+				</tr>
+				<tr>
+					<td><?=__('Disable shadow border','wp-splash-image')?>:</td>
+					<td><input
+						type="checkbox" 
+						name="wsi_disable_shadow_border" 
+						<?php if(get_option('wsi_disable_shadow_border')=='true') {echo("checked='checked'");} ?> />
+						(<?=__('useful for images with transparent edges','wp-splash-image')?>)</td>
 				</tr>
 				<tr>
 					<td><?=__("Splash height",'wp-splash-image')?>:</td>
