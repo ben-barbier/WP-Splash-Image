@@ -92,8 +92,9 @@ class WsiFront {
 					color: '<?=get_option('splash_color')?>',
 					opacity: <?=(get_option('wsi_opacity')/100)?> 
 				},
-				<?php if ($wsi_close_esc_function=='true') { echo('closeOnClick: false,'); } ?>
-				load: true // Lance la Splash Image à l'ouverture
+				load: true // Lance la Splash Image à l'ouverture			
+				<?php if ($wsi_close_esc_function=='true') { echo(',closeOnClick: false'); } ?>
+				
 			});
 		});
 		</script>
@@ -273,8 +274,7 @@ class WsiFront {
 		
 		<!-- /WP Splash-Image -->
 		
-	<?php
+<?php 
 	}
-
-}	
+} 
 ?>

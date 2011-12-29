@@ -89,14 +89,14 @@ class WsiBack {
 			// Déclaration des scripts de la partie Admin
 			wp_register_script('jquery.tools.back', WsiCommons::getURL().'/js/jquery.tools.min.wp-back.js'); /*[tabs, overlay, overlay.apple, dateinput, rangeinput, validator]*/
 			wp_register_script('jquery.tooltip', WsiCommons::getURL().'/js/tooltip.jquery.js'); /*Infobulle(tooltip) pour feedback*/
-			wp_register_script('mcolorpicker', 'http://plugins.meta100.com/mcolorpicker/javascripts/mColorPicker_min.js'); /*Colorpicker*/
+			wp_register_script('jquery.keyfilter', WsiCommons::getURL().'/js/jquery.keyfilter-1.7.min.js'); /* KeyFilter (for splash_color, splash_image_height, splash_image_width fields) */
 			
 			wp_deregister_script('jquery');
 			wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js');
 			wp_enqueue_script('jquery');
 			wp_enqueue_script('jquery.tools.back', false, array('jquery'));
 			wp_enqueue_script('jquery.tooltip',    false, array('jquery'));
-			wp_enqueue_script('mcolorpicker',      false, array('jquery'));
+			wp_enqueue_script('jquery.keyfilter',  false, array('jquery'));
 		}
 	}
 	
@@ -463,8 +463,7 @@ class WsiBack {
 						type="text"
 						name="splash_image_height"
 						id="splash_image_height"
-						size="6"
-						maxlength="4"
+						size="6" maxlength="4"
 						value="<?=get_option('splash_image_height')?>" />&nbsp;px (min = 210px)</td>
 				</tr>
 				<tr>
@@ -473,17 +472,25 @@ class WsiBack {
 						type="text"
 						name="splash_image_width"
 						id="splash_image_width"
-						size="6"
-						maxlength="4"
+						size="6" maxlength="4"
 						value="<?=get_option('splash_image_width')?>" />&nbsp;px</td>
 				</tr>
 				<tr>
 					<td><?=__('Background color','wp-splash-image')?>:</td>
-					<td><input
-						type="color"
-						name="splash_color"
-						size="20"
-						value="<?=get_option('splash_color')?>" /></td>
+					<td>
+						<table style="border-spacing: 0px;">
+							<tr>
+								<td>#<input
+									type="text"
+									name="splash_color"
+									id="splash_color"
+									size="6" maxlength="6"
+									value="<?=get_option('splash_color')?>" /></td>
+								<td><div id="splash_color_demo"></div></td>
+								<td><a href="http://www.w3schools.com/tags/ref_colorpicker.asp"><?=__('Color Picker Online') ?></a></td>
+							</tr>
+						</table>
+					</td>
 				</tr>
 				<tr>
 					<td><?=__('Background opacity','wp-splash-image')?>:</td>
@@ -636,7 +643,7 @@ class WsiBack {
 				<li>Current date is greater than or equal to <span class="plugin_title"><?=__('Start date','wp-splash-image')?></span>.</li>
 			</ul>
 			<span class="plugin_number">1)</span>
-			We can change the <span class="plugin_title"><?=__('Background color','wp-splash-image')?></span> with the colorpicker.<br />
+			We can change the <span class="plugin_title"><?=__('Background color','wp-splash-image')?></span> with the color code.<br />
 			If you click on the background, you'll quit the splash image except if <span class="plugin_title"><?=__('Close esc function','wp-splash-image')?></span> is checked.
 			<br /><br />
 			<span class="plugin_number">2)</span>
@@ -796,6 +803,17 @@ class WsiBack {
 				$("#splash_image_height").val($("#img_splash_image").attr("height"));
 				$("#splash_image_width").val($("#img_splash_image").attr("width"));
 			});
+
+			// Splash Color field management
+			$("#splash_color_demo").css("background-color", "#"+$("#splash_color").val());
+			$("#splash_color").keyup(function() {
+				$("#splash_color_demo").css("background-color", "#"+$("#splash_color").val());
+			});
+
+			// Fields filters
+			$('#splash_color').keyfilter(/[0-9a-f]/i);
+			$('#splash_image_height').keyfilter(/[\d\.]/);
+			$('#splash_image_width').keyfilter(/[\d\.]/);
 			
 		});
 	</script>
