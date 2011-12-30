@@ -31,3 +31,21 @@
 	width:20px;
 	border:1px solid black;
 }
+
+#display_info {
+	float:left;
+	margin-top:-35px;
+	margin-left:200px;
+}
+
+#display_uninstall {
+	float:left;
+	margin-top:-35px;
+	margin-left:20px;
+}
+
+#display_feedback {
+	float:left;
+	margin-top:-35px;
+	margin-left:20px;
+}
