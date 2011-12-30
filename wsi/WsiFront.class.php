@@ -89,8 +89,8 @@ class WsiFront {
 		$j(document).ready(function () {
 			$j("#splashLink").overlay({
 				mask: {
-					color: '<?=get_option('splash_color')?>',
-					opacity: <?=(get_option('wsi_opacity')/100)?> 
+					color: '<?php echo get_option('splash_color'); ?>',
+					opacity: <?php echo (get_option('wsi_opacity')/100); ?> 
 				},
 				load: true // Lance la Splash Image à l'ouverture			
 				<?php if ($wsi_close_esc_function=='true') { echo(',closeOnClick: false'); } ?>
@@ -149,61 +149,61 @@ class WsiFront {
 	
 		<!-- WP Splash-Image -->
 		<a style="display:none;" id="splashLink" href="#" rel="#miesSPLASH"></a>
-		<div class="simple_overlay" style="text-align:center;color:#FFFFFF;margin-top:15px;height:<?=$splash_image_height?>px;width:<?=$splash_image_width?>px;" id="miesSPLASH">
+		<div class="simple_overlay" style="text-align:center;color:#FFFFFF;margin-top:15px;height:<?php echo $splash_image_height; ?>px;width:<?php echo $splash_image_width; ?>px;" id="miesSPLASH">
 			
 	<?php
 		switch ($wsi_type) {
 	    case "picture": ?>
 	
 			<?php if($wsi_picture_link_url!="") { echo ('<a href="'.$wsi_picture_link_url.'" target="_'.$wsi_picture_link_target.'">'); } ?>
-			<img style="height:<?=$splash_image_height?>px;width:<?=$splash_image_width?>px;" src="<?=$url_splash_image?>" />
+			<img style="height:<?php echo $splash_image_height; ?>px;width:<?php echo $splash_image_width; ?>px;" src="<?php echo $url_splash_image; ?>" />
 			<?php if($wsi_picture_link_url!="") { echo('</a>'); } ?>
 		
 	    <?php break; case "youtube": ?>
 	
-			<object width="<?=$splash_image_width?>" height="<?=$splash_image_height?>">
-				<param name="movie" value="http://www.youtube.com/v/<?=$wsi_youtube?>&hl=<?=get_locale()?>&fs=1&rel=0"></param>
+			<object width="<?php echo $splash_image_width; ?>" height="<?php echo $splash_image_height; ?>">
+				<param name="movie" value="http://www.youtube.com/v/<?php echo $wsi_youtube; ?>&hl=<?php echo get_locale(); ?>&fs=1&rel=0"></param>
 				<param name="allowFullScreen" value="true"></param>
 				<param name="allowscriptaccess" value="always"></param>
-				<embed src="http://www.youtube.com/v/<?=$wsi_youtube?>&hl=<?=get_locale()?>&fs=1&rel=0<?php if($wsi_youtube_autoplay=='true'){ ?>&autoplay=1<?php } if($wsi_youtube_loop=='true'){ ?>&loop=1<?php } ?>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="<?=$splash_image_width?>" height="<?=$splash_image_height?>"></embed>
+				<embed src="http://www.youtube.com/v/<?php echo $wsi_youtube; ?>&hl=<?php echo get_locale(); ?>&fs=1&rel=0<?php if($wsi_youtube_autoplay=='true'){ ?>&autoplay=1<?php } if($wsi_youtube_loop=='true'){ ?>&loop=1<?php } ?>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="<?php echo $splash_image_width; ?>" height="<?php echo $splash_image_height; ?>"></embed>
 			</object>
 			    
 		<?php break; case "yahoo": ?>
 		
-			<object width="<?=$splash_image_width?>" height="<?=$splash_image_height?>"><param name="movie" value="http://d.yimg.com/static.video.yahoo.com/yep/YV_YEP.swf?ver=2.2.46" />
+			<object width="<?php echo $splash_image_width; ?>" height="<?php echo $splash_image_height; ?>"><param name="movie" value="http://d.yimg.com/static.video.yahoo.com/yep/YV_YEP.swf?ver=2.2.46" />
 				<param name="allowFullScreen" value="true" />
 				<param name="AllowScriptAccess" VALUE="always" />
 				<param name="bgcolor" value="#000000" />
-				<param name="flashVars" value="id=20476969&vid=<?=$wsi_yahoo?>&lang=<?=get_locale()?>&embed=1" />
-				<embed src="http://d.yimg.com/static.video.yahoo.com/yep/YV_YEP.swf?ver=2.2.46" type="application/x-shockwave-flash" width="<?=$splash_image_width?>" height="<?=$splash_image_height?>" allowFullScreen="true" AllowScriptAccess="always" bgcolor="#000000" flashVars="id=20476969&vid=<?=$wsi_yahoo?>&lang=<?=get_locale()?>&embed=1" ></embed>
+				<param name="flashVars" value="id=20476969&vid=<?php echo $wsi_yahoo; ?>&lang=<?php echo get_locale(); ?>&embed=1" />
+				<embed src="http://d.yimg.com/static.video.yahoo.com/yep/YV_YEP.swf?ver=2.2.46" type="application/x-shockwave-flash" width="<?php echo $splash_image_width; ?>" height="<?php echo $splash_image_height; ?>" allowFullScreen="true" AllowScriptAccess="always" bgcolor="#000000" flashVars="id=20476969&vid=<?php echo $wsi_yahoo; ?>&lang=<?php echo get_locale(); ?>&embed=1" ></embed>
 			</object>
 		
 		<?php break; case "dailymotion": ?>
 		
-			<object width="<?=$splash_image_width?>" height="<?=$splash_image_height?>">
-				<param name="movie" value="http://www.dailymotion.com/swf/video/<?=$wsi_dailymotion?>"></param>
+			<object width="<?php echo $splash_image_width; ?>" height="<?php echo $splash_image_height; ?>">
+				<param name="movie" value="http://www.dailymotion.com/swf/video/<?php echo $wsi_dailymotion; ?>"></param>
 				<param name="allowFullScreen" value="true"></param>
 				<param name="allowScriptAccess" value="always"></param>
-				<embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/<?=$wsi_dailymotion?>" width="<?=$splash_image_width?>" height="<?=$splash_image_height?>" allowfullscreen="true" allowscriptaccess="always"></embed>
+				<embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/<?php echo $wsi_dailymotion; ?>" width="<?php echo $splash_image_width; ?>" height="<?php echo $splash_image_height; ?>" allowfullscreen="true" allowscriptaccess="always"></embed>
 			</object>
 			
 		<?php break; case "metacafe": ?>
 				
 			<embed 
-				src="http://www.metacafe.com/fplayer/<?=$wsi_metacafe?>/.swf" 
-				width="<?=$splash_image_width?>" 
-				height="<?=$splash_image_height?>" 
+				src="http://www.metacafe.com/fplayer/<?php echo $wsi_metacafe; ?>/.swf" 
+				width="<?php echo $splash_image_width; ?>" 
+				height="<?php echo $splash_image_height; ?>" 
 				wmode="transparent" 
 				pluginspage="http://www.macromedia.com/go/getflashplayer" 
 				type="application/x-shockwave-flash" 
 				allowFullScreen="true" 
 				allowScriptAccess="always" 
-				name="Metacafe_<?=$wsi_metacafe?>"></embed>
+				name="Metacafe_<?php echo $wsi_metacafe; ?>"></embed>
 		
 		<?php break; case "swf": ?>
 			
-			<object id='player' name='player' width='<?=$splash_image_width?>' height='<?=$splash_image_height?>' >
-				<param name='FileName' value='<?=$wsi_swf?>'> 
+			<object id='player' name='player' width='<?php echo $splash_image_width; ?>' height='<?php echo $splash_image_height; ?>' >
+				<param name='FileName' value='<?php echo $wsi_swf; ?>'> 
 				<param name='ShowControls' value='TRUE'> 
 				<param name='AutoStart' value='FALSE'> 
 				<param name='AnimationAtStart' value='TRUE'> 
@@ -215,7 +215,7 @@ class WsiFront {
 				<param name='AutoSize' value='FALSE'> 
 				<param name='EnableFullScreenControls' value='TRUE'> 
 				<embed type='video/x-ms-asf-plugin' 
-					src='<?=$wsi_swf?>' 
+					src='<?php echo $wsi_swf; ?>' 
 					name='player' 
 					autostart='0' 
 					showcontrols='1' 
@@ -228,17 +228,17 @@ class WsiFront {
 					displaysize='0' 
 					enablecontextmenu='0' 
 					windowless='1' 
-					width='<?=$splash_image_width?>' 
-					height='<?=$splash_image_height?>' 
+					width='<?php echo $splash_image_width; ?>' 
+					height='<?php echo $splash_image_height; ?>' 
 					enablefullscreencontrols='1'> 
 				</embed> 
 			</object>
 			
 		<?php break; case "html": ?>
 		
-			<?=stripslashes($wsi_html)?>
+			<?php echo stripslashes($wsi_html); ?>
 		
-		<? } ?>
+		<?php } ?>
 			
 		</div>
 		
@@ -246,11 +246,11 @@ class WsiFront {
 		<?php if ($wsi_display_time > 0) { ?>
 		<script type="text/javascript">
 		$j(document).ready(function () {
-			setTimeout("$j('#miesSPLASH').fadeOut()",<?=($wsi_display_time*1000)?>);
-			setTimeout("$j('#exposeMask').fadeOut()",<?=($wsi_display_time*1000)?>);
+			setTimeout("$j('#miesSPLASH').fadeOut()",<?php echo ($wsi_display_time*1000); ?>);
+			setTimeout("$j('#exposeMask').fadeOut()",<?php echo ($wsi_display_time*1000); ?>);
 		});
 		</script>
-		<? } ?>
+		<?php } ?>
 		
 		<?/* On masque la croix en haut à droite si besoin */?>
 		<?php if($wsi_hide_cross=='true') { ?>
@@ -259,7 +259,7 @@ class WsiFront {
 			$j('.simple_overlay .close').css('display','none');
 		});
 		</script>
-		<? } ?>
+		<?php } ?>
 		
 		<?/* On masque la bordure d'ombre si besoin */?>
 		<?php if($wsi_disable_shadow_border=='true') { ?>
@@ -270,7 +270,7 @@ class WsiFront {
 			$j('.simple_overlay').css('box-shadow','none');
 		});
 		</script>
-		<? } ?>
+		<?php } ?>
 		
 		<!-- /WP Splash-Image -->
 		

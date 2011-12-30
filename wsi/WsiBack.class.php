@@ -169,6 +169,10 @@ class WsiBack {
 			
 		// Mise à jour ?
 		if ($_POST ['action'] == 'update') {
+			
+			// Vérification du token de sécurité.
+			check_admin_referer('update','nonce_update_field');
+			
 			// On met à jour la base de données (table: options) avec la fonction de wp: update_option
 			if ($_POST['splash_active']) {$active='true';} else {$active='false';}
 			update_option('splash_active', $active);
@@ -212,6 +216,9 @@ class WsiBack {
 		// Send Feedback ?
 		if ($_POST ['action'] == 'feedback') {
 			
+			// Vérification du token de sécurité.
+			check_admin_referer('feedback','nonce_feedback_field');
+			
 			//Send feedback by mail
 			$to      = 'feedback@dark-sides.com';
 			$subject = 'Feedback WSI';
@@ -225,6 +232,10 @@ class WsiBack {
 		
 		// Uninstall ?
 		if ($_POST ['action'] == 'uninstall') {
+			
+			// Vérification du token de sécurité.
+			check_admin_referer('uninstall','nonce_uninstall_field');
+			
 			$uninstalled_message .= '<p>';
 			foreach($list_options as $option) {
 				$delete_option = delete_option($option);
@@ -257,51 +268,52 @@ class WsiBack {
 	
 		<h2>WP Splash Image</h2>
 		
-		<?/* Logo Info */?>
+		<!-- Logo Info -->
 		<div id="display_info" style="float:left;margin-top:-35px;margin-left:200px;">
-			<img id="info_img" rel="#info" src="<?=WsiCommons::getURL()?>/style/info.png" />
+			<img id="info_img" rel="#info" src="<?php echo WsiCommons::getURL(); ?>/style/info.png" />
 			<!-- Tooltip Info -->
 			<div id="data_info_img"style="display:none;"> 
-				<?=__('Infos','wp-splash-image')?>
+				<?php echo __('Infos','wp-splash-image'); ?>
 			</div>
 		</div>
 		
-		<?/* Logo Feedback */?>
+		<!-- Logo Feedback -->
 		<div id="display_feedback" style="float:left;margin-top:-35px;margin-left:240px;">
-			<img id="feedback_img" rel="#feedback" alt="<?=__('Feedback','wp-splash-image')?>" src="<?=WsiCommons::getURL()?>/style/feedback_logo.png" />
+			<img id="feedback_img" rel="#feedback" alt="<?php echo __('Feedback','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/feedback_logo.png" />
 			<!-- Tooltip FeedBack -->
 			<div id="data_feedback_img" style="display:none;"> 
-				<?=__('Feedback','wp-splash-image')?>
+				<?php echo __('Feedback','wp-splash-image'); ?>
 			</div>
 		</div>
 		
-		<?/* Logo Uninstall */?>
+		<!-- Logo Uninstall -->
 		<div id="display_uninstall" style="float:left;margin-top:-35px;margin-left:283px;">
-			<img id="uninstall_img" rel="#uninstall" alt="<?=__('Uninstall','wp-splash-image')?>" src="<?=WsiCommons::getURL()?>/style/uninstall.png" />
+			<img id="uninstall_img" rel="#uninstall" alt="<?php echo __('Uninstall','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/uninstall.png" />
 			<!-- Tooltip FeedBack -->
 			<div id="data_uninstall_img" style="display:none;"> 
-				<?=__('Uninstall','wp-splash-image')?>
+				<?php echo __('Uninstall','wp-splash-image'); ?>
 			</div>
 		</div>
 		
 		
-		<?/* Information message */?>
+		<!-- Information message -->
 		<?php if ($feedbacked) { ?>
-			<div id="message" class="updated fade" style="color:green;"><?=__("Thank's for your feedback...",'wp-splash-image')?></div>
+			<div id="message" class="updated fade" style="color:green;"><?php echo __("Thank's for your feedback...",'wp-splash-image'); ?></div>
 		<?php } else if ($updated) { ?>
-			<div id="message" class="updated fade" style="color:green;"><?=__('Options Updated...','wp-splash-image')?></div>
+			<div id="message" class="updated fade" style="color:green;"><?php echo __('Options Updated...','wp-splash-image'); ?></div>
 		<?php } ?>
 			
 		<p>
-			<?=__('For information:','wp-splash-image')?> <a target="_blank" href="http://fr.wikipedia.org/wiki/Splash_screen">Splash Screen</a>
+			<?php echo __('For information:','wp-splash-image'); ?> <a target="_blank" href="http://fr.wikipedia.org/wiki/Splash_screen">Splash Screen</a>
 		</p>
 		
-		<h3><?=__('Configuration','wp-splash-image')?></h3>
+		<h3><?php echo __('Configuration','wp-splash-image'); ?></h3>
 		<form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>">
+			<?php wp_nonce_field('update','nonce_update_field'); ?>
 			<input type="hidden" name="action" value="update" />
 			<table>
 				<tr>
-					<td><?=__('Splash image activated','wp-splash-image')?>:</td>
+					<td><?php echo __('Splash image activated','wp-splash-image'); ?>:</td>
 					<td><input 
 						type="checkbox" 
 						name="splash_active" 
@@ -309,13 +321,13 @@ class WsiBack {
 						<?php if(get_option('splash_active')=='true') {echo("checked='checked'");} ?> /></td>
 				</tr>
 				<tr id="block_splash_test_active">
-					<td><?=__('Test mode activated:','wp-splash-image')?></td>
+					<td><?php echo __('Test mode activated:','wp-splash-image'); ?></td>
 					<td><input 
 						type="checkbox" 
 						name="splash_test_active" 
 						id="splash_test_active" 
 						<?php if(get_option('splash_test_active')=='true') {echo("checked='checked'");} ?> />
-						<?=__('(for tests only, open splash image whenever)','wp-splash-image')?></td>
+						<?php echo __('(for tests only, open splash image whenever)','wp-splash-image'); ?></td>
 				</tr>
 			</table>	
 			<br />
@@ -323,46 +335,46 @@ class WsiBack {
 			<div style="width:850px;">
 				<!-- the tabs --> 
 				<ul class="tabs"> 
-					<li><a href="#"><?=__('Picture')?></a></li> 
-					<li><a href="#"><?=__('Video')?></a></li> 
-					<li><a href="#"><?=__('HTML')?></a></li> 
+					<li><a href="#"><?php echo __('Picture'); ?></a></li> 
+					<li><a href="#"><?php echo __('Video'); ?></a></li> 
+					<li><a href="#"><?php echo __('HTML'); ?></a></li> 
 				</ul> 
 				<!-- tab "panes" --> 
 				<div class="panes">
 					<div id="tab_picture">
 						<table id="box_picture" class="box_type">
 							<tr>
-								<td rowspan="4"><input type="radio" id="radio_picture" name="wsi_type" value="picture" <? if(get_option('wsi_type')=="picture") echo('checked="checked"') ?> /></td>
-								<td><span><?=__("Picture URL:",'wp-splash-image')?></span></td>
+								<td rowspan="4"><input type="radio" id="radio_picture" name="wsi_type" value="picture" <?php if(get_option('wsi_type')=="picture") echo('checked="checked"') ?> /></td>
+								<td><span><?php echo __("Picture URL:",'wp-splash-image'); ?></span></td>
 								<td><input 
 									type="text" 
 									name="url_splash_image"
 									id="url_splash_image"
 									size="80" 
-									value="<?=get_option('url_splash_image')?>" /></td>
+									value="<?php echo esc_attr(get_option('url_splash_image')); ?>" /></td>
 							</tr>
 							<tr>
-								<td><span><?=__("Picture link URL",'wp-splash-image')?>:</span></td>
+								<td><span><?php echo __("Picture link URL",'wp-splash-image'); ?>:</span></td>
 								<td><input 
 									type="text" 
 									name="wsi_picture_link_url" 
 									size="50" 
-									value="<?=get_option('wsi_picture_link_url')?>" />
-									<?=__('(stay empty if not required)','wp-splash-image')?></td>
+									value="<?php echo esc_attr(get_option('wsi_picture_link_url')); ?>" />
+									<?php echo __('(stay empty if not required)','wp-splash-image'); ?></td>
 							</tr>
 							<tr>
-								<td><span><?=__("Picture link target",'wp-splash-image')?>:</span></td>
+								<td><span><?php echo __("Picture link target",'wp-splash-image'); ?>:</span></td>
 								<td>
-									<select name="wsi_picture_link_target" value="<?=get_option('wsi_picture_link_target')?>">
+									<select name="wsi_picture_link_target" value="<?php echo esc_attr(get_option('wsi_picture_link_target')); ?>">
 										<option value="self">Self</option>
 										<option value="blank">Blank</option>
 									</select>
 								</td>
 							</tr>
 							<tr>
-								<td><span><?=__("Fill picture size",'wp-splash-image')?>:</span></td>
+								<td><span><?php echo __("Fill picture size",'wp-splash-image'); ?>:</span></td>
 								<td>
-									<input type="button" value="<?=__('Fill')?>" id="fill_picture_size_button" />
+									<input type="button" value="<?php echo __('Fill'); ?>" id="fill_picture_size_button" />
 									<!-- This picture is here only for fill the picture size by script -->
 									<img src="" id="img_splash_image" style="display:none;" />
 								</td>
@@ -372,20 +384,20 @@ class WsiBack {
 					<div id="tab_video">
 						<table>
 							<tr id="box_youtube" class="box_type">
-								<td><input type="radio" id="radio_youtube" name="wsi_type" value="youtube" <? if(get_option('wsi_type')=="youtube") echo('checked="checked"') ?> /></td>
-								<td><img src="<?=WsiCommons::getURL()?>/style/youtube.png" alt="" /></td>
-								<td><span><?=__('Youtube code')?>:</span></td>
+								<td><input type="radio" id="radio_youtube" name="wsi_type" value="youtube" <?php if(get_option('wsi_type')=="youtube") echo('checked="checked"') ?> /></td>
+								<td><img src="<?php echo WsiCommons::getURL(); ?>/style/youtube.png" alt="" /></td>
+								<td><span><?php echo __('Youtube code'); ?>:</span></td>
 								<td>
-									<input type="text" name="wsi_youtube" value="<?=get_option('wsi_youtube')?>" />
+									<input type="text" name="wsi_youtube" value="<?php echo esc_attr(get_option('wsi_youtube')); ?>" />
 									&nbsp;&nbsp;&nbsp;
-									<span><?=__('Autoplay')?>:</span>
+									<span><?php echo __('Autoplay'); ?>:</span>
 									<input 
 										type="checkbox" 
 										name="wsi_youtube_autoplay" 
 										id="wsi_youtube_autoplay" 
 										<?php if(get_option('wsi_youtube_autoplay')=='true') {echo("checked='checked'");} ?> />
 									&nbsp;&nbsp;&nbsp;
-									<span><?=__('Loop')?>:</span>
+									<span><?php echo __('Loop'); ?>:</span>
 									<input 
 										type="checkbox" 
 										name="wsi_youtube_loop" 
@@ -394,28 +406,28 @@ class WsiBack {
 								</td>
 							</tr>
 							<tr id="box_yahoo" class="box_type">
-								<td><input type="radio" id="radio_yahoo" name="wsi_type" value="yahoo" <? if(get_option('wsi_type')=="yahoo") echo('checked="checked"') ?> /></td>
-								<td><img src="<?=WsiCommons::getURL()?>/style/yahoo.png" alt="" /></td>
-								<td><span><?=__('Yahoo video code')?>:</span></td>
-								<td><input type="text" name="wsi_yahoo" value="<?=get_option('wsi_yahoo')?>" /></td>
+								<td><input type="radio" id="radio_yahoo" name="wsi_type" value="yahoo" <?php if(get_option('wsi_type')=="yahoo") echo('checked="checked"') ?> /></td>
+								<td><img src="<?php echo WsiCommons::getURL(); ?>/style/yahoo.png" alt="" /></td>
+								<td><span><?php echo __('Yahoo video code'); ?>:</span></td>
+								<td><input type="text" name="wsi_yahoo" value="<?php echo esc_attr(get_option('wsi_yahoo')); ?>" /></td>
 							</tr>
 							<tr id="box_dailymotion" class="box_type">
-								<td><input type="radio" id="radio_dailymotion" name="wsi_type" value="dailymotion" <? if(get_option('wsi_type')=="dailymotion") echo('checked="checked"') ?> /></td>
-								<td><img src="<?=WsiCommons::getURL()?>/style/dailymotion.png" alt="" /></td>
-								<td><span><?=__('Dailymotion code')?>:</span></td>
-								<td><input type="text" name="wsi_dailymotion" value="<?=get_option('wsi_dailymotion')?>" /></td>
+								<td><input type="radio" id="radio_dailymotion" name="wsi_type" value="dailymotion" <?php if(get_option('wsi_type')=="dailymotion") echo('checked="checked"') ?> /></td>
+								<td><img src="<?php echo WsiCommons::getURL(); ?>/style/dailymotion.png" alt="" /></td>
+								<td><span><?php echo __('Dailymotion code'); ?>:</span></td>
+								<td><input type="text" name="wsi_dailymotion" value="<?php echo esc_attr(get_option('wsi_dailymotion')); ?>" /></td>
 							</tr>
 							<tr id="box_metacafe" class="box_type">
-								<td><input type="radio" id="radio_metacafe" name="wsi_type" value="metacafe" <? if(get_option('wsi_type')=="metacafe") echo('checked="checked"') ?> /></td>
-								<td><img src="<?=WsiCommons::getURL()?>/style/metacafe.png" alt="" /></td>
-								<td><span><?=__('Metacafe code')?>:</span></td>
-								<td><input type="text" name="wsi_metacafe" value="<?=get_option('wsi_metacafe')?>" /></td>
+								<td><input type="radio" id="radio_metacafe" name="wsi_type" value="metacafe" <?php if(get_option('wsi_type')=="metacafe") echo('checked="checked"') ?> /></td>
+								<td><img src="<?php echo WsiCommons::getURL(); ?>/style/metacafe.png" alt="" /></td>
+								<td><span><?php echo __('Metacafe code'); ?>:</span></td>
+								<td><input type="text" name="wsi_metacafe" value="<?php echo esc_attr(get_option('wsi_metacafe')); ?>" /></td>
 							</tr>
 							<tr id="box_swf" class="box_type">
-								<td><input type="radio" id="radio_swf" name="wsi_type" value="swf" <? if(get_option('wsi_type')=="swf") echo('checked="checked"') ?> /></td>
-								<td><img src="<?=WsiCommons::getURL()?>/style/swf.png" alt="" /></td>
-								<td><span><?=__('Video Flash (URL)')?>:</span></td>
-								<td><input size="70" type="text" name="wsi_swf" value="<?=get_option('wsi_swf')?>" /></td>
+								<td><input type="radio" id="radio_swf" name="wsi_type" value="swf" <?php if(get_option('wsi_type')=="swf") echo('checked="checked"') ?> /></td>
+								<td><img src="<?php echo WsiCommons::getURL(); ?>/style/swf.png" alt="" /></td>
+								<td><span><?php echo __('Video Flash (URL)'); ?>:</span></td>
+								<td><input size="70" type="text" name="wsi_swf" value="<?php echo esc_attr(get_option('wsi_swf')); ?>" /></td>
 							</tr>
 						</table>
 					</div> 
@@ -423,8 +435,8 @@ class WsiBack {
 						<span>
 							<table>
 							<tr id="box_html" class="box_type" style="height:220px;">
-							<td><input type="radio" id="radio_html" name="wsi_type" value="html" <? if(get_option('wsi_type')=="html") echo('checked="checked"') ?> /></td>
-							<td style="padding-left: 15px; width: 590px;"><textarea cols="75" rows="10" name="wsi_html"><?=stripslashes(get_option('wsi_html'))?></textarea></td>
+							<td><input type="radio" id="radio_html" name="wsi_type" value="html" <?php if(esc_attr(get_option('wsi_type'))=="html") echo('checked="checked"') ?> /></td>
+							<td style="padding-left: 15px; width: 590px;"><textarea cols="75" rows="10" name="wsi_html"><?php echo esc_attr(get_option('wsi_html')); ?></textarea></td>
 							</tr>
 							</table
 						</span>
@@ -435,48 +447,48 @@ class WsiBack {
 			<br />
 			<table>
 				<tr>
-					<td><?=__('Close esc function','wp-splash-image')?>:</td>
+					<td><?php echo __('Close esc function','wp-splash-image'); ?>:</td>
 					<td><input 
 						type="checkbox" 
 						name="wsi_close_esc_function" 
 						<?php if(get_option('wsi_close_esc_function')=='true') {echo("checked='checked'");} ?> />
-						(<?=__('if you click on background','wp-splash-image')?>)</td>
+						(<?php echo __('if you click on background','wp-splash-image'); ?>)</td>
 				</tr>
 				<tr>
-					<td><?=__('Hide','wp-splash-image')?>&nbsp;<img src="<?=WsiCommons::getURL()?>/style/close.png" class="little_cross" />&nbsp;:</td>
+					<td><?php echo __('Hide','wp-splash-image'); ?>&nbsp;<img src="<?php echo WsiCommons::getURL(); ?>/style/close.png" class="little_cross" />&nbsp;:</td>
 					<td><input 
 						type="checkbox" 
 						name="wsi_hide_cross" 
 						<?php if(get_option('wsi_hide_cross')=='true') {echo("checked='checked'");} ?> /></td>
 				</tr>
 				<tr>
-					<td><?=__('Disable shadow border','wp-splash-image')?>:</td>
+					<td><?php echo __('Disable shadow border','wp-splash-image'); ?>:</td>
 					<td><input
 						type="checkbox" 
 						name="wsi_disable_shadow_border" 
 						<?php if(get_option('wsi_disable_shadow_border')=='true') {echo("checked='checked'");} ?> />
-						(<?=__('useful for images with transparent edges','wp-splash-image')?>)</td>
+						(<?php echo __('useful for images with transparent edges','wp-splash-image'); ?>)</td>
 				</tr>
 				<tr>
-					<td><?=__("Splash height",'wp-splash-image')?>:</td>
+					<td><?php echo __("Splash height",'wp-splash-image'); ?>:</td>
 					<td><input
 						type="text"
 						name="splash_image_height"
 						id="splash_image_height"
 						size="6" maxlength="4"
-						value="<?=get_option('splash_image_height')?>" />&nbsp;px (min = 210px)</td>
+						value="<?php echo esc_attr(get_option('splash_image_height')); ?>" />&nbsp;px (min = 210px)</td>
 				</tr>
 				<tr>
-					<td><?=__("Splash width",'wp-splash-image')?>:</td>
+					<td><?php echo __("Splash width",'wp-splash-image'); ?>:</td>
 					<td><input
 						type="text"
 						name="splash_image_width"
 						id="splash_image_width"
 						size="6" maxlength="4"
-						value="<?=get_option('splash_image_width')?>" />&nbsp;px</td>
+						value="<?php echo esc_attr(get_option('splash_image_width')); ?>" />&nbsp;px</td>
 				</tr>
 				<tr>
-					<td><?=__('Background color','wp-splash-image')?>:</td>
+					<td><?php echo __('Background color','wp-splash-image'); ?>:</td>
 					<td>
 						<table style="border-spacing: 0px;">
 							<tr>
@@ -485,72 +497,73 @@ class WsiBack {
 									name="splash_color"
 									id="splash_color"
 									size="6" maxlength="6"
-									value="<?=get_option('splash_color')?>" /></td>
+									value="<?php echo esc_attr(get_option('splash_color')); ?>" /></td>
 								<td><div id="splash_color_demo"></div></td>
-								<td><a href="http://www.w3schools.com/tags/ref_colorpicker.asp"><?=__('Color Picker Online') ?></a></td>
+								<td><a href="http://www.w3schools.com/tags/ref_colorpicker.asp"><?php echo __('Color Picker Online'); ?></a></td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 				<tr>
-					<td><?=__('Background opacity','wp-splash-image')?>:</td>
+					<td><?php echo __('Background opacity','wp-splash-image'); ?>:</td>
 					<td colspan="3">
-						<input type="range" name="wsi_opacity" min="0" max="100" value="<?=get_option('wsi_opacity')?>" />&nbsp;%
+						<input type="range" name="wsi_opacity" min="0" max="100" value="<?php echo esc_attr(get_option('wsi_opacity')); ?>" />&nbsp;%
 					</td>
 				</tr>
 				<tr>
-					<td><?=__('Start date','wp-splash-image')?>:</td>
+					<td><?php echo __('Start date','wp-splash-image'); ?>:</td>
 					<td><input 
 						type="date" 
 						name="datepicker_start" 
 						id="datepicker_start" 
-						value="<?=get_option('datepicker_start')?>" />&nbsp;
-						<?=__('(stay empty if not required)','wp-splash-image')?></td>
+						value="<?php echo get_option('datepicker_start'); ?>" />&nbsp;
+						<?php echo __('(stay empty if not required)','wp-splash-image'); ?></td>
 					<td style="width:15px;"></td>
 					<td rowspan="2" style="padding:10px;border:2px solid #FF0000;display:none;background-color:#ff8b88" id="box_datepickers_warning">
-						<?=__('Warning: WSI does not currently work.','wp-splash-image')?><br />
-						<?=__('Check if dates are OK.','wp-splash-image')?>
+						<?php echo __('Warning: WSI does not currently work.','wp-splash-image'); ?><br />
+						<?php echo __('Check if dates are OK.','wp-splash-image'); ?>
 					</td>
 				</tr>
 				<tr>
-					<td><?=__('End date','wp-splash-image')?>:</td>
+					<td><?php echo __('End date','wp-splash-image'); ?>:</td>
 					<td><input 
 						type="date" 
 						name="datepicker_end" 
 						id="datepicker_end" 
-						value="<?=get_option('datepicker_end')?>" />&nbsp;
-						<?=__('(stay empty if not required)','wp-splash-image')?></td>
+						value="<?php echo esc_attr(get_option('datepicker_end')); ?>" />&nbsp;
+						<?php echo __('(stay empty if not required)','wp-splash-image'); ?></td>
 					<td colspan="2"></td>
 				</tr>
 				<tr>
-					<td><?=__('Display time','wp-splash-image')?>:</td>
+					<td><?php echo __('Display time','wp-splash-image'); ?>:</td>
 					<td colspan="3" style="white-space: nowrap;">
-						<input type="range" name="wsi_display_time" min="0" max="30" value="<?=get_option('wsi_display_time')?>" />&nbsp;
-						<?=__('seconds','wp-splash-image')?>&nbsp;
-						<?=__("(0 don't close automaticly the splash image)",'wp-splash-image')?>
+						<input type="range" name="wsi_display_time" min="0" max="30" value="<?php echo esc_attr(get_option('wsi_display_time')); ?>" />&nbsp;
+						<?php echo __('seconds','wp-splash-image'); ?>&nbsp;
+						<?php echo __("(0 don't close automaticly the splash image)",'wp-splash-image'); ?>
 					</td>
 				</tr>
 			</table>
-			<p class="submit"><input type="submit" value="<?=__('Update Options','wp-splash-image')?>" /></p>
+			<p class="submit"><input type="submit" value="<?php echo __('Update Options','wp-splash-image'); ?>" /></p>
 		</form>
 	
 		<!-- --------------- -->
 		<!-- Uninstall Form  -->
 		<!-- --------------- -->
 		
-		<div id="uninstall" class="overlay" style="display:none;background-image:url(<?=WsiCommons::getURL()?>/style/petrol.png);color:#fff;width:620px;height:530px;margin:40px;">
+		<div id="uninstall" class="overlay" style="display:none;background-image:url(<?php echo WsiCommons::getURL(); ?>/style/petrol.png);color:#fff;width:620px;height:530px;margin:40px;">
 			<form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>">
+				<?php wp_nonce_field('uninstall','nonce_uninstall_field'); ?>
 				<input type="hidden" name="action" value="uninstall" />
 				<div class="wrap"> 
-					<h3><?=__('Uninstall WP-Splash-Image', 'wp-splash-image'); ?></h3>
-					<p><?=__('Deactivating WP-Splash-Image plugin does not remove any data that may have been created, such as the stats options. To completely remove this plugin, you can uninstall it here.', 'wp-splash-image'); ?></p>
+					<h3><?php echo __('Uninstall WP-Splash-Image', 'wp-splash-image'); ?></h3>
+					<p><?php echo __('Deactivating WP-Splash-Image plugin does not remove any data that may have been created, such as the stats options. To completely remove this plugin, you can uninstall it here.', 'wp-splash-image'); ?></p>
 					<p style="color: red">
-						<strong><?=__('WARNING:', 'wp-splash-image'); ?></strong><br />
-						<?=__('Once uninstalled, this cannot be undone. You should use a Database Backup plugin of WordPress to back up all the data first.', 'wp-splash-image'); ?>
+						<strong><?php echo __('WARNING:', 'wp-splash-image'); ?></strong><br />
+						<?php echo __('Once uninstalled, this cannot be undone. You should use a Database Backup plugin of WordPress to back up all the data first.', 'wp-splash-image'); ?>
 					</p>
-					<p style="color: red"><strong><?=__('The following WordPress Options will be DELETED:', 'wp-splash-image'); ?></strong><br /></p>
+					<p style="color: red"><strong><?php echo __('The following WordPress Options will be DELETED:', 'wp-splash-image'); ?></strong><br /></p>
 					<table class="widefat">
-						<thead><tr><th><?=__('WordPress Options', 'wp-splash-image'); ?></th></tr></thead>
+						<thead><tr><th><?php echo __('WordPress Options', 'wp-splash-image'); ?></th></tr></thead>
 						<tr>
 							<td valign="top" style="color: black;">
 								<ol style="height:200px;overflow:auto;padding-left:40px">
@@ -566,8 +579,8 @@ class WsiBack {
 					<br />
 					<p style="text-align: center;">
 						<input type="submit" class="button"
-							value="<?=__('UNINSTALL WP-Splash Image', 'wp-splash-image'); ?>" 
-							onclick="return confirm('<?=__('You Are About To Uninstall WP-Splash-Image From WordPress.\nThis Action Is Not Reversible.\n\n Choose [Cancel] To Stop, [OK] To Uninstall.', 'wp-splash-image'); ?>')" />
+							value="<?php echo __('UNINSTALL WP-Splash Image', 'wp-splash-image'); ?>" 
+							onclick="return confirm('<?php echo __('You Are About To Uninstall WP-Splash-Image From WordPress.\nThis Action Is Not Reversible.\n\n Choose [Cancel] To Stop, [OK] To Uninstall.', 'wp-splash-image'); ?>')" />
 					</p>
 				</div> 
 			</form>
@@ -580,18 +593,18 @@ class WsiBack {
 		<?php if ($uninstalled) { ?>
 			
 			<a style="display:none;" id="uninstall_confirm_link" href="#" rel="#uninstall_confirm"></a>
-			<div id="uninstall_confirm" class="overlay" style="display:none;background-image:url(<?=WsiCommons::getURL()?>/style/petrol.png);color:#fff;width:595px;height:465px;padding:30px;z-index:2">
+			<div id="uninstall_confirm" class="overlay" style="display:none;background-image:url(<?php echo WsiCommons::getURL(); ?>/style/petrol.png);color:#fff;width:595px;height:465px;padding:30px;z-index:2">
 			<div class="close" style="right:5px;top:5px;"></div>
 			
-				<h3 style="margin-left:15px;"><?=__('Uninstall WP-Splash-Image', 'wp-splash-image'); ?></h3>
-				<div class="uninstallCheckList"><?=$uninstalled_message?></div>
+				<h3 style="margin-left:15px;"><?php echo __('Uninstall WP-Splash-Image', 'wp-splash-image'); ?></h3>
+				<div class="uninstallCheckList"><?php echo $uninstalled_message; ?></div>
 				<br />
 				<p style="text-align:center;">
-					<strong><?=__('To finish the uninstallation and deactivate automatically WP-Splash-Image :', 'wp-splash-image')?></strong>
+					<strong><?php echo __('To finish the uninstallation and deactivate automatically WP-Splash-Image :', 'wp-splash-image'); ?></strong>
 					<br /><br /><br />
 					<input type="button" class="button" 
-						value="<?=__('Click Here', 'wp-splash-image')?>" 
-						onClick="javascript:window.open('<?=$deactivate_url?>','_self');" />
+						value="<?php echo __('Click Here', 'wp-splash-image'); ?>" 
+						onClick="javascript:window.open('<?php echo $deactivate_url; ?>','_self');" />
 				</p>
 				
 			</div>
@@ -605,25 +618,26 @@ class WsiBack {
 		<!-- Feedback Form  -->
 		<!-- -------------- -->
 		
-		<div id="feedback" class="overlay" style="display:none;background-image:url(<?=WsiCommons::getURL()?>/style/petrol.png);color:#fff;width:500px;margin:40px;">
+		<div id="feedback" class="overlay" style="display:none;background-image:url(<?php echo WsiCommons::getURL(); ?>/style/petrol.png);color:#fff;width:500px;margin:40px;">
 			<fieldset style="border:1px solid black; padding:20px 20px 5px 20px; display:inline;">
 				<legend style="display:block;font-size:1.17em;font-weight:bold;margin:1em 0;margin-top:22px;" >
-					&nbsp;<?=__('Feedback','wp-splash-image')?>&nbsp;
+					&nbsp;<?php echo __('Feedback','wp-splash-image'); ?>&nbsp;
 				</legend>
 				<form method="post" id="feedback_form" action="<?php echo $_SERVER ['REQUEST_URI']?>">
+					<?php wp_nonce_field('feedback','nonce_feedback_field'); ?>
 					<input type="hidden" name="action" value="feedback" />
 					<table>
 						<tr>
-							<td><?=__('Your Email:','wp-splash-image')?></td>
+							<td><?php echo __('Your Email:','wp-splash-image'); ?></td>
 							<td><input type="email" required="required" name="feedback_email" size="50" /></td>
 						</tr>
 						<tr>
-							<td><?=__('Message:','wp-splash-image')?></td>
+							<td><?php echo __('Message:','wp-splash-image'); ?></td>
 							<td><textarea name="feedback_message" required="required" rows="10" cols="40"></textarea></td>
 						</tr>
 					</table>
 					<p class="submit">
-						<input type="submit" value="<?=__('Send Feedback','wp-splash-image')?>" />
+						<input type="submit" value="<?php echo __('Send Feedback','wp-splash-image'); ?>" />
 					</p>
 				</form>
 			</fieldset>
@@ -633,35 +647,35 @@ class WsiBack {
 		<!-- Documentation Form  -->
 		<!-- ------------------- -->
 		
-		<div id="info" class="overlay" style="display:none;background-image:url(<?=WsiCommons::getURL()?>/style/petrol.png);color:#fff;width:620px;height:530px;margin:40px;">
+		<div id="info" class="overlay" style="display:none;background-image:url(<?php echo WsiCommons::getURL(); ?>/style/petrol.png);color:#fff;width:620px;height:530px;margin:40px;">
 			<div style="font-weight:bold;font-size:20px;margin-bottom:10px;">Infos :</div>
-			<img src="<?=WsiCommons::getURL()?>/style/info_legende.jpg" style="float:left;margin-right:15px;" />
+			<img src="<?php echo WsiCommons::getURL(); ?>/style/info_legende.jpg" style="float:left;margin-right:15px;" />
 			WP Splash Image display picture if 3 conditions are OK: <br />
 			<ul style="list-style-type:disc;list-style-position:inside;">
-				<li><span class="plugin_title"><?=__('Splash image activated','wp-splash-image')?></span> is checked</li>
-				<li>Current date is less than or equal to <span class="plugin_title"><?=__('End date','wp-splash-image')?></span>.</li>
-				<li>Current date is greater than or equal to <span class="plugin_title"><?=__('Start date','wp-splash-image')?></span>.</li>
+				<li><span class="plugin_title"><?php echo __('Splash image activated','wp-splash-image'); ?></span> is checked</li>
+				<li>Current date is less than or equal to <span class="plugin_title"><?php echo __('End date','wp-splash-image'); ?></span>.</li>
+				<li>Current date is greater than or equal to <span class="plugin_title"><?php echo __('Start date','wp-splash-image'); ?></span>.</li>
 			</ul>
 			<span class="plugin_number">1)</span>
-			We can change the <span class="plugin_title"><?=__('Background color','wp-splash-image')?></span> with the color code.<br />
-			If you click on the background, you'll quit the splash image except if <span class="plugin_title"><?=__('Close esc function','wp-splash-image')?></span> is checked.
+			We can change the <span class="plugin_title"><?php echo __('Background color','wp-splash-image'); ?></span> with the color code.<br />
+			If you click on the background, you'll quit the splash image except if <span class="plugin_title"><?php echo __('Close esc function','wp-splash-image'); ?></span> is checked.
 			<br /><br />
 			<span class="plugin_number">2)</span>
-			The <img src="<?=WsiCommons::getURL()?>/style/close.png" class="little_cross" /> can be <span class="plugin_title"><?=__('Hide','wp-splash-image')?></span>.
+			The <img src="<?php echo WsiCommons::getURL(); ?>/style/close.png" class="little_cross" /> can be <span class="plugin_title"><?php echo __('Hide','wp-splash-image'); ?></span>.
 			We can use this option with :
 			<ul style="list-style-type:disc;list-style-position:inside;">
-				<li><span class="plugin_title"><?=__('Close esc function','wp-splash-image')?></span></li>
-				<li><span class="plugin_title"><?=__("Picture link URL",'wp-splash-image')?></span></li>
+				<li><span class="plugin_title"><?php echo __('Close esc function','wp-splash-image'); ?></span></li>
+				<li><span class="plugin_title"><?php echo __("Picture link URL",'wp-splash-image'); ?></span></li>
 			</ul>
 			for advertisment for exemple.
 			<br />
 			<span class="plugin_number">3)</span>
 			For the picture, we can specify the
-			<span class="plugin_title"><?=__("Picture height",'wp-splash-image')?></span>
+			<span class="plugin_title"><?php echo __("Picture height",'wp-splash-image'); ?></span>
 			and the
-			<span class="plugin_title"><?=__("Picture width",'wp-splash-image')?></span>.
+			<span class="plugin_title"><?php echo __("Picture width",'wp-splash-image'); ?></span>.
 			<br />
-			If we fill the <span class="plugin_title"><?=__('Display time','wp-splash-image')?></span> field, the splash screen disappear after this value (in second).
+			If we fill the <span class="plugin_title"><?php echo __('Display time','wp-splash-image'); ?></span> field, the splash screen disappear after this value (in second).
 			<br />
 		</div>
 		
@@ -695,16 +709,16 @@ class WsiBack {
 			});
 					
 			// Récupération du type de splash
-			<? if ($_POST['wsi_type'] != "") { ?>
-				var wsi_type = '<?=$_POST['wsi_type']?>';
-				<? $wsi_type = $_POST['wsi_type']; ?>
-			<? } else if(get_option('wsi_type') != "") { ?>	
-				var wsi_type = '<?=get_option('wsi_type')?>';
-				<? $wsi_type = get_option('wsi_type'); ?>
-			<? } else { ?>
+			<?php if ($_POST['wsi_type'] != "") { ?>
+				var wsi_type = '<?php echo $_POST['wsi_type']; ?>';
+				<?php $wsi_type = $_POST['wsi_type']; ?>
+			<?php } else if(get_option('wsi_type') != "") { ?>	
+				var wsi_type = '<?php echo esc_attr(get_option('wsi_type')); ?>';
+				<?php $wsi_type = esc_attr(get_option('wsi_type')); ?>
+			<?php } else { ?>
 				var wsi_type = 'picture';
-				<? $wsi_type = get_option('wsi_type'); ?>
-			<? } ?>
+				<?php $wsi_type = esc_attr(get_option('wsi_type')); ?>
+			<?php } ?>
 			
 			// Chargement des onglets
 			var index_tab = new Array() ;
@@ -792,10 +806,10 @@ class WsiBack {
 			$("#radio_html").click(function() {        color_box("#box_html")});
 			
 			// Color au chargement du plugin
-			$("#box_<?=$wsi_type?>").animate({ backgroundColor: "#7FFF00" }, 500);
+			$("#box_<?php echo $wsi_type; ?>").animate({ backgroundColor: "#7FFF00" }, 500);
 			
 			// Warning sur les dates de validités
-			if ("<?=WsiCommons::getdate_is_in_validities_dates()?>"=="false") {$("#box_datepickers_warning").fadeIn("slow");}
+			if ("<?php echo WsiCommons::getdate_is_in_validities_dates(); ?>"=="false") {$("#box_datepickers_warning").fadeIn("slow");}
 
 			// Fill Picture size
 			$("#fill_picture_size_button").click(function() {
