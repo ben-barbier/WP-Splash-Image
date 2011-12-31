@@ -97,6 +97,11 @@ class WsiBack {
 			wp_enqueue_script('jquery.tools.back', false, array('jquery'));
 			wp_enqueue_script('jquery.tooltip',    false, array('jquery'));
 			wp_enqueue_script('jquery.keyfilter',  false, array('jquery'));
+			
+			// Corrige des problèmes d'incompatibilité avec d'autres plugins (au cas ou ceux ci utilisent ces librairies).
+			wp_deregister_script('jquery-ui-tabs');
+			wp_deregister_script('jquery-ui-core');
+			
 		}
 	}
 	

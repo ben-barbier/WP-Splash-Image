@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: Splash, Image, LightBox, Picture, Video, HTML, Start, Open
 Requires at least: 2.8
 Tested up to: 3.3
-Stable tag: 1.5.0
+Stable tag: 1.5.1
  
 WP Splash Image is a plugin for Wordpress to display picture, video or html code with a lightbox effect at the opening of the blog.
  
@@ -67,9 +67,6 @@ These two methods are necessary for the proper functioning of WSI.
 = Sometimes, my splash image is not well centered. Idea ? =
 Yes, verify if "Splash height" and "Splash width" properties are properly filled.
 
-= Known incompatibilities =
-Plugin: Dynamic Content Gallery (v3.3.5)
-
 == Screenshots ==
  
 1. Administration
@@ -77,6 +74,10 @@ Plugin: Dynamic Content Gallery (v3.3.5)
 3. Splash Image
  
 == Changelog ==
+
+= 1.5.1 =
+* Fix known incompatibility with plugin "Dynamic Content Gallery (v3.3.5)".
+* Update fields filter.
 
 = 1.5.0 =
 * Refactoring.
