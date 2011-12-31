@@ -67,6 +67,9 @@ These two methods are necessary for the proper functioning of WSI.
 = Sometimes, my splash image is not well centered. Idea ? =
 Yes, verify if "Splash height" and "Splash width" properties are properly filled.
 
+= Known incompatibilities =
+Plugin: Dynamic Content Gallery (v3.3.5)
+
 == Screenshots ==
  
 1. Administration
