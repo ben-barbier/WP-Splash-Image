@@ -21,7 +21,7 @@ class WsiBack {
 	 * Plug : Hooks functions to actions and filters.
 	 * This is the only function to use to set up the back.
 	 */
-	function plug() {
+	public function plug() {
 		add_action ( 'admin_init',                                     array(&$this, 'wp_splash_image_back_init' ));
 		add_action ( 'admin_menu',                                     array(&$this, 'wsi_menu' ));
 		add_filter ( 'plugin_action_links_'.plugin_basename(__FILE__), array(&$this, 'wsi_filter_plugin_actions' ));
@@ -90,7 +90,8 @@ class WsiBack {
 			wp_register_script('jquery.tools.back', WsiCommons::getURL().'/js/jquery.tools.min.wp-back.js'); /*[tabs, overlay, overlay.apple, dateinput, rangeinput, validator]*/
 			wp_register_script('jquery.tooltip', WsiCommons::getURL().'/js/tooltip.jquery.js'); /*Infobulle(tooltip) pour feedback*/
 			wp_register_script('jquery.keyfilter', WsiCommons::getURL().'/js/jquery.keyfilter-1.7.min.js'); /* KeyFilter (for splash_color, splash_image_height, splash_image_width fields) */
-			
+
+			// in WP 3.3, it is JQuery 1.7.1 (lastest)
 			wp_deregister_script('jquery');
 			wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js');
 			wp_enqueue_script('jquery');
@@ -136,6 +137,50 @@ class WsiBack {
 	}
 	
 	/**
+	 * Retourne un maximum d'infos pour aider à la 
+	 * correction du problème rencontré par l'utilisateur (format HTML).
+	 */
+	private function get_system_info() {
+		
+		$systemInfos = "<pre style='background-color: #FFFF99;padding: 10px;width: 98%;border: 1px black dashed;'>";
+		$systemInfos.= "-----------------------\n";
+		$systemInfos.= "-- WSI - System Info --\n";
+		$systemInfos.= "-----------------------\n\n";
+		$systemInfos.= get_bloginfo('name')." -> ".get_bloginfo('url')."\n";
+		$systemInfos.= get_bloginfo('description')."\n\n";
+		$systemInfos.= "-- Wordpress Info --\n";
+		$systemInfos.= "Version: ".get_bloginfo('version')."\n\n";
+		
+		$systemInfos.= "-- Plugins actifs --\n";
+		foreach (get_plugins() as $plugin_file => $plugin_data) {
+			if (is_plugin_active($plugin_file)) {
+				$systemInfos.= $plugin_data['Name'];
+				$systemInfos.= " (".$plugin_data['Version'].")";
+				$systemInfos.= " - ".$plugin_data['PluginURI'];
+				$systemInfos.= "\n";
+			}
+		}
+		$systemInfos.= "\n";
+		$systemInfos.= "-- Plugins inactifs --\n";
+		foreach (get_plugins() as $plugin_file => $plugin_data) {
+			if (is_plugin_inactive($plugin_file)) {
+				$systemInfos.= $plugin_data['Name'];
+				$systemInfos.= " (".$plugin_data['Version'].")";
+				$systemInfos.= " - ".$plugin_data['PluginURI'];
+				$systemInfos.= "\n";
+			}
+		}
+		$systemInfos.= "\n";
+		$systemInfos.= "-- Paramétrage WSI --\n";
+		foreach (WsiCommons::getOptionsList() as $option) {
+			$systemInfos.= $option.": ".get_option($option)."\n";
+		}
+			
+		$systemInfos.= "</pre>";
+		return $systemInfos; 
+	}
+	
+	/**
 	 * Fonction utilisée dans la partie Admin 
 	 */
 	public function wp_splash_image_options() {
@@ -146,31 +191,7 @@ class WsiBack {
 		}
 		
 		// Liste des options qui apparait dans le formulaire "uninstall" (et qui sont supprimées)
-		$list_options = array(
-			'splash_active', 
-			'splash_test_active', 
-			'url_splash_image', 
-			'splash_image_width',
-			'splash_image_height',
-			'splash_color',
-			'datepicker_start',
-			'datepicker_end',
-			'wsi_display_time',
-			'wsi_picture_link_url',
-			'wsi_picture_link_target',
-			'wsi_close_esc_function',
-			'wsi_hide_cross',
-			'wsi_disable_shadow_border',
-			'wsi_type',
-			'wsi_opacity',
-			'wsi_youtube',
-			'wsi_youtube_autoplay',
-			'wsi_youtube_loop',
-			'wsi_yahoo',
-			'wsi_dailymotion',
-			'wsi_metacafe',
-			'wsi_swf',
-			'wsi_html');
+		$list_options = WsiCommons::getOptionsList(); 
 			
 		// Mise à jour ?
 		if ($_POST ['action'] == 'update') {
@@ -227,8 +248,18 @@ class WsiBack {
 			//Send feedback by mail
 			$to      = 'feedback@dark-sides.com';
 			$subject = 'Feedback WSI';
-			$message = $_POST['feedback_message'];
-			$headers = 'From: '.$_POST['feedback_email'];
+			$message = "<html><head><title>Feedback WSI</title></head><body>";
+			$message.= $_POST['feedback_message'];
+			if ($_POST['feedback_sendInfos']) {
+				$message.= "\n\n".$this->get_system_info();
+			}
+			$message.= "</body></html>";
+			
+			// Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+			$headers = 'MIME-Version: 1.0' . "\r\n";
+			$headers.= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			$headers.= 'From: '.$_POST['feedback_email'];
+			
 			mail($to, $subject, $message, $headers);
 			$feedbacked = true;
 		} else {

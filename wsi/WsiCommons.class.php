@@ -10,6 +10,37 @@ class WsiCommons {
 	}
 
 	/**
+	 * Retourne un tableau contenant la liste de toutes les options de WSI.
+	 */
+	public static function getOptionsList() {
+		return array(
+				'splash_active',
+				'splash_test_active',
+				'url_splash_image',
+				'splash_image_width',
+				'splash_image_height',
+				'splash_color',
+				'datepicker_start',
+				'datepicker_end',
+				'wsi_display_time',
+				'wsi_picture_link_url',
+				'wsi_picture_link_target',
+				'wsi_close_esc_function',
+				'wsi_hide_cross',
+				'wsi_disable_shadow_border',
+				'wsi_type',
+				'wsi_opacity',
+				'wsi_youtube',
+				'wsi_youtube_autoplay',
+				'wsi_youtube_loop',
+				'wsi_yahoo',
+				'wsi_dailymotion',
+				'wsi_metacafe',
+				'wsi_swf',
+				'wsi_html');
+	}
+	
+	/**
 	 * Si la Splash Image n'est pas dans sa plage de validité, on retourne false (sinon true)
 	 */
 	public static function getdate_is_in_validities_dates() {

@@ -19,6 +19,13 @@
 					<td><?php echo __('Message:','wp-splash-image'); ?></td>
 					<td><textarea name="feedback_message" required="required" rows="10" cols="40"></textarea></td>
 				</tr>
+				<tr>
+					<td><?php echo __('Send infos:','wp-splash-image'); ?><br /></td>
+					<td>
+						<input type="checkbox" name="feedback_sendInfos" checked="checked" />
+						<?php echo __('(to reproduce the error locally and fix the problem)','wp-splash-image'); ?>
+					</td>
+				</tr>
 			</table>
 			<p class="submit">
 				<input type="submit" value="<?php echo __('Send Feedback','wp-splash-image'); ?>" />
