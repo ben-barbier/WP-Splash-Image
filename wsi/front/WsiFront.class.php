@@ -50,13 +50,13 @@ class WsiFront {
 	
 			// Déclaration des scripts de la partie front end.
 			wp_register_script('jquery.tools.front', WsiCommons::getURL().'/js/jquery.tools.min.wp-front.js'); /*[overlay, toolbox.expose]*/
-			wp_deregister_script('jquery');
-			wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js');
 	
-			// Chargement des scripts du front end.
+			// JQuery (wordpress version)
 			wp_enqueue_script('jquery');
-			wp_enqueue_script('jquery.tools.front',false,array('jquery'));
-	
+			
+			// JQuery Tools
+			wp_enqueue_script('jquery.tools.front', false, array('jquery'));
+			
 			// Chargement des styles du front end.
 			wp_enqueue_style('overlay-basic');
 	

@@ -23,11 +23,11 @@
 	</table>	
 	<br />
 	<!-- Tabs --> 
-	<div style="width:850px;">
-		<ul class="tabs"> 
-			<li><a href="#"><?php echo __('Picture'); ?></a></li> 
-			<li><a href="#"><?php echo __('Video'); ?></a></li> 
-			<li><a href="#"><?php echo __('HTML'); ?></a></li> 
+	<div  id="tabs" style="width:850px;">
+		<ul> 
+			<li><a href="#tab_picture"><?php echo __('Picture'); ?></a></li> 
+			<li><a href="#tab_video"><?php echo __('Video'); ?></a></li> 
+			<li><a href="#tab_HTML"><?php echo __('HTML'); ?></a></li> 
 		</ul> 
 		<div class="panes">
 			<?php require("tabs/PictureTab.inc.php"); ?>

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: Splash, Image, LightBox, Picture, Video, HTML, Start, Open
 Requires at least: 3.1
 Tested up to: 3.3
-Stable tag: 1.6.0
+Stable tag: 1.7.0
  
 WP Splash Image is a plugin for Wordpress to display picture, video or html code with a lightbox effect at the opening of the blog.
  
@@ -27,9 +27,23 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 == Frequently Asked Questions ==
 
 = What's next ? =
+
+(1.8.0)
+* Manage a time of user inactivity before displaying the WSI.
+(1.9.0)
+* Show WSI before loading the page.
+(2.0.0)
+* Add "Upload picture" option.
+(3.0.0)
+* Manage WSI date ranges.
+(Others)
 * Update Documentation
 * Add option for "exclude" some pages (for flash conflict for exemple)
 * Add an information box indicating whether a new version of WSI exists.
+* Customize the borders (facebook style, ...)
+* Manage reporting (number of views, number of clicks, ...)
+* Improve compatibility with akismet infos.
+* Add an event system to know when to start WSI (ex: when site is loading, when comment is send ...)
 
 = Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
 
@@ -74,6 +88,10 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
 3. Splash Image
  
 == Changelog ==
+
+= 1.7.0 =
+* Switch from "JQueryTools" (http://flowplayer.org/tools/) to "JQueryUI" (http://jqueryui.com/) for admin tabs management.
+* JQuery used is now "Wordpress version" - 1.7.1 on WP 3.3 (frontend and backend).
 
 = 1.6.0 =
 * Add Bug Repport when the user use the feedback form.

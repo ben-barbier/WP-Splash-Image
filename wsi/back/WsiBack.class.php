@@ -61,52 +61,6 @@ class WsiBack {
 	}
 	
 	/**
-	 * Utilisation des styles de la partie Admin
-	 */
-	public function enqueue_wsi_back_styles() {
-		// Déclaration des styles de la partie Admin
-		wp_register_style('tabs', WsiCommons::getURL().'/style/tabs.css'); /*Style pour les onglets*/
-		wp_register_style('validator-error', WsiCommons::getURL().'/style/validator-error.css'); /*Style pour le validator du feedback*/
-		wp_register_style('overlay-basic', WsiCommons::getURL().'/style/overlay-basic.css'); /*Style pour la box de documentation + feedback*/
-		wp_register_style('date-input', WsiCommons::getURL().'/style/dateinput.css'); /*Style pour les calendriers*/
-		wp_register_style('range', WsiCommons::getURL().'/style/range.css'); /*Style pour le curseur de temps*/
-		wp_register_style('wsi', WsiCommons::getURL().'/style/wsi.css');
-		
-		wp_enqueue_style('tabs');
-		wp_enqueue_style('validator-error');
-		wp_enqueue_style('overlay-basic');
-		wp_enqueue_style('date-input');
-		wp_enqueue_style('range');
-		wp_enqueue_style('wsi');
-	}
-	
-	/**
-	 * Utilisation des scripts de la partie Admin
-	 */
-	public function enqueue_wsi_back_scripts() {
-		if (isset($_GET['page']) && $_GET['page'] == 'wp_splash_image') {
-			
-			// Déclaration des scripts de la partie Admin
-			wp_register_script('jquery.tools.back', WsiCommons::getURL().'/js/jquery.tools.min.wp-back.js'); /*[tabs, overlay, overlay.apple, dateinput, rangeinput, validator]*/
-			wp_register_script('jquery.tooltip', WsiCommons::getURL().'/js/tooltip.jquery.js'); /*Infobulle(tooltip) pour feedback*/
-			wp_register_script('jquery.keyfilter', WsiCommons::getURL().'/js/jquery.keyfilter-1.7.min.js'); /* KeyFilter (for splash_color, splash_image_height, splash_image_width fields) */
-
-			// in WP 3.3, it is JQuery 1.7.1 (lastest)
-			wp_deregister_script('jquery');
-			wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js');
-			wp_enqueue_script('jquery');
-			wp_enqueue_script('jquery.tools.back', false, array('jquery'));
-			wp_enqueue_script('jquery.tooltip',    false, array('jquery'));
-			wp_enqueue_script('jquery.keyfilter',  false, array('jquery'));
-			
-			// Corrige des problèmes d'incompatibilité avec d'autres plugins (au cas ou ceux ci utilisent ces librairies).
-			wp_deregister_script('jquery-ui-tabs');
-			wp_deregister_script('jquery-ui-core');
-			
-		}
-	}
-	
-	/**
 	 * Ajoute entrée dans la page des extensions (partie gauche)
 	 */
 	public function wsi_filter_plugin_actions( $links ) {
@@ -126,14 +80,61 @@ class WsiBack {
 		$plugin = plugin_basename(__FILE__);
 		if ($file == $plugin) {
 			return array_merge(
-				$links,
-				array(
+					$links,
+					array(
 					/* Lien "Donate" de PayPal */
-					'<a target="_blank" style="font-weight:bold;" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C">'.__('Donate','wp-splash-image').'</a>'
-					//,'un autre lien...'
-				));
+							'<a target="_blank" style="font-weight:bold;" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C">'.__('Donate','wp-splash-image').'</a>'
+							//,'un autre lien...'
+					));
 		}
 		return $links;
+	}
+	
+	/**
+	 * Utilisation des styles de la partie Admin
+	 */
+	public function enqueue_wsi_back_styles() {
+		// Déclaration des styles de la partie Admin
+		wp_register_style('tabs',            WsiCommons::getURL().'/style/ui/flick/jquery-ui-1.8.16.custom.css'); /*Style pour les onglets*/
+		wp_register_style('validator-error', WsiCommons::getURL().'/style/validator-error.css'); /*Style pour le validator du feedback*/
+		wp_register_style('overlay-basic',   WsiCommons::getURL().'/style/overlay-basic.css'); /*Style pour la box de documentation + feedback*/
+		wp_register_style('date-input',      WsiCommons::getURL().'/style/dateinput.css'); /*Style pour les calendriers*/
+		wp_register_style('range',           WsiCommons::getURL().'/style/range.css'); /*Style pour le curseur de temps*/
+		wp_register_style('wsi',             WsiCommons::getURL().'/style/wsi.css');
+		
+		wp_enqueue_style('tabs');
+		wp_enqueue_style('validator-error');
+		wp_enqueue_style('overlay-basic');
+		wp_enqueue_style('date-input');
+		wp_enqueue_style('range');
+		wp_enqueue_style('wsi');
+	}
+	
+	/**
+	 * Utilisation des scripts de la partie Admin
+	 */
+	public function enqueue_wsi_back_scripts() {
+		if (isset($_GET['page']) && $_GET['page'] == 'wp_splash_image') {
+			
+			// Déclaration des scripts de la partie Admin
+			wp_register_script('jquery.tools.back', WsiCommons::getURL().'/js/jquery.tools.min.wp-back.js'); /*[overlay, overlay.apple, dateinput, rangeinput, validator]*/
+			wp_register_script('jquery.tooltip',    WsiCommons::getURL().'/js/tooltip.jquery.js'); /*Infobulle(tooltip) pour feedback*/
+			wp_register_script('jquery.keyfilter',  WsiCommons::getURL().'/js/jquery.keyfilter-1.7.min.js'); /* KeyFilter (for splash_color, splash_image_height, splash_image_width fields) */
+			
+			// JQuery (wordpress version)
+			wp_enqueue_script('jquery');
+			
+			// JQuery UI (wordpress version)
+			wp_enqueue_script('jquery-ui-tabs');
+			
+			// JQuery Tools
+			wp_enqueue_script('jquery.tools.back', false, array('jquery'));
+			
+			// JQuery Plugins
+			wp_enqueue_script('jquery.tooltip',    false, array('jquery'));
+			wp_enqueue_script('jquery.keyfilter',  false, array('jquery'));
+
+		}
 	}
 	
 	/**
@@ -189,51 +190,10 @@ class WsiBack {
 		if (!current_user_can('manage_options'))  {
 			wp_die( __("You do not have sufficient permissions to access this page.",'wp-splash-image') );
 		}
-		
-		// Liste des options qui apparait dans le formulaire "uninstall" (et qui sont supprimées)
-		$list_options = WsiCommons::getOptionsList(); 
 			
 		// Mise à jour ?
 		if ($_POST ['action'] == 'update') {
-			
-			// Vérification du token de sécurité.
-			check_admin_referer('update','nonce_update_field');
-			
-			// On met à jour la base de données (table: options) avec la fonction de wp: update_option
-			if ($_POST['splash_active']) {$active='true';} else {$active='false';}
-			update_option('splash_active', $active);
-			if ($_POST['splash_test_active']) {$test_active='true';} else {$test_active='false';}
-			update_option('splash_test_active', $test_active);
-			update_option('url_splash_image',        $_POST['url_splash_image']);
-			update_option('splash_image_width',      $_POST['splash_image_width']);
-			update_option('splash_image_height',     $_POST['splash_image_height']);
-			update_option('splash_color',            $_POST['splash_color']);
-			update_option('datepicker_start',        $_POST['datepicker_start']);
-			update_option('datepicker_end',          $_POST['datepicker_end']);
-			update_option('wsi_display_time',        $_POST['wsi_display_time']);
-			update_option('wsi_picture_link_url',    $_POST['wsi_picture_link_url']);
-			update_option('wsi_picture_link_target', $_POST['wsi_picture_link_target']);
-			if ($_POST['wsi_close_esc_function']) {$wsi_close_esc_function='true';} else {$wsi_close_esc_function='false';}
-			update_option('wsi_close_esc_function', $wsi_close_esc_function);
-			if ($_POST['wsi_hide_cross']) {$wsi_hide_cross='true';} else {$wsi_hide_cross='false';}
-			update_option('wsi_hide_cross', $wsi_hide_cross);
-			if ($_POST['wsi_disable_shadow_border']) {$wsi_disable_shadow_border='true';} else {$wsi_disable_shadow_border='false';}
-			update_option('wsi_disable_shadow_border', $wsi_disable_shadow_border);
-			if ($_POST['wsi_youtube_autoplay']) {$wsi_youtube_autoplay='true';} else {$wsi_youtube_autoplay='false';}
-			update_option('wsi_youtube_autoplay', $wsi_youtube_autoplay);
-			if ($_POST['wsi_youtube_loop']) {$wsi_youtube_loop='true';} else {$wsi_youtube_loop='false';}
-			update_option('wsi_youtube_loop', $wsi_youtube_loop);
-			update_option('wsi_type',     $_POST['wsi_type']);
-			update_option('wsi_opacity',     $_POST['wsi_opacity']);
-			
-			// Valeurs des onglets
-			update_option('wsi_youtube',     $_POST['wsi_youtube']);
-			update_option('wsi_yahoo',       $_POST['wsi_yahoo']);
-			update_option('wsi_dailymotion', $_POST['wsi_dailymotion']);
-			update_option('wsi_metacafe',    $_POST['wsi_metacafe']);
-			update_option('wsi_swf',         $_POST['wsi_swf']);
-			update_option('wsi_html',        $_POST['wsi_html']);
-			
+			require("actions/UpdateAction.inc.php");
 			$updated = true;
 		} else {
 			$updated = false;
@@ -241,26 +201,7 @@ class WsiBack {
 	
 		// Send Feedback ?
 		if ($_POST ['action'] == 'feedback') {
-			
-			// Vérification du token de sécurité.
-			check_admin_referer('feedback','nonce_feedback_field');
-			
-			//Send feedback by mail
-			$to      = 'feedback@dark-sides.com';
-			$subject = 'Feedback WSI';
-			$message = "<html><head><title>Feedback WSI</title></head><body>";
-			$message.= $_POST['feedback_message'];
-			if ($_POST['feedback_sendInfos']) {
-				$message.= "\n\n".$this->get_system_info();
-			}
-			$message.= "</body></html>";
-			
-			// Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
-			$headers = 'MIME-Version: 1.0' . "\r\n";
-			$headers.= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-			$headers.= 'From: '.$_POST['feedback_email'];
-			
-			mail($to, $subject, $message, $headers);
+			require("actions/FeedbackAction.inc.php");			
 			$feedbacked = true;
 		} else {
 			$feedbacked = false;
@@ -268,31 +209,7 @@ class WsiBack {
 		
 		// Uninstall ?
 		if ($_POST ['action'] == 'uninstall') {
-			
-			// Vérification du token de sécurité.
-			check_admin_referer('uninstall','nonce_uninstall_field');
-			
-			$uninstalled_message .= '<p>';
-			foreach($list_options as $option) {
-				$delete_option = delete_option($option);
-				if($delete_option) {
-					$uninstalled_message .= '<font color="green">';
-					$uninstalled_message .= sprintf(__('Setting Key \'%s\' has been deleted.', 'wp-splash-image'), "<strong><em>{$option}</em></strong>");
-					$uninstalled_message .= '</font><br />';
-				} else {
-					$uninstalled_message .= '<font color="red">';
-					$uninstalled_message .= sprintf(__('Error deleting Setting Key \'%s\'.', 'wp-splash-image'), "<strong><em>{$option}</em></strong>");
-					$uninstalled_message .= '</font><br />';
-				}
-			}
-			$uninstalled_message .= '</p>';
-			
-			// Find uninstall URL
-			$deactivate_url = 'plugins.php?action=deactivate&plugin=wsi%2Fwp-splash-image.php&plugin_status=all&paged=1';
-			if(function_exists('wp_nonce_url')) { 
-				$deactivate_url = wp_nonce_url($deactivate_url, 'deactivate-plugin_wsi/wp-splash-image.php');
-			}
-			
+			require("actions/UninstallAction.inc.php");
 			$uninstalled = true;		
 		} else {
 			$uninstalled = false;
@@ -352,27 +269,11 @@ class WsiBack {
 	
 	<script type="text/javascript">
 	
-		$(document).ready(function () {
+		jQuery(document).ready(function ($) {
 			
 			// Chargement des calendriers
 			$(":date").dateinput({
-				format: 'dd mmm yyyy'/*,
-				// Affichage de la box indiquant un pb en live
-				change: function() {
-					// OK sous FF mais KO sous chrome
-					// TODO: Chrome fix...
-					var today = new Date();
-					if (today < $('#datepicker_start').data("dateinput").getValue()) {
-						alert("1");
-						$("#box_datepickers_warning").fadeIn("slow");
-					} else if (today > $('#datepicker_end').data("dateinput").getValue()) {
-						alert("2");
-						$("#box_datepickers_warning").fadeIn("slow");
-					} else {
-						alert("3");
-						$("#box_datepickers_warning").fadeOut("slow");
-					}
-				}*/
+				format: 'dd mmm yyyy'
 			});
 					
 			// Récupération du type de splash
@@ -404,13 +305,13 @@ class WsiBack {
 			});
 			
 			// Gestion de l'affichage de la zone "block_splash_test_active"
-			if($("#splash_active").attr("checked")==true) {
+			if($("#splash_active").attr("checked")=="checked") {
 				$("#block_splash_test_active").css("display","table-row");
 			}else{
 				$("#block_splash_test_active").css("display","none");
 			}
 			$("#splash_active").click(function() {
-				if($("#splash_active").attr("checked")==true) {
+				if($("#splash_active").attr("checked")=="checked") {
 					$("#block_splash_test_active").fadeIn("slow");
 				}else{
 					$("#block_splash_test_active").fadeOut("slow");
@@ -495,6 +396,9 @@ class WsiBack {
 			$('#splash_color').keyfilter(/[0-9a-f]/i);
 			$('#splash_image_height').keyfilter(/[\d\.]/);
 			$('#splash_image_width').keyfilter(/[\d\.]/);
+
+			// new tabs
+			$(function() {$("#tabs").tabs();});
 			
 		});
 	</script>

@@ -23,7 +23,7 @@
 					<td><?php echo __('Send infos:','wp-splash-image'); ?><br /></td>
 					<td>
 						<input type="checkbox" name="feedback_sendInfos" checked="checked" />
-						<?php echo __('(to reproduce the error locally and fix the problem)','wp-splash-image'); ?>
+						<?php echo __('(to reproduce the error locally and help me to fix the problem)','wp-splash-image'); ?>
 					</td>
 				</tr>
 			</table>
