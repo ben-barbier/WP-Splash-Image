@@ -305,19 +305,37 @@ class WsiBack {
 			});
 			
 			// Gestion de l'affichage de la zone "block_splash_test_active"
-			if($("#splash_active").attr("checked")=="checked") {
-				$("#block_splash_test_active").css("display","table-row");
-			}else{
-				$("#block_splash_test_active").css("display","none");
-			}
+			if($("#splash_active").attr("checked")=="checked") {$("#block_splash_test_active").css("display","table-row");}
+			else{$("#block_splash_test_active").css("display","none");}
 			$("#splash_active").click(function() {
-				if($("#splash_active").attr("checked")=="checked") {
-					$("#block_splash_test_active").fadeIn("slow");
-				}else{
-					$("#block_splash_test_active").fadeOut("slow");
-				}
+				if($("#splash_active").attr("checked")=="checked") {$("#block_splash_test_active").fadeIn("slow");}
+				else{$("#block_splash_test_active").fadeOut("slow");}
+			});
+
+			// Gestion de l'affichage de la zone "block_idle_time"
+			if($("#splash_test_active").attr("checked")=="checked") {$("#block_idle_time").css("display","none");}
+			else{$("#block_idle_time").css("display","table-row");}
+			$("#splash_test_active").click(function() {
+				if($("#splash_test_active").attr("checked")=="checked") {$("#block_idle_time").fadeOut("slow");}
+				else{$("#block_idle_time").fadeIn("slow");}
 			});
 			
+			// Gestion de l'affichage de la zone "block_start_date"
+			if($("#splash_test_active").attr("checked")=="checked") {$("#block_start_date").css("display","none");}
+			else{$("#block_start_date").css("display","table-row");}
+			$("#splash_test_active").click(function() {
+				if($("#splash_test_active").attr("checked")=="checked") {$("#block_start_date").fadeOut("slow");}
+				else{$("#block_start_date").fadeIn("slow");}
+			});
+
+			// Gestion de l'affichage de la zone "block_end_date"
+			if($("#splash_test_active").attr("checked")=="checked") {$("#block_end_date").css("display","none");}
+			else{$("#block_end_date").css("display","table-row");}
+			$("#splash_test_active").click(function() {
+				if($("#splash_test_active").attr("checked")=="checked") {$("#block_end_date").fadeOut("slow");}
+				else{$("#block_end_date").fadeIn("slow");}
+			});
+
 			// Activation du tooltip du feedback
 			$('#feedback_img').tooltip();
 			

@@ -16,6 +16,7 @@ class WsiCommons {
 		return array(
 				'splash_active',
 				'splash_test_active',
+				'wsi_idle_time',
 				'url_splash_image',
 				'splash_image_width',
 				'splash_image_height',
@@ -77,6 +78,23 @@ class WsiCommons {
 			}
 		}
 		return "true";
+	}
+	
+	/**
+	 * Retourne true, si la période d'inactivité de l'utilisateur a été atteinte.
+	 */
+	public static function enough_idle_to_splash($lastSplash) {
+		
+		// Si la variable n'est pas settée, c'est que l'utilisateur vient pour la 1ere fois.
+		if (!isset($lastSplash)) return true;
+		
+		$endIdle = $lastSplash + (get_option('wsi_idle_time') * 60);
+		if (time() > $endIdle) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 	
 }

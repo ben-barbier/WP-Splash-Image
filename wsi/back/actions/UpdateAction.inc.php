@@ -15,6 +15,7 @@ update_option('wsi_picture_link_url',    $_POST['wsi_picture_link_url']);
 update_option('wsi_picture_link_target', $_POST['wsi_picture_link_target']);
 update_option('wsi_type',                $_POST['wsi_type']);
 update_option('wsi_opacity',             $_POST['wsi_opacity']);
+update_option('wsi_idle_time',           ($_POST['wsi_idle_time']=='')?0:$_POST['wsi_idle_time']);
 
 // Gestion des booleans
 if ($_POST['splash_active']) {$active='true';} else {$active='false';}

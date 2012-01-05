@@ -103,6 +103,14 @@
 			</td>
 		</tr>
 		<tr>
+			<td><?php echo __('Display time','wp-splash-image'); ?>:</td>
+			<td colspan="3" style="white-space: nowrap;">
+				<input type="range" name="wsi_display_time" min="0" max="30" value="<?php echo esc_attr(get_option('wsi_display_time')); ?>" />&nbsp;
+				<?php echo __('seconds','wp-splash-image'); ?>&nbsp;
+				<?php echo __("(0 don't close automaticly the splash image)",'wp-splash-image'); ?>
+			</td>
+		</tr>
+		<tr id="block_start_date">
 			<td><?php echo __('Start date','wp-splash-image'); ?>:</td>
 			<td><input 
 				type="date" 
@@ -116,7 +124,7 @@
 				<?php echo __('Check if dates are OK.','wp-splash-image'); ?>
 			</td>
 		</tr>
-		<tr>
+		<tr id="block_end_date">
 			<td><?php echo __('End date','wp-splash-image'); ?>:</td>
 			<td><input 
 				type="date" 
@@ -126,12 +134,15 @@
 				<?php echo __('(stay empty if not required)','wp-splash-image'); ?></td>
 			<td colspan="2"></td>
 		</tr>
-		<tr>
-			<td><?php echo __('Display time','wp-splash-image'); ?>:</td>
+		<tr id="block_idle_time">
+			<td><?php echo __('Idle time','wp-splash-image'); ?>:</td>
 			<td colspan="3" style="white-space: nowrap;">
-				<input type="range" name="wsi_display_time" min="0" max="30" value="<?php echo esc_attr(get_option('wsi_display_time')); ?>" />&nbsp;
-				<?php echo __('seconds','wp-splash-image'); ?>&nbsp;
-				<?php echo __("(0 don't close automaticly the splash image)",'wp-splash-image'); ?>
+				<input
+					type="text"
+					name="wsi_idle_time"
+					size="6" maxlength="4"
+					value="<?php echo esc_attr(get_option('wsi_idle_time')); ?>" />&nbsp;
+					<?php echo __('minutes of user inactivity before re-emergence of wsi.','wp-splash-image'); ?>&nbsp;
 			</td>
 		</tr>
 	</table>

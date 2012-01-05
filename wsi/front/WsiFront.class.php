@@ -72,11 +72,19 @@ class WsiFront {
 		// Si le plugin n'est pas activé dans ses options, on ne fait rien
 		if(get_option('splash_active')!='true') return;
 		
-		// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
-		if (WsiCommons::getdate_is_in_validities_dates() == "false") return;
-		
-		// Si la Splash image a déjà été vue, on ne fait rien (sauf si on est en mode test)
-		if(($_SESSION['splash_seen']=='Yes') && (get_option('splash_test_active')!='true'))  return;
+		// Si on est pas en "mode test", on effectue quelques tests supplémentaires
+		if(get_option('splash_test_active')!='true') {
+
+			// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
+			if (WsiCommons::getdate_is_in_validities_dates() == "false") return;
+			
+ 			if(WsiCommons::enough_idle_to_splash($_SESSION['last_display'])==false) {
+	 			// On indique qu'un écran a été affiché par l'utilisateur et on arrete le traitement
+	 			$_SESSION['last_display'] = time();
+	 			return;
+			}
+			
+		}
 		
 		$url_splash_image = get_option ('url_splash_image');
 		$wsi_close_esc_function = get_option ('wsi_close_esc_function');
@@ -117,13 +125,13 @@ class WsiFront {
 			// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
 			if (WsiCommons::getdate_is_in_validities_dates() == "false") return;
 	
-			// Si la Splash image a déjà été vue, on ne fait rien
-			if($_SESSION['splash_seen']=='Yes')  return;
+ 			if(WsiCommons::enough_idle_to_splash($_SESSION['last_display'])==false) {
+ 				// On indique qu'un écran a été affiché par l'utilisateur et on arrete le traitement
+ 				$_SESSION['last_display'] = time();
+ 				return;
+ 			}
 	
 		}
-		
-		// On indique que la Splash Image a été vue
-		$_SESSION['splash_seen']='Yes';
 		
 		// Chargement des données en base
 		$url_splash_image = get_option('url_splash_image');
@@ -275,6 +283,10 @@ class WsiFront {
 		<!-- /WP Splash-Image -->
 		
 <?php 
+
+		// On indique qu'un écran a été affiché par l'utilisateur
+		$_SESSION['last_display'] = time();
+
 	}
 } 
 ?>
