@@ -28,7 +28,7 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 
 = What's next ? =
 
-* (1.9.0) Show WSI before loading the page.
+* (1.10.0) Show WSI before loading the page.
 * (2.0.0) Add "Upload picture" option.
 * (3.0.0) Manage WSI date ranges.
 
@@ -86,6 +86,11 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
  
 == Changelog ==
 
+= 1.9.0 =
+* Add "Fixed" option to fix the splashcreen to scrollbars.
+* Add "Default value" manager. 
+* Fix Background color problem.
+
 = 1.8.0 =
 * Add "Idle time" manager (before re-emergence of wsi).
 
@@ -104,7 +109,7 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
 * Refactoring.
 
 = 1.4.0 =
-* XSS Secure.
+* XSS Secure (Thanks to Julio de [Boiteaweb.fr](http://www.boiteaweb.fr/) for his help).
 * Add Security token (nonce management).
 * Fix "Parse error: syntax error, unexpected $end" message error on front end.
 * Compatible with short_open_tag disabled (php.ini).
