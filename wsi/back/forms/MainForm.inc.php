@@ -62,6 +62,15 @@
 				(<?php echo __('useful for images with transparent edges','wp-splash-image'); ?>)</td>
 		</tr>
 		<tr>
+			<td><?php echo __('Fixed mode','wp-splash-image'); ?>:</td>
+			<td><input
+				type="checkbox" 
+				name="wsi_fixed_splash" 
+				<?php if(get_option('wsi_fixed_splash')=='true') {echo("checked='checked'");} ?> />
+				<?php echo __('fix the splashcreen to scrollbars','wp-splash-image'); ?>
+				(<?php echo __('useful for images with big size','wp-splash-image'); ?>)</td>
+		</tr>
+		<tr>
 			<td><?php echo __("Splash height",'wp-splash-image'); ?>:</td>
 			<td><input
 				type="text"

@@ -190,29 +190,17 @@ class WsiBack {
 		if (!current_user_can('manage_options'))  {
 			wp_die( __("You do not have sufficient permissions to access this page.",'wp-splash-image') );
 		}
-			
-		// Mise à jour ?
-		if ($_POST ['action'] == 'update') {
-			require("actions/UpdateAction.inc.php");
-			$updated = true;
-		} else {
-			$updated = false;
-		}
-	
-		// Send Feedback ?
-		if ($_POST ['action'] == 'feedback') {
-			require("actions/FeedbackAction.inc.php");			
-			$feedbacked = true;
-		} else {
-			$feedbacked = false;
-		}
 		
-		// Uninstall ?
-		if ($_POST ['action'] == 'uninstall') {
-			require("actions/UninstallAction.inc.php");
-			$uninstalled = true;		
-		} else {
-			$uninstalled = false;
+		$updated = false;
+		$reseted = false;
+		$feedbacked = false;
+		$uninstalled = false;
+
+		switch ($_POST ['action']) {
+			case 'update'    : require("actions/UpdateAction.inc.php");    $updated = true;     break;
+			case 'reset'     : require("actions/ResetAction.inc.php");     $reseted = true;     break;
+			case 'feedback'  : require("actions/FeedbackAction.inc.php");  $feedbacked = true;  break;
+			case 'uninstall' : require("actions/UninstallAction.inc.php"); $uninstalled = true; break;
 		}
 		
 	?>
@@ -247,12 +235,25 @@ class WsiBack {
 				<?php echo __('Uninstall','wp-splash-image'); ?>
 			</div>
 		</div>
+
+		<!-- Reset -->
+		<div id="display_reset">
+			<form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>">
+				<?php wp_nonce_field('reset','nonce_reset_field'); ?>
+				<input type="hidden" name="action" value="reset" />
+				<input type="image" id="reset_img" rel="#reset" alt="<?php echo __('Reset','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/reset.png" />
+			</form>
+			<!-- Tooltip FeedBack -->
+			<div id="data_reset_img" style="display:none;"> 
+				<?php echo __('Reset','wp-splash-image'); ?>
+			</div>
+		</div>
 		
 		<!-- Information message -->
 		<?php if ($feedbacked) { ?>
-			<div id="message" class="updated fade" style="color:green;"><?php echo __("Thank's for your feedback...",'wp-splash-image'); ?></div>
+			<div id="message" class="updated fade"><?php echo __("Thank's for your feedback...",'wp-splash-image'); ?></div>
 		<?php } else if ($updated) { ?>
-			<div id="message" class="updated fade" style="color:green;"><?php echo __('Options Updated...','wp-splash-image'); ?></div>
+			<div id="message" class="updated fade"><?php echo __('Options Updated...','wp-splash-image'); ?></div>
 		<?php } ?>
 	
 		<!-- ------ -->
@@ -312,30 +313,29 @@ class WsiBack {
 				else{$("#block_splash_test_active").fadeOut("slow");}
 			});
 
-			// Gestion de l'affichage de la zone "block_idle_time"
-			if($("#splash_test_active").attr("checked")=="checked") {$("#block_idle_time").css("display","none");}
-			else{$("#block_idle_time").css("display","table-row");}
+			// Gestion de l'affichage des zones "block_start_date", "block_end_date" et "block_idle_time"
+			// En fonction de "splash_test_active"
+			if($("#splash_test_active").attr("checked")=="checked") {
+				$("#block_start_date").css("display","none");
+				$("#block_end_date").css("display","none");
+				$("#block_idle_time").css("display","none");
+			}else{
+				$("#block_start_date").css("display","table-row");
+				$("#block_end_date").css("display","table-row");
+				$("#block_idle_time").css("display","table-row");
+			}
 			$("#splash_test_active").click(function() {
-				if($("#splash_test_active").attr("checked")=="checked") {$("#block_idle_time").fadeOut("slow");}
-				else{$("#block_idle_time").fadeIn("slow");}
+				if($("#splash_test_active").attr("checked")=="checked") {
+					$("#block_start_date").fadeOut("slow");
+					$("#block_end_date").fadeOut("slow");
+					$("#block_idle_time").fadeOut("slow");
+				}else{
+					$("#block_start_date").fadeIn("slow");
+					$("#block_end_date").fadeIn("slow");
+					$("#block_idle_time").fadeIn("slow");
+				}
 			});
 			
-			// Gestion de l'affichage de la zone "block_start_date"
-			if($("#splash_test_active").attr("checked")=="checked") {$("#block_start_date").css("display","none");}
-			else{$("#block_start_date").css("display","table-row");}
-			$("#splash_test_active").click(function() {
-				if($("#splash_test_active").attr("checked")=="checked") {$("#block_start_date").fadeOut("slow");}
-				else{$("#block_start_date").fadeIn("slow");}
-			});
-
-			// Gestion de l'affichage de la zone "block_end_date"
-			if($("#splash_test_active").attr("checked")=="checked") {$("#block_end_date").css("display","none");}
-			else{$("#block_end_date").css("display","table-row");}
-			$("#splash_test_active").click(function() {
-				if($("#splash_test_active").attr("checked")=="checked") {$("#block_end_date").fadeOut("slow");}
-				else{$("#block_end_date").fadeIn("slow");}
-			});
-
 			// Activation du tooltip du feedback
 			$('#feedback_img').tooltip();
 			
@@ -344,6 +344,9 @@ class WsiBack {
 			
 			// Activation du tooltip de "Uninstall"
 			$('#uninstall_img').tooltip();
+
+			// Activation du tooltip de "Reset"
+			$('#reset_img').tooltip();
 			
 			function reset_validator() {
 				// Activation du validator du formulaire de feedback

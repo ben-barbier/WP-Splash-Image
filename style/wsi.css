@@ -38,14 +38,14 @@
 	margin-left:200px;
 }
 
-#display_uninstall {
+#display_feedback, #display_reset, #display_uninstall {
 	float:left;
 	margin-top:-35px;
 	margin-left:20px;
 }
 
-#display_feedback {
-	float:left;
-	margin-top:-35px;
-	margin-left:20px;
+#message {
+	color: green;
+	padding: 10px;
+	font-size: 14px;
 }

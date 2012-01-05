@@ -88,6 +88,7 @@ class WsiFront {
 		
 		$url_splash_image = get_option ('url_splash_image');
 		$wsi_close_esc_function = get_option ('wsi_close_esc_function');
+		$wsi_fixed_splash = get_option ('wsi_fixed_splash');
 		
 	?>
 	
@@ -97,12 +98,13 @@ class WsiFront {
 		$j(document).ready(function () {
 			$j("#splashLink").overlay({
 				mask: {
-					color: '<?php echo get_option('splash_color'); ?>',
+					color: '#<?php echo get_option('splash_color'); ?>',
 					opacity: <?php echo (get_option('wsi_opacity')/100); ?> 
 				},
 				load: true // Lance la Splash Image à l'ouverture			
 				<?php if ($wsi_close_esc_function=='true') { echo(',closeOnClick: false'); } ?>
-				
+				<?php if ($wsi_fixed_splash=='true')  { echo(',fixed: true');  } ?>
+				<?php if ($wsi_fixed_splash=='false') { echo(',fixed: false'); } ?>
 			});
 		});
 		</script>

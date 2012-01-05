@@ -18,20 +18,14 @@ update_option('wsi_opacity',             $_POST['wsi_opacity']);
 update_option('wsi_idle_time',           ($_POST['wsi_idle_time']=='')?0:$_POST['wsi_idle_time']);
 
 // Gestion des booleans
-if ($_POST['splash_active']) {$active='true';} else {$active='false';}
-update_option('splash_active', $active);
-if ($_POST['splash_test_active']) {$test_active='true';} else {$test_active='false';}
-update_option('splash_test_active', $test_active);
-if ($_POST['wsi_close_esc_function']) {$wsi_close_esc_function='true';} else {$wsi_close_esc_function='false';}
-update_option('wsi_close_esc_function', $wsi_close_esc_function);
-if ($_POST['wsi_hide_cross']) {$wsi_hide_cross='true';} else {$wsi_hide_cross='false';}
-update_option('wsi_hide_cross', $wsi_hide_cross);
-if ($_POST['wsi_disable_shadow_border']) {$wsi_disable_shadow_border='true';} else {$wsi_disable_shadow_border='false';}
-update_option('wsi_disable_shadow_border', $wsi_disable_shadow_border);
-if ($_POST['wsi_youtube_autoplay']) {$wsi_youtube_autoplay='true';} else {$wsi_youtube_autoplay='false';}
-update_option('wsi_youtube_autoplay', $wsi_youtube_autoplay);
-if ($_POST['wsi_youtube_loop']) {$wsi_youtube_loop='true';} else {$wsi_youtube_loop='false';}
-update_option('wsi_youtube_loop', $wsi_youtube_loop);
+update_option('splash_active',             ($_POST['splash_active'])?'true':'false');
+update_option('splash_test_active',        ($_POST['splash_test_active'])?'true':'false');
+update_option('wsi_close_esc_function',    ($_POST['wsi_close_esc_function'])?'true':'false');
+update_option('wsi_hide_cross',            ($_POST['wsi_hide_cross'])?'true':'false');
+update_option('wsi_disable_shadow_border', ($_POST['wsi_disable_shadow_border'])?'true':'false');
+update_option('wsi_youtube_autoplay',      ($_POST['wsi_youtube_autoplay'])?'true':'false');
+update_option('wsi_youtube_loop',          ($_POST['wsi_youtube_loop'])?'true':'false');
+update_option('wsi_fixed_splash',          ($_POST['wsi_fixed_splash'])?'true':'false');
 
 // Valeurs des onglets
 update_option('wsi_youtube',     $_POST['wsi_youtube']);
