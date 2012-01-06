@@ -206,8 +206,6 @@ class WsiBack {
 	?>
 	
 	<div class="wrap">
-	
-		<h2>WP Splash Image</h2>
 		
 		<!-- Logo Info -->
 		<div id="display_info">
@@ -249,11 +247,13 @@ class WsiBack {
 			</div>
 		</div>
 		
+		<h2>WP Splash Image</h2>
+		
 		<!-- Information message -->
 		<?php if ($feedbacked) { ?>
-			<div id="message" class="updated fade"><?php echo __("Thank's for your feedback...",'wp-splash-image'); ?></div>
+			<div id="message" class="updated fade"><p><strong><?php echo __("Thank's for your feedback...",'wp-splash-image'); ?></p></strong></div>
 		<?php } else if ($updated) { ?>
-			<div id="message" class="updated fade"><?php echo __('Options Updated...','wp-splash-image'); ?></div>
+			<div id="message" class="updated fade"><p><strong><?php echo __('Options Updated...','wp-splash-image'); ?></p></strong></div>
 		<?php } ?>
 	
 		<!-- ------ -->

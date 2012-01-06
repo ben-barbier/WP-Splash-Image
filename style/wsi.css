@@ -33,19 +33,23 @@
 }
 
 #display_info {
-	float:left;
-	margin-top:-35px;
-	margin-left:200px;
+	margin-left:190px;
 }
 
-#display_feedback, #display_reset, #display_uninstall {
-	float:left;
-	margin-top:-35px;
-	margin-left:20px;
+#display_feedback {
+	margin-left:230px;
 }
 
-#message {
-	color: green;
-	padding: 10px;
-	font-size: 14px;
+#display_uninstall {
+	margin-left:270px;
 }
+
+#display_reset {
+	margin-left:310px;
+}
+
+#display_info, #display_feedback, #display_uninstall, #display_reset {
+	margin-top:5px;
+	position: absolute;	
+}
+

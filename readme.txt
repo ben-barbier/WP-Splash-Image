@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: Splash, Image, LightBox, Picture, Video, HTML, Start, Open
 Requires at least: 3.1
 Tested up to: 3.3.1
-Stable tag: 1.9.0
+Stable tag: 1.9.1
  
 WP Splash Image is a plugin for Wordpress to display picture, video or html code with a lightbox effect at the opening of the blog.
  
@@ -29,18 +29,17 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 = What's next ? =
 
 * (1.10.0) Show WSI before loading the page.
-* (2.0.0) Add "Upload picture" option.
-* (3.0.0) Manage WSI date ranges.
+* (2.0.0)  Add "Upload picture" option.
+* (3.0.0)  Manage WSI date ranges.
 
 Others:
 
-* Update Documentation
-* Add option for "exclude" some pages (for flash conflict for exemple)
+* Update Documentation.
+* Add option for "exclude" some pages (for flash conflict for exemple).
 * Add an information box indicating whether a new version of WSI exists.
-* Customize the borders (facebook style, ...)
-* Manage reporting (number of views, number of clicks, ...)
-* Improve compatibility with akismet infos.
-* Add an event system to know when to start WSI (ex: when site is loading, when comment is send ...)
+* Customize the borders (facebook style, ...).
+* Manage reporting (number of views, number of clicks, ...).
+* Add an event system to know when to start WSI (ex: when site is loading, when comment is send ...).
 
 = Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
 
@@ -86,6 +85,9 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
  
 == Changelog ==
 
+= 1.9.1 =
+* Improve compatibility with wordpress infos messages.
+
 = 1.9.0 =
 * Add "Fixed" option to fix the splashcreen to scrollbars.
 * Add "Default value" manager. 
@@ -109,7 +111,7 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
 * Refactoring.
 
 = 1.4.0 =
-* XSS Secure (Thanks to Julio de [Boiteaweb.fr](http://www.boiteaweb.fr/) for his help).
+* XSS Secure - Thanks to Julio ([Boiteaweb.fr](http://www.boiteaweb.fr/)) for his help.
 * Add Security token (nonce management).
 * Fix "Parse error: syntax error, unexpected $end" message error on front end.
 * Compatible with short_open_tag disabled (php.ini).
