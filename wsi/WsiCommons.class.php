@@ -85,6 +85,8 @@ class WsiCommons {
 	 */
 	public static function getdate_is_in_validities_dates() {
 	
+		$siBean = SplashImageManager::getInstance()->get();
+		
 		$today = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
 	
 		// En cas de modication des paramètres dans la partie admin
@@ -103,14 +105,14 @@ class WsiCommons {
 			}
 		// Sinon (front office)
 		} else {
-			if (get_option('datepicker_start')!='') {
-				$dpStart = strtotime(get_option('datepicker_start'));
+			if ($siBean->getDatepicker_start()!='') {
+				$dpStart = strtotime($siBean->getDatepicker_start());
 				if ($today < $dpStart) {
 					return "false";
 				}
 			}
-			if (get_option('datepicker_end')!='') {
-				$dpEnd = strtotime(get_option('datepicker_end'));
+			if ($siBean->getDatepicker_end()!='') {
+				$dpEnd = strtotime($siBean->getDatepicker_end());
 				if ($today > $dpEnd) {
 					return "false";
 				}
@@ -124,10 +126,12 @@ class WsiCommons {
 	 */
 	public static function enough_idle_to_splash($lastSplash) {
 		
+		$siBean = SplashImageManager::getInstance()->get();
+		
 		// Si la variable n'est pas settée, c'est que l'utilisateur vient pour la 1ere fois.
 		if (!isset($lastSplash)) return true;
 		
-		$endIdle = $lastSplash + (get_option('wsi_idle_time') * 60);
+		$endIdle = $lastSplash + ($siBean->getWsi_idle_time() * 60);
 		if (time() > $endIdle) {
 			return true;
 		} else {
