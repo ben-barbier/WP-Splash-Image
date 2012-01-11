@@ -1,4 +1,3 @@
-<?php $siBean = new SplashImageBean; ?>
 <div id="tab_video">
 	<table>
 		<tr id="box_youtube" class="box_type">

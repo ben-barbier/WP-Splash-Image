@@ -65,7 +65,7 @@ class SplashImageManager {
 	 */
 	public function get() {
 		
-		if (!isset($splashImageBean)) {
+		if (!isset($this->splashImageBean)) {
 			
 			$splashImageBean = new SplashImageBean();
 			
@@ -96,8 +96,10 @@ class SplashImageManager {
 			$splashImageBean->setWsi_swf(                   esc_attr(get_option('wsi_swf')));
 			$splashImageBean->setWsi_html(                  esc_attr(get_option('wsi_html')));
 			
+			$this->splashImageBean = $splashImageBean;
+			
 		}
-		return $splashImageBean;
+		return $this->splashImageBean;
 	}
 	
 	/**
