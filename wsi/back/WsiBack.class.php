@@ -204,6 +204,8 @@ class WsiBack {
 			case 'uninstall' : require("actions/UninstallAction.inc.php"); $uninstalled = true; break;
 		}
 		
+		$siBean = SplashImageManager::getInstance()->get();
+		
 	?>
 	
 	<div class="wrap">
@@ -282,12 +284,12 @@ class WsiBack {
 			<?php if ($_POST['wsi_type'] != "") { ?>
 				var wsi_type = '<?php echo $_POST['wsi_type']; ?>';
 				<?php $wsi_type = $_POST['wsi_type']; ?>
-			<?php } else if(get_option('wsi_type') != "") { ?>	
-				var wsi_type = '<?php echo esc_attr(get_option('wsi_type')); ?>';
-				<?php $wsi_type = esc_attr(get_option('wsi_type')); ?>
+			<?php } else if($siBean->getWsi_type() != "") { ?>	
+				var wsi_type = '<?php echo $siBean->getWsi_type(); ?>';
+				<?php $wsi_type = $siBean->getWsi_type(); ?>
 			<?php } else { ?>
 				var wsi_type = 'picture';
-				<?php $wsi_type = esc_attr(get_option('wsi_type')); ?>
+				<?php $wsi_type = $siBean->getWsi_type(); ?>
 			<?php } ?>
 			
 			// Chargement des onglets

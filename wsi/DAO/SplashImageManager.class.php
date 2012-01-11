@@ -120,6 +120,15 @@ class SplashImageManager {
 		}
 	}
 	
+	/**
+	 * Supprime les options du plugin.
+	 * TODO: use this method in UninstallAction 
+	 */
+	public function delete() {
+		foreach (WsiCommons::getOptionsList() as $option) {
+			delete_option($option);
+		}
+	}
 	
 }
 
