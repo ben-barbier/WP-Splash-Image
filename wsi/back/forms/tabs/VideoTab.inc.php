@@ -13,14 +13,14 @@
 					type="checkbox" 
 					name="wsi_youtube_autoplay" 
 					id="wsi_youtube_autoplay" 
-					<?php if($siBean->getWsi_youtube_autoplay()=='true') {echo("checked='checked'");} ?> />
+					<?php if($siBean->isWsi_youtube_autoplay()=='true') {echo("checked='checked'");} ?> />
 				&nbsp;&nbsp;&nbsp;
 				<span><?php echo __('Loop'); ?>:</span>
 				<input 
 					type="checkbox" 
 					name="wsi_youtube_loop" 
 					id="wsi_youtube_loop" 
-					<?php if($siBean->getWsi_youtube_loop()=='true') {echo("checked='checked'");} ?> />
+					<?php if($siBean->isWsi_youtube_loop()=='true') {echo("checked='checked'");} ?> />
 			</td>
 		</tr>
 		<tr id="box_yahoo" class="box_type">

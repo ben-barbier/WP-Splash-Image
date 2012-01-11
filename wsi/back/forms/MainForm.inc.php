@@ -9,7 +9,7 @@
 				type="checkbox" 
 				name="splash_active" 
 				id="splash_active" 
-				<?php if($siBean->getSsplash_active()=='true') {echo("checked='checked'");} ?> /></td>
+				<?php if($siBean->isSplash_active()=='true') {echo("checked='checked'");} ?> /></td>
 		</tr>
 		<tr id="block_splash_test_active">
 			<td><?php echo __('Test mode activated:','wp-splash-image'); ?></td>
@@ -17,7 +17,7 @@
 				type="checkbox" 
 				name="splash_test_active" 
 				id="splash_test_active" 
-				<?php if($siBean->getSplash_test_active()=='true') {echo("checked='checked'");} ?> />
+				<?php if($siBean->isSplash_test_active()=='true') {echo("checked='checked'");} ?> />
 				<?php echo __('(for tests only, open splash image whenever)','wp-splash-image'); ?></td>
 		</tr>
 	</table>	
@@ -43,7 +43,7 @@
 			<td><input 
 				type="checkbox" 
 				name="wsi_close_esc_function" 
-				<?php if($siBean->getWsi_close_esc_function()=='true') {echo("checked='checked'");} ?> />
+				<?php if($siBean->isWsi_close_esc_function()=='true') {echo("checked='checked'");} ?> />
 				(<?php echo __('if you click on background','wp-splash-image'); ?>)</td>
 		</tr>
 		<tr>
@@ -51,14 +51,14 @@
 			<td><input 
 				type="checkbox" 
 				name="wsi_hide_cross" 
-				<?php if($siBean->getWsi_hide_cross()=='true') {echo("checked='checked'");} ?> /></td>
+				<?php if($siBean->isWsi_hide_cross()=='true') {echo("checked='checked'");} ?> /></td>
 		</tr>
 		<tr>
 			<td><?php echo __('Disable shadow border','wp-splash-image'); ?>:</td>
 			<td><input
 				type="checkbox" 
 				name="wsi_disable_shadow_border" 
-				<?php if($siBean->getWsi_disable_shadow_border()=='true') {echo("checked='checked'");} ?> />
+				<?php if($siBean->isWsi_disable_shadow_border()=='true') {echo("checked='checked'");} ?> />
 				(<?php echo __('useful for images with transparent edges','wp-splash-image'); ?>)</td>
 		</tr>
 		<tr>
@@ -66,7 +66,7 @@
 			<td><input
 				type="checkbox" 
 				name="wsi_fixed_splash" 
-				<?php if($siBean->getWsi_fixed_splash()=='true') {echo("checked='checked'");} ?> />
+				<?php if($siBean->isWsi_fixed_splash()=='true') {echo("checked='checked'");} ?> />
 				<?php echo __('fix the splashcreen to scrollbars','wp-splash-image'); ?>
 				(<?php echo __('useful for images with big size','wp-splash-image'); ?>)</td>
 		</tr>
