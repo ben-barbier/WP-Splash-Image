@@ -11,6 +11,9 @@ class WsiFront {
 	 */
 	private static $_instance = null;
 	private function __construct() {}
+	/**
+	 * @return WsiFront
+	 */
 	public static function getInstance() {
 		if(is_null(self::$_instance)) {
 			self::$_instance = new WsiFront();

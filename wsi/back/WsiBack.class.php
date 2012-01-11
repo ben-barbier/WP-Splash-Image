@@ -11,6 +11,9 @@ class WsiBack {
 	 */
 	private static $_instance = null;
 	private function __construct() {}
+	/**
+	 * @return WsiBack
+	 */
 	public static function getInstance() {
 		if(is_null(self::$_instance)) {
 			self::$_instance = new WsiBack();
@@ -173,9 +176,7 @@ class WsiBack {
 		}
 		$systemInfos.= "\n";
 		$systemInfos.= "-- Paramétrage WSI --\n";
-		foreach (WsiCommons::getOptionsList() as $option) {
-			$systemInfos.= $option.": ".get_option($option)."\n";
-		}
+		$systemInfos.= SplashImageManager::getInstance()->getInfos();
 			
 		$systemInfos.= "</pre>";
 		return $systemInfos; 
