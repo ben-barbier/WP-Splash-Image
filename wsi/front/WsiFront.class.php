@@ -104,9 +104,9 @@ class WsiFront {
 					opacity: <?php echo (get_option('wsi_opacity')/100); ?> 
 				},
 				load: true // Lance la Splash Image à l'ouverture			
-				<?php if ($siBean->getWsi_close_esc_function()=='true') { echo(',closeOnClick: false'); } ?>
-				<?php if ($siBean->getWsi_fixed_splash()=='true')  { echo(',fixed: true');  } ?>
-				<?php if ($siBean->getWsi_fixed_splash()=='false') { echo(',fixed: false'); } ?>
+				<?php if ($siBean->isWsi_close_esc_function()=='true') { echo(',closeOnClick: false'); } ?>
+				<?php if ($siBean->isWsi_fixed_splash()=='true')  { echo(',fixed: true');  } ?>
+				<?php if ($siBean->isWsi_fixed_splash()=='false') { echo(',fixed: false'); } ?>
 			});
 		});
 		</script>
@@ -147,7 +147,7 @@ class WsiFront {
 		<div class="simple_overlay" style="text-align:center;color:#FFFFFF;margin-top:15px;height:<?php echo $siBean->getSplash_image_height(); ?>px;width:<?php echo $siBean->getSplash_image_width(); ?>px;" id="miesSPLASH">
 			
 	<?php
-		switch ($siBean->isWsi_type()) {
+		switch ($siBean->getWsi_type()) {
 	    case "picture": ?>
 	
 			<?php if($siBean->getWsi_picture_link_url()!="") { echo ('<a href="'.$siBean->getWsi_picture_link_url().'" target="_'.$siBean->getWsi_picture_link_target().'">'); } ?>
