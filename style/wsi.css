@@ -44,11 +44,20 @@
 	margin-left:270px;
 }
 
-#display_reset {
+#display_github {
 	margin-left:310px;
 }
 
-#display_info, #display_feedback, #display_uninstall, #display_reset {
+#display_reset {
+	margin-left:350px;
+}
+
+#github_img {
+	height:32px;
+	width:32px;
+}
+
+#display_info, #display_feedback, #display_uninstall, #display_github, #display_reset {
 	margin-top:5px;
 	position: absolute;	
 }

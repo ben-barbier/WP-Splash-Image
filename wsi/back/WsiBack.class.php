@@ -234,7 +234,7 @@ class WsiBack {
 			</div>
 		</div>
 
-		<!-- Reset -->
+		<!-- Logo Reset -->
 		<div id="display_reset">
 			<form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>">
 				<?php wp_nonce_field('reset','nonce_reset_field'); ?>
@@ -244,6 +244,17 @@ class WsiBack {
 			<!-- Tooltip FeedBack -->
 			<div id="data_reset_img" style="display:none;"> 
 				<?php echo __('Reset','wp-splash-image'); ?>
+			</div>
+		</div>
+		
+		<!-- Logo GitHub -->
+		<div id="display_github">
+			<a href="https://github.com/Agent-22/WP-Splash-Image" target="_blank">
+				<img id="github_img" rel="#github" alt="<?php echo __('GitHub','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/Octocat.png" />
+			</a>
+			<!-- Tooltip FeedBack -->
+			<div id="data_github_img" style="display:none;"> 
+				<?php echo __('Fork me on GitHub','wp-splash-image'); ?>
 			</div>
 		</div>
 		
@@ -345,6 +356,9 @@ class WsiBack {
 			// Activation du tooltip de "Uninstall"
 			$('#uninstall_img').tooltip();
 
+			// Activation du tooltip de "GitHub"
+			$('#github_img').tooltip();
+			
 			// Activation du tooltip de "Reset"
 			$('#reset_img').tooltip();
 			
