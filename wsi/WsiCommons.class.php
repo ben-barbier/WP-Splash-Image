@@ -47,40 +47,6 @@ class WsiCommons {
 	}
 	
 	/**
-	 * Retourne une map avec en clef, les options de WSI et en valeur, les valeurs par défaut.
-	 */
-	public static function getDefaultValues() {
-		return array(
-				'splash_active'             => 'true',
-				'splash_test_active'        => 'false',
-				'wsi_idle_time'             => '30',
-				'url_splash_image'          => '',
-				'splash_image_width'        => '400',
-				'splash_image_height'       => '400',
-				'splash_color'              => '000000',
-				'datepicker_start'          => '',
-				'datepicker_end'            => '',
-				'wsi_display_time'          => '5',
-				'wsi_fixed_splash'          => 'true',
-				'wsi_picture_link_url'      => '',
-				'wsi_picture_link_target'   => '',
-				'wsi_close_esc_function'    => 'false',
-				'wsi_hide_cross'            => 'false',
-				'wsi_disable_shadow_border' => 'false',
-				'wsi_type'                  => 'picture',
-				'wsi_opacity'               => '75',
-				'wsi_youtube'               => '',
-				'wsi_youtube_autoplay'      => 'true',
-				'wsi_youtube_loop'          => 'false',
-				'wsi_yahoo'                 => '',
-				'wsi_dailymotion'           => '',
-				'wsi_metacafe'              => '',
-				'wsi_swf'                   => '',
-				'wsi_html'                  => ''
-		);
-	}
-	
-	/**
 	 * Si la Splash Image n'est pas dans sa plage de validité, on retourne false (sinon true)
 	 */
 	public static function getdate_is_in_validities_dates() {
