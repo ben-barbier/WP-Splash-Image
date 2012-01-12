@@ -21,10 +21,4 @@ foreach($list_options as $option) {
 }
 $uninstalled_message .= '</p>';
 
-// Find uninstall URL
-$deactivate_url = 'plugins.php?action=deactivate&plugin=wsi%2Fwp-splash-image.php&plugin_status=all&paged=1';
-if(function_exists('wp_nonce_url')) {
-	$deactivate_url = wp_nonce_url($deactivate_url, 'deactivate-plugin_wsi/wp-splash-image.php');
-}
-
 ?>
