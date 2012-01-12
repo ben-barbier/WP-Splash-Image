@@ -8,7 +8,7 @@ $list_options = WsiCommons::getOptionsList();
 
 $uninstalled_message .= '<p>';
 foreach($list_options as $option) {
-	$delete_option = delete_option($option);
+	$delete_option = SplashImageManager::getInstance()->delete($option);
 	if($delete_option) {
 		$uninstalled_message .= '<font color="green">';
 		$uninstalled_message .= sprintf(__('Setting Key \'%s\' has been deleted.', 'wp-splash-image'), "<strong><em>{$option}</em></strong>");
