@@ -406,8 +406,8 @@ class WsiBack {
 			// Fill Picture size
 			$("#fill_picture_size_button").click(function() {
 				$("#img_splash_image").attr("src", $("#url_splash_image").val());
-				$("#splash_image_height").val($("#img_splash_image").attr("height"));
-				$("#splash_image_width").val($("#img_splash_image").attr("width"));
+				$("#splash_image_height").val($("#img_splash_image").height());
+				$("#splash_image_width").val($("#img_splash_image").width());
 			});
 
 			// Splash Color field management
