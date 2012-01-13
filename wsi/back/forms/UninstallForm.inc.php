@@ -20,6 +20,8 @@
 					<td valign="top" style="color: black;">
 						<ol style="height:200px;overflow:auto;padding-left:40px">
 						<?php
+							// Liste des options qui seront supprimées
+							$list_options = WsiCommons::getOptionsList();
 							foreach($list_options as $option) {
 								echo '<li>'.$option.'</li>'."\n";
 							}

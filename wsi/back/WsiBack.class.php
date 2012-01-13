@@ -11,6 +11,9 @@ class WsiBack {
 	 */
 	private static $_instance = null;
 	private function __construct() {}
+	/**
+	 * @return WsiBack
+	 */
 	public static function getInstance() {
 		if(is_null(self::$_instance)) {
 			self::$_instance = new WsiBack();
@@ -173,9 +176,7 @@ class WsiBack {
 		}
 		$systemInfos.= "\n";
 		$systemInfos.= "-- Paramétrage WSI --\n";
-		foreach (WsiCommons::getOptionsList() as $option) {
-			$systemInfos.= $option.": ".get_option($option)."\n";
-		}
+		$systemInfos.= SplashImageManager::getInstance()->getInfos();
 			
 		$systemInfos.= "</pre>";
 		return $systemInfos; 
@@ -202,6 +203,8 @@ class WsiBack {
 			case 'feedback'  : require("actions/FeedbackAction.inc.php");  $feedbacked = true;  break;
 			case 'uninstall' : require("actions/UninstallAction.inc.php"); $uninstalled = true; break;
 		}
+		
+		$siBean = SplashImageManager::getInstance()->get();
 		
 	?>
 	
@@ -292,12 +295,12 @@ class WsiBack {
 			<?php if ($_POST['wsi_type'] != "") { ?>
 				var wsi_type = '<?php echo $_POST['wsi_type']; ?>';
 				<?php $wsi_type = $_POST['wsi_type']; ?>
-			<?php } else if(get_option('wsi_type') != "") { ?>	
-				var wsi_type = '<?php echo esc_attr(get_option('wsi_type')); ?>';
-				<?php $wsi_type = esc_attr(get_option('wsi_type')); ?>
+			<?php } else if($siBean->getWsi_type() != "") { ?>	
+				var wsi_type = '<?php echo $siBean->getWsi_type(); ?>';
+				<?php $wsi_type = $siBean->getWsi_type(); ?>
 			<?php } else { ?>
 				var wsi_type = 'picture';
-				<?php $wsi_type = esc_attr(get_option('wsi_type')); ?>
+				<?php $wsi_type = $siBean->getWsi_type(); ?>
 			<?php } ?>
 			
 			// Chargement des onglets
@@ -417,8 +420,8 @@ class WsiBack {
 			// Fill Picture size
 			$("#fill_picture_size_button").click(function() {
 				$("#img_splash_image").attr("src", $("#url_splash_image").val());
-				$("#splash_image_height").val($("#img_splash_image").attr("height"));
-				$("#splash_image_width").val($("#img_splash_image").attr("width"));
+				$("#splash_image_height").val($("#img_splash_image").height());
+				$("#splash_image_width").val($("#img_splash_image").width());
 			});
 
 			// Splash Color field management
