@@ -264,11 +264,9 @@ class WsiBack {
 		<h2>WP Splash Image</h2>
 		
 		<!-- Information message -->
-		<?php if ($feedbacked) { ?>
-			<div id="message" class="updated fade"><p><strong><?php echo __("Thank's for your feedback...",'wp-splash-image'); ?></p></strong></div>
-		<?php } else if ($updated) { ?>
-			<div id="message" class="updated fade"><p><strong><?php echo __('Options Updated...','wp-splash-image'); ?></p></strong></div>
-		<?php } ?>
+		<?php if ($feedbacked) { WsiCommons::showMessage(__("Thank's for your feedback...",'wp-splash-image')); } ?>
+		<?php if ($updated) { WsiCommons::showMessage(__('Options Updated...','wp-splash-image')); } ?>
+		<?php if (WsiCommons::has_a_new_version()) { WsiCommons::showMessage(__('New version...','wp-splash-image')); } ?>
 	
 		<!-- ------ -->
 		<!-- Forms  -->
