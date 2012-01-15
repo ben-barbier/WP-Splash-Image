@@ -28,9 +28,9 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 
 = What's next ? =
 
-* (1.10.0) Show WSI before loading the page.
-* (2.0.0)  Add "Upload picture" option.
-* (3.0.0)  Manage WSI date ranges.
+* (2.1.0) Show WSI before loading the page.
+* (3.0.0) Add "Upload picture" option.
+* (3.0.0) Manage WSI date ranges.
 
 Others:
 
