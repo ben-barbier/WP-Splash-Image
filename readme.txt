@@ -89,6 +89,7 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
 * Centralize Data access (DAO layer)
 * Fix uninstall problem (on last step)
 * Add an information box indicating whether a new version of WSI exists.
+* Fix HTML problem (leave escape carac filter).
 
 = 1.9.1 =
 * Improve compatibility with wordpress infos messages.
