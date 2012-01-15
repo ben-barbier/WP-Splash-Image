@@ -1,7 +1,7 @@
 === WP Splash Image ===
 Contributors: agent022
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C
-Tags: Splash, Image, LightBox, Picture, Video, HTML, Start, Open
+Tags: Splash, Image, LightBox, Picture, Video, HTML, Start, Open, Screen, Welcome, Message
 Requires at least: 3.1
 Tested up to: 3.3.1
 Stable tag: 2.0.0
@@ -36,7 +36,6 @@ Others:
 
 * Update Documentation.
 * Add option for "exclude" some pages (for flash conflict for exemple).
-* Add an information box indicating whether a new version of WSI exists.
 * Customize the borders (facebook style, ...).
 * Manage reporting (number of views, number of clicks, ...).
 * Add an event system to know when to start WSI (ex: when site is loading, when comment is send ...).
@@ -87,7 +86,9 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
 
 = 2.0.0 =
 * Start GitHub source management
-* Centralize Data access
+* Centralize Data access (DAO layer)
+* Fix uninstall problem (on last step)
+* Add an information box indicating whether a new version of WSI exists.
 
 = 1.9.1 =
 * Improve compatibility with wordpress infos messages.

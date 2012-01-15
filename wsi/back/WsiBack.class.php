@@ -266,7 +266,7 @@ class WsiBack {
 		<!-- Information message -->
 		<?php if ($feedbacked) { WsiCommons::showMessage(__("Thank's for your feedback...",'wp-splash-image')); } ?>
 		<?php if ($updated) { WsiCommons::showMessage(__('Options Updated...','wp-splash-image')); } ?>
-		<?php if (WsiCommons::has_a_new_version()) { WsiCommons::showMessage(__('New version...','wp-splash-image')); } ?>
+		<?php if (WsiCommons::has_a_new_version()) { WsiCommons::showMessage(__('A new version of "WP Splash Image" is out !','wp-splash-image')); } ?>
 	
 		<!-- ------ -->
 		<!-- Forms  -->

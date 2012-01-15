@@ -110,8 +110,23 @@ class WsiCommons {
 	 * @return boolean, true if a new version of WSI exists
 	 */
 	public static function has_a_new_version() {
-		//TODO: implement...
+		
+		$compare = version_compare(
+				WsiCommons::getCurrentPluginVersion(),
+				WsiCommons::getLastestPluginVersion());
+		
+		if ($compare == -1) {
+			// Use old version
+			return true;
+		} else if ($compare == 0) {
+			// Use last Version
+			return false;
+		} else if ($compare == 1) {
+			// Use beta version
+			return false; 
+		}
 		return false;
+		
 	}
 	
 	/**
@@ -124,8 +139,7 @@ class WsiCommons {
 	 * the red message style. If false, the message is a status
 	 * message, so use the yellow information message style.
 	 */
-	public static function showMessage($message, $errormsg = false)
-	{
+	public static function showMessage($message, $errormsg = false) {
 		if ($errormsg) {
 			echo '<div id="message" class="error">';
 		}
@@ -133,6 +147,33 @@ class WsiCommons {
 			echo '<div id="message" class="updated fade">';
 		}
 		echo "<p><strong>$message</strong></p></div>";
+	}
+	
+	/**
+	 * Returns current plugin version.
+	 * The information come from the wp-splash-image.php header comment.
+	 *
+	 * @return string current Plugin version
+	 */
+	function getCurrentPluginVersion() {
+
+		$plugin_data = get_plugin_data( WP_PLUGIN_DIR."/wsi/wp-splash-image.php" );
+		$plugin_version = $plugin_data['Version'];
+		return $plugin_version;
+		
+	}
+	
+	/**
+	 * Returns lastest plugin version.
+	 *
+	 * @return string lastest Plugin version
+	 */
+	public static function getLastestPluginVersion() {
+		
+		$current = get_site_transient( 'update_plugins' );
+		$r = $current->response[ "wsi/wp-splash-image.php" ];
+		return $r->new_version;
+		
 	}
 	
 }
