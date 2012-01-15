@@ -94,7 +94,8 @@ class SplashImageManager {
 			$splashImageBean->setWsi_dailymotion(           esc_attr(get_option('wsi_dailymotion')));
 			$splashImageBean->setWsi_metacafe(              esc_attr(get_option('wsi_metacafe')));
 			$splashImageBean->setWsi_swf(                   esc_attr(get_option('wsi_swf')));
-			$splashImageBean->setWsi_html(                  esc_attr(get_option('wsi_html')));
+			//No escape for HTML values.
+			$splashImageBean->setWsi_html(                  get_option('wsi_html'));
 			
 			$this->splashImageBean = $splashImageBean;
 			
