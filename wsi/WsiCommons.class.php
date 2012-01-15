@@ -6,6 +6,8 @@
  */
 class WsiCommons {
 
+	private static $pluginMainFile = "wsi/wp-splash-image.php";
+	
 	/**
 	 * URL du plugin
 	 */
@@ -154,10 +156,25 @@ class WsiCommons {
 	 */
 	public static function getUpdateURL() {
 		
-		$pluginFile = "wsi/wp-splash-image.php";
-		$update_url = wp_nonce_url( self_admin_url('update.php?action=upgrade-plugin&plugin=') . $pluginFile, 'upgrade-plugin_' . $pluginFile);
+		$update_url = self_admin_url('update.php?action=upgrade-plugin&plugin=' . self::$pluginMainFile);
+		if(function_exists('wp_nonce_url')) {
+			$update_url = wp_nonce_url($update_url, 'upgrade-plugin_' . self::$pluginMainFile);
+		}
 		return $update_url;
 		
+	}
+	
+	/**
+	 * @return string the URL used to deactivate the wp-splash-image plugin.
+	 */
+	public static function getDeactivateURL() {
+		
+		$deactivate_url = self_admin_url('plugins.php?action=deactivate&plugin=' . self::$pluginMainFile);
+		if(function_exists('wp_nonce_url')) {
+			$deactivate_url = wp_nonce_url($deactivate_url, 'deactivate-plugin_' . self::$pluginMainFile);
+		}
+		return $deactivate_url;
+				
 	}
 	
 	/**
