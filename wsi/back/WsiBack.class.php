@@ -357,14 +357,13 @@ class WsiBack {
 			// Activation du tooltip de "Uninstall"
 			$('#uninstall_img').tooltip();
 
-			// Activation du tooltip de "GitHub"
+			// GitHub effect.
 			$('#github_img1').mouseover(function() {
-				  $('#github_img2').fadeIn("fast");
+				  $('#github_img2').fadeIn("400");
 			});
 			$('#github_img2').mouseout(function() {
-				  $('#github_img2').fadeOut("fast");
+				  $('#github_img2').fadeOut("400");
 			});
-			
 			
 			// Activation du tooltip de "Reset"
 			$('#reset_img').tooltip();
