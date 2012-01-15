@@ -21,6 +21,7 @@ class WsiCommons {
 	public static function getOptionsList() {
 		return array(
 				'splash_active',
+				'wsi_first_load_mode_active',
 				'splash_test_active',
 				'wsi_idle_time',
 				'url_splash_image',

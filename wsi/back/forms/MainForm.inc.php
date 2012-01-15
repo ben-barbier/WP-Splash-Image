@@ -11,8 +11,16 @@
 				id="splash_active" 
 				<?php if($siBean->isSplash_active()=='true') {echo("checked='checked'");} ?> /></td>
 		</tr>
+		<tr>
+		<td><?php echo __('First load mode activated','wp-splash-image'); ?>:</td>
+			<td><input 
+				type="checkbox" 
+				name="wsi_first_load_mode_active" 
+				<?php if($siBean->isWsi_first_load_mode_active()=='true') {echo("checked='checked'");} ?> />
+				Verify if theme is "1rst load mode" ready : ???(ajax call)</td>
+		</tr>
 		<tr id="block_splash_test_active">
-			<td><?php echo __('Test mode activated:','wp-splash-image'); ?></td>
+			<td><?php echo __('Test mode activated','wp-splash-image'); ?>:</td>
 			<td><input 
 				type="checkbox" 
 				name="splash_test_active" 
@@ -23,7 +31,7 @@
 	</table>	
 	<br />
 	<!-- Tabs --> 
-	<div  id="tabs" style="width:850px;">
+	<div id="tabs">
 		<ul> 
 			<li><a href="#tab_picture"><?php echo __('Picture'); ?></a></li> 
 			<li><a href="#tab_video"><?php echo __('Video'); ?></a></li> 

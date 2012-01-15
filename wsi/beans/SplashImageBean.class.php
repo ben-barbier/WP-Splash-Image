@@ -17,6 +17,11 @@ class SplashImageBean {
 	private $splash_test_active;
 	
 	/**
+	 * @var bool
+	 */
+	private $wsi_first_load_mode_active;
+	
+	/**
 	 * @var int
 	 */
 	private $wsi_idle_time;
@@ -143,6 +148,7 @@ class SplashImageBean {
 	 */
 	public function isSplash_active() { return $this->splash_active; } 
 	public function isSplash_test_active() { return $this->splash_test_active; } 
+	public function isWsi_first_load_mode_active() { return $this->wsi_first_load_mode_active; } 
 	public function getWsi_idle_time() { return $this->wsi_idle_time; } 
 	public function getUrl_splash_image() { return $this->url_splash_image; } 
 	public function getSplash_image_width() { return $this->splash_image_width; } 
@@ -169,6 +175,7 @@ class SplashImageBean {
 	public function getWsi_html() { return $this->wsi_html; } 
 	public function setSplash_active($x) { $this->splash_active = $x; } 
 	public function setSplash_test_active($x) { $this->splash_test_active = $x; } 
+	public function setWsi_first_load_mode_active($x) { $this->wsi_first_load_mode_active = $x; } 
 	public function setWsi_idle_time($x) { $this->wsi_idle_time = $x; } 
 	public function setUrl_splash_image($x) { $this->url_splash_image = $x; } 
 	public function setSplash_image_width($x) { $this->splash_image_width = $x; } 
