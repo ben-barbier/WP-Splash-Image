@@ -44,21 +44,24 @@
 	margin-left:270px;
 }
 
-#display_github {
+#display_reset {
 	margin-left:310px;
 }
 
-#display_reset {
-	margin-left:350px;
-}
-
-#github_img {
-	height:32px;
-	width:32px;
-}
-
-#display_info, #display_feedback, #display_uninstall, #display_github, #display_reset {
+#display_info, #display_feedback, #display_uninstall, #display_reset {
 	margin-top:5px;
 	position: absolute;	
 }
 
+#github_img1, #github_img2 {
+	float: right;
+}
+
+#github_img1 {
+	margin: -4px -15px 0 0;	
+}
+
+#github_img2 {
+	display: none;
+	margin: -4px -141px 0 0;
+}

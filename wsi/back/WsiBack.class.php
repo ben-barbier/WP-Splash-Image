@@ -251,15 +251,12 @@ class WsiBack {
 		</div>
 		
 		<!-- Logo GitHub -->
-		<div id="display_github">
-			<a href="https://github.com/Agent-22/WP-Splash-Image" target="_blank">
-				<img id="github_img" rel="#github" alt="<?php echo __('GitHub','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/Octocat.png" />
-			</a>
-			<!-- Tooltip FeedBack -->
-			<div id="data_github_img" style="display:none;"> 
-				<?php echo __('Fork me on GitHub','wp-splash-image'); ?>
-			</div>
-		</div>
+		<a href="https://github.com/Agent-22/WP-Splash-Image" target="_blank">
+			<img id="github_img1" rel="#github" alt="github" src="<?php echo WsiCommons::getURL(); ?>/style/github/ForkMe_Blk.png" />
+			<img id="github_img2" rel="#github" alt="github" src="<?php echo WsiCommons::getURL(); ?>/style/github/ForkMe_Wht.png" />
+		</a>
+		
+		
 		
 		<h2>WP Splash Image</h2>
 		
@@ -361,7 +358,13 @@ class WsiBack {
 			$('#uninstall_img').tooltip();
 
 			// Activation du tooltip de "GitHub"
-			$('#github_img').tooltip();
+			$('#github_img1').mouseover(function() {
+				  $('#github_img2').fadeIn("fast");
+			});
+			$('#github_img2').mouseout(function() {
+				  $('#github_img2').fadeOut("fast");
+			});
+			
 			
 			// Activation du tooltip de "Reset"
 			$('#reset_img').tooltip();
