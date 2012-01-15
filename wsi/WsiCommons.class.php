@@ -150,6 +150,17 @@ class WsiCommons {
 	}
 	
 	/**
+	 * @return string the URL used to update the wp-splash-image plugin.
+	 */
+	public static function getUpdateURL() {
+		
+		$pluginFile = "wsi/wp-splash-image.php";
+		$update_url = wp_nonce_url( self_admin_url('update.php?action=upgrade-plugin&plugin=') . $pluginFile, 'upgrade-plugin_' . $pluginFile);
+		return $update_url;
+		
+	}
+	
+	/**
 	 * Returns current plugin version.
 	 * The information come from the wp-splash-image.php header comment.
 	 *
