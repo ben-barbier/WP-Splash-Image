@@ -114,8 +114,8 @@ class WsiCommons {
 	public static function has_a_new_version() {
 		
 		$compare = version_compare(
-				WsiCommons::getCurrentPluginVersion(),
-				WsiCommons::getLastestPluginVersion());
+				self::getCurrentPluginVersion(),
+				self::getLastestPluginVersion());
 		
 		if ($compare == -1) {
 			// Use old version
