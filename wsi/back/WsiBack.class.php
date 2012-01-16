@@ -251,10 +251,11 @@ class WsiBack {
 		</div>
 		
 		<!-- Logo GitHub -->
-		<a href="https://github.com/Agent-22/WP-Splash-Image" target="_blank">
-			<img id="github_img1" rel="#github" alt="github" src="<?php echo WsiCommons::getURL(); ?>/style/github/ForkMe_Blk.png" />
-			<img id="github_img2" rel="#github" alt="github" src="<?php echo WsiCommons::getURL(); ?>/style/github/ForkMe_Wht.png" />
-		</a>
+		<img id="github_img1" alt="github" src="<?php echo WsiCommons::getURL(); ?>/style/github/ForkMe_Blk.png" usemap="#github_map" />
+		<img id="github_img2" alt="github" src="<?php echo WsiCommons::getURL(); ?>/style/github/ForkMe_Wht.png" usemap="#github_map" />
+		<map name="github_map"><area shape="poly" id="github_area" coords="8,0,46,0,141,92,141,133" href="https://github.com/Agent-22/WP-Splash-Image" target="_blank" /></map>
+		
+		
 		
 		
 		
@@ -358,10 +359,10 @@ class WsiBack {
 			$('#uninstall_img').tooltip();
 
 			// GitHub effect.
-			$('#github_img1').mouseover(function() {
+			$('#github_area').mouseover(function() {
 				  $('#github_img2').fadeIn("400");
 			});
-			$('#github_img2').mouseout(function() {
+			$('#github_area').mouseout(function() {
 				  $('#github_img2').fadeOut("400");
 			});
 			
