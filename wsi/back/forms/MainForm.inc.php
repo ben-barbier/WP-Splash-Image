@@ -17,7 +17,8 @@
 				type="checkbox" 
 				name="wsi_first_load_mode_active" 
 				<?php if($siBean->isWsi_first_load_mode_active()=='true') {echo("checked='checked'");} ?> />
-				Verify if theme is "1rst load mode" ready : ???(ajax call)</td>
+				Verify if your theme is "1rst load mode" ready : 
+				<input type="button" value=" <?php echo __('Check','wp-splash-image'); ?> " /></td>
 		</tr>
 		<tr id="block_splash_test_active">
 			<td><?php echo __('Test mode activated','wp-splash-image'); ?>:</td>

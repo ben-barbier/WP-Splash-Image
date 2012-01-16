@@ -31,7 +31,7 @@
 		<tr>
 			<td><span><?php echo __("Fill picture size",'wp-splash-image'); ?>:</span></td>
 			<td>
-				<input type="button" value="<?php echo __('Fill'); ?>" id="fill_picture_size_button" />
+				<input type="button" value=" <?php echo __('Fill'); ?> " id="fill_picture_size_button" />
 				<!-- This picture is here only for fill the picture size by script -->
 				<img src="" id="img_splash_image" style="display:none;" />
 			</td>
