@@ -205,6 +205,17 @@ class WsiCommons {
 		
 	}
 	
+	/**
+	 * @return string the name and the version of the current theme.
+	 */
+	public static function getCurrentTheme() {
+		
+		$currentTheme = current_theme_info();
+		$result = $currentTheme->name." v".$currentTheme->version; 
+		return $result;
+		
+	}
+	
 }
 
 ?>

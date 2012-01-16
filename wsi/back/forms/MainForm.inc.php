@@ -15,10 +15,19 @@
 		<td><?php echo __('First load mode activated','wp-splash-image'); ?>:</td>
 			<td><input 
 				type="checkbox" 
-				name="wsi_first_load_mode_active" 
+				name="wsi_first_load_mode_active"
+				id="wsi_first_load_mode_active" 
 				<?php if($siBean->isWsi_first_load_mode_active()=='true') {echo("checked='checked'");} ?> />
-				Verify if your theme is "1rst load mode" ready : 
-				<input type="button" value=" <?php echo __('Check','wp-splash-image'); ?> " /></td>
+				
+				<img id="wsi_first_load_mode_info" alt="<?php echo __('Uninstall','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/info-16px.png" />	
+				<div id="data_wsi_first_load_mode_info" style="display:none;">
+					You can display the WSI <strong>after</strong> the page without any modification.<br />
+					If you want to display the WSI <strong>before</strong> the page, you must enable<br />
+					the "First load mode" option and add the code <code>&lt;?php do_action('wsi_first_load_mode'); ?&gt;</code><br />
+					after the <code>&lt;body&gt;</code> tag of your current theme (<?php echo WsiCommons::getCurrentTheme(); ?>).
+				</div>
+				
+			</td>
 		</tr>
 		<tr id="block_splash_test_active">
 			<td><?php echo __('Test mode activated','wp-splash-image'); ?>:</td>
@@ -29,7 +38,7 @@
 				<?php if($siBean->isSplash_test_active()=='true') {echo("checked='checked'");} ?> />
 				<?php echo __('(for tests only, open splash image whenever)','wp-splash-image'); ?></td>
 		</tr>
-	</table>	
+	</table>
 	<br />
 	<!-- Tabs --> 
 	<div id="tabs">
