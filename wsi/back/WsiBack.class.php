@@ -99,10 +99,10 @@ class WsiBack {
 	public function enqueue_wsi_back_styles() {
 		// Déclaration des styles de la partie Admin
 		wp_register_style('tabs',            WsiCommons::getURL().'/style/ui/flick/jquery-ui-1.8.16.custom.css'); /*Style pour les onglets*/
-		wp_register_style('validator-error', WsiCommons::getURL().'/style/validator-error.css'); /*Style pour le validator du feedback*/
-		wp_register_style('overlay-basic',   WsiCommons::getURL().'/style/overlay-basic.css'); /*Style pour la box de documentation + feedback*/
-		wp_register_style('date-input',      WsiCommons::getURL().'/style/dateinput.css'); /*Style pour les calendriers*/
-		wp_register_style('range',           WsiCommons::getURL().'/style/range.css'); /*Style pour le curseur de temps*/
+		wp_register_style('validator-error', WsiCommons::getURL().'/style/jqueryTools/validator-error.css'); /*Style pour le validator du feedback*/
+		wp_register_style('overlay-basic',   WsiCommons::getURL().'/style/jqueryTools/overlay-basic.css'); /*Style pour la box de documentation + feedback*/
+		wp_register_style('date-input',      WsiCommons::getURL().'/style/jqueryTools/dateinput.css'); /*Style pour les calendriers*/
+		wp_register_style('range',           WsiCommons::getURL().'/style/jqueryTools/range.css'); /*Style pour le curseur de temps*/
 		wp_register_style('wsi',             WsiCommons::getURL().'/style/wsi.css');
 		
 		wp_enqueue_style('tabs');
