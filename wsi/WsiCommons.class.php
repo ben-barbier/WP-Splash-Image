@@ -21,6 +21,7 @@ class WsiCommons {
 	public static function getOptionsList() {
 		return array(
 				'splash_active',
+				'wsi_first_load_mode_active',
 				'splash_test_active',
 				'wsi_idle_time',
 				'url_splash_image',
@@ -201,6 +202,17 @@ class WsiCommons {
 		$current = get_site_transient( 'update_plugins' );
 		$r = $current->response[ "wsi/wp-splash-image.php" ];
 		return $r->new_version;
+		
+	}
+	
+	/**
+	 * @return string the name and the version of the current theme.
+	 */
+	public static function getCurrentTheme() {
+		
+		$currentTheme = current_theme_info();
+		$result = $currentTheme->name." v".$currentTheme->version; 
+		return $result;
 		
 	}
 	

@@ -368,6 +368,9 @@ class WsiBack {
 			
 			// Activation du tooltip de "Reset"
 			$('#reset_img').tooltip();
+
+			// Activation du tooltip du "first load mode" (doc)
+			$('#wsi_first_load_mode_info').tooltip();
 			
 			function reset_validator() {
 				// Activation du validator du formulaire de feedback
