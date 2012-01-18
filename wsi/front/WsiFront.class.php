@@ -111,14 +111,14 @@ class WsiFront {
 		// Chargement des données en base
 		$siBean = SplashImageManager::getInstance()->get();
 		
-		// Si le plugin est activé dans ses options, on ne fait rien
-		if($siBean->isSplash_active()=='true') return;
+		// Si le plugin n'est pas activé dans ses options, on ne fait rien
+		if($siBean->isSplash_active()!='true') return;
 		
 		// If not in First Load Mode, exit the function
 		if ($siBean->isWsi_first_load_mode_active()=='true') return;
 		
 		// Si on est pas en "mode test", on effectue quelques tests supplémentaires
-		if(get_option('splash_test_active')!='true') {
+		if($siBean->isSplash_test_active()!='true') {
 
 			// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
 			if (WsiCommons::getdate_is_in_validities_dates() == "false") return;
@@ -162,8 +162,8 @@ class WsiFront {
 		// Chargement des données en base
 		$siBean = SplashImageManager::getInstance()->get();
 		
-		// Si le plugin est activé dans ses options, on ne fait rien
-		if($siBean->isSplash_active()=='true') return;
+		// Si le plugin n'est pas activé dans ses options, on ne fait rien
+		if($siBean->isSplash_active()!='true') return;
 		
 		// If not in First Load Mode, exit the function
 		if ($siBean->isWsi_first_load_mode_active()=='true') return;
