@@ -28,14 +28,16 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 
 = What's next ? =
 
+
+* (2.2.0) Upload JQuery Tools functions 
+* (2.3.0) Customize the borders (facebook style, ...).
 * (3.0.0) Add "Upload picture" option.
-* (3.0.0) Manage WSI date ranges.
+* (4.0.0) Manage WSI date ranges.
 
 Others:
 
 * Update Documentation.
 * Add option for "exclude" some pages (for flash conflict for exemple).
-* Customize the borders (facebook style, ...).
 * Manage reporting (number of views, number of clicks, ...).
 * Add an event system to know when to start WSI (ex: when site is loading, when comment is send ...).
 
