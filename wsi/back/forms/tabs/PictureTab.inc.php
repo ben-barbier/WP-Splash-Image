@@ -22,9 +22,9 @@
 		<tr>
 			<td><span><?php echo __("Picture link target",'wp-splash-image'); ?>:</span></td>
 			<td>
-				<select name="wsi_picture_link_target" value="<?php echo $siBean->getWsi_picture_link_target(); ?>">
-					<option value="self">Self</option>
-					<option value="blank">Blank</option>
+				<select name="wsi_picture_link_target">
+					<option value="self"  <?php if($siBean->getWsi_picture_link_target()=="self")  { ?>selected="selected"<?php } ?>>Self</option>
+					<option value="blank" <?php if($siBean->getWsi_picture_link_target()=="blank") { ?>selected="selected"<?php } ?>>Blank</option>
 				</select>
 			</td>
 		</tr>
