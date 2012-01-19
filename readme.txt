@@ -29,7 +29,6 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 = What's next ? =
 
 
-* (2.2.0) Upload JQuery Tools functions 
 * (2.3.0) Customize the borders (facebook style, ...).
 * (3.0.0) Add "Upload picture" option.
 * (4.0.0) Manage WSI date ranges.
@@ -86,7 +85,9 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
 == Changelog ==
 
 = 2.2.0 =
-* Add Settings on plugin page (like WP Security Scan).
+* TODO: Add Settings on plugin page (like WP Security Scan).
+* TODO: Upload JQuery Tools functions. 
+* Update tooltip style.
 
 = 2.1.0 =
 * Add 1rst mode load (show WSI before loading the page).
