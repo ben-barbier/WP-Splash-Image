@@ -15,8 +15,8 @@
 /* override the arrow image of the tooltip */
 .tooltip.bottom {
 	background:url('mini_black_arrow_bottom.png');
-	padding-top:25px;
-	height:22px;
+	padding-top:27px;
+	height:20px;
 }
 
 .tooltipLarge {
