@@ -69,3 +69,7 @@
 	display: none;
 	margin: -4px -141px 0 0;
 }
+
+#info_img, #feedback_img, #uninstall_img{
+	cursor: pointer;
+}

@@ -209,17 +209,17 @@ class WsiBack {
 		
 		<!-- Logo Info -->
 		<div id="display_info">
-			<img id="info_img" title="<?php echo __('Infos','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/info.png" />
+			<img id="info_img" rel="#info" title="<?php echo __('Infos','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/info.png" />
 		</div>
 		
 		<!-- Logo Feedback -->
 		<div id="display_feedback">
-			<img id="feedback_img" title="<?php echo __('Feedback','wp-splash-image'); ?>" alt="<?php echo __('Feedback','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/feedback_logo.png" />
+			<img id="feedback_img" rel="#feedback" title="<?php echo __('Feedback','wp-splash-image'); ?>" alt="<?php echo __('Feedback','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/feedback_logo.png" />
 		</div>
 		
 		<!-- Logo Uninstall -->
 		<div id="display_uninstall">
-			<img id="uninstall_img" title="<?php echo __('Uninstall','wp-splash-image'); ?>" alt="<?php echo __('Uninstall','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/uninstall.png" />
+			<img id="uninstall_img" rel="#uninstall" title="<?php echo __('Uninstall','wp-splash-image'); ?>" alt="<?php echo __('Uninstall','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/uninstall.png" />
 		</div>
 
 		<!-- Logo Reset -->
