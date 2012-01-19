@@ -28,14 +28,16 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 
 = What's next ? =
 
+
+* (2.2.0) Upload JQuery Tools functions 
+* (2.3.0) Customize the borders (facebook style, ...).
 * (3.0.0) Add "Upload picture" option.
-* (3.0.0) Manage WSI date ranges.
+* (4.0.0) Manage WSI date ranges.
 
 Others:
 
 * Update Documentation.
 * Add option for "exclude" some pages (for flash conflict for exemple).
-* Customize the borders (facebook style, ...).
 * Manage reporting (number of views, number of clicks, ...).
 * Add an event system to know when to start WSI (ex: when site is loading, when comment is send ...).
 
@@ -83,8 +85,15 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
  
 == Changelog ==
 
+= 2.2.0 =
+* Add Settings on plugin page (like WP Security Scan).
+
 = 2.1.0 =
 * Add 1rst mode load (show WSI before loading the page).
+
+= 2.0.1 =
+* Fix Picture link target list selected problem (tkx to Beee for his comment).
+* Update Github link.
 
 = 2.0.0 =
 * Start GitHub source management
