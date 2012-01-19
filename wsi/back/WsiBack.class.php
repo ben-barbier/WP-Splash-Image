@@ -228,7 +228,7 @@ class WsiBack {
 
 		<!-- Logo Reset -->
 		<div id="display_reset" title="<?php echo __('Reset','wp-splash-image'); ?>">
-			<form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>">
+			<form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>" style="height:32px;">
 				<?php wp_nonce_field('reset','nonce_reset_field'); ?>
 				<input type="hidden" name="action" value="reset" />
 				<!-- Fix tooltip problem -->
@@ -335,20 +335,16 @@ class WsiBack {
 			});
 			
 			// Activation du tooltip du feedback
-			$('#feedback_img').tooltip({ position: "bottom center", opacity: 0.7, effect: 'slide', offset: [10, 2]})
-			.dynamic({ bottom: { direction: 'down', bounce: true } });
+			$('#feedback_img').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 			
 			// Activation du tooltip de "Info"
-			$('#info_img').tooltip({ position: "bottom center", opacity: 0.7, effect: 'slide', offset: [10, 2]})
-			.dynamic({ bottom: { direction: 'down', bounce: true } });
+			$('#info_img').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 			
 			// Activation du tooltip de "Uninstall"
-			$('#uninstall_img').tooltip({ position: "bottom center", opacity: 0.7, effect: 'slide', offset: [10, 2]})
-			.dynamic({ bottom: { direction: 'down', bounce: true } });
+			$('#uninstall_img').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 
 			// Activation du tooltip de "Reset"
-			$('#display_reset').tooltip({ position: "bottom center", opacity: 0.7, effect: 'slide', offset: [10, 2]})
-			.dynamic({ bottom: { direction: 'down', bounce: true } });
+			$('#display_reset').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 
 			// Activation du tooltip du "first load mode" (doc)
 			$('#wsi_first_load_mode_info').tooltip({ position: "center right", opacity: 0.7, effect: 'slide', offset: [10, 2]})

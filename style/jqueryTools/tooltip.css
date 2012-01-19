@@ -10,6 +10,13 @@
     z-index:10; 
 }
 
+/* override the arrow image of the tooltip */
+.tooltip.bottom {
+	background:url(black_arrow_bottom.png);
+	padding-top:40px;
+	height:55px;
+}
+
 .tooltipLarge {
     display:none;
     background:url(black_arrow_big.png);
