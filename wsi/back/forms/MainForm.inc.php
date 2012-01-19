@@ -20,11 +20,11 @@
 				<?php if($siBean->isWsi_first_load_mode_active()=='true') {echo("checked='checked'");} ?> />
 				
 				<img id="wsi_first_load_mode_info" alt="<?php echo __('Uninstall','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/info-16px.png" />	
-				<div id="data_wsi_first_load_mode_info" style="display:none;">
-					You can display the WSI <strong>after</strong> the page without any modification.<br />
-					If you want to display the WSI <strong>before</strong> the page, you must enable<br />
-					the "First load mode" option and add the code <code>&lt;?php do_action('wsi_first_load_mode'); ?&gt;</code><br />
-					after the <code>&lt;body&gt;</code> tag of your current theme (<?php echo WsiCommons::getCurrentTheme(); ?>).
+				<div class="tooltipLarge">
+					You can display the WSI <strong>after</strong> the page without any modification.
+					If you want to display the WSI <strong>before</strong> the page, you must enable
+					the "First load mode" option and add the code <code>&lt;?php do_action('wsi_first_load_mode'); ?&gt;</code>
+					after the <code>&lt;body&gt;</code> tag of your current theme <br />(<?php echo WsiCommons::getCurrentTheme(); ?>).
 				</div>
 				
 			</td>

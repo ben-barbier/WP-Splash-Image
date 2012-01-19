@@ -99,10 +99,11 @@ class WsiBack {
 	public function enqueue_wsi_back_styles() {
 		// Déclaration des styles de la partie Admin
 		wp_register_style('tabs',            WsiCommons::getURL().'/style/ui/flick/jquery-ui-1.8.16.custom.css'); /*Style pour les onglets*/
-		wp_register_style('validator-error', WsiCommons::getURL().'/style/validator-error.css'); /*Style pour le validator du feedback*/
-		wp_register_style('overlay-basic',   WsiCommons::getURL().'/style/overlay-basic.css'); /*Style pour la box de documentation + feedback*/
-		wp_register_style('date-input',      WsiCommons::getURL().'/style/dateinput.css'); /*Style pour les calendriers*/
-		wp_register_style('range',           WsiCommons::getURL().'/style/range.css'); /*Style pour le curseur de temps*/
+		wp_register_style('validator-error', WsiCommons::getURL().'/style/jQueryTools/validator-error.css'); /*Style pour le validator du feedback*/
+		wp_register_style('overlay-basic',   WsiCommons::getURL().'/style/jQueryTools/overlay-basic.css'); /*Style pour la box de documentation + feedback*/
+		wp_register_style('date-input',      WsiCommons::getURL().'/style/jQueryTools/dateinput.css'); /*Style pour les calendriers*/
+		wp_register_style('range',           WsiCommons::getURL().'/style/jQueryTools/range.css'); /*Style pour le curseur de temps*/
+		wp_register_style('tooltip',         WsiCommons::getURL().'/style/jQueryTools/tooltip.css'); /*Style pour le curseur de temps*/
 		wp_register_style('wsi',             WsiCommons::getURL().'/style/wsi.css');
 		
 		wp_enqueue_style('tabs');
@@ -110,6 +111,7 @@ class WsiBack {
 		wp_enqueue_style('overlay-basic');
 		wp_enqueue_style('date-input');
 		wp_enqueue_style('range');
+		wp_enqueue_style('tooltip');
 		wp_enqueue_style('wsi');
 	}
 	
@@ -120,8 +122,7 @@ class WsiBack {
 		if (isset($_GET['page']) && $_GET['page'] == 'wp_splash_image') {
 			
 			// Déclaration des scripts de la partie Admin
-			wp_register_script('jquery.tools.back', WsiCommons::getURL().'/js/jquery.tools.min.wp-back.js'); /*[overlay, overlay.apple, dateinput, rangeinput, validator]*/
-			wp_register_script('jquery.tooltip',    WsiCommons::getURL().'/js/tooltip.jquery.js'); /*Infobulle(tooltip) pour feedback*/
+			wp_register_script('jquery.tools.back', WsiCommons::getURL().'/js/jQueryTools/jquery.tools.min.wp-back.js'); /*[overlay, overlay.apple, dateinput, rangeinput, validator, tooltip, tooltip.dynamic, tooltip.slide]*/
 			wp_register_script('jquery.keyfilter',  WsiCommons::getURL().'/js/jquery.keyfilter-1.7.min.js'); /* KeyFilter (for splash_color, splash_image_height, splash_image_width fields) */
 			
 			// JQuery (wordpress version)
@@ -212,42 +213,27 @@ class WsiBack {
 		
 		<!-- Logo Info -->
 		<div id="display_info">
-			<img id="info_img" rel="#info" src="<?php echo WsiCommons::getURL(); ?>/style/info.png" />
-			<!-- Tooltip Info -->
-			<div id="data_info_img"style="display:none;"> 
-				<?php echo __('Infos','wp-splash-image'); ?>
-			</div>
+			<img id="info_img" title="<?php echo __('Infos','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/info.png" />
 		</div>
 		
 		<!-- Logo Feedback -->
 		<div id="display_feedback">
-			<img id="feedback_img" rel="#feedback" alt="<?php echo __('Feedback','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/feedback_logo.png" />
-			<!-- Tooltip FeedBack -->
-			<div id="data_feedback_img" style="display:none;"> 
-				<?php echo __('Feedback','wp-splash-image'); ?>
-			</div>
+			<img id="feedback_img" title="<?php echo __('Feedback','wp-splash-image'); ?>" alt="<?php echo __('Feedback','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/feedback_logo.png" />
 		</div>
 		
 		<!-- Logo Uninstall -->
 		<div id="display_uninstall">
-			<img id="uninstall_img" rel="#uninstall" alt="<?php echo __('Uninstall','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/uninstall.png" />
-			<!-- Tooltip FeedBack -->
-			<div id="data_uninstall_img" style="display:none;"> 
-				<?php echo __('Uninstall','wp-splash-image'); ?>
-			</div>
+			<img id="uninstall_img" title="<?php echo __('Uninstall','wp-splash-image'); ?>" alt="<?php echo __('Uninstall','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/uninstall.png" />
 		</div>
 
 		<!-- Logo Reset -->
-		<div id="display_reset">
-			<form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>">
+		<div id="display_reset" title="<?php echo __('Reset','wp-splash-image'); ?>">
+			<form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>" style="height:32px;">
 				<?php wp_nonce_field('reset','nonce_reset_field'); ?>
 				<input type="hidden" name="action" value="reset" />
-				<input type="image" id="reset_img" rel="#reset" alt="<?php echo __('Reset','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/reset.png" />
+				<!-- Fix tooltip problem -->
+				<input type="image" id="reset_img" alt="<?php echo __('Reset','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/reset.png" />
 			</form>
-			<!-- Tooltip FeedBack -->
-			<div id="data_reset_img" style="display:none;"> 
-				<?php echo __('Reset','wp-splash-image'); ?>
-			</div>
 		</div>
 		
 		<!-- Logo GitHub -->
@@ -350,14 +336,20 @@ class WsiBack {
 			});
 			
 			// Activation du tooltip du feedback
-			$('#feedback_img').tooltip();
+			$('#feedback_img').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 			
 			// Activation du tooltip de "Info"
-			$('#info_img').tooltip();
+			$('#info_img').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 			
 			// Activation du tooltip de "Uninstall"
-			$('#uninstall_img').tooltip();
+			$('#uninstall_img').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 
+			// Activation du tooltip de "Reset"
+			$('#display_reset').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
+
+			// Activation du tooltip du "first load mode" (doc)
+			$('#wsi_first_load_mode_info').tooltip({ position: "center right", effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
+			
 			// GitHub effect.
 			$('#github_area').mouseover(function() {
 				  $('#github_img2').fadeIn("400");
@@ -365,12 +357,6 @@ class WsiBack {
 			$('#github_area').mouseout(function() {
 				  $('#github_img2').fadeOut("400");
 			});
-			
-			// Activation du tooltip de "Reset"
-			$('#reset_img').tooltip();
-
-			// Activation du tooltip du "first load mode" (doc)
-			$('#wsi_first_load_mode_info').tooltip();
 			
 			function reset_validator() {
 				// Activation du validator du formulaire de feedback
@@ -407,7 +393,7 @@ class WsiBack {
 			// Color on select input radio
 			function color_box(boxId) {
 				$(".box_type").animate({ backgroundColor: "#FFFFFF" }, 200);
-				$(boxId).animate({       backgroundColor: "#7FFF00" }, 500);
+				$(boxId).animate({       backgroundColor: "#D9FFB2" }, 500);
 			}
 			
 			$("#radio_picture").click(function() {     color_box("#box_picture")});
@@ -419,7 +405,7 @@ class WsiBack {
 			$("#radio_html").click(function() {        color_box("#box_html")});
 			
 			// Color au chargement du plugin
-			$("#box_<?php echo $wsi_type; ?>").animate({ backgroundColor: "#7FFF00" }, 500);
+			$("#box_<?php echo $wsi_type; ?>").animate({ backgroundColor: "#D9FFB2" }, 500);
 			
 			// Warning sur les dates de validités
 			if ("<?php echo WsiCommons::getdate_is_in_validities_dates(); ?>"=="false") {$("#box_datepickers_warning").fadeIn("slow");}

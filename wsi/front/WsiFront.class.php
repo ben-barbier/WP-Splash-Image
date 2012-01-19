@@ -89,10 +89,10 @@ class WsiFront {
 		if (!is_admin()) {
 	
 			// Déclaration des styles de la partie front end.
-			wp_register_style('overlay-basic', WsiCommons::getURL().'/style/overlay-basic.css'); /*Style pour la splash image */
+			wp_register_style('overlay-basic', WsiCommons::getURL().'/style/jQueryTools/overlay-basic.css'); /*Style pour la splash image */
 	
 			// Déclaration des scripts de la partie front end.
-			wp_register_script('jquery.tools.front', WsiCommons::getURL().'/js/jquery.tools.min.wp-front.js'); /*[overlay, toolbox.expose]*/
+			wp_register_script('jquery.tools.front', WsiCommons::getURL().'/js/jQueryTools/jquery.tools.min.wp-front.js'); /*[overlay, toolbox.expose]*/
 	
 			// JQuery (wordpress version)
 			wp_enqueue_script('jquery');
