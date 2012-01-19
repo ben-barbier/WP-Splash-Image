@@ -392,7 +392,7 @@ class WsiBack {
 			// Color on select input radio
 			function color_box(boxId) {
 				$(".box_type").animate({ backgroundColor: "#FFFFFF" }, 200);
-				$(boxId).animate({       backgroundColor: "#7FFF00" }, 500);
+				$(boxId).animate({       backgroundColor: "#D9FFB2" }, 500);
 			}
 			
 			$("#radio_picture").click(function() {     color_box("#box_picture")});
@@ -404,7 +404,7 @@ class WsiBack {
 			$("#radio_html").click(function() {        color_box("#box_html")});
 			
 			// Color au chargement du plugin
-			$("#box_<?php echo $wsi_type; ?>").animate({ backgroundColor: "#7FFF00" }, 500);
+			$("#box_<?php echo $wsi_type; ?>").animate({ backgroundColor: "#D9FFB2" }, 500);
 			
 			// Warning sur les dates de validités
 			if ("<?php echo WsiCommons::getdate_is_in_validities_dates(); ?>"=="false") {$("#box_datepickers_warning").fadeIn("slow");}
