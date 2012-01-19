@@ -25,10 +25,12 @@ class WsiBack {
 	 * This is the only function to use to set up the back.
 	 */
 	public function plug() {
-		add_action ( 'admin_init',                                     array(&$this, 'wp_splash_image_back_init' ));
-		add_action ( 'admin_menu',                                     array(&$this, 'wsi_menu' ));
-		add_filter ( 'plugin_action_links_'.plugin_basename(__FILE__), array(&$this, 'wsi_filter_plugin_actions' ));
-		add_filter ( 'plugin_row_meta',                                array(&$this, 'set_plugin_meta'), 10, 2 );
+		
+		add_action ( 'admin_init',                                       array(&$this, 'wp_splash_image_back_init' ));
+		add_action ( 'admin_menu',                                       array(&$this, 'wsi_menu' ));
+		add_filter ( 'plugin_action_links_'.WsiCommons::$pluginMainFile, array(&$this, 'wsi_filter_plugin_actions' ));
+		add_filter ( 'plugin_row_meta',                                  array(&$this, 'set_plugin_meta'), 10, 2 );
+
 	}
 	
 	/**
@@ -69,9 +71,7 @@ class WsiBack {
 	public function wsi_filter_plugin_actions( $links ) {
 	
 		/* Lien vers la partie admin */
-		$settings_link = '<a href="options-general.php?page=wp_splash_image">'.__('Settings','wp-splash-image').'</a>';
-		array_unshift( $links, $settings_link );
-	
+		$links[] = '<a href="options-general.php?page=wp_splash_image">'.__('Settings','wp-splash-image').'</a>';
 		return $links;
 	}
 	
@@ -79,18 +79,14 @@ class WsiBack {
 	 * Ajoute entrée dans la page des extensions (partie droite)
 	 */
 	public function set_plugin_meta($links, $file) {
-	
-		$plugin = plugin_basename(__FILE__);
-		if ($file == $plugin) {
-			return array_merge(
-					$links,
-					array(
-					/* Lien "Donate" de PayPal */
-							'<a target="_blank" style="font-weight:bold;" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C">'.__('Donate','wp-splash-image').'</a>'
-							//,'un autre lien...'
-					));
+		
+		if ( $file == WsiCommons::$pluginMainFile ) {
+			$links[] = '<a target="_blank" href="http://wordpress.org/tags/wsi?forum_id=10">' . __('Get help', 'wp-splash-image') . '</a>';
+			$links[] = '<a target="_blank" href="https://github.com/Agent-22/WP-Splash-Image">' . __('Fork me on Github', 'wp-splash-image') . '</a>';
+			$links[] = '<a target="_blank" style="font-weight:bold;" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C">'.__('Donate','wp-splash-image').'</a>';
 		}
 		return $links;
+		
 	}
 	
 	/**

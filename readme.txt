@@ -85,9 +85,9 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
 == Changelog ==
 
 = 2.2.0 =
-* TODO: Add Settings on plugin page (like WP Security Scan).
-* TODO: Upload JQuery Tools functions. 
 * Update tooltip style.
+* Add Settings on plugin page.
+* TODO: Upload JQuery Tools functions. 
 
 = 2.1.0 =
 * Add 1rst mode load (show WSI before loading the page).

@@ -6,7 +6,7 @@
  */
 class WsiCommons {
 
-	private static $pluginMainFile = "wsi/wp-splash-image.php";
+	public static $pluginMainFile = "wsi/wp-splash-image.php";
 	
 	/**
 	 * URL du plugin
