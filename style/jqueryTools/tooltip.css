@@ -19,8 +19,8 @@
 
 .tooltipLarge {
     display:none;
-    background:url(black_arrow_big.png);
-    height:163px;
+    background:url(black_big.png);
+    height:144px;
     padding:40px 30px 10px 30px;
     width:310px;
     font-size:11px;
