@@ -16,7 +16,7 @@
 	If you click on the background, you'll quit the splash image except if <span class="plugin_title"><?php echo __('Close esc function','wp-splash-image'); ?></span> is checked.
 	<br /><br />
 	<span class="plugin_number">2)</span>
-	The <img src="<?php echo WsiCommons::getURL(); ?>/style/close.png" class="little_cross" /> can be <span class="plugin_title"><?php echo __('Hide','wp-splash-image'); ?></span>.
+	The <img src="<?php echo WsiCommons::getURL(); ?>/style/jqueryTools/close.png" class="little_cross" /> can be <span class="plugin_title"><?php echo __('Hide','wp-splash-image'); ?></span>.
 	We can use this option with :
 	<ul style="list-style-type:disc;list-style-position:inside;">
 		<li><span class="plugin_title"><?php echo __('Close esc function','wp-splash-image'); ?></span></li>

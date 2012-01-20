@@ -65,7 +65,7 @@
 				(<?php echo __('if you click on background','wp-splash-image'); ?>)</td>
 		</tr>
 		<tr>
-			<td><?php echo __('Hide','wp-splash-image'); ?>&nbsp;<img src="<?php echo WsiCommons::getURL(); ?>/style/close.png" class="little_cross" />&nbsp;:</td>
+			<td><?php echo __('Hide','wp-splash-image'); ?>&nbsp;<img src="<?php echo WsiCommons::getURL(); ?>/style/jqueryTools/close.png" class="little_cross" />&nbsp;:</td>
 			<td><input 
 				type="checkbox" 
 				name="wsi_hide_cross" 
