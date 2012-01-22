@@ -36,9 +36,11 @@ Others:
 
 * Update Documentation.
 * Upload JQuery Tools functions. 
+* Add Validator on main form.
 * Add option for "exclude" some pages (for flash conflict for exemple).
 * Manage reporting (number of views, number of clicks, ...).
 * Add an event system to know when to start WSI (ex: when site is loading, when comment is send ...).
+* Rendre le "test mode" uniquement appliquable aux admin (les users normaux ne verrons rien).
 
 = Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
 
@@ -83,6 +85,9 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
 3. Splash Image
  
 == Changelog ==
+
+= 2.2.2 =
+* Add icon "Pay me a beer".
 
 = 2.2.1 =
 * Fix css folder problem on v2.2.0.
