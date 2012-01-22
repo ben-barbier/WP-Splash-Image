@@ -222,6 +222,13 @@ class WsiBack {
 			<img id="uninstall_img" rel="#uninstall" title="<?php echo __('Uninstall','wp-splash-image'); ?>" alt="<?php echo __('Uninstall','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/uninstall.png" />
 		</div>
 
+		<!-- Logo "Buy me a Beer" -->
+		<div id="display_buyMeABeer">
+			<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C" target="_blank">
+				<img id="buyMeABeer_img" title="<?php echo __('Buy me a Beer','wp-splash-image'); ?>" alt="<?php echo __('Buy me a Beer','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/beer.png" />
+			</a>
+		</div>
+		
 		<!-- Logo Reset -->
 		<div id="display_reset" title="<?php echo __('Reset','wp-splash-image'); ?>">
 			<form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>" style="height:32px;">
@@ -340,6 +347,9 @@ class WsiBack {
 			// Activation du tooltip de "Uninstall"
 			$('#uninstall_img').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 
+			// Activation du tooltip de "Buy me a Beer"
+			$('#buyMeABeer_img').tooltip({effect: 'slide', offset: [10, 2], tipClass: 'tooltip bottom buyMeABeer'}).dynamic({ bottom: { direction: 'down', bounce: true } });
+			
 			// Activation du tooltip de "Reset"
 			$('#display_reset').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 
