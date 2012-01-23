@@ -4,7 +4,7 @@
 			<td rowspan="4"><input type="radio" id="radio_picture" name="wsi_type" value="picture" <?php if($siBean->getWsi_type()=="picture") echo('checked="checked"') ?> /></td>
 			<td><span><?php echo __("Picture URL:",'wp-splash-image'); ?></span></td>
 			<td><input 
-				type="text" 
+				type="url" 
 				name="url_splash_image"
 				id="url_splash_image"
 				size="80" 
@@ -13,7 +13,7 @@
 		<tr>
 			<td><span><?php echo __("Picture link URL",'wp-splash-image'); ?>:</span></td>
 			<td><input 
-				type="text" 
+				type="url" 
 				name="wsi_picture_link_url" 
 				size="50" 
 				value="<?php echo $siBean->getWsi_picture_link_url(); ?>" />

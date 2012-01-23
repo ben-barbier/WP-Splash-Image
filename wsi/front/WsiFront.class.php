@@ -82,7 +82,7 @@ class WsiFront {
 	}
 	
 	/**
-	 * Init du Front end
+	 * Init du Front end (Scripts + style)
 	 */
 	public function wp_splash_image_front_init() {
 	

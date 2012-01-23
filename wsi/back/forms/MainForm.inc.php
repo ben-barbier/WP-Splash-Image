@@ -91,7 +91,8 @@
 		<tr>
 			<td><?php echo __("Splash height",'wp-splash-image'); ?>:</td>
 			<td><input
-				type="text"
+				type="number"
+				min="210"
 				name="splash_image_height"
 				id="splash_image_height"
 				size="6" maxlength="4"
@@ -100,7 +101,7 @@
 		<tr>
 			<td><?php echo __("Splash width",'wp-splash-image'); ?>:</td>
 			<td><input
-				type="text"
+				type="number"
 				name="splash_image_width"
 				id="splash_image_width"
 				size="6" maxlength="4"
@@ -165,7 +166,8 @@
 			<td><?php echo __('Idle time','wp-splash-image'); ?>:</td>
 			<td colspan="3" style="white-space: nowrap;">
 				<input
-					type="text"
+					type="number"
+					min="1"
 					name="wsi_idle_time"
 					size="6" maxlength="4"
 					value="<?php echo $siBean->getWsi_idle_time(); ?>" />&nbsp;
