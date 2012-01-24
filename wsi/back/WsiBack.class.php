@@ -301,12 +301,12 @@ class WsiBack {
 			index_tab["swf"]         = 1;
 			index_tab["html"]        = 2;
 			index_tab["include"]     = 3;
-			
-			$("ul.tabs").tabs("div.panes > div", {
+
+			// new tabs
+			$(function() {$("#tabs").tabs({
 				// Ouverture du bon onglet au démarrage
-				effect: 'default', //TODO: Make my own effect : http://flowplayer.org/tools/tabs/index.html#effects
-				initialIndex: index_tab[wsi_type]
-			});
+				selected: index_tab[wsi_type]
+			});});
 			
 			// Gestion de l'affichage de la zone "block_splash_test_active"
 			if($("#splash_active").attr("checked")=="checked") {$("#block_splash_test_active").css("display","table-row");}
@@ -436,9 +436,6 @@ class WsiBack {
 			$('#splash_image_height').keyfilter(/[\d\.]/);
 			$('#splash_image_width').keyfilter(/[\d\.]/);
 
-			// new tabs
-			$(function() {$("#tabs").tabs();});
-			
 		});
 	</script>
 
