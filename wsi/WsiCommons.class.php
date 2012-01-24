@@ -34,6 +34,7 @@ class WsiCommons {
 				'wsi_fixed_splash',
 				'wsi_picture_link_url',
 				'wsi_picture_link_target',
+				'wsi_include_url',
 				'wsi_close_esc_function',
 				'wsi_hide_cross',
 				'wsi_disable_shadow_border',
