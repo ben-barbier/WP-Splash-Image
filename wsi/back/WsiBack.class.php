@@ -300,6 +300,7 @@ class WsiBack {
 			index_tab["metacafe"]    = 1;
 			index_tab["swf"]         = 1;
 			index_tab["html"]        = 2;
+			index_tab["include"]     = 3;
 			
 			$("ul.tabs").tabs("div.panes > div", {
 				// Ouverture du bon onglet au démarrage
@@ -409,6 +410,7 @@ class WsiBack {
 			$("#radio_metacafe").click(function() {    color_box("#box_metacafe")});
 			$("#radio_swf").click(function() {         color_box("#box_swf")});
 			$("#radio_html").click(function() {        color_box("#box_html")});
+			$("#radio_include").click(function() {     color_box("#box_include")});
 			
 			// Color au chargement du plugin
 			$("#box_<?php echo $wsi_type; ?>").animate({ backgroundColor: "#D9FFB2" }, 500);

@@ -45,12 +45,14 @@
 		<ul> 
 			<li><a href="#tab_picture"><?php echo __('Picture'); ?></a></li> 
 			<li><a href="#tab_video"><?php echo __('Video'); ?></a></li> 
-			<li><a href="#tab_HTML"><?php echo __('HTML'); ?></a></li> 
+			<li><a href="#tab_HTML"><?php echo __('HTML'); ?></a></li>
+			<li><a href="#tab_include"><?php echo __('Include'); ?></a></li>  
 		</ul> 
 		<div class="panes">
 			<?php require("tabs/PictureTab.inc.php"); ?>
 			<?php require("tabs/VideoTab.inc.php"); ?>
 			<?php require("tabs/HtmlTab.inc.php"); ?>
+			<?php require("tabs/IncludeTab.inc.php"); ?>
 		</div>
 	</div>
 	<!-- /Tabs --> 

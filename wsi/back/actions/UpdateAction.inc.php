@@ -15,6 +15,7 @@ $siBean->setDatepicker_end(          $_POST['datepicker_end']);
 $siBean->setWsi_display_time(        $_POST['wsi_display_time']);
 $siBean->setWsi_picture_link_url(    $_POST['wsi_picture_link_url']);
 $siBean->setWsi_picture_link_target( $_POST['wsi_picture_link_target']);
+$siBean->setWsi_include_url(         $_POST['wsi_include_url']);
 $siBean->setWsi_type(                $_POST['wsi_type']);
 $siBean->setWsi_opacity(             $_POST['wsi_opacity']);
 $siBean->setWsi_idle_time(           $_POST['wsi_idle_time']);

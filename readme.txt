@@ -28,7 +28,9 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 
 = What's next ? =
 
-* (2.3.0) Customize the borders (facebook style, ...).
+* (2.3.0) Add a new tab "Include".
+* (2.4.0) Customize the borders (facebook style, ...).
+* (2.5.0) Update translations.
 * (3.0.0) Add "Upload picture" option.
 * (4.0.0) Manage WSI date ranges.
 
@@ -94,6 +96,9 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
 3. Splash Image
  
 == Changelog ==
+
+= 2.3.0 =
+* Add a new tab "Include".
 
 = 2.2.3 =
 * Update back office fields in HTML5 input types (http://www.w3schools.com/html5/html5_form_input_types.asp)

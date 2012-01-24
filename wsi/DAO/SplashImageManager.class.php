@@ -36,6 +36,7 @@ class SplashImageManager {
 		update_option('wsi_display_time',        $splashImageBean->getWsi_display_time());
 		update_option('wsi_picture_link_url',    $splashImageBean->getWsi_picture_link_url());
 		update_option('wsi_picture_link_target', $splashImageBean->getWsi_picture_link_target());
+		update_option('wsi_include_url',         $splashImageBean->getWsi_include_url());
 		update_option('wsi_type',                $splashImageBean->getWsi_type());
 		update_option('wsi_opacity',             $splashImageBean->getWsi_opacity());
 		update_option('wsi_idle_time',           ($splashImageBean->getWsi_idle_time()=='')?0:$splashImageBean->getWsi_idle_time());
@@ -79,6 +80,7 @@ class SplashImageManager {
 			$splashImageBean->setWsi_display_time(           esc_attr(get_option('wsi_display_time')));
 			$splashImageBean->setWsi_picture_link_url(       esc_attr(get_option('wsi_picture_link_url')));
 			$splashImageBean->setWsi_picture_link_target(    esc_attr(get_option('wsi_picture_link_target')));
+			$splashImageBean->setWsi_include_url(            esc_attr(get_option('wsi_include_url')));
 			$splashImageBean->setWsi_type(                   esc_attr(get_option('wsi_type')));
 			$splashImageBean->setWsi_opacity(                esc_attr(get_option('wsi_opacity')));
 			$splashImageBean->setWsi_idle_time(              esc_attr(get_option('wsi_idle_time')));
@@ -135,6 +137,7 @@ class SplashImageManager {
 				'wsi_fixed_splash'           => 'true',
 				'wsi_picture_link_url'       => '',
 				'wsi_picture_link_target'    => '',
+				'wsi_include_url'            => '',
 				'wsi_close_esc_function'     => 'false',
 				'wsi_hide_cross'             => 'false',
 				'wsi_disable_shadow_border'  => 'false',

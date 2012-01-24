@@ -77,6 +77,11 @@ class SplashImageBean {
 	private $wsi_picture_link_target;
 	
 	/**
+	 * @var string
+	 */
+	private $wsi_include_url;
+	
+	/**
 	 * @var bool
 	 */
 	private $wsi_close_esc_function;
@@ -159,7 +164,8 @@ class SplashImageBean {
 	public function getWsi_display_time() { return $this->wsi_display_time; } 
 	public function isWsi_fixed_splash() { return $this->wsi_fixed_splash; } 
 	public function getWsi_picture_link_url() { return $this->wsi_picture_link_url; } 
-	public function getWsi_picture_link_target() { return $this->wsi_picture_link_target; } 
+	public function getWsi_picture_link_target() { return $this->wsi_picture_link_target; }
+	public function getWsi_include_url() { return $this->wsi_include_url; }
 	public function isWsi_close_esc_function() { return $this->wsi_close_esc_function; } 
 	public function isWsi_hide_cross() { return $this->wsi_hide_cross; } 
 	public function isWsi_disable_shadow_border() { return $this->wsi_disable_shadow_border; } 
@@ -187,6 +193,7 @@ class SplashImageBean {
 	public function setWsi_fixed_splash($x) { $this->wsi_fixed_splash = $x; } 
 	public function setWsi_picture_link_url($x) { $this->wsi_picture_link_url = $x; } 
 	public function setWsi_picture_link_target($x) { $this->wsi_picture_link_target = $x; } 
+	public function setWsi_include_url($x) { $this->wsi_include_url = $x; }
 	public function setWsi_close_esc_function($x) { $this->wsi_close_esc_function = $x; } 
 	public function setWsi_hide_cross($x) { $this->wsi_hide_cross = $x; } 
 	public function setWsi_disable_shadow_border($x) { $this->wsi_disable_shadow_border = $x; } 
