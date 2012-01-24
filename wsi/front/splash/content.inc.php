@@ -87,6 +87,14 @@
 	<?php break; case "html": ?>
 	
 		<?php echo stripslashes($siBean->getWsi_html()); ?>
+		
+	<?php break; case "include": ?>
+	
+		<iframe 
+			height="<?php echo $siBean->getSplash_image_height(); ?>" 
+			width="<?php echo $siBean->getSplash_image_width(); ?>" 
+			src="<?php echo stripslashes($siBean->getWsi_include_url()); ?>">
+		</iframe>
 	
 <?php } ?>
 	
