@@ -45,10 +45,19 @@ Others:
 = Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
 
 **NO !**   
-If we use WSI with the standards options ("Test mode activated:" = not check), the splah screen will appear once by user (I use a top in HTTP Session) everywhere on your website (when you enter on the site).   
+If we use WSI with the standards options ("Test mode activated:" = not check), the splah screen will appear once by user (WSI save the last display time in user HTTP Session) everywhere on your website.   
 If the user close his browser and if he returns on your website, the WSI returns come back.   
 I'll working to an option for "exclude" some pages.   
 For exemple, we can use this option for have no confict with some pages with flash.
+
+= Can I use the splash screen once only when first loading to the site, and not repeating with each page I visit? =
+
+**Yes, we can ! ;-)**
+We just need to disable the "test mode" (this mode display the splash screen on each page).
+We can use the Idle Time to select the time of inactivity between 2 splash screen.
+For example, if the "idle time" is "30", the user come on your website and see the splash screen.
+If he navigate on your website, he don't show the splash screen a second time.
+But if he wait 30 minutes with no click, the splash screen come a second time if he returns to the website.
 
 = None of the tabs not working. What's happend ? =
 I worked on the loading javascript scripts using the [best practices](http://codex.wordpress.org/Function_Reference/wp_enqueue_script) described in the codex.   
