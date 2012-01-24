@@ -43,10 +43,10 @@
 	<!-- Tabs --> 
 	<div id="tabs">
 		<ul> 
-			<li><a href="#tab_picture"><?php echo __('Picture'); ?></a></li> 
-			<li><a href="#tab_video"><?php echo __('Video'); ?></a></li> 
-			<li><a href="#tab_HTML"><?php echo __('HTML'); ?></a></li>
-			<li><a href="#tab_include"><?php echo __('Include'); ?></a></li>  
+			<li><a href="#tab_picture"><img src="<?php echo WsiCommons::getURL(); ?>/style/tabs/picture.png" /><?php echo __('Picture'); ?></a></li> 
+			<li><a href="#tab_video"><img src="<?php echo WsiCommons::getURL(); ?>/style/tabs/video.png" /><?php echo __('Video'); ?></a></li> 
+			<li><a href="#tab_HTML"><img src="<?php echo WsiCommons::getURL(); ?>/style/tabs/html.png" /><?php echo __('HTML'); ?></a></li>
+			<li><a href="#tab_include"><img src="<?php echo WsiCommons::getURL(); ?>/style/tabs/file.gif" /><?php echo __('Include'); ?></a></li>  
 		</ul> 
 		<div class="panes">
 			<?php require("tabs/PictureTab.inc.php"); ?>

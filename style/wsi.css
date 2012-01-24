@@ -16,6 +16,11 @@
 	width:750px;
 }
 
+#tabs img {
+	margin-bottom: -4px;
+	margin-right: 6px;
+}
+
 .uninstallCheckList {
 	background-color:#FFFFE0;
 	border-color:#E6DB55;

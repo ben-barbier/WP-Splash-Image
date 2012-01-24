@@ -99,6 +99,8 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
 
 = 2.3.0 =
 * Add a new tab "Include".
+* On load plugin, the active tab is open.
+* Add Tabs icons.
 
 = 2.2.3 =
 * Update back office fields in HTML5 input types (http://www.w3schools.com/html5/html5_form_input_types.asp)
