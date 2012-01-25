@@ -108,7 +108,7 @@ class SplashImageManager {
 	}
 	
 	/**
-	 * @return string
+	 * @return string : Plugin infos for feedback form
 	 */
 	public function getInfos() {
 		$wsiInfos;
