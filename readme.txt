@@ -96,6 +96,10 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
  
 == Changelog ==
 
+= 2.4.0 =
+* Update persistance method (use new tables). -> http://codex.wordpress.org/Creating_Tables_with_Plugins
+* Add menu box to display database informations
+
 = 2.3.0 =
 * Add a new tab "Include".
 * On load plugin, the active tab is open.

@@ -15,6 +15,8 @@ include 'wsi/WsiCommons.class.php';
 include 'wsi/front/WsiFront.class.php';
 include 'wsi/back/WsiBack.class.php';
 
+define("WSI_DB_VERSION", "2.0");
+
 WsiBack::getInstance()->plug();
 WsiFront::getInstance()->plug();
 
