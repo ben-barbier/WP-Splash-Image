@@ -236,20 +236,20 @@ class SplashImageManager {
 			    	UNIQUE KEY id (id)
 		    	);";
 		    	
-		    	$table_name_general = $wpdb->prefix . "wsi_general";
-		    	$sql_general = "CREATE TABLE " . $table_name_general . " (
+		    	$table_name_config = $wpdb->prefix . "wsi_config";
+		    	$sql_config = "CREATE TABLE " . $table_name_config . " (
 			    	splash_active BOOLEAN,
 			    	wsi_first_load_mode_active BOOLEAN,
 			    	splash_test_active BOOLEAN
 		    	);";
 		    	
-		    	echo $sql_general;
+		    	echo $sql_config;
 		    	echo $sql_splashimage;
 		    	
-		    	dbDelta($sql_general);
+		    	dbDelta($sql_config);
 		    	dbDelta($sql_splashimage);
 		    	
-		    	$wpdb->insert( $table_name_general, array( 
+		    	$wpdb->insert( $table_name_config, array( 
 		    			'splash_active'              => (get_option('splash_active')=='true'),              //boolean
 		    			'wsi_first_load_mode_active' => (get_option('wsi_first_load_mode_active')=='true'), //boolean 
 		    			'splash_test_active'         => (get_option('splash_test_active')=='true')          //boolean
