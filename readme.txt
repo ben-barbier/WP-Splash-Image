@@ -85,6 +85,9 @@ Use code `<?php wp_head(); ?>` before your others scripts imports like `<script 
 Yes, verify if `<?php wp_head(); ?>` and `<?php wp_footer(); ?>` exist in your theme...    
 These two methods are necessary for the proper functioning of WSI.
 
+This plugins not working with WP-Splah-Image :
+* [nivo-slider-for-wordpress](http://wordpress.org/extend/plugins/nivo-slider-for-wordpress/)
+
 = Sometimes, my splash image is not well centered. Idea ? =
 Yes, verify if "Splash height" and "Splash width" properties are properly filled.
 
