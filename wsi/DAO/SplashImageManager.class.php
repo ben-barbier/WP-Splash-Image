@@ -32,6 +32,7 @@ class SplashImageManager {
 	/**
 	 * @param SplashImageBean $splashImageBean
 	 */
+	//TODO: check !
 	public function save(SplashImageBean $splashImageBean) {
 		
 		$wpdb->update(
@@ -81,7 +82,7 @@ class SplashImageManager {
 	/**
 	 * @return SplashImageBean with "esc_attr" security on each property.
 	 */
-	//TODO: update !
+	//TODO: check !
 	public function get($splashImageID) {
 		
 		if (!isset($this->splashImageBean)) {
