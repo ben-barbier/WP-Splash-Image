@@ -94,8 +94,8 @@ class WsiBack {
 	 * Update the database if the current version is not the last.
 	 */
 	function update_db_check() {
-		if (SplashImageManager::getInstance()->get_current_wsi_db_version() != WSI_DB_VERSION) {
-			SplashImageManager::getInstance()->wsi_install_db();
+		if (MainManager::getInstance()->get_current_wsi_db_version() != WSI_DB_VERSION) {
+			MainManager::getInstance()->wsi_install_db();
 		}
 	}
 	
