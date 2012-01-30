@@ -62,7 +62,7 @@ class ConfigManager {
 	
 			$configBean = new ConfigBean();
 
-			$wsi_config_row = $wpdb->get_row("SELECT * FROM $this->tableName(),"); // Only one row in wsi_config table
+			$wsi_config_row = $wpdb->get_row("SELECT * FROM $this->tableName()"); // Only one row in wsi_config table
 			
 			$configBean->setSplash_active(              ($wsi_config_row['splash_active']=='1'?'true':'false'));
 			$configBean->setWsi_first_load_mode_active( ($wsi_config_row['wsi_first_load_mode_active']=='1'?'true':'false'));
