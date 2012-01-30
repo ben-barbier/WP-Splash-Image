@@ -9,6 +9,7 @@ Author URI: http://www.dark-sides.com/
 Donate URI: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C
 */
 
+include 'wsi/beans/ConfigBean.class.php';
 include 'wsi/beans/SplashImageBean.class.php';
 include 'wsi/DAO/MainManager.class.php';
 include 'wsi/DAO/ConfigManager.class.php';
