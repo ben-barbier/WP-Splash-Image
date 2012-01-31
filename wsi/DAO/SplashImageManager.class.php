@@ -88,43 +88,45 @@ class SplashImageManager {
 	public function get($splashImageID) {
 		
 		global $wpdb;
+		
 		if (!isset($this->splashImageBean)) {
 			
 			$splashImageBean = new SplashImageBean();
 			
-			$wsi_splashimage_row = $wpdb->get_row("SELECT * FROM ".$this::tableName()." WHERE id = ".$splashImageID);
+			$wsi_splashimage_results = $wpdb->get_results("SELECT * FROM ".$this::tableName()." WHERE id = ".$splashImageID);
+			$wsi_splashimage_row = $wsi_splashimage_results[0]; 
 			
-			$splashImageBean->setUrl_splash_image(           esc_attr($wsi_splashimage_row['url_splash_image']));
-			$splashImageBean->setSplash_image_width(         esc_attr($wsi_splashimage_row['splash_image_width']));
-			$splashImageBean->setSplash_image_height(        esc_attr($wsi_splashimage_row['splash_image_height']));
-			$splashImageBean->setSplash_color(               esc_attr($wsi_splashimage_row['splash_color']));
-			$splashImageBean->setDatepicker_start(           esc_attr($wsi_splashimage_row['datepicker_start']));
-			$splashImageBean->setDatepicker_end(             esc_attr($wsi_splashimage_row['datepicker_end']));
-			$splashImageBean->setWsi_display_time(           esc_attr($wsi_splashimage_row['wsi_display_time']));
-			$splashImageBean->setWsi_picture_link_url(       esc_attr($wsi_splashimage_row['wsi_picture_link_url']));
-			$splashImageBean->setWsi_picture_link_target(    esc_attr($wsi_splashimage_row['wsi_picture_link_target']));
-			$splashImageBean->setWsi_type(                   esc_attr($wsi_splashimage_row['wsi_type']));
-			$splashImageBean->setWsi_opacity(                esc_attr($wsi_splashimage_row['wsi_opacity']));
-			$splashImageBean->setWsi_idle_time(              esc_attr($wsi_splashimage_row['wsi_idle_time']));
+			$splashImageBean->setUrl_splash_image(           esc_attr($wsi_splashimage_row->url_splash_image));
+			$splashImageBean->setSplash_image_width(         esc_attr($wsi_splashimage_row->splash_image_width));
+			$splashImageBean->setSplash_image_height(        esc_attr($wsi_splashimage_row->splash_image_height));
+			$splashImageBean->setSplash_color(               esc_attr($wsi_splashimage_row->splash_color));
+			$splashImageBean->setDatepicker_start(           esc_attr($wsi_splashimage_row->datepicker_start));
+			$splashImageBean->setDatepicker_end(             esc_attr($wsi_splashimage_row->datepicker_end));
+			$splashImageBean->setWsi_display_time(           esc_attr($wsi_splashimage_row->wsi_display_time));
+			$splashImageBean->setWsi_picture_link_url(       esc_attr($wsi_splashimage_row->wsi_picture_link_url));
+			$splashImageBean->setWsi_picture_link_target(    esc_attr($wsi_splashimage_row->wsi_picture_link_target));
+			$splashImageBean->setWsi_type(                   esc_attr($wsi_splashimage_row->wsi_type));
+			$splashImageBean->setWsi_opacity(                esc_attr($wsi_splashimage_row->wsi_opacity));
+			$splashImageBean->setWsi_idle_time(              esc_attr($wsi_splashimage_row->wsi_idle_time));
 
 			// Gestion des booleans
-			$splashImageBean->setWsi_close_esc_function(     esc_attr($wsi_splashimage_row['wsi_close_esc_function']=='1'?'true':'false'));
-			$splashImageBean->setWsi_hide_cross(             esc_attr($wsi_splashimage_row['wsi_hide_cross']=='1'?'true':'false'));
-			$splashImageBean->setWsi_disable_shadow_border(  esc_attr($wsi_splashimage_row['wsi_disable_shadow_border']=='1'?'true':'false'));
-			$splashImageBean->setWsi_youtube_autoplay(       esc_attr($wsi_splashimage_row['wsi_youtube_autoplay']=='1'?'true':'false'));
-			$splashImageBean->setWsi_youtube_loop(           esc_attr($wsi_splashimage_row['wsi_youtube_loop']=='1'?'true':'false'));
-			$splashImageBean->setWsi_fixed_splash(           esc_attr($wsi_splashimage_row['wsi_fixed_splash']=='1'?'true':'false'));
+			$splashImageBean->setWsi_close_esc_function(     esc_attr($wsi_splashimage_row->wsi_close_esc_function=='1'?'true':'false'));
+			$splashImageBean->setWsi_hide_cross(             esc_attr($wsi_splashimage_row->wsi_hide_cross=='1'?'true':'false'));
+			$splashImageBean->setWsi_disable_shadow_border(  esc_attr($wsi_splashimage_row->wsi_disable_shadow_border=='1'?'true':'false'));
+			$splashImageBean->setWsi_youtube_autoplay(       esc_attr($wsi_splashimage_row->wsi_youtube_autoplay=='1'?'true':'false'));
+			$splashImageBean->setWsi_youtube_loop(           esc_attr($wsi_splashimage_row->wsi_youtube_loop=='1'?'true':'false'));
+			$splashImageBean->setWsi_fixed_splash(           esc_attr($wsi_splashimage_row->wsi_fixed_splash=='1'?'true':'false'));
 
 			// Valeurs des onglets
-			$splashImageBean->setWsi_youtube(                esc_attr($wsi_splashimage_row['wsi_youtube']));
-			$splashImageBean->setWsi_yahoo(                  esc_attr($wsi_splashimage_row['wsi_yahoo']));
-			$splashImageBean->setWsi_dailymotion(            esc_attr($wsi_splashimage_row['wsi_dailymotion']));
-			$splashImageBean->setWsi_metacafe(               esc_attr($wsi_splashimage_row['wsi_metacafe']));
-			$splashImageBean->setWsi_swf(                    esc_attr($wsi_splashimage_row['wsi_swf']));
-			$splashImageBean->setWsi_include_url(            esc_attr($wsi_splashimage_row['wsi_include_url']));
+			$splashImageBean->setWsi_youtube(                esc_attr($wsi_splashimage_row->wsi_youtube));
+			$splashImageBean->setWsi_yahoo(                  esc_attr($wsi_splashimage_row->wsi_yahoo));
+			$splashImageBean->setWsi_dailymotion(            esc_attr($wsi_splashimage_row->wsi_dailymotion));
+			$splashImageBean->setWsi_metacafe(               esc_attr($wsi_splashimage_row->wsi_metacafe));
+			$splashImageBean->setWsi_swf(                    esc_attr($wsi_splashimage_row->wsi_swf));
+			$splashImageBean->setWsi_include_url(            esc_attr($wsi_splashimage_row->wsi_include_url));
 
 			//No escape for HTML values.
-			$splashImageBean->setWsi_html(                   $wsi_splashimage_row['wsi_html']);
+			$splashImageBean->setWsi_html(                   $wsi_splashimage_row->wsi_html);
 			
 			$this->splashImageBean = $splashImageBean;
 			
