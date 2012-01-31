@@ -36,6 +36,7 @@ class SplashImageManager {
 	//TODO: check !
 	public function save(SplashImageBean $splashImageBean) {
 		
+		global $wpdb;
 		$wpdb->update(
 				$this->tableName(),
 				array(
@@ -86,6 +87,7 @@ class SplashImageManager {
 	//TODO: check !
 	public function get($splashImageID) {
 		
+		global $wpdb;
 		if (!isset($this->splashImageBean)) {
 			
 			$splashImageBean = new SplashImageBean();

@@ -37,6 +37,7 @@ class ConfigManager {
 	//TODO: check !
 	public function save(ConfigBean $configBean) {
 		
+		global $wpdb;
 		$wpdb->update( 
 			$this->tableName(), 
 			array(
@@ -59,6 +60,7 @@ class ConfigManager {
 	//TODO: check !
 	public function get() {
 	
+		global $wpdb;
 		if (!isset($this->configBean)) {
 	
 			$configBean = new ConfigBean();
