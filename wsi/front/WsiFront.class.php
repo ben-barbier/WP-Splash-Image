@@ -40,7 +40,7 @@ class WsiFront {
 	public function wsi_first_load_mode_div() {
 
 		// Chargement des données en base
-		$siBean = SplashImageManager::getInstance()->get();
+		$siBean = SplashImageManager::getInstance()->get(1);
 		
 		// Si le plugin n'est pas activé dans ses options, on ne fait rien
 		if($siBean->isSplash_active()!='true') return;
@@ -113,7 +113,7 @@ class WsiFront {
 	public function wsi_addSplashImageWpHead() {
 		
 		// Chargement des données en base
-		$siBean = SplashImageManager::getInstance()->get();
+		$siBean = SplashImageManager::getInstance()->get(1);
 		
 		// Si le plugin n'est pas activé dans ses options, on ne fait rien
 		if($siBean->isSplash_active()!='true') return;
@@ -146,7 +146,7 @@ class WsiFront {
 	public function wsi_addSplashImageWpFooter() {
 	
 		// Chargement des données en base
-		$siBean = SplashImageManager::getInstance()->get();
+		$siBean = SplashImageManager::getInstance()->get(1);
 		
 		// Si le plugin n'est pas activé dans ses options, on ne fait rien
 		if($siBean->isSplash_active()!='true') return;

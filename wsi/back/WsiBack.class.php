@@ -211,7 +211,7 @@ class WsiBack {
 			case 'uninstall' : require("actions/UninstallAction.inc.php"); $uninstalled = true; break;
 		}
 		
-		$siBean = SplashImageManager::getInstance()->get();
+		$siBean = SplashImageManager::getInstance()->get(1);
 		
 	?>
 	

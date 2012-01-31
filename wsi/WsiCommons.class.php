@@ -55,7 +55,7 @@ class WsiCommons {
 	 */
 	public static function getdate_is_in_validities_dates() {
 	
-		$siBean = SplashImageManager::getInstance()->get();
+		$siBean = SplashImageManager::getInstance()->get(1);
 		
 		$today = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
 	
@@ -96,7 +96,7 @@ class WsiCommons {
 	 */
 	public static function enough_idle_to_splash($lastSplash) {
 		
-		$siBean = SplashImageManager::getInstance()->get();
+		$siBean = SplashImageManager::getInstance()->get(1);
 		
 		// Si la variable n'est pas settée, c'est que l'utilisateur vient pour la 1ere fois.
 		if (!isset($lastSplash)) return true;
