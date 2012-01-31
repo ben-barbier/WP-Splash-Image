@@ -26,6 +26,7 @@ class SplashImageManager {
 	 * @return string splashimage table name
 	 */
 	public static function tableName() {
+		global $wpdb;
 		return $wpdb->prefix . "wsi_splashimage";
 	}
 	
@@ -89,7 +90,7 @@ class SplashImageManager {
 			
 			$splashImageBean = new SplashImageBean();
 			
-			$wsi_splashimage_row = $wpdb->get_row("SELECT * FROM $this->tableName() WHERE id = $splashImageID");
+			$wsi_splashimage_row = $wpdb->get_row("SELECT * FROM ".$this::tableName()." WHERE id = ".$splashImageID);
 			
 			$splashImageBean->setUrl_splash_image(           esc_attr($wsi_splashimage_row['url_splash_image']));
 			$splashImageBean->setSplash_image_width(         esc_attr($wsi_splashimage_row['splash_image_width']));
@@ -104,6 +105,7 @@ class SplashImageManager {
 			$splashImageBean->setWsi_opacity(                esc_attr($wsi_splashimage_row['wsi_opacity']));
 			$splashImageBean->setWsi_idle_time(              esc_attr($wsi_splashimage_row['wsi_idle_time']));
 
+			// Gestion des booleans
 			$splashImageBean->setWsi_close_esc_function(     esc_attr($wsi_splashimage_row['wsi_close_esc_function']=='1'?'true':'false'));
 			$splashImageBean->setWsi_hide_cross(             esc_attr($wsi_splashimage_row['wsi_hide_cross']=='1'?'true':'false'));
 			$splashImageBean->setWsi_disable_shadow_border(  esc_attr($wsi_splashimage_row['wsi_disable_shadow_border']=='1'?'true':'false'));
@@ -111,6 +113,7 @@ class SplashImageManager {
 			$splashImageBean->setWsi_youtube_loop(           esc_attr($wsi_splashimage_row['wsi_youtube_loop']=='1'?'true':'false'));
 			$splashImageBean->setWsi_fixed_splash(           esc_attr($wsi_splashimage_row['wsi_fixed_splash']=='1'?'true':'false'));
 
+			// Valeurs des onglets
 			$splashImageBean->setWsi_youtube(                esc_attr($wsi_splashimage_row['wsi_youtube']));
 			$splashImageBean->setWsi_yahoo(                  esc_attr($wsi_splashimage_row['wsi_yahoo']));
 			$splashImageBean->setWsi_dailymotion(            esc_attr($wsi_splashimage_row['wsi_dailymotion']));
