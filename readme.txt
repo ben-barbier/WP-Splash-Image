@@ -99,6 +99,9 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
  
 == Changelog ==
 
+= 2.4.0 =
+Work on incompatibility with "WP super cache" (it desactivate sessions) and splash screen display all the time. Set session in cookie to fix it (tkx to [Klyde](http://...)).
+
 = 2.3.2 =
 * Add Turkish translation (tkx to [Murat DURGUN](http://www.lanwifi.net/))
 
