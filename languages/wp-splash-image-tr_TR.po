@@ -1,0 +1,193 @@
+# Translation of the WordPress plugin   by Murat DURGUN.
+# Copyright (C) 2010
+# This file is distributed under the same license as the  package.
+# Murat DURGUN <muratdur@gmail.com>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wsi v1.0.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/wsi\n"
+"POT-Creation-Date: 2010-06-20 02:44+0000\n"
+"PO-Revision-Date: 2012-01-30 17:07+0200\n"
+"Last-Translator: Murat DURGUN <muratdur@gmail.com>\n"
+"Language-Team: Murat DURGUN <muratdur@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Türkçe\n"
+"X-Poedit-Country: TÜRKİYE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: wp-splash-image.php:79
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: wp-splash-image.php:96
+msgid "Donate"
+msgstr "Bağış"
+
+#: wp-splash-image.php:328
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Bu sayfaya erişmek için yeterli izine sahip değilsiniz."
+
+#: wp-splash-image.php:512
+msgid "Infos"
+msgstr "Bilgiler"
+
+#: wp-splash-image.php:518
+#: wp-splash-image.php:521
+#: wp-splash-image.php:718
+msgid "Feedback"
+msgstr "Geri Besleme"
+
+#: wp-splash-image.php:527
+msgid "Thank's for your feedback..."
+msgstr "Görüşlerinizi paylaştığınız için teşekkür ederiz ..."
+
+#: wp-splash-image.php:531
+msgid "For information:"
+msgstr "Bilgi için:"
+
+#: wp-splash-image.php:533
+msgid "Configuration"
+msgstr "Yapılandırma"
+
+#: wp-splash-image.php:538
+#: wp-splash-image.php:746
+msgid "Splash image activated"
+msgstr "Splash image Aktif et"
+
+#: wp-splash-image.php:546
+msgid "Test mode activated:"
+msgstr "Mode test Aktif et"
+
+#: wp-splash-image.php:552
+msgid "(for tests only, open splash image whenever)"
+msgstr "(Sadece test için, Sayfa her açıldığında splash image görüntüler)"
+
+#: wp-splash-image.php:561
+msgid "Image"
+msgstr "Resim"
+
+#: wp-splash-image.php:562
+msgid "Video"
+msgstr "Video"
+
+#: wp-splash-image.php:563
+msgid "HTML"
+msgstr "HTML"
+
+#: wp-splash-image.php:571
+msgid "Picture URL:"
+msgstr "Görüntü adresi:"
+
+#: wp-splash-image.php:580
+#: wp-splash-image.php:759
+msgid "Picture link URL"
+msgstr "Görüntü link adresi:"
+
+#: wp-splash-image.php:586
+#: wp-splash-image.php:686
+#: wp-splash-image.php:694
+msgid "(stay empty if not required)"
+msgstr "(İsterseniz boş bırakabilirsiniz)"
+
+#: wp-splash-image.php:595
+msgid "Youtube code"
+msgstr "Youtube kodu"
+
+#: wp-splash-image.php:601
+msgid "Yahoo video code"
+msgstr "Yahoo video kodu"
+
+#: wp-splash-image.php:607
+msgid "Dailymotion code"
+msgstr "Dailymotion kodu"
+
+#: wp-splash-image.php:613
+msgid "Metacafe code"
+msgstr "Metacafe kodu"
+
+#: wp-splash-image.php:619
+msgid "Video Flash (URL)"
+msgstr "Video Flash (Adresi)"
+
+#: wp-splash-image.php:640
+#: wp-splash-image.php:752
+#: wp-splash-image.php:758
+msgid "Close esc function"
+msgstr "Kapatmak için ESC tuşu kullan"
+
+#: wp-splash-image.php:645
+msgid "if you click on background"
+msgstr "Yada arka plan üzerine tıklayabilirsiniz"
+
+#: wp-splash-image.php:648
+#: wp-splash-image.php:755
+msgid "Hide"
+msgstr "Kapatma tuşunu gizle"
+
+#: wp-splash-image.php:655
+msgid "Splash height"
+msgstr "Splash Yüksekliği"
+
+#: wp-splash-image.php:664
+msgid "Splash width"
+msgstr "Splash Genişliği"
+
+#: wp-splash-image.php:673
+#: wp-splash-image.php:751
+msgid "Background color"
+msgstr "Arka plan rengi"
+
+#: wp-splash-image.php:681
+#: wp-splash-image.php:748
+msgid "Start date"
+msgstr "Başlangıç tarihi"
+
+#: wp-splash-image.php:689
+#: wp-splash-image.php:747
+msgid "End date"
+msgstr "Bitiş tarihi"
+
+#: wp-splash-image.php:697
+#: wp-splash-image.php:769
+msgid "Display time"
+msgstr "Görüntüleme süresi"
+
+#: wp-splash-image.php:700
+msgid "seconds"
+msgstr "Saniye"
+
+#: wp-splash-image.php:701
+msgid "(0 don't close automaticly the splash image)"
+msgstr "(0 yazarsanız spash otomatik kapanır)"
+
+#: wp-splash-image.php:705
+msgid "Update Options"
+msgstr "Güncelle"
+
+#: wp-splash-image.php:710
+msgid "Options Updated..."
+msgstr "Güncelleştirildi..."
+
+#: wp-splash-image.php:724
+msgid "Your Email:"
+msgstr "E-Posta adresiniz:"
+
+#: wp-splash-image.php:728
+msgid "Message:"
+msgstr "Mesajınız:"
+
+#: wp-splash-image.php:733
+msgid "Send Feedback"
+msgstr "Mesajı gönder"
+
+#: wp-splash-image.php:765
+msgid "Picture height"
+msgstr "Görüntü yüksekliği"
+
+#: wp-splash-image.php:767
+msgid "Picture width"
+msgstr "Görüntü genişliği"
+

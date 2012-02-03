@@ -21,6 +21,11 @@ class WsiFront {
 	}
 	
 	/**
+	 * @var int : value of cookie 'last_display' before update.
+	 */
+	private $last_display;
+	
+	/**
 	 * Plug : Hooks functions to actions and filters.
 	 * This is the only function to use to set up the back.
 	 */
@@ -28,7 +33,6 @@ class WsiFront {
 		add_action ( 'init',                array(&$this, 'wp_splash_image_front_init'));
 		add_action ( 'wp_head',             array(&$this, 'wsi_addSplashImageWpHead' ));
 		add_action ( 'wp_footer',           array(&$this, 'wsi_addSplashImageWpFooter' ));
-		add_action ( 'template_redirect',   array(&$this, 'wsi_init_session'), 0 );
 		
 		// custom hook for adding the "first load mode" to the template
 		add_action ( 'wsi_first_load_mode', array($this, 'wsi_first_load_mode_div'));
@@ -54,11 +58,8 @@ class WsiFront {
 			// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
 			if (WsiCommons::getdate_is_in_validities_dates() == "false") return;
 		
-			if(WsiCommons::enough_idle_to_splash($_SESSION['last_display'])==false) {
-				// On indique qu'un écran a été affiché par l'utilisateur et on arrete le traitement
-				$_SESSION['last_display'] = time();
-				return;
-			}
+			// Si l'utilisateur n'a pas été inactif assez longtemps, on ne fait rien
+			if(WsiCommons::enough_idle_to_splash($this->last_display)==false) return;
 		
 		}
 		
@@ -66,19 +67,6 @@ class WsiFront {
 		require("splash/overlay.inc.php");
 		require("splash/content.inc.php");
 		
-		// On indique qu'un écran a été affiché par l'utilisateur
-		$_SESSION['last_display'] = time();
-		
-	}
-	
-	/**
-	 * Cette fonction ouvre une session PHP si ce n'est pas déjà le cas dans le thème
-	 */
-	public function wsi_init_session() {
-		$session_id = session_id();
-		if(empty($session_id)) {
-			session_start();
-		}
 	}
 	
 	/**
@@ -88,6 +76,10 @@ class WsiFront {
 	
 		if (!is_admin()) {
 	
+			// On stocke le timestamp du dernier affichage et on le met à jour.
+			$this->last_display = $_COOKIE['last_display'];
+			setCookie('last_display',time(),time()+24*3600);
+			
 			// Déclaration des styles de la partie front end.
 			wp_register_style('overlay-basic', WsiCommons::getURL().'/style/jqueryTools/overlay-basic.css'); /*Style pour la splash image */
 	
@@ -127,11 +119,8 @@ class WsiFront {
 			// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
 			if (WsiCommons::getdate_is_in_validities_dates() == "false") return;
 			
- 			if(WsiCommons::enough_idle_to_splash($_SESSION['last_display'])==false) {
-	 			// On indique qu'un écran a été affiché par l'utilisateur et on arrete le traitement
-	 			$_SESSION['last_display'] = time();
-	 			return;
-			}
+			// Si l'utilisateur n'a pas été inactif assez longtemps, on ne fait rien
+ 			if(WsiCommons::enough_idle_to_splash($this->last_display)==false) return;
 			
 		}
 
@@ -160,19 +149,13 @@ class WsiFront {
 			// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
 			if (WsiCommons::getdate_is_in_validities_dates() == "false") return;
 	
- 			if(WsiCommons::enough_idle_to_splash($_SESSION['last_display'])==false) {
- 				// On indique qu'un écran a été affiché par l'utilisateur et on arrete le traitement
- 				$_SESSION['last_display'] = time();
- 				return;
- 			}
+			// Si l'utilisateur n'a pas été inactif assez longtemps, on ne fait rien
+ 			if(WsiCommons::enough_idle_to_splash($this->last_display)==false) return;
 	
 		}
 
 		require("splash/content.inc.php");
 		
-		// On indique qu'un écran a été affiché par l'utilisateur
-		$_SESSION['last_display'] = time();
-
 	}
 } 
 ?>

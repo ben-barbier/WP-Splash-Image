@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: Splash, Image, LightBox, Picture, Video, HTML, Start, Open, Screen, Welcome, Message
 Requires at least: 3.1
 Tested up to: 3.3.1
-Stable tag: 2.3.0
+Stable tag: 2.4.0
 
 WP Splash Image is a plugin for Wordpress to display picture, video or html code with a lightbox effect at the opening of the blog.
  
@@ -28,13 +28,13 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 
 = What's next ? =
 
-* (2.4.0) Customize the borders (facebook style, ...).
-* (2.5.0) Update translations.
+* (2.6.0) Customize the borders (facebook style, ...).
 * (3.0.0) Add "Upload picture" option.
 * (4.0.0) Manage WSI date ranges.
 
 Others:
 
+* Update translations.
 * Update Documentation.
 * Upload JQuery Tools functions. 
 * Add Validator on main form.
@@ -85,6 +85,9 @@ Use code `<?php wp_head(); ?>` before your others scripts imports like `<script 
 Yes, verify if `<?php wp_head(); ?>` and `<?php wp_footer(); ?>` exist in your theme...    
 These two methods are necessary for the proper functioning of WSI.
 
+This plugins not working with WP-Splah-Image :
+* [nivo-slider-for-wordpress](http://wordpress.org/extend/plugins/nivo-slider-for-wordpress/)
+
 = Sometimes, my splash image is not well centered. Idea ? =
 Yes, verify if "Splash height" and "Splash width" properties are properly filled.
 
@@ -96,9 +99,18 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
  
 == Changelog ==
 
-= 2.4.0 =
+= 2.5.0 =
 * Update persistance method (use new tables). -> http://codex.wordpress.org/Creating_Tables_with_Plugins
 * Add menu box to display database informations
+
+= 2.4.0 =
+* Work on incompatibility with "WP super cache" (it desactivate sessions and splash screen display all the time). I've set the session in cookie to fix it (tkx to Emmanuel Barraud of [laclefnumerique.com](http://www.laclefnumerique.com/) for his help).
+
+= 2.3.2 =
+* Add Turkish translation (tkx to [Murat DURGUN](http://www.lanwifi.net/))
+
+= 2.3.1 =
+* Fix HTML Tab content (tkx to [Synchro](http://wordpress.org/support/topic/plugin-wp-splash-image-adds-excess-slashes-in-html-tab) for his comment).
 
 = 2.3.0 =
 * Add a new tab "Include".

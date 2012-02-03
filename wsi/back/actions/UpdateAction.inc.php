@@ -37,7 +37,9 @@ $siBean->setWsi_yahoo(       $_POST['wsi_yahoo']);
 $siBean->setWsi_dailymotion( $_POST['wsi_dailymotion']);
 $siBean->setWsi_metacafe(    $_POST['wsi_metacafe']);
 $siBean->setWsi_swf(         $_POST['wsi_swf']);
-$siBean->setWsi_html(        $_POST['wsi_html']);
+
+// Remove slash in HTML code.
+$siBean->setWsi_html(        stripslashes($_POST['wsi_html']));
 
 SplashImageManager::getInstance()->save($siBean);
 
