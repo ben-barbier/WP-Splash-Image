@@ -135,17 +135,6 @@ class SplashImageManager {
 	}
 	
 	/**
-	 * @return string : Plugin infos for feedback form
-	 */
-	public function getInfos() {
-		$wsiInfos;
-		foreach (WsiCommons::getOptionsList() as $option) {
-			$wsiInfos.= $option.": ".get_option($option)."\n";
-		}
-		return $wsiInfos;
-	}
-	
-	/**
 	 * Retourne une map avec en clef, les options de WSI et en valeur, les valeurs par défaut.
 	 */
 	private function getDefaultValues() {
