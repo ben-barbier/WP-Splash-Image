@@ -21,6 +21,11 @@ class WsiFront {
 	}
 	
 	/**
+	 * @var int : value of cookie 'last_display' before update.
+	 */
+	private $last_display;
+	
+	/**
 	 * Plug : Hooks functions to actions and filters.
 	 * This is the only function to use to set up the back.
 	 */
@@ -53,20 +58,14 @@ class WsiFront {
 			// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
 			if (WsiCommons::getdate_is_in_validities_dates() == "false") return;
 		
-			if(WsiCommons::enough_idle_to_splash($_COOKIE['last_display'])==false) {
-				// On indique qu'un écran a été affiché par l'utilisateur et on arrete le traitement
-				setCookie('last_display',time(),time()+24*3600);
-				return;
-			}
+			// Si l'utilisateur n'a pas été inactif assez longtemps, on ne fait rien
+			if(WsiCommons::enough_idle_to_splash($this->last_display)==false) return;
 		
 		}
 		
 		require("splash/noConflict.inc.php");
 		require("splash/overlay.inc.php");
 		require("splash/content.inc.php");
-		
-		// On indique qu'un écran a été affiché par l'utilisateur
-		setCookie('last_display',time(),time()+24*3600);
 		
 	}
 	
@@ -77,6 +76,10 @@ class WsiFront {
 	
 		if (!is_admin()) {
 	
+			// On stocke le timestamp du dernier affichage et on le met à jour.
+			$this->last_display = $_COOKIE['last_display'];
+			setCookie('last_display',time(),time()+24*3600);
+			
 			// Déclaration des styles de la partie front end.
 			wp_register_style('overlay-basic', WsiCommons::getURL().'/style/jqueryTools/overlay-basic.css'); /*Style pour la splash image */
 	
@@ -116,11 +119,8 @@ class WsiFront {
 			// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
 			if (WsiCommons::getdate_is_in_validities_dates() == "false") return;
 			
- 			if(WsiCommons::enough_idle_to_splash($_COOKIE['last_display'])==false) {
-	 			// On indique qu'un écran a été affiché par l'utilisateur et on arrete le traitement
-	 			setCookie('last_display',time(),time()+24*3600);
-	 			return;
-			}
+			// Si l'utilisateur n'a pas été inactif assez longtemps, on ne fait rien
+ 			if(WsiCommons::enough_idle_to_splash($this->last_display)==false) return;
 			
 		}
 
@@ -149,19 +149,13 @@ class WsiFront {
 			// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
 			if (WsiCommons::getdate_is_in_validities_dates() == "false") return;
 	
- 			if(WsiCommons::enough_idle_to_splash($_COOKIE['last_display'])==false) {
- 				// On indique qu'un écran a été affiché par l'utilisateur et on arrete le traitement
- 				setCookie('last_display',time(),time()+24*3600);
- 				return;
- 			}
+			// Si l'utilisateur n'a pas été inactif assez longtemps, on ne fait rien
+ 			if(WsiCommons::enough_idle_to_splash($this->last_display)==false) return;
 	
 		}
 
 		require("splash/content.inc.php");
 		
-		// On indique qu'un écran a été affiché par l'utilisateur
-		setCookie('last_display',time(),time()+24*3600);
-
 	}
 } 
 ?>
