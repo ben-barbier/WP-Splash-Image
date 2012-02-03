@@ -39,7 +39,7 @@ class ConfigManager {
 		
 		global $wpdb;
 		$wpdb->update( 
-			$this->tableName(), 
+			$this::tableName(), 
 			array(
 					'splash_active'              => (($configBean->isSplash_active())?'1':'0'),              // boolean
 					'wsi_first_load_mode_active' => (($configBean->isWsi_first_load_mode_active())?'1':'0'), // boolean
