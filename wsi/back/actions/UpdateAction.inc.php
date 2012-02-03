@@ -5,6 +5,7 @@ check_admin_referer('update','nonce_update_field');
 
 // On met à jour la base de données (table: options) avec la fonction de wp: update
 $siBean = new SplashImageBean();
+$configBean = new ConfigBean();
 
 $siBean->setUrl_splash_image(        $_POST['url_splash_image']);
 $siBean->setSplash_image_width(      $_POST['splash_image_width']);
@@ -21,9 +22,9 @@ $siBean->setWsi_opacity(             $_POST['wsi_opacity']);
 $siBean->setWsi_idle_time(           $_POST['wsi_idle_time']);
 
 // Gestion des booleans
-$siBean->setSplash_active(              $_POST['splash_active']);
-$siBean->setSplash_test_active(         $_POST['splash_test_active']);
-$siBean->setWsi_first_load_mode_active( $_POST['wsi_first_load_mode_active']);
+$configBean->setSplash_active(              $_POST['splash_active']);
+$configBean->setSplash_test_active(         $_POST['splash_test_active']);
+$configBean->setWsi_first_load_mode_active( $_POST['wsi_first_load_mode_active']);
 $siBean->setWsi_close_esc_function(     $_POST['wsi_close_esc_function']);
 $siBean->setWsi_hide_cross(             $_POST['wsi_hide_cross']);
 $siBean->setWsi_disable_shadow_border(  $_POST['wsi_disable_shadow_border']);
@@ -42,5 +43,6 @@ $siBean->setWsi_swf(         $_POST['wsi_swf']);
 $siBean->setWsi_html(        stripslashes($_POST['wsi_html']));
 
 SplashImageManager::getInstance()->save($siBean);
+ConfigManager::getInstance()->save($configBean);
 
 ?>

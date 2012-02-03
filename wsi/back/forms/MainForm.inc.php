@@ -9,7 +9,7 @@
 				type="checkbox" 
 				name="splash_active" 
 				id="splash_active" 
-				<?php if($siBean->isSplash_active()=='true') {echo("checked='checked'");} ?> /></td>
+				<?php if($configBean->isSplash_active()=='true') {echo("checked='checked'");} ?> /></td>
 		</tr>
 		<tr>
 		<td><?php echo __('First load mode activated','wp-splash-image'); ?>:</td>
@@ -17,7 +17,7 @@
 				type="checkbox" 
 				name="wsi_first_load_mode_active"
 				id="wsi_first_load_mode_active" 
-				<?php if($siBean->isWsi_first_load_mode_active()=='true') {echo("checked='checked'");} ?> />
+				<?php if($configBean->isWsi_first_load_mode_active()=='true') {echo("checked='checked'");} ?> />
 				
 				<img id="wsi_first_load_mode_info" alt="<?php echo __('Uninstall','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/info-16px.png" />	
 				<div class="tooltipLarge">
@@ -35,7 +35,7 @@
 				type="checkbox" 
 				name="splash_test_active" 
 				id="splash_test_active" 
-				<?php if($siBean->isSplash_test_active()=='true') {echo("checked='checked'");} ?> />
+				<?php if($configBean->isSplash_test_active()=='true') {echo("checked='checked'");} ?> />
 				<?php echo __('(for tests only, open splash image whenever)','wp-splash-image'); ?></td>
 		</tr>
 	</table>

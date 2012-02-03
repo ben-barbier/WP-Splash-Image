@@ -211,6 +211,8 @@ class WsiBack {
 			case 'uninstall' : require("actions/UninstallAction.inc.php"); $uninstalled = true; break;
 		}
 		
+		// Pour le moement on ne charge que le 1er splash screen
+		$configBean = ConfigManager::getInstance()->get();
 		$siBean = SplashImageManager::getInstance()->get(1);
 		
 	?>

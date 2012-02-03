@@ -34,7 +34,7 @@ class ConfigManager {
 	/**
 	 * @param ConfigBean $configBean
 	 */
-	//TODO: check !
+	//TODO: KO - to fix !
 	public function save(ConfigBean $configBean) {
 		
 		global $wpdb;
@@ -57,7 +57,7 @@ class ConfigManager {
 	/**
 	 * @return ConfigBean with "esc_attr" security on each property.
 	 */
-	//TODO: check !
+	// OK (testé)
 	public function get() {
 	
 		global $wpdb;
@@ -67,9 +67,9 @@ class ConfigManager {
 
 			$wsi_config_row = $wpdb->get_row("SELECT * FROM ".$this::tableName()); // Only one row in wsi_config table
 			
-			$configBean->setSplash_active(              ($wsi_config_row['splash_active']=='1'?'true':'false'));
-			$configBean->setWsi_first_load_mode_active( ($wsi_config_row['wsi_first_load_mode_active']=='1'?'true':'false'));
-			$configBean->setSplash_test_active(         ($wsi_config_row['splash_test_active']=='1'?'true':'false'));
+			$configBean->setSplash_active(              ($wsi_config_row->splash_active=='1'?'true':'false'));
+			$configBean->setWsi_first_load_mode_active( ($wsi_config_row->wsi_first_load_mode_active=='1'?'true':'false'));
+			$configBean->setSplash_test_active(         ($wsi_config_row->splash_test_active=='1'?'true':'false'));
 			
 			$this->configBean = $configBean;
 			
