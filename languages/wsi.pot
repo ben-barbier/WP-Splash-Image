@@ -1,0 +1,352 @@
+# Copyright (C) 2012 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version:  \n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/wsi\n"
+"POT-Creation-Date: 2012-02-03 14:24:41+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: wsi/back/forms/MainForm.inc.php:1
+msgid "Configuration"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:7
+#: wsi/back/forms/DocumentationForm.inc.php:10
+msgid "Splash image activated"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:15
+msgid "First load mode activated"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:22 wsi/back/WsiBack.class.php:222
+msgid "Uninstall"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:33
+msgid "Test mode activated"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:39
+msgid "(for tests only, open splash image whenever)"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:46
+msgid "Picture"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:47
+msgid "Video"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:48
+msgid "HTML"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:49
+msgid "Include"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:62
+#: wsi/back/forms/DocumentationForm.inc.php:16
+#: wsi/back/forms/DocumentationForm.inc.php:22
+msgid "Close esc function"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:67
+msgid "if you click on background"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:70
+#: wsi/back/forms/DocumentationForm.inc.php:19
+msgid "Hide"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:77
+msgid "Disable shadow border"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:82
+msgid "useful for images with transparent edges"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:85
+msgid "Fixed mode"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:90
+msgid "fix the splashcreen to scrollbars"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:91
+msgid "useful for images with big size"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:94
+msgid "Splash height"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:104
+msgid "Splash width"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:113
+#: wsi/back/forms/DocumentationForm.inc.php:15
+msgid "Background color"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:124
+msgid "Color Picker Online"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:130
+msgid "Background opacity"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:136
+#: wsi/back/forms/DocumentationForm.inc.php:33
+msgid "Display time"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:139
+msgid "seconds"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:140
+msgid "(0 don't close automaticly the splash image)"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:144
+#: wsi/back/forms/DocumentationForm.inc.php:12
+msgid "Start date"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:150 wsi/back/forms/MainForm.inc.php:164
+#: wsi/back/forms/tabs/PictureTab.inc.php:20
+msgid "(stay empty if not required)"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:153
+msgid "Warning: WSI does not currently work."
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:154
+msgid "Check if dates are OK."
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:158
+#: wsi/back/forms/DocumentationForm.inc.php:11
+msgid "End date"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:168
+msgid "Idle time"
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:176
+msgid "minutes of user inactivity before re-emergence of wsi."
+msgstr ""
+
+#: wsi/back/forms/MainForm.inc.php:180
+msgid "Update Options"
+msgstr ""
+
+#: wsi/back/forms/UninstallForm.inc.php:10
+#: wsi/back/forms/UninstallConfirmForm.inc.php:9
+msgid "Uninstall WP-Splash-Image"
+msgstr ""
+
+#: wsi/back/forms/UninstallForm.inc.php:11
+msgid ""
+"Deactivating WP-Splash-Image plugin does not remove any data that may have "
+"been created, such as the stats options. To completely remove this plugin, "
+"you can uninstall it here."
+msgstr ""
+
+#: wsi/back/forms/UninstallForm.inc.php:13
+msgid "WARNING:"
+msgstr ""
+
+#: wsi/back/forms/UninstallForm.inc.php:14
+msgid ""
+"Once uninstalled, this cannot be undone. You should use a Database Backup "
+"plugin of WordPress to back up all the data first."
+msgstr ""
+
+#: wsi/back/forms/UninstallForm.inc.php:16
+msgid "The following WordPress Options will be DELETED:"
+msgstr ""
+
+#: wsi/back/forms/UninstallForm.inc.php:18
+msgid "WordPress Options"
+msgstr ""
+
+#: wsi/back/forms/UninstallForm.inc.php:36
+msgid "UNINSTALL WP-Splash Image"
+msgstr ""
+
+#: wsi/back/forms/UninstallForm.inc.php:37
+msgid ""
+"You Are About To Uninstall WP-Splash-Image From WordPress.\\nThis Action Is "
+"Not Reversible.\\n\\n Choose [Cancel] To Stop, [OK] To Uninstall."
+msgstr ""
+
+#: wsi/back/forms/FeedbackForm.inc.php:8 wsi/back/WsiBack.class.php:217
+msgid "Feedback"
+msgstr ""
+
+#: wsi/back/forms/FeedbackForm.inc.php:15
+msgid "Your Email:"
+msgstr ""
+
+#: wsi/back/forms/FeedbackForm.inc.php:19
+msgid "Message:"
+msgstr ""
+
+#: wsi/back/forms/FeedbackForm.inc.php:23
+msgid "Send infos:"
+msgstr ""
+
+#: wsi/back/forms/FeedbackForm.inc.php:26
+msgid "(to reproduce the error locally and help me to fix the problem)"
+msgstr ""
+
+#: wsi/back/forms/FeedbackForm.inc.php:31
+msgid "Send Feedback"
+msgstr ""
+
+#: wsi/back/forms/tabs/PictureTab.inc.php:5
+msgid "Picture URL:"
+msgstr ""
+
+#: wsi/back/forms/tabs/PictureTab.inc.php:14
+#: wsi/back/forms/DocumentationForm.inc.php:23
+msgid "Picture link URL"
+msgstr ""
+
+#: wsi/back/forms/tabs/PictureTab.inc.php:23
+msgid "Picture link target"
+msgstr ""
+
+#: wsi/back/forms/tabs/PictureTab.inc.php:32
+msgid "Fill picture size"
+msgstr ""
+
+#: wsi/back/forms/tabs/PictureTab.inc.php:34
+msgid "Fill"
+msgstr ""
+
+#: wsi/back/forms/tabs/IncludeTab.inc.php:5
+msgid "Include URL:"
+msgstr ""
+
+#: wsi/back/forms/tabs/VideoTab.inc.php:6
+msgid "Youtube code"
+msgstr ""
+
+#: wsi/back/forms/tabs/VideoTab.inc.php:10
+msgid "Autoplay"
+msgstr ""
+
+#: wsi/back/forms/tabs/VideoTab.inc.php:17
+msgid "Loop"
+msgstr ""
+
+#: wsi/back/forms/tabs/VideoTab.inc.php:28
+msgid "Yahoo video code"
+msgstr ""
+
+#: wsi/back/forms/tabs/VideoTab.inc.php:34
+msgid "Dailymotion code"
+msgstr ""
+
+#: wsi/back/forms/tabs/VideoTab.inc.php:40
+msgid "Metacafe code"
+msgstr ""
+
+#: wsi/back/forms/tabs/VideoTab.inc.php:46
+msgid "Video Flash (URL)"
+msgstr ""
+
+#: wsi/back/forms/DocumentationForm.inc.php:29
+msgid "Picture height"
+msgstr ""
+
+#: wsi/back/forms/DocumentationForm.inc.php:31
+msgid "Picture width"
+msgstr ""
+
+#: wsi/back/forms/DocumentationForm.inc.php:37
+msgid "For information:"
+msgstr ""
+
+#: wsi/back/forms/UninstallConfirmForm.inc.php:13
+msgid ""
+"To finish the uninstallation and deactivate automatically WP-Splash-Image :"
+msgstr ""
+
+#: wsi/back/forms/UninstallConfirmForm.inc.php:16
+msgid "Click Here"
+msgstr ""
+
+#: wsi/back/actions/UninstallAction.inc.php:14
+msgid "Setting Key '%s' has been deleted."
+msgstr ""
+
+#: wsi/back/actions/UninstallAction.inc.php:18
+msgid "Error deleting Setting Key '%s'."
+msgstr ""
+
+#: wsi/back/WsiBack.class.php:74
+msgid "Settings"
+msgstr ""
+
+#: wsi/back/WsiBack.class.php:84
+msgid "Get help"
+msgstr ""
+
+#: wsi/back/WsiBack.class.php:85
+msgid "Fork me on Github"
+msgstr ""
+
+#: wsi/back/WsiBack.class.php:86
+msgid "Donate"
+msgstr ""
+
+#: wsi/back/WsiBack.class.php:189
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: wsi/back/WsiBack.class.php:212
+msgid "Infos"
+msgstr ""
+
+#: wsi/back/WsiBack.class.php:228
+msgid "Buy me a Beer"
+msgstr ""
+
+#: wsi/back/WsiBack.class.php:233 wsi/back/WsiBack.class.php:238
+msgid "Reset"
+msgstr ""
+
+#: wsi/back/WsiBack.class.php:254
+msgid "Thank's for your feedback..."
+msgstr ""
+
+#: wsi/back/WsiBack.class.php:255
+msgid "Options Updated..."
+msgstr ""
+
+#: wsi/back/WsiBack.class.php:257
+msgid "A new version of \"WP Splash Image\" is out !"
+msgstr ""
+
+#: wsi/back/WsiBack.class.php:258
+msgid "update automatically"
+msgstr ""
