@@ -44,16 +44,17 @@ class WsiFront {
 	public function wsi_first_load_mode_div() {
 
 		// Chargement des données en base
+		$configBean = ConfigManager::getInstance()->get();
 		$siBean = SplashImageManager::getInstance()->get(1);
 		
 		// Si le plugin n'est pas activé dans ses options, on ne fait rien
-		if($siBean->isSplash_active()!='true') return;
+		if($configBean->isSplash_active()!='true') return;
 		
 		// If not in First Load Mode, exit the function
-		if ($siBean->isWsi_first_load_mode_active()!='true') return;
+		if ($configBean->isWsi_first_load_mode_active()!='true') return;
 		
 		// Si on est pas en "mode test", on effectue quelques tests supplémentaires
-		if($siBean->isSplash_test_active()!='true') {
+		if($configBean->isSplash_test_active()!='true') {
 		
 			// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
 			if (WsiCommons::getdate_is_in_validities_dates() == "false") return;
@@ -105,16 +106,17 @@ class WsiFront {
 	public function wsi_addSplashImageWpHead() {
 		
 		// Chargement des données en base
+		$configBean = ConfigManager::getInstance()->get();
 		$siBean = SplashImageManager::getInstance()->get(1);
 		
 		// Si le plugin n'est pas activé dans ses options, on ne fait rien
-		if($siBean->isSplash_active()!='true') return;
+		if($configBean->isSplash_active()!='true') return;
 		
 		// If not in First Load Mode, exit the function
-		if ($siBean->isWsi_first_load_mode_active()=='true') return;
+		if ($configBean->isWsi_first_load_mode_active()=='true') return;
 		
 		// Si on est pas en "mode test", on effectue quelques tests supplémentaires
-		if($siBean->isSplash_test_active()!='true') {
+		if($configBean->isSplash_test_active()!='true') {
 
 			// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
 			if (WsiCommons::getdate_is_in_validities_dates() == "false") return;
@@ -135,16 +137,17 @@ class WsiFront {
 	public function wsi_addSplashImageWpFooter() {
 	
 		// Chargement des données en base
+		$configBean = ConfigManager::getInstance()->get();
 		$siBean = SplashImageManager::getInstance()->get(1);
 		
 		// Si le plugin n'est pas activé dans ses options, on ne fait rien
-		if($siBean->isSplash_active()!='true') return;
+		if($configBean->isSplash_active()!='true') return;
 		
 		// If not in First Load Mode, exit the function
-		if ($siBean->isWsi_first_load_mode_active()=='true') return;
+		if ($configBean->isWsi_first_load_mode_active()=='true') return;
 	
 		// Si on est pas en "mode test", on effectue quelques tests supplémentaires
-		if($siBean->isSplash_test_active()!='true') {
+		if($configBean->isSplash_test_active()!='true') {
 		
 			// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
 			if (WsiCommons::getdate_is_in_validities_dates() == "false") return;
