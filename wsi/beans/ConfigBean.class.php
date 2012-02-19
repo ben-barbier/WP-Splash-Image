@@ -32,4 +32,15 @@ class ConfigBean {
 	public function setSplash_test_active($x) { $this->splash_test_active = $x; }
 	public function setWsi_first_load_mode_active($x) { $this->wsi_first_load_mode_active = $x; }
 	
+	/**
+	 * @return string : the ConfigBean detail values
+	 */
+	public function __toString() {
+		return "ConfigBean {".
+			"\"splash_active\": \"".$splash_active."\",".
+			"\"splash_test_active\": \"".$splash_test_active."\",".
+			"\"wsi_first_load_mode_active\": \"".$wsi_first_load_mode_active."\"".
+		"}";
+	}
+	
 }
