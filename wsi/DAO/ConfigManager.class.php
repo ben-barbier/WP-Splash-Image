@@ -10,8 +10,7 @@ class ConfigManager {
 	 * Singleton
 	 */
 	private static $_instance = null;
-	private function __construct() {
-	}
+	private function __construct() {}
 	/**
 	 * @return ConfigManager instance
 	 */
@@ -101,7 +100,7 @@ class ConfigManager {
 	/**
 	 * Drop table 'wsi_config'.
 	 */
-	public function delete() {
+	public function drop() {
 		global $wpdb;
 		$wpdb->query("DROP TABLE IF EXISTS ".$this::tableName());
 	}
