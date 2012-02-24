@@ -139,34 +139,44 @@ class SplashImageManager {
 	 */
 	private function getDefaultValues() {
 		return array(
-				'splash_active'              => 'true',
-				'wsi_first_load_mode_active' => 'false',
-				'splash_test_active'         => 'false',
+				'id'                         => 1,
 				'wsi_idle_time'              => '30',
 				'url_splash_image'           => 'http://plugins.svn.wordpress.org/wsi/assets/banner-772x250.png',
 				'splash_image_width'         => '772',
 				'splash_image_height'        => '250',
 				'splash_color'               => '000000',
-				'datepicker_start'           => '',
-				'datepicker_end'             => '',
+// 				'datepicker_start'           => null,
+// 				'datepicker_end'             => null,
 				'wsi_display_time'           => '5',
-				'wsi_fixed_splash'           => 'true',
+				'wsi_fixed_splash'           => 1, // true
 				'wsi_picture_link_url'       => 'http://wordpress.org/extend/plugins/wsi/',
 				'wsi_picture_link_target'    => 'blank',
 				'wsi_include_url'            => '',
-				'wsi_close_esc_function'     => 'false',
-				'wsi_hide_cross'             => 'false',
-				'wsi_disable_shadow_border'  => 'false',
+				'wsi_close_esc_function'     => 0, // false
+				'wsi_hide_cross'             => 0, // false
+				'wsi_disable_shadow_border'  => 0, // false
 				'wsi_type'                   => 'picture',
 				'wsi_opacity'                => '75',
 				'wsi_youtube'                => '',
-				'wsi_youtube_autoplay'       => 'true',
-				'wsi_youtube_loop'           => 'false',
+				'wsi_youtube_autoplay'       => 1, // true
+				'wsi_youtube_loop'           => 0, // false
 				'wsi_yahoo'                  => '',
 				'wsi_dailymotion'            => '',
 				'wsi_metacafe'               => '',
 				'wsi_swf'                    => '',
 				'wsi_html'                   => ''
+		);
+	}
+	
+	/**
+	 * Remise de toutes les options aux valeurs par défaut
+	 */
+	public function reset() {
+		global $wpdb;
+		$wpdb->query("DELETE FROM ".$this::tableName());
+		$wpdb->insert( 
+			$this::tableName(), 
+			$this->getDefaultValues() 
 		);
 	}
 	

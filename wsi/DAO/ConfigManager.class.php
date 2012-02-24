@@ -79,14 +79,25 @@ class ConfigManager {
 			$wsi_first_load_mode_active = $wpdb->get_var("SELECT value FROM ".$this::tableName()." WHERE param = 'wsi_first_load_mode_active'",0,0);
 			$splash_test_active =         $wpdb->get_var("SELECT value FROM ".$this::tableName()." WHERE param = 'splash_test_active'",0,0);
 			
-			$configBean->setSplash_active(              ($splash_active=='1'?'true':'false'));
-			$configBean->setWsi_first_load_mode_active( ($wsi_first_load_mode_active=='1'?'true':'false'));
-			$configBean->setSplash_test_active(         ($splash_test_active=='1'?'true':'false'));
+			$configBean->setSplash_active(              $splash_active);
+			$configBean->setWsi_first_load_mode_active( $wsi_first_load_mode_active);
+			$configBean->setSplash_test_active(         $splash_test_active);
 			
 			$this->configBean = $configBean;
 			
 		}
 		return $this->configBean;
+	}
+	
+	/**
+	 * Remise de toutes les options aux valeurs par défaut
+	 */
+	public function reset() {
+		global $wpdb;
+		$wpdb->query("DELETE FROM ".$this::tableName());
+		$wpdb->insert($this::tableName(),array('param'=>'splash_active',              'value'=>'true' ));
+		$wpdb->insert($this::tableName(),array('param'=>'wsi_first_load_mode_active', 'value'=>'false'));
+		$wpdb->insert($this::tableName(),array('param'=>'splash_test_active',         'value'=>'false'));
 	}
 	
 	//TODO: complete...

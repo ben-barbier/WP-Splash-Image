@@ -36,11 +36,9 @@ class MainManager {
 	/**
 	 * Remise de toutes les options aux valeurs par défaut
 	 */
-	//TODO: update !
 	public function reset() {
-		foreach ($this->getDefaultValues() as $option => $defaultValue) {
-			update_option($option, $defaultValue);
-		}
+		ConfigManager::getInstance()->reset();
+		SplashImageManager::getInstance()->reset();
 	}
 	
 	/**
@@ -115,7 +113,6 @@ class MainManager {
 				dbDelta($sql_config);
 				dbDelta($sql_splashimage);
 	
-				//TODO: Vérifier si es données sont bien renseignées à l'init				
 				$wpdb->insert( $table_name_config, array(
 						'param' => 'splash_active',
 						'value' => (get_option('splash_active')=='true')              //boolean
