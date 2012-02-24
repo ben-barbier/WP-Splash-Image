@@ -34,27 +34,26 @@ class ConfigManager {
 	/**
 	 * @param ConfigBean $configBean
 	 */
-	//TODO: delete comment (Test OK)
 	public function save(ConfigBean $configBean) {
 		global $wpdb;
 		
 		$success = $wpdb->update(
 				$this::tableName(),
-				array('value' => (($configBean->isSplash_active())?'1':'0')), // boolean
+				array('value' => (($configBean->isSplash_active())?'true':'false')),
 				array('param' => 'splash_active'),
 				$format = null,
 				$where_format = null);
 		
 		$success = $wpdb->update(
 				$this::tableName(),
-				array('value' => (($configBean->isWsi_first_load_mode_active())?'1':'0')), // boolean
+				array('value' => (($configBean->isWsi_first_load_mode_active())?'true':'false')),
 				array('param' => 'wsi_first_load_mode_active'),
 				$format = null,
 				$where_format = null);
 		
 		$success = $wpdb->update(
 				$this::tableName(),
-				array('value' => (($configBean->isSplash_test_active())?'1':'0')), // boolean
+				array('value' => (($configBean->isSplash_test_active())?'true':'false')),
 				array('param' => 'splash_test_active'),
 				$format = null,
 				$where_format = null);
@@ -67,7 +66,6 @@ class ConfigManager {
 	/**
 	 * @return ConfigBean with "esc_attr" security on each property.
 	 */
-	//TODO: delete comment (Test OK)
 	public function get() {
 	
 		global $wpdb;
@@ -99,7 +97,5 @@ class ConfigManager {
 		$wpdb->insert($this::tableName(),array('param'=>'wsi_first_load_mode_active', 'value'=>'false'));
 		$wpdb->insert($this::tableName(),array('param'=>'splash_test_active',         'value'=>'false'));
 	}
-	
-	//TODO: complete...
 	
 }
