@@ -44,9 +44,10 @@ class MainManager {
 	/**
 	 * Remise de toutes les options aux valeurs par défaut
 	 */
-	//TODO: update !
 	public function uninstall() {
-		
+		ConfigManager::getInstance()->drop();
+		SplashImageManager::getInstance()->drop();
+		//TODO: complete !
 	}
 	
 	/**

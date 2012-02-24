@@ -181,20 +181,19 @@ class SplashImageManager {
 	}
 	
 	/**
-	 * Delete an option if this option come from WSI.
-	 * @param unknown_type $option
-	 * @return bool
+	 * Delete one splashImageBean with id $id.
 	 */
-	//TODO: update !
-	public function delete($option) {
-		
-		// Vérifie si l'option appartient à WSI.
-		if(in_array($option, WsiCommons::getOptionsList())) {
-			return delete_option($option);
-		} else {
-			return false;
-		}
-		
+	public function delete($id) {
+		global $wpdb;
+		$wpdb->query("DELETE FROM ".$this::tableName()." WHERE id = '".$id."'");
+	}
+	
+	/**
+	 * Drop table 'wsi_config'.
+	 */
+	public function drop() {
+		global $wpdb;
+		$wpdb->query("DROP TABLE IF EXISTS ".$this::tableName());
 	}
 	
 }
