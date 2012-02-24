@@ -38,7 +38,7 @@ class SplashImageManager {
 		
 		global $wpdb;
 		$wpdb->update(
-				$this->tableName(),
+				$this::tableName(),
 				array(
 						
 						'url_splash_image'        => $splashImageBean->getUrl_splash_image(),
@@ -84,7 +84,7 @@ class SplashImageManager {
 	/**
 	 * @return SplashImageBean with "esc_attr" security on each property.
 	 */
-	//TODO: check !
+	//TODO: to check !
 	public function get($splashImageID) {
 		
 		global $wpdb;

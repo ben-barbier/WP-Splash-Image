@@ -102,28 +102,33 @@ class MainManager {
 					wsi_metacafe              VARCHAR(255),
 					wsi_swf                   VARCHAR(255),
 					wsi_html                  VARCHAR(255),
-					UNIQUE KEY id (id)
+					PRIMARY KEY id (id)
 				);";
 	
 				$table_name_config = ConfigManager::tableName();
 				$sql_config = "CREATE TABLE " . $table_name_config . " (
-					splash_active BOOLEAN,
-					wsi_first_load_mode_active BOOLEAN,
-					splash_test_active BOOLEAN
+					param VARCHAR(255),
+					value VARCHAR(255),
+					PRIMARY KEY id (param)
 				);";
-	
-				echo $sql_config;
-				echo $sql_splashimage;
 	
 				dbDelta($sql_config);
 				dbDelta($sql_splashimage);
 	
+				//TODO: Vérifier si es données sont bien renseignées à l'init				
 				$wpdb->insert( $table_name_config, array(
-						'splash_active'              => (get_option('splash_active')=='true'),              //boolean
-						'wsi_first_load_mode_active' => (get_option('wsi_first_load_mode_active')=='true'), //boolean
-						'splash_test_active'         => (get_option('splash_test_active')=='true')          //boolean
+						'param' => 'splash_active',
+						'value' => (get_option('splash_active')=='true')              //boolean
 				));
-	
+				$wpdb->insert( $table_name_config, array(
+						'param' => 'wsi_first_load_mode_active',
+						'value' => (get_option('wsi_first_load_mode_active')=='true') //boolean
+				));
+				$wpdb->insert( $table_name_config, array(
+						'param' => 'splash_test_active',
+						'value' => (get_option('splash_test_active')=='true')         //boolean
+				));
+				
 				$wpdb->insert( $table_name_splashimage, array(
 	
 						'url_splash_image' =>          get_option('url_splash_image'),

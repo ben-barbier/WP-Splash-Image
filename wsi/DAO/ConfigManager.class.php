@@ -34,20 +34,30 @@ class ConfigManager {
 	/**
 	 * @param ConfigBean $configBean
 	 */
-	//TODO: KO - to fix !
+	//TODO: delete comment (Test OK)
 	public function save(ConfigBean $configBean) {
-		
 		global $wpdb;
-		$wpdb->update( 
-			$this::tableName(), 
-			array(
-					'splash_active'              => (($configBean->isSplash_active())?'1':'0'),              // boolean
-					'wsi_first_load_mode_active' => (($configBean->isWsi_first_load_mode_active())?'1':'0'), // boolean
-					'splash_test_active'         => (($configBean->isSplash_test_active())?'1':'0')          // boolean
-			),
-			$where, 
-			$format = null, 
-			$where_format = null );
+		
+		$success = $wpdb->update(
+				$this::tableName(),
+				array('value' => (($configBean->isSplash_active())?'1':'0')), // boolean
+				array('param' => 'splash_active'),
+				$format = null,
+				$where_format = null);
+		
+		$success = $wpdb->update(
+				$this::tableName(),
+				array('value' => (($configBean->isWsi_first_load_mode_active())?'1':'0')), // boolean
+				array('param' => 'wsi_first_load_mode_active'),
+				$format = null,
+				$where_format = null);
+		
+		$success = $wpdb->update(
+				$this::tableName(),
+				array('value' => (($configBean->isSplash_test_active())?'1':'0')), // boolean
+				array('param' => 'splash_test_active'),
+				$format = null,
+				$where_format = null);
 		
 		// Update class instance
 		$this->configBean = $configBean;
@@ -57,7 +67,7 @@ class ConfigManager {
 	/**
 	 * @return ConfigBean with "esc_attr" security on each property.
 	 */
-	// OK (testé)
+	//TODO: delete comment (Test OK)
 	public function get() {
 	
 		global $wpdb;
@@ -65,11 +75,13 @@ class ConfigManager {
 	
 			$configBean = new ConfigBean();
 
-			$wsi_config_row = $wpdb->get_row("SELECT * FROM ".$this::tableName()); // Only one row in wsi_config table
+			$splash_active =              $wpdb->get_var("SELECT value FROM ".$this::tableName()." WHERE param = 'splash_active'",0,0);
+			$wsi_first_load_mode_active = $wpdb->get_var("SELECT value FROM ".$this::tableName()." WHERE param = 'wsi_first_load_mode_active'",0,0);
+			$splash_test_active =         $wpdb->get_var("SELECT value FROM ".$this::tableName()." WHERE param = 'splash_test_active'",0,0);
 			
-			$configBean->setSplash_active(              ($wsi_config_row->splash_active=='1'?'true':'false'));
-			$configBean->setWsi_first_load_mode_active( ($wsi_config_row->wsi_first_load_mode_active=='1'?'true':'false'));
-			$configBean->setSplash_test_active(         ($wsi_config_row->splash_test_active=='1'?'true':'false'));
+			$configBean->setSplash_active(              ($splash_active=='1'?'true':'false'));
+			$configBean->setWsi_first_load_mode_active( ($wsi_first_load_mode_active=='1'?'true':'false'));
+			$configBean->setSplash_test_active(         ($splash_test_active=='1'?'true':'false'));
 			
 			$this->configBean = $configBean;
 			
