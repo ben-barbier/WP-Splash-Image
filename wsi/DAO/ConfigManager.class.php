@@ -98,4 +98,12 @@ class ConfigManager {
 		$wpdb->insert($this::tableName(),array('param'=>'splash_test_active',         'value'=>'false'));
 	}
 	
+	/**
+	 * Drop table 'wsi_config'.
+	 */
+	public function delete() {
+		global $wpdb;
+		$wpdb->query("DROP TABLE IF EXISTS ".$this::tableName());
+	}
+	
 }
