@@ -18,6 +18,7 @@ class WsiCommons {
 	/**
 	 * Retourne un tableau contenant la liste de toutes les options de WSI.
 	 */
+	//TODO: to Delete
 	public static function getOptionsList() {
 		return array(
 				'splash_active',
