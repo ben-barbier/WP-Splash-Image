@@ -24,12 +24,11 @@ class MainManager {
 	/**
 	 * @return string
 	 */
-	//TODO: update !
+	//TODO: Check...
 	public function getInfos() {
 		$wsiInfos;
-		foreach (WsiCommons::getOptionsList() as $option) {
-			$wsiInfos.= $option.": ".get_option($option)."\n";
-		}
+		$wsiInfos.=ConfigManager::getInstance()->getInfos();
+		$wsiInfos.=SplashImageManager::getInstance()->getInfos();
 		return $wsiInfos;
 	}
 	

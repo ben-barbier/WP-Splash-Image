@@ -105,4 +105,16 @@ class ConfigManager {
 		$wpdb->query("DROP TABLE IF EXISTS ".$this::tableName());
 	}
 	
+	/**
+	 * @return string
+	 */
+	public function getInfos() {
+		$result;
+		$result.= "<strong>".$this::tableName().": </strong><br />";
+		$result.= "splash_active: ".             $this->configBean->isSplash_active()."<br />";
+		$result.= "wsi_first_load_mode_active: ".$this->configBean->isWsi_first_load_mode_active()."<br />";
+		$result.= "splash_test_active: ".        $this->configBean->isSplash_test_active()."<br />";
+		return $result;	
+	}
+	
 }

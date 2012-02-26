@@ -183,7 +183,7 @@ class WsiBack {
 		}
 		$systemInfos.= "\n";
 		$systemInfos.= "-- Paramétrage WSI --\n";
-		$systemInfos.= SplashImageManager::getInstance()->getInfos();
+		$systemInfos.= MainManager::getInstance()->getInfos();
 			
 		$systemInfos.= "</pre>";
 		return $systemInfos; 
