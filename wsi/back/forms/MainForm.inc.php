@@ -2,6 +2,8 @@
 <form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>">
 	<?php wp_nonce_field('update','nonce_update_field'); ?>
 	<input type="hidden" name="action" value="update" />
+	<?php /* TODO: lorsqu'il y aura plusieurs splash screen, gérer cet ID */ ?>
+	<input type="hidden" name="id" value="1" />
 	<table>
 		<tr>
 			<td><?php echo __('Splash image activated','wp-splash-image'); ?>:</td>

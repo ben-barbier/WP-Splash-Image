@@ -7,6 +7,8 @@ check_admin_referer('update','nonce_update_field');
 $siBean = new SplashImageBean();
 $configBean = new ConfigBean();
 
+$siBean->setId( $_POST['id'] );
+
 $siBean->setUrl_splash_image(        $_POST['url_splash_image']);
 $siBean->setSplash_image_width(      $_POST['splash_image_width']);
 $siBean->setSplash_image_height(     $_POST['splash_image_height']);

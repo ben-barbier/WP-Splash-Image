@@ -33,7 +33,6 @@ class SplashImageManager {
 	/**
 	 * @param SplashImageBean $splashImageBean
 	 */
-	//TODO: check ! (les onglets hors principal ne sont pas sauvegardés !!!) -> vérifier le contenu de $splashImageBean pour les autres onglets...
 	public function save(SplashImageBean $splashImageBean) {
 		
 		global $wpdb;
@@ -45,13 +44,14 @@ class SplashImageManager {
 						'splash_image_width'      => $splashImageBean->getSplash_image_width(),
 						'splash_image_height'     => $splashImageBean->getSplash_image_height(),
 						'splash_color'            => $splashImageBean->getSplash_color(),
+						
+						//FIXME: les dates ne sont pas enregistrées -> Il va peut être falloir utiliser les calendriers JQuery-UI
 						'datepicker_start'        => $splashImageBean->getDatepicker_start(),
 						'datepicker_end'          => $splashImageBean->getDatepicker_end(),
+						
 						'wsi_display_time'        => $splashImageBean->getWsi_display_time(),
 						'wsi_picture_link_url'    => $splashImageBean->getWsi_picture_link_url(),
 						'wsi_picture_link_target' => $splashImageBean->getWsi_picture_link_target(),
-						
-						//TODO: fix "type" persist
 						'wsi_type'                => $splashImageBean->getWsi_type(),
 						'wsi_opacity'             => $splashImageBean->getWsi_opacity(),
 						'wsi_idle_time'           => ($splashImageBean->getWsi_idle_time()=='')?0:$splashImageBean->getWsi_idle_time(),
@@ -86,7 +86,7 @@ class SplashImageManager {
 	/**
 	 * @return SplashImageBean with "esc_attr" security on each property.
 	 */
-	//TODO: to check !
+	//TODO: to check (aucun problème constaté jusque là...)
 	public function get($splashImageID) {
 		
 		global $wpdb;
@@ -203,7 +203,6 @@ class SplashImageManager {
 	/**
 	 * @return string
 	 */
-	//TODO: to implement !
 	public function getInfos() {
 		$result;
 		$result.= "<strong>".$this::tableName().": </strong><br />";

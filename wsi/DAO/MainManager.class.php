@@ -24,7 +24,6 @@ class MainManager {
 	/**
 	 * @return string
 	 */
-	//TODO: Check...
 	public function getInfos() {
 		$wsiInfos;
 		$wsiInfos.=ConfigManager::getInstance()->getInfos();
@@ -46,7 +45,7 @@ class MainManager {
 	public function uninstall() {
 		ConfigManager::getInstance()->drop();
 		SplashImageManager::getInstance()->drop();
-		//TODO: complete !
+		//TODO: à compléter avec la UninstallAction.inc.php
 	}
 	
 	/**
