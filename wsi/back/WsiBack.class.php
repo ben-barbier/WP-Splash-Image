@@ -287,8 +287,19 @@ class WsiBack {
 		jQuery(document).ready(function ($) {
 			
 			// Chargement des calendriers
-			$(":date").dateinput({
-				format: 'dd mmm yyyy'
+			$("#datepicker_start").dateinput({
+				format: 'yyyy-mm-dd',
+				change: function() {
+					var isoDate = this.getValue('yyyy-mm-dd 00:00:00');
+					$("#datepicker_start").val(isoDate);
+				}
+			});
+			$("#datepicker_end").dateinput({
+				format: 'yyyy-mm-dd',
+				change: function() {
+					var isoDate = this.getValue('yyyy-mm-dd 00:00:00');
+					$("#datepicker_end").val(isoDate);
+				}
 			});
 					
 			// Récupération du type de splash
