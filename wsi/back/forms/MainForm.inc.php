@@ -1,4 +1,8 @@
 <h3><?php echo __('Configuration','wp-splash-image'); ?></h3>
+
+<!-- Infos -->
+<?php //echo $this->get_system_info(); ?>
+
 <form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>">
 	<?php wp_nonce_field('update','nonce_update_field'); ?>
 	<input type="hidden" name="action" value="update" />
