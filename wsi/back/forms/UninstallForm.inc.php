@@ -13,19 +13,14 @@
 				<strong><?php echo __('WARNING:', 'wp-splash-image'); ?></strong><br />
 				<?php echo __('Once uninstalled, this cannot be undone. You should use a Database Backup plugin of WordPress to back up all the data first.', 'wp-splash-image'); ?>
 			</p>
-			<p style="color: red"><strong><?php echo __('The following WordPress Options will be DELETED:', 'wp-splash-image'); ?></strong><br /></p>
+			<p style="color: red"><strong><?php echo __('The following WordPress tables will be DELETED:', 'wp-splash-image'); ?></strong><br /></p>
 			<table class="widefat">
-				<thead><tr><th><?php echo __('WordPress Options', 'wp-splash-image'); ?></th></tr></thead>
+				<thead><tr><th><?php echo __('WordPress tables', 'wp-splash-image'); ?></th></tr></thead>
 				<tr>
 					<td valign="top" style="color: black;">
-						<ol style="height:200px;overflow:auto;padding-left:40px">
-						<?php
-							// Liste des options qui seront supprimées
-							$list_options = WsiCommons::getOptionsList();
-							foreach($list_options as $option) {
-								echo '<li>'.$option.'</li>'."\n";
-							}
-						?>
+						<ol style="height:150px;overflow:auto;padding-left:40px">
+							<li><?php echo ConfigManager::tableName(); ?></li>
+							<li><?php echo SplashImageManager::tableName() ?></li>
 						</ol>
 					</td>
 				</tr>
