@@ -183,5 +183,5 @@
 			</td>
 		</tr>
 	</table>
-	<p class="submit"><input type="submit" value="<?php echo __('Update Options','wp-splash-image'); ?>" /></p>
+	<p class="submit"><input type="submit" class="button-primary" value="<?php echo __('Update'); ?>" /></p>
 </form>
