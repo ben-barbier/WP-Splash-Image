@@ -28,6 +28,7 @@ class WsiBack {
 		
 		add_action ( 'admin_init',                                       array(&$this, 'wp_splash_image_back_init' ));
 		add_action ( 'admin_menu',                                       array(&$this, 'wsi_menu' ));
+		register_activation_hook( WsiCommons::$pluginMainFile,           array(&$this, 'update_db_check' ));
 		add_filter ( 'plugin_action_links_'.WsiCommons::$pluginMainFile, array(&$this, 'wsi_filter_plugin_actions' ));
 		add_filter ( 'plugin_row_meta',                                  array(&$this, 'set_plugin_meta'), 10, 2 );
 
@@ -87,6 +88,15 @@ class WsiBack {
 		}
 		return $links;
 		
+	}
+	
+	/**
+	 * Update the database if the current version is not the last.
+	 */
+	function update_db_check() {
+		if (MainManager::getInstance()->get_current_wsi_db_version() != WSI_DB_VERSION) {
+			MainManager::getInstance()->wsi_install_db();
+		}
 	}
 	
 	/**
@@ -173,7 +183,7 @@ class WsiBack {
 		}
 		$systemInfos.= "\n";
 		$systemInfos.= "-- Paramétrage WSI --\n";
-		$systemInfos.= SplashImageManager::getInstance()->getInfos();
+		$systemInfos.= MainManager::getInstance()->getInfos();
 			
 		$systemInfos.= "</pre>";
 		return $systemInfos; 
@@ -201,7 +211,9 @@ class WsiBack {
 			case 'uninstall' : require("actions/UninstallAction.inc.php"); $uninstalled = true; break;
 		}
 		
-		$siBean = SplashImageManager::getInstance()->get();
+		// Pour le moment on ne charge que le 1er splash screen
+		$configBean = ConfigManager::getInstance()->get();
+		$siBean = SplashImageManager::getInstance()->get(1);
 		
 	?>
 	
@@ -275,8 +287,19 @@ class WsiBack {
 		jQuery(document).ready(function ($) {
 			
 			// Chargement des calendriers
-			$(":date").dateinput({
-				format: 'dd mmm yyyy'
+			$("#datepicker_start").dateinput({
+				format: 'yyyy-mm-dd',
+				change: function() {
+					var isoDate = this.getValue('yyyy-mm-dd 00:00:00');
+					$("#datepicker_start").val(isoDate);
+				}
+			});
+			$("#datepicker_end").dateinput({
+				format: 'yyyy-mm-dd',
+				change: function() {
+					var isoDate = this.getValue('yyyy-mm-dd 00:00:00');
+					$("#datepicker_end").val(isoDate);
+				}
 			});
 					
 			// Récupération du type de splash

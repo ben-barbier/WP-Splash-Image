@@ -1,3 +1,4 @@
+
 <!-- --------------- -->
 <!-- Uninstall Form  -->
 <!-- --------------- -->
@@ -13,23 +14,35 @@
 				<strong><?php echo __('WARNING:', 'wp-splash-image'); ?></strong><br />
 				<?php echo __('Once uninstalled, this cannot be undone. You should use a Database Backup plugin of WordPress to back up all the data first.', 'wp-splash-image'); ?>
 			</p>
-			<p style="color: red"><strong><?php echo __('The following WordPress Options will be DELETED:', 'wp-splash-image'); ?></strong><br /></p>
+
+			<p style="color: red"><strong><?php echo __('The following WordPress tables will be DELETED:', 'wp-splash-image'); ?></strong><br /></p>
 			<table class="widefat">
-				<thead><tr><th><?php echo __('WordPress Options', 'wp-splash-image'); ?></th></tr></thead>
+				<thead><tr><th><?php echo __('WordPress tables', 'wp-splash-image'); ?></th></tr></thead>
 				<tr>
 					<td valign="top" style="color: black;">
-						<ol style="height:200px;overflow:auto;padding-left:40px">
-						<?php
-							// Liste des options qui seront supprimées
-							$list_options = WsiCommons::getOptionsList();
-							foreach($list_options as $option) {
-								echo '<li>'.$option.'</li>'."\n";
-							}
-						?>
+						<ol style="height:45px;overflow:auto;padding-left:40px">
+							<?php foreach(WsiCommons::getWsiTablesList() as $table) {
+								echo "<li>$table</li>";
+							} ?>
 						</ol>
 					</td>
 				</tr>
 			</table>
+
+			<p style="color: red"><strong><?php echo __('The following WordPress options will be DELETED:', 'wp-splash-image'); ?></strong><br /></p>
+			<table class="widefat">
+				<thead><tr><th><?php echo __('WordPress options', 'wp-splash-image'); ?></th></tr></thead>
+				<tr>
+					<td valign="top" style="color: black;">
+						<ol style="height:25px;overflow:auto;padding-left:40px">
+							<?php foreach(WsiCommons::getWsiOptionsList() as $option) {
+								echo "<li>$option</li>";
+							} ?>
+						</ol>
+					</td>
+				</tr>
+			</table>
+
 			<br />
 			<p style="text-align: center;">
 				<input type="submit" class="button"

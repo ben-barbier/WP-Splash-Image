@@ -5,6 +5,9 @@ check_admin_referer('update','nonce_update_field');
 
 // On met à jour la base de données (table: options) avec la fonction de wp: update
 $siBean = new SplashImageBean();
+$configBean = new ConfigBean();
+
+$siBean->setId( $_POST['id'] );
 
 $siBean->setUrl_splash_image(        $_POST['url_splash_image']);
 $siBean->setSplash_image_width(      $_POST['splash_image_width']);
@@ -21,15 +24,15 @@ $siBean->setWsi_opacity(             $_POST['wsi_opacity']);
 $siBean->setWsi_idle_time(           $_POST['wsi_idle_time']);
 
 // Gestion des booleans
-$siBean->setSplash_active(              $_POST['splash_active']);
-$siBean->setSplash_test_active(         $_POST['splash_test_active']);
-$siBean->setWsi_first_load_mode_active( $_POST['wsi_first_load_mode_active']);
-$siBean->setWsi_close_esc_function(     $_POST['wsi_close_esc_function']);
-$siBean->setWsi_hide_cross(             $_POST['wsi_hide_cross']);
-$siBean->setWsi_disable_shadow_border(  $_POST['wsi_disable_shadow_border']);
-$siBean->setWsi_youtube_autoplay(       $_POST['wsi_youtube_autoplay']);
-$siBean->setWsi_youtube_loop(           $_POST['wsi_youtube_loop']);
-$siBean->setWsi_fixed_splash(           $_POST['wsi_fixed_splash']);
+$configBean->setSplash_active(              $_POST['splash_active']=='on');
+$configBean->setSplash_test_active(         $_POST['splash_test_active']=='on');
+$configBean->setWsi_first_load_mode_active( $_POST['wsi_first_load_mode_active']=='on');
+$siBean->setWsi_close_esc_function(     $_POST['wsi_close_esc_function']=='on');
+$siBean->setWsi_hide_cross(             $_POST['wsi_hide_cross']=='on');
+$siBean->setWsi_disable_shadow_border(  $_POST['wsi_disable_shadow_border']=='on');
+$siBean->setWsi_youtube_autoplay(       $_POST['wsi_youtube_autoplay']=='on');
+$siBean->setWsi_youtube_loop(           $_POST['wsi_youtube_loop']=='on');
+$siBean->setWsi_fixed_splash(           $_POST['wsi_fixed_splash']=='on');
 
 // Valeurs des onglets
 $siBean->setWsi_youtube(     $_POST['wsi_youtube']);
@@ -41,6 +44,7 @@ $siBean->setWsi_swf(         $_POST['wsi_swf']);
 // Remove slash in HTML code.
 $siBean->setWsi_html(        stripslashes($_POST['wsi_html']));
 
+ConfigManager::getInstance()->save($configBean);
 SplashImageManager::getInstance()->save($siBean);
 
 ?>

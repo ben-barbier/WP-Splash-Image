@@ -16,38 +16,20 @@ class WsiCommons {
 	}
 
 	/**
-	 * Retourne un tableau contenant la liste de toutes les options de WSI.
+	 * Retourne un tableau contenant la liste de toutes les options propre au WSI.
 	 */
-	public static function getOptionsList() {
+	public static function getWsiOptionsList() {
 		return array(
-				'splash_active',
-				'wsi_first_load_mode_active',
-				'splash_test_active',
-				'wsi_idle_time',
-				'url_splash_image',
-				'splash_image_width',
-				'splash_image_height',
-				'splash_color',
-				'datepicker_start',
-				'datepicker_end',
-				'wsi_display_time',
-				'wsi_fixed_splash',
-				'wsi_picture_link_url',
-				'wsi_picture_link_target',
-				'wsi_include_url',
-				'wsi_close_esc_function',
-				'wsi_hide_cross',
-				'wsi_disable_shadow_border',
-				'wsi_type',
-				'wsi_opacity',
-				'wsi_youtube',
-				'wsi_youtube_autoplay',
-				'wsi_youtube_loop',
-				'wsi_yahoo',
-				'wsi_dailymotion',
-				'wsi_metacafe',
-				'wsi_swf',
-				'wsi_html');
+				'wsi_db_version');
+	}
+
+	/**
+	 * Retourne un tableau contenant la liste de toutes les tables propre au WSI.
+	 */
+	public static function getWsiTablesList() {
+		return array(
+				ConfigManager::tableName(), 
+				SplashImageManager::tableName());
 	}
 	
 	/**
@@ -55,7 +37,7 @@ class WsiCommons {
 	 */
 	public static function getdate_is_in_validities_dates() {
 	
-		$siBean = SplashImageManager::getInstance()->get();
+		$siBean = SplashImageManager::getInstance()->get(1);
 		
 		$today = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
 	
@@ -96,7 +78,7 @@ class WsiCommons {
 	 */
 	public static function enough_idle_to_splash($lastSplash) {
 		
-		$siBean = SplashImageManager::getInstance()->get();
+		$siBean = SplashImageManager::getInstance()->get(1);
 		
 		// Si la variable n'est pas settée, c'est que l'utilisateur vient pour la 1ere fois.
 		if (!isset($lastSplash)) return true;

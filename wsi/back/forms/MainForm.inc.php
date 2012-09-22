@@ -1,7 +1,13 @@
 <h3><?php echo __('Configuration','wp-splash-image'); ?></h3>
+
+<!-- Infos -->
+<?php //echo $this->get_system_info(); ?>
+
 <form method="post" action="<?php echo $_SERVER ['REQUEST_URI']?>">
 	<?php wp_nonce_field('update','nonce_update_field'); ?>
 	<input type="hidden" name="action" value="update" />
+	<?php /* TODO: lorsqu'il y aura plusieurs splash screen, gérer cet ID */ ?>
+	<input type="hidden" name="id" value="1" />
 	<table>
 		<tr>
 			<td><?php echo __('Splash image activated','wp-splash-image'); ?>:</td>
@@ -9,7 +15,7 @@
 				type="checkbox" 
 				name="splash_active" 
 				id="splash_active" 
-				<?php if($siBean->isSplash_active()=='true') {echo("checked='checked'");} ?> /></td>
+				<?php if($configBean->isSplash_active()=='true') {echo("checked='checked'");} ?> /></td>
 		</tr>
 		<tr>
 		<td><?php echo __('First load mode activated','wp-splash-image'); ?>:</td>
@@ -17,7 +23,7 @@
 				type="checkbox" 
 				name="wsi_first_load_mode_active"
 				id="wsi_first_load_mode_active" 
-				<?php if($siBean->isWsi_first_load_mode_active()=='true') {echo("checked='checked'");} ?> />
+				<?php if($configBean->isWsi_first_load_mode_active()=='true') {echo("checked='checked'");} ?> />
 				
 				<img id="wsi_first_load_mode_info" alt="<?php echo __('Uninstall','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/info-16px.png" />	
 				<div class="tooltipLarge">
@@ -35,7 +41,7 @@
 				type="checkbox" 
 				name="splash_test_active" 
 				id="splash_test_active" 
-				<?php if($siBean->isSplash_test_active()=='true') {echo("checked='checked'");} ?> />
+				<?php if($configBean->isSplash_test_active()=='true') {echo("checked='checked'");} ?> />
 				<?php echo __('(for tests only, open splash image whenever)','wp-splash-image'); ?></td>
 		</tr>
 	</table>
@@ -146,7 +152,7 @@
 				type="date" 
 				name="datepicker_start" 
 				id="datepicker_start" 
-				value="<?php echo $siBean->getDatepicker_start(); ?>" />&nbsp;
+				value="<?php echo date_create($siBean->getDatepicker_start())->format('Y-m-d'); ?>" />&nbsp;
 				<?php echo __('(stay empty if not required)','wp-splash-image'); ?></td>
 			<td style="width:15px;"></td>
 			<td rowspan="2" style="padding:10px;border:2px solid #FF0000;display:none;background-color:#ff8b88" id="box_datepickers_warning">
@@ -160,7 +166,7 @@
 				type="date" 
 				name="datepicker_end" 
 				id="datepicker_end" 
-				value="<?php echo $siBean->getDatepicker_end(); ?>" />&nbsp;
+				value="<?php echo date_create($siBean->getDatepicker_end())->format('Y-m-d'); ?>" />&nbsp;
 				<?php echo __('(stay empty if not required)','wp-splash-image'); ?></td>
 			<td colspan="2"></td>
 		</tr>
