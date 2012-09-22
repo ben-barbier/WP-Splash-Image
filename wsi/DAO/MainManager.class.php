@@ -200,4 +200,39 @@ class MainManager {
 	
 	}
 	
+	/**
+	 * Drop WSI table
+	 * @return true if drop is OK, false in other cases
+	 */
+	public function drop_wsi_table($wsi_table_name) {
+		
+		global $wpdb;
+
+		$wsi_tables_list = WsiCommons::getWsiTablesList(); 
+		if (!in_array($wsi_table_name, $wsi_tables_list)) {
+			return false;
+		}
+		
+		$sql = "DROP TABLE $wsi_table_name;";
+		$result = $wpdb->query($sql);
+		if (!$result) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Delete WSI option
+	 * @return true if option is deleted, false in other cases
+	 */
+	public function delete_wsi_option($wsi_option_name) {
+		
+		$wsi_tables_list = WsiCommons::getWsiOptionsList(); 
+		if (!in_array($wsi_option_name, $wsi_tables_list)) {
+			return false;
+		}
+		
+		return delete_option($wsi_option_name);
+	}
+	
 }

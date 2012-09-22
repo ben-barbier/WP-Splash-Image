@@ -28,7 +28,7 @@ class WsiBack {
 		
 		add_action ( 'admin_init',                                       array(&$this, 'wp_splash_image_back_init' ));
 		add_action ( 'admin_menu',                                       array(&$this, 'wsi_menu' ));
-		add_action ( 'plugins_loaded',                                   array(&$this, 'update_db_check' ));
+		register_activation_hook( WsiCommons::$pluginMainFile,           array(&$this, 'update_db_check' ));
 		add_filter ( 'plugin_action_links_'.WsiCommons::$pluginMainFile, array(&$this, 'wsi_filter_plugin_actions' ));
 		add_filter ( 'plugin_row_meta',                                  array(&$this, 'set_plugin_meta'), 10, 2 );
 
