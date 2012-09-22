@@ -86,7 +86,6 @@ class SplashImageManager {
 	/**
 	 * @return SplashImageBean with "esc_attr" security on each property.
 	 */
-	//TODO: to check (aucun problème constaté jusque là...)
 	public function get($splashImageID) {
 		
 		global $wpdb;
