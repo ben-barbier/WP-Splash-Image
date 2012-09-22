@@ -40,15 +40,6 @@ class MainManager {
 	}
 	
 	/**
-	 * Remise de toutes les options aux valeurs par défaut
-	 */
-	public function uninstall() {
-		ConfigManager::getInstance()->drop();
-		SplashImageManager::getInstance()->drop();
-		//TODO: à compléter avec la UninstallAction.inc.php
-	}
-	
-	/**
 	 * Return the option value of 'wsi_db_version'.
 	 * If the value is not set, return '1.0'.
 	 */
