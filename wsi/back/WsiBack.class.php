@@ -459,6 +459,31 @@ class WsiBack {
 			$('#splash_image_height').keyfilter(/[\d\.]/);
 			$('#splash_image_width').keyfilter(/[\d\.]/);
 
+			// Live Preview
+			$('#live_preview_button').click(function() {
+
+				// //OK pour le chargement des fichiers mais les variables ne sont pas initialisées (dont $siBean)
+				// $.get('<?php echo WsiCommons::getURL() ?>/wsi/front/splash/noConflict.inc.php', function(file1) {
+				// $.get('<?php echo WsiCommons::getURL() ?>/wsi/front/splash/overlay.inc.php',    function(file2) {
+				// $.get('<?php echo WsiCommons::getURL() ?>/wsi/front/splash/content.inc.php',    function(file3) {
+				// 	files = file1 + '\n' + file2 + '\n' + file3;
+				// 	$('#live_preview_div').html(files);
+				// });});});
+
+				//OK mais c'est une page de test !!!
+				$.get('<?php echo WsiCommons::getURL() ?>/wsi/front/splash/demo.php', { 
+					color: "00FF00", 
+					opacity: "100", 
+					fixed: "true",
+					height: "250",
+					width: "772"
+					}, function(files) { $('#live_preview_div').html(files); }
+				);
+
+				
+
+			});
+			
 		});
 	</script>
 
