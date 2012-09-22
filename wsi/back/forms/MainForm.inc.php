@@ -183,5 +183,10 @@
 			</td>
 		</tr>
 	</table>
-	<p class="submit"><input type="submit" class="button-primary" value="<?php echo __('Update'); ?>" /></p>
+	<p class="submit">
+		<input type="submit" class="button-primary" value="<?php echo __('Update'); ?>" />
+		<input id="live_preview_button" type="button" value="<?php echo __( 'Live Preview' ); ?>" />
+	</p>
+	<div id="live_preview_div"></div>
+
 </form>
