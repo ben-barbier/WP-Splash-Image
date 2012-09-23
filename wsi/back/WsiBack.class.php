@@ -461,27 +461,32 @@ class WsiBack {
 
 			// Live Preview
 			$('#live_preview_button').click(function() {
-
-				// //OK pour le chargement des fichiers mais les variables ne sont pas initialisées (dont $siBean)
-				// $.get('<?php echo WsiCommons::getURL() ?>/wsi/front/splash/noConflict.inc.php', function(file1) {
-				// $.get('<?php echo WsiCommons::getURL() ?>/wsi/front/splash/overlay.inc.php',    function(file2) {
-				// $.get('<?php echo WsiCommons::getURL() ?>/wsi/front/splash/content.inc.php',    function(file3) {
-				// 	files = file1 + '\n' + file2 + '\n' + file3;
-				// 	$('#live_preview_div').html(files);
-				// });});});
-
-				//OK mais c'est une page de test !!!
-				$.get('<?php echo WsiCommons::getURL() ?>/wsi/front/splash/demo.php', { 
-					color: "00FF00", 
-					opacity: "100", 
-					fixed: "true",
-					height: "250",
-					width: "772"
+				$.get('<?php echo WsiCommons::getURL() ?>/wsi/back/splash/demo.php', { 
+					wsi_idle_time: "30",
+					url_splash_image: "http://plugins.svn.wordpress.org/wsi/assets/banner-772x250.png",
+					splash_image_width: "772",
+					splash_image_height: "250",
+					splash_color: "000000",
+					wsi_display_time: "5",
+					wsi_fixed_splash: "1",
+					wsi_picture_link_url: "http://wordpress.org/extend/plugins/wsi/",
+					wsi_picture_link_target: "blank",
+					wsi_include_url: "",
+					wsi_close_esc_function: "0",
+					wsi_hide_cross: "0",
+					wsi_disable_shadow_border: "0",
+					wsi_type: "picture",
+					wsi_opacity: "75",
+					wsi_youtube: "",
+					wsi_youtube_autoplay: "",
+					wsi_youtube_loop: "",
+					wsi_yahoo: "",
+					wsi_dailymotion: "",
+					wsi_metacafe: "",
+					wsi_swf: "",
+					wsi_html: ""
 					}, function(files) { $('#live_preview_div').html(files); }
 				);
-
-				
-
 			});
 			
 		});
