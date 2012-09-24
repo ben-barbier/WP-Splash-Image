@@ -15,6 +15,7 @@
 			<td><input 
 				type="url" 
 				name="wsi_picture_link_url" 
+				id="wsi_picture_link_url" 
 				size="50" 
 				value="<?php echo $siBean->getWsi_picture_link_url(); ?>" />
 				<?php echo __('(stay empty if not required)','wp-splash-image'); ?></td>
@@ -22,7 +23,7 @@
 		<tr>
 			<td><span><?php echo __("Picture link target",'wp-splash-image'); ?>:</span></td>
 			<td>
-				<select name="wsi_picture_link_target">
+				<select name="wsi_picture_link_target" id="wsi_picture_link_target">
 					<option value="self"  <?php if($siBean->getWsi_picture_link_target()=="self")  { ?>selected="selected"<?php } ?>>Self</option>
 					<option value="blank" <?php if($siBean->getWsi_picture_link_target()=="blank") { ?>selected="selected"<?php } ?>>Blank</option>
 				</select>

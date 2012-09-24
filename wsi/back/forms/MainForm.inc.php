@@ -69,6 +69,7 @@
 			<td><input 
 				type="checkbox" 
 				name="wsi_close_esc_function" 
+				id="wsi_close_esc_function" 
 				<?php if($siBean->isWsi_close_esc_function()=='true') {echo("checked='checked'");} ?> />
 				(<?php echo __('if you click on background','wp-splash-image'); ?>)</td>
 		</tr>
@@ -77,6 +78,7 @@
 			<td><input 
 				type="checkbox" 
 				name="wsi_hide_cross" 
+				id="wsi_hide_cross" 
 				<?php if($siBean->isWsi_hide_cross()=='true') {echo("checked='checked'");} ?> /></td>
 		</tr>
 		<tr>
@@ -84,6 +86,7 @@
 			<td><input
 				type="checkbox" 
 				name="wsi_disable_shadow_border" 
+				id="wsi_disable_shadow_border" 
 				<?php if($siBean->isWsi_disable_shadow_border()=='true') {echo("checked='checked'");} ?> />
 				(<?php echo __('useful for images with transparent edges','wp-splash-image'); ?>)</td>
 		</tr>
@@ -92,6 +95,7 @@
 			<td><input
 				type="checkbox" 
 				name="wsi_fixed_splash" 
+				id="wsi_fixed_splash" 
 				<?php if($siBean->isWsi_fixed_splash()=='true') {echo("checked='checked'");} ?> />
 				<?php echo __('fix the splashcreen to scrollbars','wp-splash-image'); ?>
 				(<?php echo __('useful for images with big size','wp-splash-image'); ?>)</td>

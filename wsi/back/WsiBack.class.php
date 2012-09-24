@@ -462,33 +462,31 @@ class WsiBack {
 			// Live Preview
 			$('#live_preview_button').click(function() {
 				$.get('<?php echo WsiCommons::getURL() ?>/wsi/back/splash/demo.php', { 
-					wsi_idle_time: "30",
-					url_splash_image: "http://plugins.svn.wordpress.org/wsi/assets/banner-772x250.png",
-					splash_image_width: "772",
-					splash_image_height: "250",
-					splash_color: "000000",
-					wsi_display_time: "5",
-					wsi_fixed_splash: "1",
-					wsi_picture_link_url: "http://wordpress.org/extend/plugins/wsi/",
-					wsi_picture_link_target: "blank",
-					wsi_include_url: "",
-					wsi_close_esc_function: "0",
-					wsi_hide_cross: "0",
-					wsi_disable_shadow_border: "0",
-					wsi_type: "picture",
-					wsi_opacity: "75",
-					wsi_youtube: "",
-					wsi_youtube_autoplay: "",
-					wsi_youtube_loop: "",
-					wsi_yahoo: "",
-					wsi_dailymotion: "",
-					wsi_metacafe: "",
-					wsi_swf: "",
-					wsi_html: ""
-					}, function(files) { $('#live_preview_div').html(files); }
-				);
+					url_splash_image:          $("#url_splash_image").val(),
+					splash_image_width:        $("#splash_image_width").val(),
+					splash_image_height:       $("#splash_image_height").val(),
+					splash_color:              $('#splash_color').val(),
+					wsi_display_time:          $("[name='wsi_display_time']").val(),
+					wsi_fixed_splash:          $("#wsi_fixed_splash:checked").is(":checked"),
+					wsi_picture_link_url:      $("#wsi_picture_link_url").val(),
+					wsi_picture_link_target:   $("#wsi_picture_link_target").val(),
+					wsi_include_url:           $("#wsi_include_url").val(),
+					wsi_close_esc_function:    $("#wsi_close_esc_function:checked").is(":checked"),
+					wsi_hide_cross:            $("#wsi_hide_cross:checked").is(":checked"),
+					wsi_disable_shadow_border: $("#wsi_disable_shadow_border:checked").is(":checked"),
+					wsi_type:                  $("[name='wsi_type']:checked").val(),
+					wsi_opacity:               $("[name='wsi_opacity']").val(),
+					wsi_youtube:               $("#wsi_youtube").val(),
+					wsi_youtube_autoplay:      $("#wsi_youtube_autoplay:checked").is(":checked"),
+					wsi_youtube_loop:          $("#wsi_youtube_loop:checked").is(":checked"),
+					wsi_yahoo:                 $("#wsi_yahoo").val(),
+					wsi_dailymotion:           $("#wsi_dailymotion").val(),
+					wsi_metacafe:              $("#wsi_metacafe").val(),
+					wsi_swf:                   $("#wsi_swf").val(),
+					wsi_html:                  $("#wsi_html").val()
+				}, function(files) { $('#live_preview_div').html(files); });
 			});
-			
+
 		});
 	</script>
 
