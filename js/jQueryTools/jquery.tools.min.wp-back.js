@@ -19,34 +19,6 @@ if(pos=='bottom'){top+=height;}
 pos=conf.position[1];var width=tip.outerWidth()+trigger.outerWidth();if(pos=='center'){left-=width/2;}
 if(pos=='left'){left-=width;}
 return{top:top,left:left};}
-function Tooltip(trigger,conf){var self=this,fire=trigger.add(self),tip,timer=0,pretimer=0,title=trigger.attr("title"),effect=effects[conf.effect],shown,isInput=trigger.is(":input"),isWidget=isInput&&trigger.is(":checkbox, :radio, select, :button, :submit"),type=trigger.attr("type"),evt=conf.events[type]||conf.events[isInput?(isWidget?'widget':'input'):'def'];if(!effect){throw"Nonexistent effect \""+conf.effect+"\"";}
-evt=evt.split(/,\s*/);if(evt.length!=2){throw"Tooltip: bad events configuration for "+type;}
-trigger.bind(evt[0],function(e){clearTimeout(timer);if(conf.predelay){pretimer=setTimeout(function(){self.show(e);},conf.predelay);}else{self.show(e);}}).bind(evt[1],function(e){clearTimeout(pretimer);if(conf.delay){timer=setTimeout(function(){self.hide(e);},conf.delay);}else{self.hide(e);}});if(title&&conf.cancelDefault){trigger.removeAttr("title");trigger.data("title",title);}
-$.extend(self,{show:function(e){if(!tip){if(title){tip=$(conf.layout).addClass(conf.tipClass).appendTo(document.body).hide().append(title);}else if(conf.tip){tip=$(conf.tip).eq(0);}else{tip=trigger.next();if(!tip.length){tip=trigger.parent().next();}}
-if(!tip.length){throw"Cannot find tooltip for "+trigger;}}
-if(self.isShown()){return self;}
-tip.stop(true,true);var pos=getPosition(trigger,tip,conf);e=e||$.Event();e.type="onBeforeShow";fire.trigger(e,[pos]);if(e.isDefaultPrevented()){return self;}
-pos=getPosition(trigger,tip,conf);tip.css({position:'absolute',top:pos.top,left:pos.left});shown=true;effect[0].call(self,function(){e.type="onShow";shown='full';fire.trigger(e);});var event=conf.events.tooltip.split(/,\s*/);tip.bind(event[0],function(){clearTimeout(timer);clearTimeout(pretimer);});if(event[1]&&!trigger.is("input:not(:checkbox, :radio), textarea")){tip.bind(event[1],function(e){if(e.relatedTarget!=trigger[0]){trigger.trigger(evt[1].split(" ")[0]);}});}
-return self;},hide:function(e){if(!tip||!self.isShown()){return self;}
-e=e||$.Event();e.type="onBeforeHide";fire.trigger(e);if(e.isDefaultPrevented()){return;}
-shown=false;effects[conf.effect][1].call(self,function(){e.type="onHide";shown=false;fire.trigger(e);});return self;},isShown:function(fully){return fully?shown=='full':shown;},getConf:function(){return conf;},getTip:function(){return tip;},getTrigger:function(){return trigger;}});$.each("onHide,onBeforeShow,onShow,onBeforeHide".split(","),function(i,name){if($.isFunction(conf[name])){$(self).bind(name,conf[name]);}
-self[name]=function(fn){$(self).bind(name,fn);return self;};});}
-$.fn.tooltip=function(conf){var api=this.data("tooltip");if(api){return api;}
-conf=$.extend(true,{},$.tools.tooltip.conf,conf);if(typeof conf.position=='string'){conf.position=conf.position.split(/,?\s/);}
-this.each(function(){api=new Tooltip($(this),conf);$(this).data("tooltip",api);});return conf.api?api:this;};})(jQuery);(function($){var t=$.tools.tooltip;$.extend(t.conf,{direction:'up',bounce:false,slideOffset:10,slideInSpeed:200,slideOutSpeed:200,slideFade:!$.browser.msie});var dirs={up:['-','top'],down:['+','top'],left:['-','left'],right:['+','left']};t.addEffect("slide",function(done){var conf=this.getConf(),tip=this.getTip(),params=conf.slideFade?{opacity:conf.opacity}:{},dir=dirs[conf.direction]||dirs.up;params[dir[1]]=dir[0]+'='+conf.slideOffset;if(conf.slideFade){tip.css({opacity:0});}
-tip.show().animate(params,conf.slideInSpeed,done);},function(done){var conf=this.getConf(),offset=conf.slideOffset,params=conf.slideFade?{opacity:0}:{},dir=dirs[conf.direction]||dirs.up;var sign=""+dir[0];if(conf.bounce){sign=sign=='+'?'-':'+';}
-params[dir[1]]=sign+'='+offset;this.getTip().animate(params,conf.slideOutSpeed,function(){$(this).hide();done.call();});});})(jQuery);(function($){var t=$.tools.tooltip;t.dynamic={conf:{classNames:"top right bottom left"}};function getCropping(el){var w=$(window);var right=w.width()+w.scrollLeft();var bottom=w.height()+w.scrollTop();return[el.offset().top<=w.scrollTop(),right<=el.offset().left+el.width(),bottom<=el.offset().top+el.height(),w.scrollLeft()>=el.offset().left];}
-function isVisible(crop){var i=crop.length;while(i--){if(crop[i]){return false;}}
-return true;}
-$.fn.dynamic=function(conf){if(typeof conf=='number'){conf={speed:conf};}
-conf=$.extend({},t.dynamic.conf,conf);var cls=conf.classNames.split(/\s/),orig;this.each(function(){var api=$(this).tooltip().onBeforeShow(function(e,pos){var tip=this.getTip(),tipConf=this.getConf();if(!orig){orig=[tipConf.position[0],tipConf.position[1],tipConf.offset[0],tipConf.offset[1],$.extend({},tipConf)];}
-$.extend(tipConf,orig[4]);tipConf.position=[orig[0],orig[1]];tipConf.offset=[orig[2],orig[3]];tip.css({visibility:'hidden',position:'absolute',top:pos.top,left:pos.left}).show();var crop=getCropping(tip);if(!isVisible(crop)){if(crop[2]){$.extend(tipConf,conf.top);tipConf.position[0]='top';tip.addClass(cls[0]);}
-if(crop[3]){$.extend(tipConf,conf.right);tipConf.position[1]='right';tip.addClass(cls[1]);}
-if(crop[0]){$.extend(tipConf,conf.bottom);tipConf.position[0]='bottom';tip.addClass(cls[2]);}
-if(crop[1]){$.extend(tipConf,conf.left);tipConf.position[1]='left';tip.addClass(cls[3]);}
-if(crop[0]||crop[2]){tipConf.offset[0]*=-1;}
-if(crop[1]||crop[3]){tipConf.offset[1]*=-1;}}
-tip.css({visibility:'visible'}).hide();});api.onBeforeShow(function(){var c=this.getConf(),tip=this.getTip();setTimeout(function(){c.position=[orig[0],orig[1]];c.offset=[orig[2],orig[3]];},0);});api.onHide(function(){var tip=this.getTip();tip.removeClass(conf.classNames);});ret=api;});return conf.api?ret:this;};})(jQuery);
 
 /**
  * @license 
@@ -59,6 +31,18 @@ tip.css({visibility:'visible'}).hide();});api.onBeforeShow(function(){var c=this
  * Since: November 2008
  * Date: @DATE 
  */
+function Tooltip(trigger,conf){var self=this,fire=trigger.add(self),tip,timer=0,pretimer=0,title=trigger.attr("title"),effect=effects[conf.effect],shown,isInput=trigger.is(":input"),isWidget=isInput&&trigger.is(":checkbox, :radio, select, :button, :submit"),type=trigger.attr("type"),evt=conf.events[type]||conf.events[isInput?(isWidget?'widget':'input'):'def'];if(!effect){throw"Nonexistent effect \""+conf.effect+"\"";}
+evt=evt.split(/,\s*/);if(evt.length!=2){throw"Tooltip: bad events configuration for "+type;}
+trigger.bind(evt[0],function(e){clearTimeout(timer);if(conf.predelay){pretimer=setTimeout(function(){self.show(e);},conf.predelay);}else{self.show(e);}}).bind(evt[1],function(e){clearTimeout(pretimer);if(conf.delay){timer=setTimeout(function(){self.hide(e);},conf.delay);}else{self.hide(e);}});if(title&&conf.cancelDefault){trigger.removeAttr("title");trigger.data("title",title);}
+$.extend(self,{show:function(e){if(!tip){if(title){tip=$(conf.layout).addClass(conf.tipClass).appendTo(document.body).hide().append(title);}else if(conf.tip){tip=$(conf.tip).eq(0);}else{tip=trigger.next();if(!tip.length){tip=trigger.parent().next();}}
+if(!tip.length){throw"Cannot find tooltip for "+trigger;}}
+if(self.isShown()){return self;}
+tip.stop(true,true);var pos=getPosition(trigger,tip,conf);e=e||$.Event();e.type="onBeforeShow";fire.trigger(e,[pos]);if(e.isDefaultPrevented()){return self;}
+pos=getPosition(trigger,tip,conf);tip.css({position:'absolute',top:pos.top,left:pos.left});shown=true;effect[0].call(self,function(){e.type="onShow";shown='full';fire.trigger(e);});var event=conf.events.tooltip.split(/,\s*/);tip.bind(event[0],function(){clearTimeout(timer);clearTimeout(pretimer);});if(event[1]&&!trigger.is("input:not(:checkbox, :radio), textarea")){tip.bind(event[1],function(e){if(e.relatedTarget!=trigger[0]){trigger.trigger(evt[1].split(" ")[0]);}});}
+return self;},hide:function(e){if(!tip||!self.isShown()){return self;}
+e=e||$.Event();e.type="onBeforeHide";fire.trigger(e);if(e.isDefaultPrevented()){return;}
+shown=false;effects[conf.effect][1].call(self,function(){e.type="onHide";shown=false;fire.trigger(e);});return self;},isShown:function(fully){return fully?shown=='full':shown;},getConf:function(){return conf;},getTip:function(){return tip;},getTrigger:function(){return trigger;}});$.each("onHide,onBeforeShow,onShow,onBeforeHide".split(","),function(i,name){if($.isFunction(conf[name])){$(self).bind(name,conf[name]);}
+self[name]=function(fn){$(self).bind(name,fn);return self;};});}
 
 /**
  * @license 
@@ -71,6 +55,14 @@ tip.css({visibility:'visible'}).hide();});api.onBeforeShow(function(){var c=this
  * Since: September 2009
  * Date: @DATE 
  */
+$.fn.tooltip=function(conf){var api=this.data("tooltip");if(api){return api;}
+conf=$.extend(true,{},$.tools.tooltip.conf,conf);if(typeof conf.position=='string'){conf.position=conf.position.split(/,?\s/);}
+this.each(function(){api=new Tooltip($(this),conf);$(this).data("tooltip",api);});return conf.api?api:this;};})(jQuery);(function($){var t=$.tools.tooltip;$.extend(t.conf,{direction:'up',bounce:false,slideOffset:10,slideInSpeed:200,slideOutSpeed:200,slideFade:!$.browser.msie});var dirs={up:['-','top'],down:['+','top'],left:['-','left'],right:['+','left']};t.addEffect("slide",function(done){var conf=this.getConf(),tip=this.getTip(),params=conf.slideFade?{opacity:conf.opacity}:{},dir=dirs[conf.direction]||dirs.up;params[dir[1]]=dir[0]+'='+conf.slideOffset;if(conf.slideFade){tip.css({opacity:0});}
+tip.show().animate(params,conf.slideInSpeed,done);},function(done){var conf=this.getConf(),offset=conf.slideOffset,params=conf.slideFade?{opacity:0}:{},dir=dirs[conf.direction]||dirs.up;var sign=""+dir[0];if(conf.bounce){sign=sign=='+'?'-':'+';}
+params[dir[1]]=sign+'='+offset;this.getTip().animate(params,conf.slideOutSpeed,function(){$(this).hide();done.call();});});})(jQuery);(function($){var t=$.tools.tooltip;t.dynamic={conf:{classNames:"top right bottom left"}};function getCropping(el){var w=$(window);var right=w.width()+w.scrollLeft();var bottom=w.height()+w.scrollTop();return[el.offset().top<=w.scrollTop(),right<=el.offset().left+el.width(),bottom<=el.offset().top+el.height(),w.scrollLeft()>=el.offset().left];}
+function isVisible(crop){var i=crop.length;while(i--){if(crop[i]){return false;}}
+return true;}
+
 
 /**
  * @license 
@@ -83,3 +75,28 @@ tip.css({visibility:'visible'}).hide();});api.onBeforeShow(function(){var c=this
  * Since: July 2009
  * Date: @DATE 
  */
+$.fn.dynamic=function(conf){if(typeof conf=='number'){conf={speed:conf};}
+conf=$.extend({},t.dynamic.conf,conf);var cls=conf.classNames.split(/\s/),orig;this.each(function(){var api=$(this).tooltip().onBeforeShow(function(e,pos){var tip=this.getTip(),tipConf=this.getConf();if(!orig){orig=[tipConf.position[0],tipConf.position[1],tipConf.offset[0],tipConf.offset[1],$.extend({},tipConf)];}
+$.extend(tipConf,orig[4]);tipConf.position=[orig[0],orig[1]];tipConf.offset=[orig[2],orig[3]];tip.css({visibility:'hidden',position:'absolute',top:pos.top,left:pos.left}).show();var crop=getCropping(tip);if(!isVisible(crop)){if(crop[2]){$.extend(tipConf,conf.top);tipConf.position[0]='top';tip.addClass(cls[0]);}
+if(crop[3]){$.extend(tipConf,conf.right);tipConf.position[1]='right';tip.addClass(cls[1]);}
+if(crop[0]){$.extend(tipConf,conf.bottom);tipConf.position[0]='bottom';tip.addClass(cls[2]);}
+if(crop[1]){$.extend(tipConf,conf.left);tipConf.position[1]='left';tip.addClass(cls[3]);}
+if(crop[0]||crop[2]){tipConf.offset[0]*=-1;}
+if(crop[1]||crop[3]){tipConf.offset[1]*=-1;}}
+tip.css({visibility:'visible'}).hide();});api.onBeforeShow(function(){var c=this.getConf(),tip=this.getTip();setTimeout(function(){c.position=[orig[0],orig[1]];c.offset=[orig[2],orig[3]];},0);});api.onHide(function(){var tip=this.getTip();tip.removeClass(conf.classNames);});ret=api;});return conf.api?ret:this;};})(jQuery);
+
+/*
+ * jQuery Tools 1.2.3 - The missing UI library for the Web
+ * 
+ * [overlay, toolbox.expose]
+ * 
+ * NO COPYRIGHTS OR LICENSES. DO WHAT YOU LIKE.
+ * 
+ * http://flowplayer.org/tools/
+ * 
+ * File generated: Sun Jun 13 10:29:39 GMT 2010
+ */
+(function(b){function k(){if(b.browser.msie){var a=b(document).height(),d=b(window).height();return[window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,a-d<20?d:a]}return[b(document).width(),b(document).height()]}function h(a){if(a)return a.call(b.mask)}b.tools=b.tools||{version:"1.2.3"};var l;l=b.tools.expose={conf:{maskId:"exposeMask",loadSpeed:"slow",closeSpeed:"fast",closeOnClick:true,closeOnEsc:true,zIndex:9998,opacity:0.8,startOpacity:0,color:"#fff",onLoad:null,
+onClose:null}};var c,i,f,g,j;b.mask={load:function(a,d){if(f)return this;if(typeof a=="string")a={color:a};a=a||g;g=a=b.extend(b.extend({},l.conf),a);c=b("#"+a.maskId);if(!c.length){c=b("<div/>").attr("id",a.maskId);b("body").append(c)}var m=k();c.css({position:"absolute",top:0,left:0,width:m[0],height:m[1],display:"none",opacity:a.startOpacity,zIndex:a.zIndex});a.color&&c.css("backgroundColor",a.color);if(h(a.onBeforeLoad)===false)return this;a.closeOnEsc&&b(document).bind("keydown.mask",function(e){e.keyCode==
+27&&b.mask.close(e)});a.closeOnClick&&c.bind("click.mask",function(e){b.mask.close(e)});b(window).bind("resize.mask",function(){b.mask.fit()});if(d&&d.length){j=d.eq(0).css("zIndex");b.each(d,function(){var e=b(this);/relative|absolute|fixed/i.test(e.css("position"))||e.css("position","relative")});i=d.css({zIndex:Math.max(a.zIndex+1,j=="auto"?0:j)})}c.css({display:"block"}).fadeTo(a.loadSpeed,a.opacity,function(){b.mask.fit();h(a.onLoad)});f=true;return this},close:function(){if(f){if(h(g.onBeforeClose)===
+false)return this;c.fadeOut(g.closeSpeed,function(){h(g.onClose);i&&i.css({zIndex:j})});b(document).unbind("keydown.mask");c.unbind("click.mask");b(window).unbind("resize.mask");f=false}return this},fit:function(){if(f){var a=k();c.css({width:a[0],height:a[1]})}},getMask:function(){return c},isLoaded:function(){return f},getConf:function(){return g},getExposed:function(){return i}};b.fn.mask=function(a){b.mask.load(a);return this};b.fn.expose=function(a){b.mask.load(a,this);return this}})(jQuery);
