@@ -102,7 +102,7 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
 = 2.5.0 =
 * Update persistance method (use new tables). -> http://codex.wordpress.org/Creating_Tables_with_Plugins
 * Add "demo" button to display splah image in wsi settings page
-* Add "Display always" button
+* Replace "Test mode" by "Display always" mode
 
 = 2.4.0 =
 * Work on incompatibility with "WP super cache" (it desactivate sessions and splash screen display all the time). I've set the session in cookie to fix it (tkx to Emmanuel Barraud of [laclefnumerique.com](http://www.laclefnumerique.com/) for his help).
