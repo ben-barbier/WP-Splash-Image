@@ -28,7 +28,10 @@ class WsiBack {
 		
 		add_action ( 'admin_init',                                       array(&$this, 'wp_splash_image_back_init' ));
 		add_action ( 'admin_menu',                                       array(&$this, 'wsi_menu' ));
-		register_activation_hook( WsiCommons::$pluginMainFile,           array(&$this, 'update_db_check' ));
+		add_action ( 'plugins_loaded',                                   array(&$this, 'update_db_check' )); // OK since WP 3.1
+
+		register_uninstall_hook( WsiCommons::$pluginMainFile,            array(&$this, 'on_uninstall' ) );
+
 		add_filter ( 'plugin_action_links_'.WsiCommons::$pluginMainFile, array(&$this, 'wsi_filter_plugin_actions' ));
 		add_filter ( 'plugin_row_meta',                                  array(&$this, 'set_plugin_meta'), 10, 2 );
 
@@ -97,6 +100,21 @@ class WsiBack {
 		if (MainManager::getInstance()->get_current_wsi_db_version() != WSI_DB_VERSION) {
 			MainManager::getInstance()->wsi_install_db();
 		}
+	}
+
+	/**
+	 * Remove tables and options of WSI.
+	 */
+	function on_uninstall() {
+
+		// Liste des tables qui seront supprimées
+		$list_tables = WsiCommons::getWsiTablesList();
+		foreach($list_tables as $table) { MainManager::getInstance()->drop_wsi_table($table); }
+
+		// Liste des options qui seront supprimées
+		$list_options = WsiCommons::getWsiOptionsList();
+		foreach($list_options as $option) { MainManager::getInstance()->delete_wsi_option($option); }
+
 	}
 	
 	/**
@@ -202,13 +220,11 @@ class WsiBack {
 		$updated = false;
 		$reseted = false;
 		$feedbacked = false;
-		$uninstalled = false;
 
 		switch ($_POST ['action']) {
 			case 'update'    : require("actions/UpdateAction.inc.php");    $updated = true;     break;
 			case 'reset'     : require("actions/ResetAction.inc.php");     $reseted = true;     break;
 			case 'feedback'  : require("actions/FeedbackAction.inc.php");  $feedbacked = true;  break;
-			case 'uninstall' : require("actions/UninstallAction.inc.php"); $uninstalled = true; break;
 		}
 		
 		// Pour le moment on ne charge que le 1er splash screen
@@ -229,11 +245,6 @@ class WsiBack {
 			<img id="feedback_img" rel="#feedback" title="<?php echo __('Feedback','wp-splash-image'); ?>" alt="<?php echo __('Feedback','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/feedback_logo.png" />
 		</div>
 		
-		<!-- Logo Uninstall -->
-		<div id="display_uninstall">
-			<img id="uninstall_img" rel="#uninstall" title="<?php echo __('Uninstall','wp-splash-image'); ?>" alt="<?php echo __('Uninstall','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/uninstall.png" />
-		</div>
-
 		<!-- Logo "Buy me a Beer" -->
 		<div id="display_buyMeABeer">
 			<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C" target="_blank">
@@ -277,8 +288,6 @@ class WsiBack {
 		<?php require("forms/MainForm.inc.php"); ?>
 		<?php require("forms/FeedbackForm.inc.php"); ?>
 		<?php require("forms/DocumentationForm.inc.php"); ?>
-		<?php require("forms/UninstallForm.inc.php"); ?>
-		<?php if ($uninstalled) { require("forms/UninstallConfirmForm.inc.php"); } ?>
 		
 	</div>
 	
@@ -359,9 +368,6 @@ class WsiBack {
 			// Activation du tooltip de "Info"
 			$('#info_img').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 			
-			// Activation du tooltip de "Uninstall"
-			$('#uninstall_img').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
-
 			// Activation du tooltip de "Buy me a Beer"
 			$('#buyMeABeer_img').tooltip({effect: 'slide', offset: [10, 2], tipClass: 'tooltip bottom buyMeABeer'}).dynamic({ bottom: { direction: 'down', bounce: true } });
 			
@@ -404,9 +410,6 @@ class WsiBack {
 				// Si on ferme l'overlay, on supprime les messages d'erreur du validator
 				onClose: function() {reset_validator();}
 			})
-			
-			// Activation de l'overlay du "Uninstall"
-			$("#uninstall_img[rel]").overlay({mask: '#000', effect: 'apple'});
 			
 			// Activation du curseur pour la durée d'affichage
 			$(":range").rangeinput();
