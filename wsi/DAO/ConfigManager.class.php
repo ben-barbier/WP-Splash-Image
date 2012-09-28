@@ -37,14 +37,14 @@ class ConfigManager {
 		global $wpdb;
 		
 		$success = $wpdb->update(
-				$this::tableName(),
+				$this->tableName(),
 				array('value' => (($configBean->isSplash_active())?'true':'false')),
 				array('param' => 'splash_active'),
 				$format = null,
 				$where_format = null);
 		
 		$success = $wpdb->update(
-				$this::tableName(),
+				$this->tableName(),
 				array('value' => (($configBean->isWsi_first_load_mode_active())?'true':'false')),
 				array('param' => 'wsi_first_load_mode_active'),
 				$format = null,
@@ -65,8 +65,8 @@ class ConfigManager {
 	
 			$configBean = new ConfigBean();
 
-			$splash_active =              $wpdb->get_var("SELECT value FROM ".$this::tableName()." WHERE param = 'splash_active'",0,0);
-			$wsi_first_load_mode_active = $wpdb->get_var("SELECT value FROM ".$this::tableName()." WHERE param = 'wsi_first_load_mode_active'",0,0);
+			$splash_active =              $wpdb->get_var("SELECT value FROM ".$this->tableName()." WHERE param = 'splash_active'",0,0);
+			$wsi_first_load_mode_active = $wpdb->get_var("SELECT value FROM ".$this->tableName()." WHERE param = 'wsi_first_load_mode_active'",0,0);
 			
 			$configBean->setSplash_active(              $splash_active);
 			$configBean->setWsi_first_load_mode_active( $wsi_first_load_mode_active);
@@ -82,9 +82,9 @@ class ConfigManager {
 	 */
 	public function reset() {
 		global $wpdb;
-		$wpdb->query("DELETE FROM ".$this::tableName());
-		$wpdb->insert($this::tableName(),array('param'=>'splash_active',              'value'=>'true' ));
-		$wpdb->insert($this::tableName(),array('param'=>'wsi_first_load_mode_active', 'value'=>'false'));
+		$wpdb->query("DELETE FROM ".$this->tableName());
+		$wpdb->insert($this->tableName(),array('param'=>'splash_active',              'value'=>'true' ));
+		$wpdb->insert($this->tableName(),array('param'=>'wsi_first_load_mode_active', 'value'=>'false'));
 	}
 	
 	/**
@@ -92,7 +92,7 @@ class ConfigManager {
 	 */
 	public function drop() {
 		global $wpdb;
-		$wpdb->query("DROP TABLE IF EXISTS ".$this::tableName());
+		$wpdb->query("DROP TABLE IF EXISTS ".$this->tableName());
 	}
 	
 	/**
@@ -100,7 +100,7 @@ class ConfigManager {
 	 */
 	public function getInfos() {
 		$result;
-		$result.= "<strong>".$this::tableName().": </strong><br />";
+		$result.= "<strong>".$this->tableName().": </strong><br />";
 		$result.= "splash_active: ".             (($this->configBean->isSplash_active()===true)?"true":"false")."<br />";
 		$result.= "wsi_first_load_mode_active: ".(($this->configBean->isWsi_first_load_mode_active()===true)?"true":"false")."<br />";
 		return $result;	

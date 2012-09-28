@@ -37,7 +37,7 @@ class SplashImageManager {
 		
 		global $wpdb;
 		$wpdb->update(
-				$this::tableName(),
+				$this->tableName(),
 				array(
 						
 						'url_splash_image'        => $splashImageBean->getUrl_splash_image(),
@@ -95,7 +95,7 @@ class SplashImageManager {
 			
 			$splashImageBean = new SplashImageBean();
 			
-			$wsi_splashimage_results = $wpdb->get_results("SELECT * FROM ".$this::tableName()." WHERE id = ".$splashImageID);
+			$wsi_splashimage_results = $wpdb->get_results("SELECT * FROM ".$this->tableName()." WHERE id = ".$splashImageID);
 			$wsi_splashimage_row = $wsi_splashimage_results[0]; 
 			
 			$splashImageBean->setId(                         esc_attr($wsi_splashimage_row->id));
@@ -179,9 +179,9 @@ class SplashImageManager {
 	 */
 	public function reset() {
 		global $wpdb;
-		$wpdb->query("DELETE FROM ".$this::tableName());
+		$wpdb->query("DELETE FROM ".$this->tableName());
 		$wpdb->insert( 
-			$this::tableName(), 
+			$this->tableName(), 
 			$this->getDefaultValues() 
 		);
 	}
@@ -191,7 +191,7 @@ class SplashImageManager {
 	 */
 	public function delete($id) {
 		global $wpdb;
-		$wpdb->query("DELETE FROM ".$this::tableName()." WHERE id = '".$id."'");
+		$wpdb->query("DELETE FROM ".$this->tableName()." WHERE id = '".$id."'");
 	}
 	
 	/**
@@ -199,7 +199,7 @@ class SplashImageManager {
 	 */
 	public function drop() {
 		global $wpdb;
-		$wpdb->query("DROP TABLE IF EXISTS ".$this::tableName());
+		$wpdb->query("DROP TABLE IF EXISTS ".$this->tableName());
 	}
 	
 	/**
@@ -207,7 +207,7 @@ class SplashImageManager {
 	 */
 	public function getInfos() {
 		$result;
-		$result.= "<strong>".$this::tableName().": </strong><br />";
+		$result.= "<strong>".$this->tableName().": </strong><br />";
 		$result.= "id: ".                        $this->splashImageBean->getId()."<br />";
 		$result.= "wsi_display_always: ".        $this->splashImageBean->isWsi_display_always()."<br />";
 		$result.= "wsi_idle_time: ".             $this->splashImageBean->getWsi_idle_time()."<br />";
