@@ -112,11 +112,7 @@ class MainManager {
 						'param' => 'wsi_first_load_mode_active',
 						'value' => (get_option('wsi_first_load_mode_active')=='true') //boolean
 				));
-				//TODO: concerver cette option ???
-				$wpdb->insert( $table_name_config, array(
-						'param' => 'splash_test_active',
-						'value' => (get_option('splash_test_active')=='true')         //boolean
-				));
+
 				
 				$wpdb->insert( $table_name_splashimage, array(
 	

@@ -46,10 +46,10 @@ Others:
 = Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
 
 **NO !**   
-If we use WSI with the standards options ("Test mode activated:" = not check), the splah screen will appear once by user (WSI save the last display time in user HTTP Session) everywhere on your website.   
+If we use WSI with the standards options, the splah screen will appear once by user everywhere on your website (WSI save the last display time in user HTTP Session).
 If the user close his browser and if he returns on your website, the WSI returns come back.   
 I'll working to an option for "exclude" some pages.   
-For exemple, we can use this option for have no confict with some pages with flash.
+For exemple, we can use this future option for have no confict with some pages with flash.
 
 = Can I use the splash screen once only when first loading to the site, and not repeating with each page I visit? =
 

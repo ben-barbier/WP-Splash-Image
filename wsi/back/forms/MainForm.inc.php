@@ -35,15 +35,6 @@
 				
 			</td>
 		</tr>
-		<tr id="block_splash_test_active">
-			<td><?php echo __('Test mode activated','wp-splash-image'); ?>:</td>
-			<td><input 
-				type="checkbox" 
-				name="splash_test_active" 
-				id="splash_test_active" 
-				<?php if($configBean->isSplash_test_active()=='true') {echo("checked='checked'");} ?> />
-				<?php echo __('(for tests only, open splash image whenever)','wp-splash-image'); ?></td>
-		</tr>
 	</table>
 	<br />
 	<!-- Tabs --> 

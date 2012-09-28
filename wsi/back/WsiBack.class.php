@@ -330,38 +330,7 @@ class WsiBack {
 				// Ouverture du bon onglet au démarrage
 				selected: index_tab[wsi_type]
 			});});
-			
-			// Gestion de l'affichage de la zone "block_splash_test_active"
-			if($("#splash_active").attr("checked")=="checked") {$("#block_splash_test_active").css("display","table-row");}
-			else{$("#block_splash_test_active").css("display","none");}
-			$("#splash_active").click(function() {
-				if($("#splash_active").attr("checked")=="checked") {$("#block_splash_test_active").fadeIn("slow");}
-				else{$("#block_splash_test_active").fadeOut("slow");}
-			});
 
-			// Gestion de l'affichage des zones "block_start_date", "block_end_date" et "block_idle_time"
-			// En fonction de "splash_test_active"
-			if($("#splash_test_active").attr("checked")=="checked") {
-				$("#block_start_date").css("display","none");
-				$("#block_end_date").css("display","none");
-				$("#block_idle_time").css("display","none");
-			}else{
-				$("#block_start_date").css("display","table-row");
-				$("#block_end_date").css("display","table-row");
-				$("#block_idle_time").css("display","table-row");
-			}
-			$("#splash_test_active").click(function() {
-				if($("#splash_test_active").attr("checked")=="checked") {
-					$("#block_start_date").fadeOut("slow");
-					$("#block_end_date").fadeOut("slow");
-					$("#block_idle_time").fadeOut("slow");
-				}else{
-					$("#block_start_date").fadeIn("slow");
-					$("#block_end_date").fadeIn("slow");
-					$("#block_idle_time").fadeIn("slow");
-				}
-			});
-			
 			// Activation du tooltip du feedback
 			$('#feedback_img').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 			

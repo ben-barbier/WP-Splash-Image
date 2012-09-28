@@ -25,7 +25,6 @@ $siBean->setWsi_idle_time(           $_POST['wsi_idle_time']);
 
 // Gestion des booleans
 $configBean->setSplash_active(              $_POST['splash_active']=='on');
-$configBean->setSplash_test_active(         $_POST['splash_test_active']=='on');
 $configBean->setWsi_first_load_mode_active( $_POST['wsi_first_load_mode_active']=='on');
 $siBean->setWsi_close_esc_function(     $_POST['wsi_close_esc_function']=='on');
 $siBean->setWsi_hide_cross(             $_POST['wsi_hide_cross']=='on');
