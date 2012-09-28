@@ -181,6 +181,7 @@
 				name="wsi_display_always" 
 				id="wsi_display_always" 
 				<?php if($siBean->isWsi_display_always()=='true') {echo("checked='checked'");} ?> />
+				<?php echo __('Display the splash image on each pages for each users (not recommended for comfort of users).','wp-splash-image'); ?>
 			</td>
 		</tr>
 		<tr id="block_idle_time">
