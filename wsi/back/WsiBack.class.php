@@ -362,6 +362,20 @@ class WsiBack {
 				}
 			});
 			
+			// Gestion de l'affichage des zones block_idle_time en fonction de "wsi_display_always"
+			if($("#wsi_display_always").attr("checked")=="checked") {
+				$("#block_idle_time").css("display","none");
+			}else{
+				$("#block_idle_time").css("display","table-row");
+			}
+			$("#wsi_display_always").click(function() {
+				if($("#wsi_display_always").attr("checked")=="checked") {
+					$("#block_idle_time").fadeOut("slow");
+				}else{
+					$("#block_idle_time").fadeIn("slow");
+				}
+			});
+			
 			// Activation du tooltip du feedback
 			$('#feedback_img').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 			
