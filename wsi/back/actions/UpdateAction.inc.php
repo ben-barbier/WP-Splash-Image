@@ -33,6 +33,7 @@ $siBean->setWsi_disable_shadow_border(  $_POST['wsi_disable_shadow_border']=='on
 $siBean->setWsi_youtube_autoplay(       $_POST['wsi_youtube_autoplay']=='on');
 $siBean->setWsi_youtube_loop(           $_POST['wsi_youtube_loop']=='on');
 $siBean->setWsi_fixed_splash(           $_POST['wsi_fixed_splash']=='on');
+$siBean->setWsi_display_always(         $_POST['wsi_display_always']=='on');
 
 // Valeurs des onglets
 $siBean->setWsi_youtube(     $_POST['wsi_youtube']);

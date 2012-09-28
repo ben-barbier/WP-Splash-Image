@@ -45,10 +45,6 @@ class SplashImageManager {
 						'splash_image_height'     => $splashImageBean->getSplash_image_height(),
 						'splash_color'            => $splashImageBean->getSplash_color(),
 						
-						//FIXME: les dates ne sont pas enregistrées -> Il va peut être falloir utiliser les calendriers JQuery-UI
-						'datepicker_start'        => $splashImageBean->getDatepicker_start(),
-						'datepicker_end'          => $splashImageBean->getDatepicker_end(),
-						
 						'wsi_display_time'        => $splashImageBean->getWsi_display_time(),
 						'wsi_picture_link_url'    => $splashImageBean->getWsi_picture_link_url(),
 						'wsi_picture_link_target' => $splashImageBean->getWsi_picture_link_target(),
@@ -56,15 +52,20 @@ class SplashImageManager {
 						'wsi_opacity'             => $splashImageBean->getWsi_opacity(),
 						'wsi_idle_time'           => ($splashImageBean->getWsi_idle_time()=='')?0:$splashImageBean->getWsi_idle_time(),
 						
-						// Gestion des booleans
+						// Dates management
+						'datepicker_start'        => $splashImageBean->getDatepicker_start(),
+						'datepicker_end'          => $splashImageBean->getDatepicker_end(),
+
+						// Booleans management
 						'wsi_close_esc_function'    => (($splashImageBean->isWsi_close_esc_function())?'1':'0'),
 						'wsi_hide_cross'            => (($splashImageBean->isWsi_hide_cross())?'1':'0'),
 						'wsi_disable_shadow_border' => (($splashImageBean->isWsi_disable_shadow_border())?'1':'0'),
 						'wsi_youtube_autoplay'      => (($splashImageBean->isWsi_youtube_autoplay())?'1':'0'),
 						'wsi_youtube_loop'          => (($splashImageBean->isWsi_youtube_loop())?'1':'0'),
 						'wsi_fixed_splash'          => (($splashImageBean->isWsi_fixed_splash())?'1':'0'),
+						'wsi_display_always'        => (($splashImageBean->isWsi_display_always())?'1':'0'),
 						
-						// Valeurs des onglets
+						// Tabs values
 						'wsi_youtube'     => $splashImageBean->getWsi_youtube(),
 						'wsi_yahoo'       => $splashImageBean->getWsi_yahoo(),
 						'wsi_dailymotion' => $splashImageBean->getWsi_dailymotion(),
@@ -119,6 +120,7 @@ class SplashImageManager {
 			$splashImageBean->setWsi_youtube_autoplay(       esc_attr($wsi_splashimage_row->wsi_youtube_autoplay=='1'?'true':'false'));
 			$splashImageBean->setWsi_youtube_loop(           esc_attr($wsi_splashimage_row->wsi_youtube_loop=='1'?'true':'false'));
 			$splashImageBean->setWsi_fixed_splash(           esc_attr($wsi_splashimage_row->wsi_fixed_splash=='1'?'true':'false'));
+			$splashImageBean->setWsi_display_always(         esc_attr($wsi_splashimage_row->wsi_display_always=='1'?'true':'false'));
 
 			// Valeurs des onglets
 			$splashImageBean->setWsi_youtube(                esc_attr($wsi_splashimage_row->wsi_youtube));
@@ -143,6 +145,7 @@ class SplashImageManager {
 	private function getDefaultValues() {
 		return array(
 				'id'                         => 1,
+				'wsi_display_always'         => 0, // false
 				'wsi_idle_time'              => '30',
 				'url_splash_image'           => 'http://plugins.svn.wordpress.org/wsi/assets/banner-772x250.png',
 				'splash_image_width'         => '772',
@@ -206,6 +209,7 @@ class SplashImageManager {
 		$result;
 		$result.= "<strong>".$this::tableName().": </strong><br />";
 		$result.= "id: ".                        $this->splashImageBean->getId()."<br />";
+		$result.= "wsi_display_always: ".        $this->splashImageBean->isWsi_display_always()."<br />";
 		$result.= "wsi_idle_time: ".             $this->splashImageBean->getWsi_idle_time()."<br />";
 		$result.= "url_splash_image: ".          $this->splashImageBean->getUrl_splash_image()."<br />";
 		$result.= "splash_image_width: ".        $this->splashImageBean->getSplash_image_width()."<br />";

@@ -174,6 +174,15 @@
 				<?php echo __('(stay empty if not required)','wp-splash-image'); ?></td>
 			<td colspan="2"></td>
 		</tr>
+		<tr>
+			<td><?php echo __('Display always','wp-splash-image'); ?>:</td>
+			<td><input
+				type="checkbox" 
+				name="wsi_display_always" 
+				id="wsi_display_always" 
+				<?php if($siBean->isWsi_display_always()=='true') {echo("checked='checked'");} ?> />
+			</td>
+		</tr>
 		<tr id="block_idle_time">
 			<td><?php echo __('Idle time','wp-splash-image'); ?>:</td>
 			<td colspan="3" style="white-space: nowrap;">
