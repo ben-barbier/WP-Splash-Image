@@ -65,6 +65,7 @@ class MainManager {
 				$table_name_splashimage = SplashImageManager::tableName();
 				$sql_splashimage = "CREATE TABLE " . $table_name_splashimage . " (
 					id                        MEDIUMINT(9) NOT NULL AUTO_INCREMENT,
+					wsi_display_always        BOOLEAN,
 					wsi_idle_time             INT,
 					url_splash_image          VARCHAR(255),
 					splash_image_width        INT,
@@ -111,6 +112,7 @@ class MainManager {
 						'param' => 'wsi_first_load_mode_active',
 						'value' => (get_option('wsi_first_load_mode_active')=='true') //boolean
 				));
+				//TODO: concerver cette option ???
 				$wpdb->insert( $table_name_config, array(
 						'param' => 'splash_test_active',
 						'value' => (get_option('splash_test_active')=='true')         //boolean
@@ -137,6 +139,7 @@ class MainManager {
 						'wsi_youtube_autoplay' =>      (get_option('wsi_youtube_autoplay')=='true'),      //boolean
 						'wsi_youtube_loop' =>          (get_option('wsi_youtube_loop')=='true'),          //boolean
 						'wsi_fixed_splash' =>          (get_option('wsi_fixed_splash')=='true'),          //boolean
+						'wsi_display_always' =>        (get_option('splash_test_active')=='true'),        //boolean
 						'wsi_youtube' =>               get_option('wsi_youtube'),
 						'wsi_yahoo' =>                 get_option('wsi_yahoo'),
 						'wsi_dailymotion' =>           get_option('wsi_dailymotion'),
