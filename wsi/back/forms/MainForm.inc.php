@@ -25,7 +25,7 @@
 				id="wsi_first_load_mode_active" 
 				<?php if($configBean->isWsi_first_load_mode_active()=='true') {echo("checked='checked'");} ?> />
 				
-				<img id="wsi_first_load_mode_info" alt="<?php echo __('Uninstall','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/info-16px.png" />	
+				<img id="wsi_first_load_mode_info" alt="<?php echo __('Info','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/info-16px.png" />	
 				<div class="tooltipLarge">
 					You can display the WSI <strong>after</strong> the page without any modification.
 					If you want to display the WSI <strong>before</strong> the page, you must enable
