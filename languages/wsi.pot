@@ -149,46 +149,6 @@ msgstr ""
 msgid "Update Options"
 msgstr ""
 
-#: wsi/back/forms/UninstallForm.inc.php:10
-#: wsi/back/forms/UninstallConfirmForm.inc.php:9
-msgid "Uninstall WP-Splash-Image"
-msgstr ""
-
-#: wsi/back/forms/UninstallForm.inc.php:11
-msgid ""
-"Deactivating WP-Splash-Image plugin does not remove any data that may have "
-"been created, such as the stats options. To completely remove this plugin, "
-"you can uninstall it here."
-msgstr ""
-
-#: wsi/back/forms/UninstallForm.inc.php:13
-msgid "WARNING:"
-msgstr ""
-
-#: wsi/back/forms/UninstallForm.inc.php:14
-msgid ""
-"Once uninstalled, this cannot be undone. You should use a Database Backup "
-"plugin of WordPress to back up all the data first."
-msgstr ""
-
-#: wsi/back/forms/UninstallForm.inc.php:16
-msgid "The following WordPress Options will be DELETED:"
-msgstr ""
-
-#: wsi/back/forms/UninstallForm.inc.php:18
-msgid "WordPress Options"
-msgstr ""
-
-#: wsi/back/forms/UninstallForm.inc.php:36
-msgid "UNINSTALL WP-Splash Image"
-msgstr ""
-
-#: wsi/back/forms/UninstallForm.inc.php:37
-msgid ""
-"You Are About To Uninstall WP-Splash-Image From WordPress.\\nThis Action Is "
-"Not Reversible.\\n\\n Choose [Cancel] To Stop, [OK] To Uninstall."
-msgstr ""
-
 #: wsi/back/forms/FeedbackForm.inc.php:8 wsi/back/WsiBack.class.php:217
 msgid "Feedback"
 msgstr ""
@@ -276,23 +236,6 @@ msgstr ""
 
 #: wsi/back/forms/DocumentationForm.inc.php:37
 msgid "For information:"
-msgstr ""
-
-#: wsi/back/forms/UninstallConfirmForm.inc.php:13
-msgid ""
-"To finish the uninstallation and deactivate automatically WP-Splash-Image :"
-msgstr ""
-
-#: wsi/back/forms/UninstallConfirmForm.inc.php:16
-msgid "Click Here"
-msgstr ""
-
-#: wsi/back/actions/UninstallAction.inc.php:14
-msgid "Setting Key '%s' has been deleted."
-msgstr ""
-
-#: wsi/back/actions/UninstallAction.inc.php:18
-msgid "Error deleting Setting Key '%s'."
 msgstr ""
 
 #: wsi/back/WsiBack.class.php:74

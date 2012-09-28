@@ -21,18 +21,6 @@
 	margin-right: 6px;
 }
 
-.uninstallCheckList {
-	background-color:#FFFFE0;
-	border-color:#E6DB55;
-	-moz-border-radius:3px 3px 3px 3px;
-	border-style:solid;
-	border-width:1px;
-	margin:5px 30px 2px;
-	padding:0 0.6em;
-	height:280px;
-	overflow:auto;
-}
-
 #splash_color_demo {
 	border-radius:4px;
 	margin: 0px 5px;
@@ -49,19 +37,15 @@
 	margin-left:230px;
 }
 
-#display_uninstall {
+#display_buyMeABeer {
 	margin-left:270px;
 }
 
-#display_buyMeABeer {
+#display_reset {
 	margin-left:310px;
 }
 
-#display_reset {
-	margin-left:350px;
-}
-
-#display_info, #display_feedback, #display_uninstall, #display_reset, #display_buyMeABeer {
+#display_info, #display_feedback, #display_reset, #display_buyMeABeer {
 	margin-top:5px;
 	position: absolute;	
 }
@@ -79,6 +63,6 @@
 	margin: -4px -141px 0 0;
 }
 
-#info_img, #feedback_img, #uninstall_img, #buyMeABeer_img {
+#info_img, #feedback_img, #buyMeABeer_img {
 	cursor: pointer;
 }
