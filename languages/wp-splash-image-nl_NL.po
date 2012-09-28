@@ -34,14 +34,6 @@ msgstr "Configuratie"
 msgid "Splash image activated:"
 msgstr "Splash image geactiveerd:"
 
-#: wp-splash-image.php:258
-msgid "Test mode activated:"
-msgstr "Test mode geactiveerd:"
-
-#: wp-splash-image.php:264
-msgid "(for tests only, open splash image whenever)"
-msgstr "(splash image wordt altijd openen. Advies is alleen voor test doeleinden gebruiken )"
-
 #: wp-splash-image.php:267
 msgid "Picture URL:"
 msgstr "URL plaatje:"

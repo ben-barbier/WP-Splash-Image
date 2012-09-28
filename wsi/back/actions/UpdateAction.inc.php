@@ -25,7 +25,6 @@ $siBean->setWsi_idle_time(           $_POST['wsi_idle_time']);
 
 // Gestion des booleans
 $configBean->setSplash_active(              $_POST['splash_active']=='on');
-$configBean->setSplash_test_active(         $_POST['splash_test_active']=='on');
 $configBean->setWsi_first_load_mode_active( $_POST['wsi_first_load_mode_active']=='on');
 $siBean->setWsi_close_esc_function(     $_POST['wsi_close_esc_function']=='on');
 $siBean->setWsi_hide_cross(             $_POST['wsi_hide_cross']=='on');
@@ -33,6 +32,7 @@ $siBean->setWsi_disable_shadow_border(  $_POST['wsi_disable_shadow_border']=='on
 $siBean->setWsi_youtube_autoplay(       $_POST['wsi_youtube_autoplay']=='on');
 $siBean->setWsi_youtube_loop(           $_POST['wsi_youtube_loop']=='on');
 $siBean->setWsi_fixed_splash(           $_POST['wsi_fixed_splash']=='on');
+$siBean->setWsi_display_always(         $_POST['wsi_display_always']=='on');
 
 // Valeurs des onglets
 $siBean->setWsi_youtube(     $_POST['wsi_youtube']);

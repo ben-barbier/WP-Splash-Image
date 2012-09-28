@@ -338,26 +338,17 @@ class WsiBack {
 				if($("#splash_active").attr("checked")=="checked") {$("#block_splash_test_active").fadeIn("slow");}
 				else{$("#block_splash_test_active").fadeOut("slow");}
 			});
-
-			// Gestion de l'affichage des zones "block_start_date", "block_end_date" et "block_idle_time"
-			// En fonction de "splash_test_active"
-			if($("#splash_test_active").attr("checked")=="checked") {
-				$("#block_start_date").css("display","none");
-				$("#block_end_date").css("display","none");
+			
+			// Gestion de l'affichage des zones block_idle_time en fonction de "wsi_display_always"
+			if($("#wsi_display_always").attr("checked")=="checked") {
 				$("#block_idle_time").css("display","none");
 			}else{
-				$("#block_start_date").css("display","table-row");
-				$("#block_end_date").css("display","table-row");
 				$("#block_idle_time").css("display","table-row");
 			}
-			$("#splash_test_active").click(function() {
-				if($("#splash_test_active").attr("checked")=="checked") {
-					$("#block_start_date").fadeOut("slow");
-					$("#block_end_date").fadeOut("slow");
+			$("#wsi_display_always").click(function() {
+				if($("#wsi_display_always").attr("checked")=="checked") {
 					$("#block_idle_time").fadeOut("slow");
 				}else{
-					$("#block_start_date").fadeIn("slow");
-					$("#block_end_date").fadeIn("slow");
 					$("#block_idle_time").fadeIn("slow");
 				}
 			});

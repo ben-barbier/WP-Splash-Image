@@ -35,15 +35,6 @@
 				
 			</td>
 		</tr>
-		<tr id="block_splash_test_active">
-			<td><?php echo __('Test mode activated','wp-splash-image'); ?>:</td>
-			<td><input 
-				type="checkbox" 
-				name="splash_test_active" 
-				id="splash_test_active" 
-				<?php if($configBean->isSplash_test_active()=='true') {echo("checked='checked'");} ?> />
-				<?php echo __('(for tests only, open splash image whenever)','wp-splash-image'); ?></td>
-		</tr>
 	</table>
 	<br />
 	<!-- Tabs --> 
@@ -173,6 +164,16 @@
 				value="<?php echo date_create($siBean->getDatepicker_end())->format('Y-m-d'); ?>" />&nbsp;
 				<?php echo __('(stay empty if not required)','wp-splash-image'); ?></td>
 			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td><?php echo __('Display always','wp-splash-image'); ?>:</td>
+			<td><input
+				type="checkbox" 
+				name="wsi_display_always" 
+				id="wsi_display_always" 
+				<?php if($siBean->isWsi_display_always()=='true') {echo("checked='checked'");} ?> />
+				<?php echo __('Display the splash image on each pages for each users (not recommended for comfort of users).','wp-splash-image'); ?>
+			</td>
 		</tr>
 		<tr id="block_idle_time">
 			<td><?php echo __('Idle time','wp-splash-image'); ?>:</td>

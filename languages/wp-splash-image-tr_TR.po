@@ -57,14 +57,6 @@ msgstr "Yapılandırma"
 msgid "Splash image activated"
 msgstr "Splash image Aktif et"
 
-#: wp-splash-image.php:546
-msgid "Test mode activated:"
-msgstr "Mode test Aktif et"
-
-#: wp-splash-image.php:552
-msgid "(for tests only, open splash image whenever)"
-msgstr "(Sadece test için, Sayfa her açıldığında splash image görüntüler)"
-
 #: wp-splash-image.php:561
 msgid "Image"
 msgstr "Resim"
