@@ -50,13 +50,6 @@ class ConfigManager {
 				$format = null,
 				$where_format = null);
 		
-		$success = $wpdb->update(
-				$this::tableName(),
-				array('value' => (($configBean->isSplash_test_active())?'true':'false')),
-				array('param' => 'splash_test_active'),
-				$format = null,
-				$where_format = null);
-		
 		// Update class instance
 		$this->configBean = $configBean;
 		
@@ -74,11 +67,9 @@ class ConfigManager {
 
 			$splash_active =              $wpdb->get_var("SELECT value FROM ".$this::tableName()." WHERE param = 'splash_active'",0,0);
 			$wsi_first_load_mode_active = $wpdb->get_var("SELECT value FROM ".$this::tableName()." WHERE param = 'wsi_first_load_mode_active'",0,0);
-			$splash_test_active =         $wpdb->get_var("SELECT value FROM ".$this::tableName()." WHERE param = 'splash_test_active'",0,0);
 			
 			$configBean->setSplash_active(              $splash_active);
 			$configBean->setWsi_first_load_mode_active( $wsi_first_load_mode_active);
-			$configBean->setSplash_test_active(         $splash_test_active);
 			
 			$this->configBean = $configBean;
 			
@@ -94,7 +85,6 @@ class ConfigManager {
 		$wpdb->query("DELETE FROM ".$this::tableName());
 		$wpdb->insert($this::tableName(),array('param'=>'splash_active',              'value'=>'true' ));
 		$wpdb->insert($this::tableName(),array('param'=>'wsi_first_load_mode_active', 'value'=>'false'));
-		$wpdb->insert($this::tableName(),array('param'=>'splash_test_active',         'value'=>'false'));
 	}
 	
 	/**
@@ -113,7 +103,6 @@ class ConfigManager {
 		$result.= "<strong>".$this::tableName().": </strong><br />";
 		$result.= "splash_active: ".             (($this->configBean->isSplash_active()===true)?"true":"false")."<br />";
 		$result.= "wsi_first_load_mode_active: ".(($this->configBean->isWsi_first_load_mode_active()===true)?"true":"false")."<br />";
-		$result.= "splash_test_active: ".        (($this->configBean->isSplash_test_active()===true)?"true":"false")."<br />";
 		return $result;	
 	}
 	

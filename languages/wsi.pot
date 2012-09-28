@@ -29,14 +29,6 @@ msgstr ""
 msgid "Uninstall"
 msgstr ""
 
-#: wsi/back/forms/MainForm.inc.php:33
-msgid "Test mode activated"
-msgstr ""
-
-#: wsi/back/forms/MainForm.inc.php:39
-msgid "(for tests only, open splash image whenever)"
-msgstr ""
-
 #: wsi/back/forms/MainForm.inc.php:46
 msgid "Picture"
 msgstr ""
