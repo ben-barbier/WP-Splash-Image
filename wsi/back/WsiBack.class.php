@@ -29,9 +29,6 @@ class WsiBack {
 		add_action ( 'admin_init',                                       array(&$this, 'wp_splash_image_back_init' ));
 		add_action ( 'admin_menu',                                       array(&$this, 'wsi_menu' ));
 		add_action ( 'plugins_loaded',                                   array(&$this, 'update_db_check' )); // OK since WP 3.1
-
-		register_uninstall_hook( WsiCommons::$pluginMainFile,            array(&$this, 'on_uninstall' ) );
-
 		add_filter ( 'plugin_action_links_'.WsiCommons::$pluginMainFile, array(&$this, 'wsi_filter_plugin_actions' ));
 		add_filter ( 'plugin_row_meta',                                  array(&$this, 'set_plugin_meta'), 10, 2 );
 
@@ -100,21 +97,6 @@ class WsiBack {
 		if (MainManager::getInstance()->get_current_wsi_db_version() != WSI_DB_VERSION) {
 			MainManager::getInstance()->wsi_install_db();
 		}
-	}
-
-	/**
-	 * Remove tables and options of WSI.
-	 */
-	function on_uninstall() {
-
-		// Liste des tables qui seront supprimées
-		$list_tables = WsiCommons::getWsiTablesList();
-		foreach($list_tables as $table) { MainManager::getInstance()->drop_wsi_table($table); }
-
-		// Liste des options qui seront supprimées
-		$list_options = WsiCommons::getWsiOptionsList();
-		foreach($list_options as $option) { MainManager::getInstance()->delete_wsi_option($option); }
-
 	}
 	
 	/**
