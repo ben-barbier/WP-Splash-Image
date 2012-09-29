@@ -11,10 +11,10 @@
 	    <?php break; case "youtube": ?>
 
 			<object width="<?php echo $_GET['splash_image_width']; ?>" height="<?php echo $_GET['splash_image_height']; ?>">
-				<param name="movie" value="http://www.youtube.com/v/<?php echo $_GET['wsi_youtube']; ?>&hl=<?php echo get_locale(); ?>&fs=1&rel=0"></param>
+				<param name="movie" value="http://www.youtube.com/v/<?php echo $_GET['wsi_youtube']; ?>&hl=en_US&fs=1&rel=0"></param>
 				<param name="allowFullScreen" value="true"></param>
 				<param name="allowscriptaccess" value="always"></param>
-				<embed src="http://www.youtube.com/v/<?php echo $_GET['wsi_youtube']; ?>&hl=<?php echo get_locale(); ?>&fs=1&rel=0<?php if($_GET['wsi_youtube_autoplay']=='true'){ ?>&autoplay=1<?php } if($_GET['wsi_youtube_loop']=='true'){ ?>&loop=1<?php } ?>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="<?php echo $_GET['splash_image_width']; ?>" height="<?php echo $_GET['splash_image_height']; ?>"></embed>
+				<embed src="http://www.youtube.com/v/<?php echo $_GET['wsi_youtube']; ?>&hl=en_US&fs=1&rel=0<?php if($_GET['wsi_youtube_autoplay']=='true'){ ?>&autoplay=1<?php } if($_GET['wsi_youtube_loop']=='true'){ ?>&loop=1<?php } ?>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="<?php echo $_GET['splash_image_width']; ?>" height="<?php echo $_GET['splash_image_height']; ?>"></embed>
 			</object>
 			    
 		<?php break; case "yahoo": ?>
@@ -23,8 +23,8 @@
 				<param name="allowFullScreen" value="true" />
 				<param name="AllowScriptAccess" VALUE="always" />
 				<param name="bgcolor" value="#000000" />
-				<param name="flashVars" value="id=20476969&vid=<?php echo $_GET['wsi_yahoo']; ?>&lang=<?php echo get_locale(); ?>&embed=1" />
-				<embed src="http://d.yimg.com/static.video.yahoo.com/yep/YV_YEP.swf?ver=2.2.46" type="application/x-shockwave-flash" width="<?php echo $_GET['splash_image_width']; ?>" height="<?php echo $_GET['splash_image_height']; ?>" allowFullScreen="true" AllowScriptAccess="always" bgcolor="#000000" flashVars="id=20476969&vid=<?php echo $_GET['wsi_yahoo']; ?>&lang=<?php echo get_locale(); ?>&embed=1" ></embed>
+				<param name="flashVars" value="id=20476969&vid=<?php echo $_GET['wsi_yahoo']; ?>&lang=en_US&embed=1" />
+				<embed src="http://d.yimg.com/static.video.yahoo.com/yep/YV_YEP.swf?ver=2.2.46" type="application/x-shockwave-flash" width="<?php echo $_GET['splash_image_width']; ?>" height="<?php echo $_GET['splash_image_height']; ?>" allowFullScreen="true" AllowScriptAccess="always" bgcolor="#000000" flashVars="id=20476969&vid=<?php echo $_GET['wsi_yahoo']; ?>&lang=en_US&embed=1" ></embed>
 			</object>
 		
 		<?php break; case "dailymotion": ?>
