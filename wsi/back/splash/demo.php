@@ -117,8 +117,10 @@
 		});
 
 		<?/* Autoclose de la Splash Image */?>
-		setTimeout("$j('#miesSPLASH').fadeOut()",<?php echo $_GET["wsi_display_time"]; ?>000);
-		setTimeout("$j('#exposeMask').fadeOut()",<?php echo $_GET["wsi_display_time"]; ?>000);
+		<?php if ($_GET["wsi_display_time"] > 0) { ?>
+			setTimeout("$j('#miesSPLASH').fadeOut()",<?php echo $_GET["wsi_display_time"]; ?>000);
+			setTimeout("$j('#exposeMask').fadeOut()",<?php echo $_GET["wsi_display_time"]; ?>000);
+		<?php } ?>
 
 		<?/* On masque la croix en haut à droite si besoin */?>
 		<?php if($_GET['wsi_hide_cross']=='true') { ?>
