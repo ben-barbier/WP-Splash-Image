@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: Splash, Image, LightBox, Picture, Video, HTML, Start, Open, Screen, Welcome, Message
 Requires at least: 3.1
 Tested up to: 3.4.2
-Stable tag: 2.5.2
+Stable tag: 2.5.3
 
 WP Splash Image is a plugin for Wordpress to display picture, video or html code with a lightbox effect at the opening of the blog.
  
@@ -99,7 +99,11 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
  
 == Changelog ==
 
-= 2.5.2 -
+= 2.5.3 =
+* Fix YouTube "Live Preview" error (don't display).
+* Fix "Display time : 0" = don't close automaticly the splash image in "Live Preview" (Before the fix, the splash image is immediatly close in "Live Preview").
+
+= 2.5.2 =
 * Remove uninstall button. The uninstall function is now manage by "uninstall.php" file (automatic).
 * Fix install error with WP since 3.1 (wsi tables non created).
 
