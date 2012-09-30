@@ -441,6 +441,7 @@ class WsiBack {
 					url_splash_image:          $("#url_splash_image").val(),
 					splash_image_width:        $("#splash_image_width").val(),
 					splash_image_height:       $("#splash_image_height").val(),
+					wsi_margin_top:            $("#wsi_margin_top").val(),
 					splash_color:              $('#splash_color').val(),
 					wsi_display_time:          $("[name='wsi_display_time']").val(),
 					wsi_fixed_splash:          $("#wsi_fixed_splash:checked").is(":checked"),
