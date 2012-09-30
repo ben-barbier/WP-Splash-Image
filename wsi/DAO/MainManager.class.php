@@ -185,6 +185,13 @@ class MainManager {
 				$wpdb->query($sql_update_wsi_html);
 				
 			case "2.1":
+				
+				$table_name_splashimage = SplashImageManager::tableName();
+				$sql_update = "ALTER TABLE " . $table_name_splashimage . "
+				ADD COLUMN wsi_margin_top INT NULL;";
+				$wpdb->query($sql_update);
+				
+			case "2.2":
 				//nothing for the moment (it is the current version)
 				
 			case "3.0":

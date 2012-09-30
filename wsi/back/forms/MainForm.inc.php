@@ -114,8 +114,8 @@
 			<td><?php echo __("Splash margin-top",'wp-splash-image'); ?>:</td>
 			<td><input
 				type="number"
-				name="splash_image_margin_top"
-				id="splash_image_margin_top"
+				name="wsi_margin_top"
+				id="wsi_margin_top"
 				size="6" maxlength="4"
 				value="<?php echo $siBean->getWsi_margin_top(); ?>" />&nbsp;px
 				(<?php echo __('empty = auto','wp-splash-image'); ?>)</td>
