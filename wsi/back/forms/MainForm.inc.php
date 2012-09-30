@@ -111,6 +111,17 @@
 				value="<?php echo $siBean->getSplash_image_width(); ?>" />&nbsp;px</td>
 		</tr>
 		<tr>
+			<td><?php echo __("Splash margin-top",'wp-splash-image'); ?>:</td>
+			<td><input
+				type="number"
+				name="wsi_margin_top"
+				id="wsi_margin_top"
+				min="-10000"
+				max="10000"
+				value="<?php echo $siBean->getWsi_margin_top(); ?>" />&nbsp;px
+				(<?php echo __('leave empty for WSI manages the position.','wp-splash-image'); ?>)</td>
+		</tr>
+		<tr>
 			<td><?php echo __('Background color','wp-splash-image'); ?>:</td>
 			<td>
 				<table style="border-spacing: 0px;">

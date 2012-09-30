@@ -12,6 +12,7 @@ $siBean->setId( $_POST['id'] );
 $siBean->setUrl_splash_image(        $_POST['url_splash_image']);
 $siBean->setSplash_image_width(      $_POST['splash_image_width']);
 $siBean->setSplash_image_height(     $_POST['splash_image_height']);
+$siBean->setWsi_margin_top(          $_POST['wsi_margin_top']);
 $siBean->setSplash_color(            $_POST['splash_color']);
 $siBean->setDatepicker_start(        $_POST['datepicker_start']);
 $siBean->setDatepicker_end(          $_POST['datepicker_end']);

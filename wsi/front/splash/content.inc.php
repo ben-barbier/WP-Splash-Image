@@ -130,4 +130,13 @@ $j(document).ready(function () {
 </script>
 <?php } ?>
 
+<?/* On modifie la marge supperieur si elle est precisee */?>
+<?php if($siBean->getWsi_margin_top()!='') { ?>
+<script type="text/javascript">
+$j(document).ready(function () {
+	$j('.simple_overlay').css('margin-top','<?php echo $siBean->getWsi_margin_top(); ?>px');
+});
+</script>
+<?php } ?>
+
 <!-- /WP Splash-Image -->

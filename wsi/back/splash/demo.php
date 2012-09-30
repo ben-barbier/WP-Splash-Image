@@ -133,6 +133,11 @@
 			$j('.simple_overlay').css('-webkit-box-shadow','none');
 			$j('.simple_overlay').css('box-shadow','none');
 		<?php } ?>
+
+		<?/* On modifie la marge supperieur si elle est precisee */?>
+		<?php if($_GET['wsi_margin_top']!='') { ?>
+			$j('.simple_overlay').css('margin-top','<?php echo $_GET["wsi_margin_top"]; ?>px');
+		<?php } ?>
 		
 	});
 	

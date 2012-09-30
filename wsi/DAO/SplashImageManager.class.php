@@ -43,6 +43,7 @@ class SplashImageManager {
 						'url_splash_image'        => $splashImageBean->getUrl_splash_image(),
 						'splash_image_width'      => $splashImageBean->getSplash_image_width(),
 						'splash_image_height'     => $splashImageBean->getSplash_image_height(),
+						'wsi_margin_top'          => $splashImageBean->getWsi_margin_top(),
 						'splash_color'            => $splashImageBean->getSplash_color(),
 						
 						'wsi_display_time'        => $splashImageBean->getWsi_display_time(),
@@ -103,6 +104,7 @@ class SplashImageManager {
 			$splashImageBean->setUrl_splash_image(           esc_attr($wsi_splashimage_row->url_splash_image));
 			$splashImageBean->setSplash_image_width(         esc_attr($wsi_splashimage_row->splash_image_width));
 			$splashImageBean->setSplash_image_height(        esc_attr($wsi_splashimage_row->splash_image_height));
+			$splashImageBean->setWsi_margin_top(             esc_attr($wsi_splashimage_row->wsi_margin_top));
 			$splashImageBean->setSplash_color(               esc_attr($wsi_splashimage_row->splash_color));
 			$splashImageBean->setDatepicker_start(           esc_attr($wsi_splashimage_row->datepicker_start));
 			$splashImageBean->setDatepicker_end(             esc_attr($wsi_splashimage_row->datepicker_end));
@@ -150,6 +152,7 @@ class SplashImageManager {
 				'url_splash_image'           => 'http://plugins.svn.wordpress.org/wsi/assets/banner-772x250.png',
 				'splash_image_width'         => '772',
 				'splash_image_height'        => '250',
+				'wsi_margin_top'             => '',
 				'splash_color'               => '000000',
 // 				'datepicker_start'           => null,
 // 				'datepicker_end'             => null,
@@ -214,6 +217,7 @@ class SplashImageManager {
 		$result.= "url_splash_image: ".          $this->splashImageBean->getUrl_splash_image()."<br />";
 		$result.= "splash_image_width: ".        $this->splashImageBean->getSplash_image_width()."<br />";
 		$result.= "splash_image_height: ".       $this->splashImageBean->getSplash_image_height()."<br />";
+		$result.= "wsi_margin_top: ".            $this->splashImageBean->getWsi_margin_top()."<br />";
 		$result.= "splash_color: ".              $this->splashImageBean->getSplash_color()."<br />";
 		$result.= "datepicker_start: ".          $this->splashImageBean->getDatepicker_start()."<br />";
 		$result.= "datepicker_end: ".            $this->splashImageBean->getDatepicker_end()."<br />";

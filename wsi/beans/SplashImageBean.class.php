@@ -37,6 +37,11 @@ class SplashImageBean {
 	private $splash_image_height;
 	
 	/**
+	 * @var int
+	 */
+	private $wsi_margin_top;
+
+	/**
 	 * @var string
 	 */
 	private $splash_color;
@@ -152,6 +157,7 @@ class SplashImageBean {
 	public function getUrl_splash_image() { return $this->url_splash_image; } 
 	public function getSplash_image_width() { return $this->splash_image_width; } 
 	public function getSplash_image_height() { return $this->splash_image_height; } 
+	public function getWsi_margin_top() { return $this->wsi_margin_top; } 
 	public function getSplash_color() { return $this->splash_color; } 
 	public function getDatepicker_start() { return $this->datepicker_start; } 
 	public function getDatepicker_end() { return $this->datepicker_end; } 
@@ -168,6 +174,7 @@ class SplashImageBean {
 	public function getWsi_youtube() { return $this->wsi_youtube; } 
 	public function isWsi_youtube_autoplay() { return $this->wsi_youtube_autoplay; } 
 	public function isWsi_youtube_loop() { return $this->wsi_youtube_loop; } 
+
 	public function getWsi_yahoo() { return $this->wsi_yahoo; } 
 	public function getWsi_dailymotion() { return $this->wsi_dailymotion; } 
 	public function getWsi_metacafe() { return $this->wsi_metacafe; } 
@@ -179,6 +186,7 @@ class SplashImageBean {
 	public function setUrl_splash_image($x) { $this->url_splash_image = $x; } 
 	public function setSplash_image_width($x) { $this->splash_image_width = $x; } 
 	public function setSplash_image_height($x) { $this->splash_image_height = $x; } 
+	public function setWsi_margin_top($x) { $this->wsi_margin_top = $x; } 
 	public function setSplash_color($x) { $this->splash_color = $x; } 
 	public function setDatepicker_start($x) { $this->datepicker_start = $x; } 
 	public function setDatepicker_end($x) { $this->datepicker_end = $x; } 
