@@ -178,8 +178,15 @@ class MainManager {
 				//no break, because if the last version is 3.0, we must run this step and the next...
 	
 			case "2.0":
-				//nothing for the moment (it is the last version)
-	
+				
+				$table_name_splashimage = SplashImageManager::tableName();
+				$sql_update_wsi_html = "ALTER TABLE " . $table_name_splashimage . " 
+				MODIFY wsi_html LONGTEXT NULL;";
+				$wpdb->query($sql_update_wsi_html);
+				
+			case "2.1":
+				//nothing for the moment (it is the current version)
+				
 			case "3.0":
 				//do not exists
 	
