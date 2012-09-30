@@ -119,7 +119,7 @@
 				min="-10000"
 				max="10000"
 				value="<?php echo $siBean->getWsi_margin_top(); ?>" />&nbsp;px
-				(<?php echo __('empty = auto','wp-splash-image'); ?>)</td>
+				(<?php echo __('leave empty for WSI manages the position.','wp-splash-image'); ?>)</td>
 		</tr>
 		<tr>
 			<td><?php echo __('Background color','wp-splash-image'); ?>:</td>
