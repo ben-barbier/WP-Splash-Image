@@ -116,7 +116,8 @@
 				type="number"
 				name="wsi_margin_top"
 				id="wsi_margin_top"
-				size="6" maxlength="4"
+				min="-10000"
+				max="10000"
 				value="<?php echo $siBean->getWsi_margin_top(); ?>" />&nbsp;px
 				(<?php echo __('empty = auto','wp-splash-image'); ?>)</td>
 		</tr>
