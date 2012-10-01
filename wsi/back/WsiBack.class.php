@@ -127,23 +127,34 @@ class WsiBack {
 	public function enqueue_wsi_back_scripts() {
 		if (isset($_GET['page']) && $_GET['page'] == 'wp_splash_image') {
 			
-			// Déclaration des scripts de la partie Admin
-			wp_register_script('jquery.tools.back', WsiCommons::getURL().'/js/jQueryTools/jquery.tools.min.wp-back.js'); /*[overlay, overlay.apple, dateinput, rangeinput, validator, tooltip, tooltip.dynamic, tooltip.slide, toolbox.expose]*/
-			wp_register_script('jquery.keyfilter',  WsiCommons::getURL().'/js/jquery.keyfilter-1.7.min.js'); /* KeyFilter (for splash_color, splash_image_height, splash_image_width fields) */
-			
-			// JQuery (wordpress version)
+			// JQuery (version 1.7.2)
+			wp_deregister_script('jquery');
+			wp_register_script('jquery','http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
 			wp_enqueue_script('jquery');
 			
-			// JQuery UI (wordpress version)
-			wp_enqueue_script('jquery-ui-tabs');
+			// JQuery UI Core (version 1.8.24)
+			wp_deregister_script('jquery-ui');
+			wp_register_script('jquery-ui', WsiCommons::getURL().'/js/jQueriUI/jquery.ui.core.min.js');
+			wp_enqueue_script('jquery-ui', false, array('jquery'));
+			
+			// JQuery UI Widget (version 1.8.24)
+			wp_deregister_script('jquery-ui-widget');
+			wp_register_script('jquery-ui-widget', WsiCommons::getURL().'/js/jQueriUI/jquery.ui.widget.min.js');
+			wp_enqueue_script('jquery-ui-widget', false, array('jquery-ui'));
+
+			// JQuery UI Tabs (version 1.8.24)
+			wp_deregister_script('jquery-ui-tabs');
+			wp_register_script('jquery-ui-tabs', WsiCommons::getURL().'/js/jQueriUI/jquery.ui.tabs.min.js');
+			wp_enqueue_script('jquery-ui-tabs', false, array('jquery-widget'));
 			
 			// JQuery Tools
+			wp_register_script('jquery.tools.back', WsiCommons::getURL().'/js/jQueryTools/jquery.tools.min.wp-back.js'); /*[overlay, overlay.apple, dateinput, rangeinput, validator, tooltip, tooltip.dynamic, tooltip.slide, toolbox.expose]*/
 			wp_enqueue_script('jquery.tools.back', false, array('jquery'));
 			
-			// JQuery Plugins
-			wp_enqueue_script('jquery.tooltip',    false, array('jquery'));
+			// Keyfilter
+			wp_register_script('jquery.keyfilter',  WsiCommons::getURL().'/js/jquery.keyfilter-1.7.min.js'); /* KeyFilter (for splash_color, splash_image_height, splash_image_width fields) */
 			wp_enqueue_script('jquery.keyfilter',  false, array('jquery'));
-
+			
 		}
 	}
 	
@@ -394,7 +405,8 @@ class WsiBack {
 			})
 			
 			// Activation du curseur pour la durée d'affichage
-			$(":range").rangeinput();
+			$("input[name=wsi_opacity]").rangeinput();
+			$("input[name=wsi_display_time]").rangeinput();
 			
 			// Color on select input radio
 			function color_box(boxId) {
