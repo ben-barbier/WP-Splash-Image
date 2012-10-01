@@ -87,11 +87,8 @@ class WsiFront {
 			// Déclaration des scripts de la partie front end.
 			wp_register_script('jquery.tools.front', WsiCommons::getURL().'/js/jQueryTools/jquery.tools.min.wp-front.js'); /*[overlay, toolbox.expose]*/
 	
-			// JQuery (wordpress version)
-			wp_enqueue_script('jquery');
-			
 			// JQuery Tools
-			wp_enqueue_script('jquery.tools.front', false, array('jquery'));
+			wp_enqueue_script('jquery.tools.front');
 			
 			// Chargement des styles du front end.
 			wp_enqueue_style('overlay-basic');
