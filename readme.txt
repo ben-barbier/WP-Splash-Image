@@ -100,7 +100,7 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
 == Changelog ==
 
 = 2.6.1 =
-* Fix problem with jQuery 1.8.2 (now, WSI integrate is own version of jQuery with JqueryTools).
+* Fix problem with jQuery 1.8.2 (now, WSI integrate is own version of jQuery in JqueryTools).
 
 = 2.6.0 =
 * Replace old HTML editor by new WYSIWYG wordpress editor (http://codex.wordpress.org/Function_Reference/wp_editor)
