@@ -437,7 +437,7 @@ class WsiBack {
 
 			// Live Preview
 			$('#live_preview_button').click(function() {
-				$.get('<?php echo WsiCommons::getURL() ?>/wsi/back/splash/demo.php', { 
+				$.post('<?php echo WsiCommons::getURL() ?>/wsi/back/splash/demo.php', { 
 					url_splash_image:          $("#url_splash_image").val(),
 					splash_image_width:        $("#splash_image_width").val(),
 					splash_image_height:       $("#splash_image_height").val(),
