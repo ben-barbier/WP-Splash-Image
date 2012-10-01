@@ -134,17 +134,17 @@ class WsiBack {
 			
 			// JQuery UI Core (version 1.8.24)
 			wp_deregister_script('jquery-ui');
-			wp_register_script('jquery-ui', WsiCommons::getURL().'/js/jQueriUI/jquery.ui.core.min.js');
+			wp_register_script('jquery-ui', WsiCommons::getURL().'/js/jQueryUI/jquery.ui.core.min.js');
 			wp_enqueue_script('jquery-ui', false, array('jquery'));
 			
 			// JQuery UI Widget (version 1.8.24)
 			wp_deregister_script('jquery-ui-widget');
-			wp_register_script('jquery-ui-widget', WsiCommons::getURL().'/js/jQueriUI/jquery.ui.widget.min.js');
+			wp_register_script('jquery-ui-widget', WsiCommons::getURL().'/js/jQueryUI/jquery.ui.widget.min.js');
 			wp_enqueue_script('jquery-ui-widget', false, array('jquery-ui'));
 
 			// JQuery UI Tabs (version 1.8.24)
 			wp_deregister_script('jquery-ui-tabs');
-			wp_register_script('jquery-ui-tabs', WsiCommons::getURL().'/js/jQueriUI/jquery.ui.tabs.min.js');
+			wp_register_script('jquery-ui-tabs', WsiCommons::getURL().'/js/jQueryUI/jquery.ui.tabs.min.js');
 			wp_enqueue_script('jquery-ui-tabs', false, array('jquery-widget'));
 			
 			// JQuery Tools
