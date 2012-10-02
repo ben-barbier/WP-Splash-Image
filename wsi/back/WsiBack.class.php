@@ -368,7 +368,10 @@ class WsiBack {
 			$('#display_reset').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 
 			// Activation du tooltip du "first load mode" (doc)
-			$('#wsi_first_load_mode_info').tooltip({ position: "center right", effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
+			$('#wsi_first_load_mode_info').tooltip({ position: "center right", effect: 'slide', offset: [0, 15]}).dynamic({ bottom: { direction: 'down', bounce: true } });
+
+			// Activation du tooltip de l'URL Youtube (doc)
+			$('#wsi_youtube_info').tooltip({ position: "center right", effect: 'slide', offset: [-150, 15]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 			
 			// GitHub effect.
 			$('#github_area').mouseover(function() {

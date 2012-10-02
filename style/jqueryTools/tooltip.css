@@ -35,6 +35,18 @@
     margin-left:-180px;
 }
 
+.tooltipLarge_youtubeURL {
+    display:none;
+    background:url('black_big_youtubeURL.png');
+    height:100px;
+    padding:40px 30px 10px 30px;
+    width:350px;
+    font-size:15px;
+    color:#fff;
+    z-index:10;
+    margin-left:-180px;
+    text-align: right;
+}
 
 /* style the trigger elements */
 #dyna img {

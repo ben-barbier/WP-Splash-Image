@@ -3,7 +3,16 @@
 		<tr id="box_youtube" class="box_type">
 			<td><input type="radio" id="radio_youtube" name="wsi_type" value="youtube" <?php if($siBean->getWsi_type()=="youtube") echo('checked="checked"') ?> /></td>
 			<td><img src="<?php echo WsiCommons::getURL(); ?>/style/youtube.png" alt="" /></td>
-			<td><span><?php echo __('Youtube code'); ?>:</span></td>
+			<td>
+				<span>
+					<?php echo __('Youtube code'); ?>			
+					<img id="wsi_youtube_info" alt="<?php echo __('Info','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/info-16px.png" />:
+				</span>
+				<div class="tooltipLarge_youtubeURL">
+					<img id="wsi_youtube_info" alt="<?php echo __('Youtube code info','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/youtube-url.png" />
+					<?php echo __('This is the youtube video code.','wp-splash-image'); ?>
+				</div>
+			</td>
 			<td>
 				<input type="text" name="wsi_youtube" id="wsi_youtube" value="<?php echo $siBean->getWsi_youtube(); ?>" />
 				&nbsp;&nbsp;&nbsp;
