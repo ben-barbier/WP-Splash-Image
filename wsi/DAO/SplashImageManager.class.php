@@ -80,6 +80,16 @@ class SplashImageManager {
 				$format = null,
 				$where_format = null );
 		
+		// Dates management
+		if ($splashImageBean->getDatepicker_start()==null) {
+			$query_reset_Datepicker_start = "update ".$this->tableName()." set datepicker_start = null;";
+			$wpdb->query($query_reset_Datepicker_start);
+		}
+		if ($splashImageBean->getDatepicker_end()==null) {
+			$query_reset_Datepicker_end = "update ".$this->tableName()." set datepicker_end = null;";
+			$wpdb->query($query_reset_Datepicker_end);
+		}
+		
 		// Update class instance
 		$this->splashImageBean = $splashImageBean;
 		
@@ -106,16 +116,18 @@ class SplashImageManager {
 			$splashImageBean->setSplash_image_height(        esc_attr($wsi_splashimage_row->splash_image_height));
 			$splashImageBean->setWsi_margin_top(             esc_attr($wsi_splashimage_row->wsi_margin_top));
 			$splashImageBean->setSplash_color(               esc_attr($wsi_splashimage_row->splash_color));
-			$splashImageBean->setDatepicker_start(           esc_attr($wsi_splashimage_row->datepicker_start));
-			$splashImageBean->setDatepicker_end(             esc_attr($wsi_splashimage_row->datepicker_end));
 			$splashImageBean->setWsi_display_time(           esc_attr($wsi_splashimage_row->wsi_display_time));
 			$splashImageBean->setWsi_picture_link_url(       esc_attr($wsi_splashimage_row->wsi_picture_link_url));
 			$splashImageBean->setWsi_picture_link_target(    esc_attr($wsi_splashimage_row->wsi_picture_link_target));
 			$splashImageBean->setWsi_type(                   esc_attr($wsi_splashimage_row->wsi_type));
 			$splashImageBean->setWsi_opacity(                esc_attr($wsi_splashimage_row->wsi_opacity));
 			$splashImageBean->setWsi_idle_time(              esc_attr($wsi_splashimage_row->wsi_idle_time));
-
-			// Gestion des booleans
+			
+			// Dates management
+			$splashImageBean->setDatepicker_start(           esc_attr($wsi_splashimage_row->datepicker_start));
+			$splashImageBean->setDatepicker_end(             esc_attr($wsi_splashimage_row->datepicker_end));
+			
+			// Booleans management
 			$splashImageBean->setWsi_close_esc_function(     esc_attr($wsi_splashimage_row->wsi_close_esc_function=='1'?'true':'false'));
 			$splashImageBean->setWsi_hide_cross(             esc_attr($wsi_splashimage_row->wsi_hide_cross=='1'?'true':'false'));
 			$splashImageBean->setWsi_disable_shadow_border(  esc_attr($wsi_splashimage_row->wsi_disable_shadow_border=='1'?'true':'false'));

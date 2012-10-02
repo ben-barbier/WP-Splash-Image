@@ -158,7 +158,7 @@
 				type="date" 
 				name="datepicker_start" 
 				id="datepicker_start" 
-				value="<?php echo date_create($siBean->getDatepicker_start())->format('Y-m-d'); ?>" />&nbsp;
+				value="<?php echo ($siBean->getDatepicker_start()!=null)?date_create($siBean->getDatepicker_start())->format('Y-m-d'):''; ?>" />&nbsp;
 				<?php echo __('(stay empty if not required)','wp-splash-image'); ?></td>
 			<td style="width:15px;"></td>
 			<td rowspan="2" style="padding:10px;border:2px solid #FF0000;display:none;background-color:#ff8b88" id="box_datepickers_warning">
@@ -172,7 +172,7 @@
 				type="date" 
 				name="datepicker_end" 
 				id="datepicker_end" 
-				value="<?php echo date_create($siBean->getDatepicker_end())->format('Y-m-d'); ?>" />&nbsp;
+				value="<?php echo ($siBean->getDatepicker_end()!=null)?date_create($siBean->getDatepicker_end())->format('Y-m-d'):''; ?>" />&nbsp;
 				<?php echo __('(stay empty if not required)','wp-splash-image'); ?></td>
 			<td colspan="2"></td>
 		</tr>

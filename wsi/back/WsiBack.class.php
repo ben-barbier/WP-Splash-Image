@@ -292,14 +292,14 @@ class WsiBack {
 			$("#datepicker_start").dateinput({
 				format: 'yyyy-mm-dd',
 				change: function() {
-					var isoDate = this.getValue('yyyy-mm-dd 00:00:00');
+					var isoDate = this.getValue('yyyy-mm-dd');
 					$("#datepicker_start").val(isoDate);
 				}
 			});
 			$("#datepicker_end").dateinput({
 				format: 'yyyy-mm-dd',
 				change: function() {
-					var isoDate = this.getValue('yyyy-mm-dd 00:00:00');
+					var isoDate = this.getValue('yyyy-mm-dd');
 					$("#datepicker_end").val(isoDate);
 				}
 			});
