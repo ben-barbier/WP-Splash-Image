@@ -56,6 +56,14 @@ class WsiFront {
 		// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
 		if (WsiCommons::getdate_is_in_validities_dates() == "false") return;
 		
+		// If option selected, hide splash image on mobile devices
+		if($siBean->isWsi_hide_on_mobile_devices()=='true') {
+			require("scripts/detectmobilebrowsers.php");
+			if (is_mobile_browser()) {
+				return;
+			}
+		}
+		
 		// If wsi_display_always option is activated, not paying attention to idle time
 		if ($siBean->isWsi_display_always()!='true') {
 
@@ -114,6 +122,14 @@ class WsiFront {
 		// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
 		if (WsiCommons::getdate_is_in_validities_dates() == "false") return;
 		
+		// If option selected, hide splash image on mobile devices
+		if($siBean->isWsi_hide_on_mobile_devices()=='true') {
+			require("scripts/detectmobilebrowsers.php");
+			if (is_mobile_browser()) {
+				return;
+			}
+		} 
+		
 		// If wsi_display_always option is activated, not paying attention to idle time
 		if ($siBean->isWsi_display_always()!='true') {
 
@@ -144,6 +160,13 @@ class WsiFront {
 		// Si la Splash Image n'est pas dans sa plage de validité, on ne fait rien
 		if (WsiCommons::getdate_is_in_validities_dates() == "false") return;
 
+		// If option selected, hide splash image on mobile devices
+		if($siBean->isWsi_hide_on_mobile_devices()=='true') {
+			if (is_mobile_browser()) {
+				return;
+			}
+		}
+		
 		// If wsi_display_always option is activated, not paying attention to idle time
 		if ($siBean->isWsi_display_always()!='true') {
 

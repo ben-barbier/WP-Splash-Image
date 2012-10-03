@@ -35,6 +35,14 @@
 				
 			</td>
 		</tr>
+		<tr>
+			<td><?php echo __('Hide Splash image on mobile devices','wp-splash-image'); ?>:</td>
+			<td><input 
+				type="checkbox" 
+				name="wsi_hide_on_mobile_devices" 
+				id="wsi_hide_on_mobile_devices" 
+				<?php if($siBean->isWsi_hide_on_mobile_devices()=='true') {echo("checked='checked'");} ?> /></td>
+		</tr>
 	</table>
 	<br />
 	<!-- Tabs --> 

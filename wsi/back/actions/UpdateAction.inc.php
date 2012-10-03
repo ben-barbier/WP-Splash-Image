@@ -23,19 +23,20 @@ $siBean->setWsi_opacity(             $_POST['wsi_opacity']);
 $siBean->setWsi_idle_time(           $_POST['wsi_idle_time']);
 
 // Dates management
-$siBean->setDatepicker_start(        $_POST['datepicker_start']);
-$siBean->setDatepicker_end(          $_POST['datepicker_end']);
+$siBean->setDatepicker_start( $_POST['datepicker_start']);
+$siBean->setDatepicker_end(   $_POST['datepicker_end']);
 
 // Booleans management
 $configBean->setSplash_active(              $_POST['splash_active']=='on');
 $configBean->setWsi_first_load_mode_active( $_POST['wsi_first_load_mode_active']=='on');
-$siBean->setWsi_close_esc_function(     $_POST['wsi_close_esc_function']=='on');
-$siBean->setWsi_hide_cross(             $_POST['wsi_hide_cross']=='on');
-$siBean->setWsi_disable_shadow_border(  $_POST['wsi_disable_shadow_border']=='on');
-$siBean->setWsi_youtube_autoplay(       $_POST['wsi_youtube_autoplay']=='on');
-$siBean->setWsi_youtube_loop(           $_POST['wsi_youtube_loop']=='on');
-$siBean->setWsi_fixed_splash(           $_POST['wsi_fixed_splash']=='on');
-$siBean->setWsi_display_always(         $_POST['wsi_display_always']=='on');
+$siBean->setWsi_close_esc_function(         $_POST['wsi_close_esc_function']=='on');
+$siBean->setWsi_hide_cross(                 $_POST['wsi_hide_cross']=='on');
+$siBean->setWsi_disable_shadow_border(      $_POST['wsi_disable_shadow_border']=='on');
+$siBean->setWsi_youtube_autoplay(           $_POST['wsi_youtube_autoplay']=='on');
+$siBean->setWsi_youtube_loop(               $_POST['wsi_youtube_loop']=='on');
+$siBean->setWsi_fixed_splash(               $_POST['wsi_fixed_splash']=='on');
+$siBean->setWsi_display_always(             $_POST['wsi_display_always']=='on');
+$siBean->setWsi_hide_on_mobile_devices(     $_POST['wsi_hide_on_mobile_devices']=='on');
 
 // Valeurs des onglets
 $siBean->setWsi_youtube(     $_POST['wsi_youtube']);
@@ -45,7 +46,7 @@ $siBean->setWsi_metacafe(    $_POST['wsi_metacafe']);
 $siBean->setWsi_swf(         $_POST['wsi_swf']);
 
 // Remove slash in HTML code.
-$siBean->setWsi_html(        stripslashes($_POST['wsi_html']));
+$siBean->setWsi_html( stripslashes($_POST['wsi_html']));
 
 ConfigManager::getInstance()->save($configBean);
 SplashImageManager::getInstance()->save($siBean);

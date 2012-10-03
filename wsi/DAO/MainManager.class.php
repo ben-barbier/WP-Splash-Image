@@ -180,20 +180,31 @@ class MainManager {
 			case "2.0":
 				
 				$table_name_splashimage = SplashImageManager::tableName();
-				$sql_update_wsi_html = "ALTER TABLE " . $table_name_splashimage . " 
-				MODIFY wsi_html LONGTEXT NULL;";
+				$sql_update_wsi_html = "ALTER TABLE " . $table_name_splashimage .  
+				" MODIFY wsi_html LONGTEXT NULL;";
 				$wpdb->query($sql_update_wsi_html);
 				
 			case "2.1":
 				
 				$table_name_splashimage = SplashImageManager::tableName();
-				$sql_update = "ALTER TABLE " . $table_name_splashimage . "
-				ADD COLUMN wsi_margin_top INT NULL;";
+				$sql_update = "ALTER TABLE " . $table_name_splashimage . 
+				" ADD COLUMN wsi_margin_top INT NULL;";
 				$wpdb->query($sql_update);
 				
 			case "2.2":
-				//nothing for the moment (it is the current version)
 				
+				$table_name_splashimage = SplashImageManager::tableName();
+				$sql_alter = "ALTER TABLE " . $table_name_splashimage . 
+				" ADD COLUMN wsi_hide_on_mobile_devices BOOLEAN NULL;";
+				$wpdb->query($sql_alter);
+				
+				$sql_update = "UPDATE " . $table_name_splashimage .
+				" SET wsi_hide_on_mobile_devices = 0;";
+				$wpdb->query($sql_update);
+				
+			case "2.3":
+				//nothing for the moment (it is the current version)
+					
 			case "3.0":
 				//do not exists
 	
