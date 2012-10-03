@@ -194,8 +194,12 @@ class MainManager {
 			case "2.2":
 				
 				$table_name_splashimage = SplashImageManager::tableName();
-				$sql_update = "ALTER TABLE " . $table_name_splashimage . 
+				$sql_alter = "ALTER TABLE " . $table_name_splashimage . 
 				" ADD COLUMN wsi_hide_on_mobile_devices BOOLEAN NULL;";
+				$wpdb->query($sql_alter);
+				
+				$sql_update = "UPDATE " . $table_name_splashimage .
+				" SET wsi_hide_on_mobile_devices = 0;";
 				$wpdb->query($sql_update);
 				
 			case "2.3":
