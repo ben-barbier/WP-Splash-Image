@@ -127,25 +127,8 @@ class WsiBack {
 	public function enqueue_wsi_back_scripts() {
 		if (isset($_GET['page']) && $_GET['page'] == 'wp_splash_image') {
 			
-			// JQuery (version 1.7.2)
-			wp_deregister_script('jquery');
-			wp_register_script('jquery','http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
-			wp_enqueue_script('jquery');
-			
-			// JQuery UI Core (version 1.8.24)
-			wp_deregister_script('jquery-ui');
-			wp_register_script('jquery-ui', WsiCommons::getURL().'/js/jQueryUI/jquery.ui.core.min.js');
-			wp_enqueue_script('jquery-ui', false, array('jquery'));
-			
-			// JQuery UI Widget (version 1.8.24)
-			wp_deregister_script('jquery-ui-widget');
-			wp_register_script('jquery-ui-widget', WsiCommons::getURL().'/js/jQueryUI/jquery.ui.widget.min.js');
-			wp_enqueue_script('jquery-ui-widget', false, array('jquery-ui'));
-
-			// JQuery UI Tabs (version 1.8.24)
-			wp_deregister_script('jquery-ui-tabs');
-			wp_register_script('jquery-ui-tabs', WsiCommons::getURL().'/js/jQueryUI/jquery.ui.tabs.min.js');
-			wp_enqueue_script('jquery-ui-tabs', false, array('jquery-widget'));
+			// JQuery UI Tabs (Wordpress version) -> include JQuery + JQuery UI Core + JQuery UI Widget 
+			wp_enqueue_script('jquery-ui-tabs');
 			
 			// JQuery Tools
 			wp_register_script('jquery.tools.back', WsiCommons::getURL().'/js/jQueryTools/jquery.tools.min.wp-back.js'); /*[overlay, overlay.apple, dateinput, rangeinput, validator, tooltip, tooltip.dynamic, tooltip.slide, toolbox.expose]*/
@@ -289,14 +272,14 @@ class WsiBack {
 		jQuery(document).ready(function ($) {
 			
 			// Chargement des calendriers
-			$("#datepicker_start").dateinput({
+			$jwsitools("#datepicker_start").dateinput({
 				format: 'yyyy-mm-dd',
 				change: function() {
 					var isoDate = this.getValue('yyyy-mm-dd');
 					$("#datepicker_start").val(isoDate);
 				}
 			});
-			$("#datepicker_end").dateinput({
+			$jwsitools("#datepicker_end").dateinput({
 				format: 'yyyy-mm-dd',
 				change: function() {
 					var isoDate = this.getValue('yyyy-mm-dd');
@@ -356,22 +339,22 @@ class WsiBack {
 			});
 			
 			// Activation du tooltip du feedback
-			$('#feedback_img').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
+			$jwsitools('#feedback_img').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 			
 			// Activation du tooltip de "Info"
-			$('#info_img').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
+			$jwsitools('#info_img').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 			
 			// Activation du tooltip de "Buy me a Beer"
-			$('#buyMeABeer_img').tooltip({effect: 'slide', offset: [10, 2], tipClass: 'tooltip bottom buyMeABeer'}).dynamic({ bottom: { direction: 'down', bounce: true } });
+			$jwsitools('#buyMeABeer_img').tooltip({effect: 'slide', offset: [10, 2], tipClass: 'tooltip bottom buyMeABeer'}).dynamic({ bottom: { direction: 'down', bounce: true } });
 			
 			// Activation du tooltip de "Reset"
-			$('#display_reset').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
+			$jwsitools('#display_reset').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 
 			// Activation du tooltip du "first load mode" (doc)
-			$('#wsi_first_load_mode_info').tooltip({ position: "center right", effect: 'slide', offset: [0, 15]}).dynamic({ bottom: { direction: 'down', bounce: true } });
+			$jwsitools('#wsi_first_load_mode_info').tooltip({ position: "center right", effect: 'slide', offset: [0, 15]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 
 			// Activation du tooltip de l'URL Youtube (doc)
-			$('#wsi_youtube_info').tooltip({ position: "center right", effect: 'slide', offset: [-150, 15]}).dynamic({ bottom: { direction: 'down', bounce: true } });
+			$jwsitools('#wsi_youtube_info').tooltip({ position: "center right", effect: 'slide', offset: [-150, 15]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 			
 			// GitHub effect.
 			$('#github_area').mouseover(function() {
@@ -397,10 +380,10 @@ class WsiBack {
 			reset_validator();
 			
 			// Activation de l'overlay de l'info
-			$("#info_img[rel]").overlay({mask: '#000', effect: 'apple'});
+			$jwsitools("#info_img[rel]").overlay({mask: '#000', effect: 'apple'});
 			
 			// Activation de l'overlay du feedback
-			$("#feedback_img[rel]").overlay({
+			$jwsitools("#feedback_img[rel]").overlay({
 				mask: '#000', 
 				effect: 'apple',
 				// Si on ferme l'overlay, on supprime les messages d'erreur du validator
@@ -408,8 +391,8 @@ class WsiBack {
 			})
 			
 			// Activation du curseur pour la durée d'affichage
-			$("input[name=wsi_opacity]").rangeinput();
-			$("input[name=wsi_display_time]").rangeinput();
+			$jwsitools("input[name=wsi_opacity]").rangeinput();
+			$jwsitools("input[name=wsi_display_time]").rangeinput();
 			
 			// Color on select input radio
 			function color_box(boxId) {
