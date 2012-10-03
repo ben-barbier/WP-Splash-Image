@@ -103,9 +103,9 @@
 <?/* Autoclose de la Splash Image */?>
 <?php if ($siBean->getWsi_display_time() > 0) { ?>
 <script type="text/javascript">
-$j(document).ready(function () {
-	setTimeout("$j('#miesSPLASH').fadeOut()",<?php echo ($siBean->getWsi_display_time()*1000); ?>);
-	setTimeout("$j('#exposeMask').fadeOut()",<?php echo ($siBean->getWsi_display_time()*1000); ?>);
+$jwsi(document).ready(function () {
+	setTimeout("$jwsi('#miesSPLASH').fadeOut()",<?php echo ($siBean->getWsi_display_time()*1000); ?>);
+	setTimeout("$jwsi('#exposeMask').fadeOut()",<?php echo ($siBean->getWsi_display_time()*1000); ?>);
 });
 </script>
 <?php } ?>
@@ -113,8 +113,8 @@ $j(document).ready(function () {
 <?/* On masque la croix en haut à droite si besoin */?>
 <?php if($siBean->isWsi_hide_cross()=='true') { ?>
 <script type="text/javascript">
-$j(document).ready(function () {
-	$j('.simple_overlay .close').css('display','none');
+$jwsi(document).ready(function () {
+	$jwsi('.simple_overlay .close').css('display','none');
 });
 </script>
 <?php } ?>
@@ -122,10 +122,10 @@ $j(document).ready(function () {
 <?/* On masque la bordure d'ombre si besoin */?>
 <?php if($siBean->isWsi_disable_shadow_border()=='true') { ?>
 <script type="text/javascript">
-$j(document).ready(function () {
-	$j('.simple_overlay').css('-moz-box-shadow','none');
-	$j('.simple_overlay').css('-webkit-box-shadow','none');
-	$j('.simple_overlay').css('box-shadow','none');
+$jwsi(document).ready(function () {
+	$jwsi('.simple_overlay').css('-moz-box-shadow','none');
+	$jwsi('.simple_overlay').css('-webkit-box-shadow','none'); 
+	$jwsi('.simple_overlay').css('box-shadow','none');
 });
 </script>
 <?php } ?>
@@ -133,8 +133,8 @@ $j(document).ready(function () {
 <?/* On modifie la marge supperieur si elle est precisee */?>
 <?php if($siBean->getWsi_margin_top()!='') { ?>
 <script type="text/javascript">
-$j(document).ready(function () {
-	$j('.simple_overlay').css('margin-top','<?php echo $siBean->getWsi_margin_top(); ?>px');
+$jwsi(document).ready(function () {
+	$jwsi('.simple_overlay').css('margin-top','<?php echo $siBean->getWsi_margin_top(); ?>px');
 });
 </script>
 <?php } ?>

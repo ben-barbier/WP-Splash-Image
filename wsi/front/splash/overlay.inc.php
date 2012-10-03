@@ -1,7 +1,7 @@
 <!-- WP Splash-Image -->
 <script type="text/javascript">
-$j(document).ready(function () {
-	$j("#splashLink").overlay({
+$jwsi(document).ready(function () {
+	$jwsi("#splashLink").overlay({
 		mask: {
 			color: '#<?php echo $siBean->getSplash_color(); ?>',
 			opacity: <?php echo ($siBean->getWsi_opacity()/100); ?> 

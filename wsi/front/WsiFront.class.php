@@ -64,7 +64,6 @@ class WsiFront {
 		
 		}
 
-		require("splash/noConflict.inc.php");
 		require("splash/overlay.inc.php");
 		require("splash/content.inc.php");
 		
@@ -123,7 +122,6 @@ class WsiFront {
 		
 		}
 			
-		require("splash/noConflict.inc.php");
 		require("splash/overlay.inc.php");
 		
 	}
