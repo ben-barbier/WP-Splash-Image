@@ -19,6 +19,7 @@ include 'wsi/front/WsiFront.class.php';
 include 'wsi/back/WsiBack.class.php';
 
 define("WSI_DB_VERSION", "2.2");
+define("JQUERY_TOOLS_FILES_VERSION", "2"); // Used to refresh browser cache
 
 WsiBack::getInstance()->plug();
 WsiFront::getInstance()->plug();

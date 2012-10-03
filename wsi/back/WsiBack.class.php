@@ -131,7 +131,7 @@ class WsiBack {
 			wp_enqueue_script('jquery-ui-tabs');
 			
 			// JQuery Tools
-			wp_register_script('jquery.tools.back', WsiCommons::getURL().'/js/jQueryTools/jquery.tools.min.wp-back.js'); /*[overlay, overlay.apple, dateinput, rangeinput, validator, tooltip, tooltip.dynamic, tooltip.slide, toolbox.expose]*/
+			wp_register_script('jquery.tools.back', WsiCommons::getURL().'/js/jQueryTools/jquery.tools.min.wp-back.v'.JQUERY_TOOLS_FILES_VERSION.'.js'); /*[overlay, overlay.apple, dateinput, rangeinput, validator, tooltip, tooltip.dynamic, tooltip.slide, toolbox.expose]*/
 			wp_enqueue_script('jquery.tools.back', false, array('jquery'));
 			
 			// Keyfilter
