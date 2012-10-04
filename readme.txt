@@ -70,6 +70,22 @@ List of plugins not working with WP-Splah-Image :
 = Sometimes, my splash image is not well centered. Idea ? =
 Yes, verify if "Splash height" and "Splash width" properties are properly filled.
 
+= Malgrés toutes ces informations, mon problème persiste... quoi faire ? =
+1. Dans le cas d'une mise à jour, essayez de désinstaller/réinstaller le plugin.
+1. Si cela ne fonctionne toujours pas, créez un ticket dans la page du support : http://wordpress.org/support/plugin/wsi
+1. Envoyez moi également un message à partir du plugin (menu feedback) en prenant soin de cocher la case "Send infos".
+
+* Si le problème concerne la page d'administration du plugin :
+1. Désactivez tout vos autres plugins et retesez.
+1. Si cela fonctionne, réactivez un plugin et retestez.
+1. Répétez l'opération jusqu'à identifier le plugin non compatible avec wsi.
+1. Une fois identifié, transmettez moi le nom du plugin ainsi que sa version via la page de support : http://wordpress.org/support/plugin/wsi
+Si, losque vous avez désactivé tous vos plugin, il y a encore un problème dans la page d'administration, c'est peut être votre thème qui est à l'origine du problème.
+Transmettez moi le nom de votre thème ainsi que sa version via la page de support : http://wordpress.org/support/plugin/wsi
+
+* Si le problème concerne l'affichage de la splash image dans votre site :
+Vous pouvez également m'envoyer par mail le code source de la page sur laquel vous vous attendiez à voir la splash iamge (feedback@dark-sides.com)
+
 == Screenshots ==
  
 1. Administration
