@@ -110,11 +110,11 @@
 			mask: {
 				color: '#<?php echo $_POST["splash_color"]; ?>',
 				opacity: <?php echo $_POST['wsi_opacity']/100; ?> 
-			},
+			}
 			,load: true // Lance la Splash Image à l'ouverture
-			,closeOnEsc: <?php echo $siBean->isWsi_close_on_esc_function(); ?>
-			,closeOnClick: <?php echo $siBean->isWsi_close_on_click_function(); ?> 
-			,fixed: <?php echo $siBean->isWsi_fixed_splash(); ?>
+			,closeOnEsc: <?php echo $_POST["wsi_close_on_esc_function"]; ?>
+			,closeOnClick: <?php echo $_POST["wsi_close_on_click_function"]; ?> 
+			,fixed: <?php echo $_POST["wsi_fixed_splash"]; ?>
 		});
 
 		<?/* Autoclose de la Splash Image */?>
