@@ -64,7 +64,7 @@
 	<br />
 	<table>
 		<tr>
-			<td><?php echo __('Close on press','wp-splash-image'); ?> <img alt="ESC" src="<?php echo WsiCommons::getURL(); ?>/style/esc_button.png"> <?php echo __('button','wp-splash-image'); ?>:</td>
+			<td><?php echo __('Close on press','wp-splash-image'); ?> <img alt="ESC" src="<?php echo WsiCommons::getURL(); ?>/style/esc_button.png" class="esc_button"> <?php echo __('button','wp-splash-image'); ?>:</td>
 			<td><input 
 				type="checkbox" 
 				name="wsi_close_on_esc_function" 
