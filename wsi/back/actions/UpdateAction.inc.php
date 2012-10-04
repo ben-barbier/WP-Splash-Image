@@ -29,7 +29,8 @@ $siBean->setDatepicker_end(   $_POST['datepicker_end']);
 // Booleans management
 $configBean->setSplash_active(              $_POST['splash_active']=='on');
 $configBean->setWsi_first_load_mode_active( $_POST['wsi_first_load_mode_active']=='on');
-$siBean->setWsi_close_esc_function(         $_POST['wsi_close_esc_function']=='on');
+$siBean->setWsi_close_on_esc_function(      $_POST['wsi_close_on_esc_function']=='on');
+$siBean->setWsi_close_on_click_function(    $_POST['wsi_close_on_click_function']=='on');
 $siBean->setWsi_hide_cross(                 $_POST['wsi_hide_cross']=='on');
 $siBean->setWsi_disable_shadow_border(      $_POST['wsi_disable_shadow_border']=='on');
 $siBean->setWsi_youtube_autoplay(           $_POST['wsi_youtube_autoplay']=='on');
