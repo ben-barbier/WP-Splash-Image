@@ -1,4 +1,4 @@
-<h3><?php echo __('Configuration','wp-splash-image'); ?></h3>
+<h3><?php echo __('Configuration','wp-splash-image'); ?> :</h3>
 
 <!-- Infos -->
 <?php //echo $this->get_system_info(); ?>
@@ -61,7 +61,35 @@
 		</div>
 	</div>
 	<!-- /Tabs --> 
-	<br />
+	<h3><?php echo __('Dates','wp-splash-image'); ?> :</h3>
+	<table>
+		<tr id="block_start_date">
+			<td><?php echo __('Start date','wp-splash-image'); ?>:</td>
+			<td><input 
+				type="date" 
+				name="datepicker_start" 
+				id="datepicker_start" 
+				value="<?php echo ($siBean->getDatepicker_start()!=null)?date_create($siBean->getDatepicker_start())->format('Y-m-d'):''; ?>" />&nbsp;
+				<?php echo __('(stay empty if not required)','wp-splash-image'); ?></td>
+			<td style="width:15px;"></td>
+			<td rowspan="2" style="padding:10px;border:2px solid #FF0000;display:none;background-color:#ff8b88" id="box_datepickers_warning">
+				<?php echo __('Warning: WSI does not currently work.','wp-splash-image'); ?><br />
+				<?php echo __('Check if dates are OK.','wp-splash-image'); ?>
+			</td>
+		</tr>
+		<tr id="block_end_date">
+			<td><?php echo __('End date','wp-splash-image'); ?>:</td>
+			<td><input 
+				type="date" 
+				name="datepicker_end" 
+				id="datepicker_end" 
+				value="<?php echo ($siBean->getDatepicker_end()!=null)?date_create($siBean->getDatepicker_end())->format('Y-m-d'):''; ?>" />&nbsp;
+				<?php echo __('(stay empty if not required)','wp-splash-image'); ?></td>
+			<td colspan="2"></td>
+		</tr>
+	</table>
+	
+	<h3><?php echo __('Closure methods','wp-splash-image'); ?> :</h3>
 	<table>
 		<tr>
 			<td><?php echo __('Close on press','wp-splash-image'); ?> <img alt="ESC" src="<?php echo WsiCommons::getURL(); ?>/style/esc_button.png" class="esc_button"> <?php echo __('button','wp-splash-image'); ?>:</td>
@@ -87,6 +115,10 @@
 				id="wsi_hide_cross" 
 				<?php if($siBean->isWsi_hide_cross()=='true') {echo("checked='checked'");} ?> /></td>
 		</tr>
+	</table>
+	
+	<h3><?php echo __('Style','wp-splash-image'); ?> :</h3>
+	<table>
 		<tr>
 			<td><?php echo __('Disable shadow border','wp-splash-image'); ?>:</td>
 			<td><input
@@ -166,30 +198,6 @@
 				<?php echo __('seconds','wp-splash-image'); ?>&nbsp;
 				<?php echo __("(0 don't close automaticly the splash image)",'wp-splash-image'); ?>
 			</td>
-		</tr>
-		<tr id="block_start_date">
-			<td><?php echo __('Start date','wp-splash-image'); ?>:</td>
-			<td><input 
-				type="date" 
-				name="datepicker_start" 
-				id="datepicker_start" 
-				value="<?php echo ($siBean->getDatepicker_start()!=null)?date_create($siBean->getDatepicker_start())->format('Y-m-d'):''; ?>" />&nbsp;
-				<?php echo __('(stay empty if not required)','wp-splash-image'); ?></td>
-			<td style="width:15px;"></td>
-			<td rowspan="2" style="padding:10px;border:2px solid #FF0000;display:none;background-color:#ff8b88" id="box_datepickers_warning">
-				<?php echo __('Warning: WSI does not currently work.','wp-splash-image'); ?><br />
-				<?php echo __('Check if dates are OK.','wp-splash-image'); ?>
-			</td>
-		</tr>
-		<tr id="block_end_date">
-			<td><?php echo __('End date','wp-splash-image'); ?>:</td>
-			<td><input 
-				type="date" 
-				name="datepicker_end" 
-				id="datepicker_end" 
-				value="<?php echo ($siBean->getDatepicker_end()!=null)?date_create($siBean->getDatepicker_end())->format('Y-m-d'):''; ?>" />&nbsp;
-				<?php echo __('(stay empty if not required)','wp-splash-image'); ?></td>
-			<td colspan="2"></td>
 		</tr>
 		<tr>
 			<td><?php echo __('Display always','wp-splash-image'); ?>:</td>
