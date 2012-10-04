@@ -64,13 +64,20 @@
 	<br />
 	<table>
 		<tr>
-			<td><?php echo __('Close esc function','wp-splash-image'); ?>:</td>
+			<td><?php echo __('Close on press','wp-splash-image'); ?> <img alt="ESC" src="<?php echo WsiCommons::getURL(); ?>/style/esc_button.png"> <?php echo __('button','wp-splash-image'); ?>:</td>
 			<td><input 
 				type="checkbox" 
-				name="wsi_close_esc_function" 
-				id="wsi_close_esc_function" 
-				<?php if($siBean->isWsi_close_esc_function()=='true') {echo("checked='checked'");} ?> />
-				(<?php echo __('if you click on background','wp-splash-image'); ?>)</td>
+				name="wsi_close_on_esc_function" 
+				id="wsi_close_on_esc_function" 
+				<?php if($siBean->isWsi_close_on_esc_function()=='true') {echo("checked='checked'");} ?> /></td>
+		</tr>
+		<tr>
+			<td><?php echo __('Close on click over the splash image','wp-splash-image'); ?>:</td>
+			<td><input 
+				type="checkbox" 
+				name="wsi_close_on_click_function" 
+				id="wsi_close_on_click_function" 
+				<?php if($siBean->isWsi_close_on_click_function()=='true') {echo("checked='checked'");} ?> /></td>
 		</tr>
 		<tr>
 			<td><?php echo __('Hide','wp-splash-image'); ?>&nbsp;<img src="<?php echo WsiCommons::getURL(); ?>/style/jqueryTools/close.png" class="little_cross" />&nbsp;:</td>

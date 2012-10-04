@@ -58,7 +58,8 @@ class SplashImageManager {
 						'datepicker_end'          => $splashImageBean->getDatepicker_end(),
 
 						// Booleans management
-						'wsi_close_esc_function'     => (($splashImageBean->isWsi_close_esc_function())?'1':'0'),
+						'wsi_close_on_esc_function'  => (($splashImageBean->isWsi_close_on_esc_function())?'1':'0'),
+						'wsi_close_on_click_function'=> (($splashImageBean->isWsi_close_on_click_function())?'1':'0'),
 						'wsi_hide_cross'             => (($splashImageBean->isWsi_hide_cross())?'1':'0'),
 						'wsi_disable_shadow_border'  => (($splashImageBean->isWsi_disable_shadow_border())?'1':'0'),
 						'wsi_youtube_autoplay'       => (($splashImageBean->isWsi_youtube_autoplay())?'1':'0'),
@@ -129,7 +130,8 @@ class SplashImageManager {
 			$splashImageBean->setDatepicker_end(             esc_attr($wsi_splashimage_row->datepicker_end));
 			
 			// Booleans management
-			$splashImageBean->setWsi_close_esc_function(     esc_attr($wsi_splashimage_row->wsi_close_esc_function=='1'?'true':'false'));
+			$splashImageBean->setWsi_close_on_esc_function(  esc_attr($wsi_splashimage_row->wsi_close_on_esc_function=='1'?'true':'false'));
+			$splashImageBean->setWsi_close_on_click_function(esc_attr($wsi_splashimage_row->wsi_close_on_click_function=='1'?'true':'false'));
 			$splashImageBean->setWsi_hide_cross(             esc_attr($wsi_splashimage_row->wsi_hide_cross=='1'?'true':'false'));
 			$splashImageBean->setWsi_disable_shadow_border(  esc_attr($wsi_splashimage_row->wsi_disable_shadow_border=='1'?'true':'false'));
 			$splashImageBean->setWsi_youtube_autoplay(       esc_attr($wsi_splashimage_row->wsi_youtube_autoplay=='1'?'true':'false'));
@@ -176,7 +178,8 @@ class SplashImageManager {
 				'wsi_picture_link_url'       => 'http://wordpress.org/extend/plugins/wsi/',
 				'wsi_picture_link_target'    => 'blank',
 				'wsi_include_url'            => '',
-				'wsi_close_esc_function'     => 0, // false
+				'wsi_close_on_esc_function'  => 1, // true
+				'wsi_close_on_click_function'=> 1, // true
 				'wsi_hide_cross'             => 0, // false
 				'wsi_disable_shadow_border'  => 0, // false
 				'wsi_type'                   => 'picture',
@@ -226,35 +229,36 @@ class SplashImageManager {
 	public function getInfos() {
 		$result;
 		$result.= "<strong>".$this->tableName().": </strong><br />";
-		$result.= "id: ".                        $this->splashImageBean->getId()."<br />";
-		$result.= "wsi_display_always: ".        $this->splashImageBean->isWsi_display_always()."<br />";
-		$result.= "wsi_hide_on_mobile_devices: ".$this->splashImageBean->isWsi_hide_on_mobile_devices()."<br />";
-		$result.= "wsi_idle_time: ".             $this->splashImageBean->getWsi_idle_time()."<br />";
-		$result.= "url_splash_image: ".          $this->splashImageBean->getUrl_splash_image()."<br />";
-		$result.= "splash_image_width: ".        $this->splashImageBean->getSplash_image_width()."<br />";
-		$result.= "splash_image_height: ".       $this->splashImageBean->getSplash_image_height()."<br />";
-		$result.= "wsi_margin_top: ".            $this->splashImageBean->getWsi_margin_top()."<br />";
-		$result.= "splash_color: ".              $this->splashImageBean->getSplash_color()."<br />";
-		$result.= "datepicker_start: ".          $this->splashImageBean->getDatepicker_start()."<br />";
-		$result.= "datepicker_end: ".            $this->splashImageBean->getDatepicker_end()."<br />";
-		$result.= "wsi_display_time: ".          $this->splashImageBean->getWsi_display_time()."<br />";
-		$result.= "wsi_fixed_splash: ".          $this->splashImageBean->isWsi_fixed_splash()."<br />";
-		$result.= "wsi_picture_link_url: ".      $this->splashImageBean->getWsi_picture_link_url()."<br />";
-		$result.= "wsi_picture_link_target: ".   $this->splashImageBean->getWsi_picture_link_target()."<br />";
-		$result.= "wsi_include_url: ".           $this->splashImageBean->getWsi_include_url()."<br />";
-		$result.= "wsi_close_esc_function: ".    $this->splashImageBean->isWsi_close_esc_function()."<br />";
-		$result.= "wsi_hide_cross: ".            $this->splashImageBean->isWsi_hide_cross()."<br />";
-		$result.= "wsi_disable_shadow_border: ". $this->splashImageBean->isWsi_disable_shadow_border()."<br />";
-		$result.= "wsi_type: ".                  $this->splashImageBean->getWsi_type()."<br />";
-		$result.= "wsi_opacity: ".               $this->splashImageBean->getWsi_opacity()."<br />";
-		$result.= "wsi_youtube: ".               $this->splashImageBean->getWsi_youtube()."<br />";
-		$result.= "wsi_youtube_autoplay: ".      $this->splashImageBean->isWsi_youtube_autoplay()."<br />";
-		$result.= "wsi_youtube_loop: ".          $this->splashImageBean->isWsi_youtube_loop()."<br />";
-		$result.= "wsi_yahoo: ".                 $this->splashImageBean->getWsi_yahoo()."<br />";
-		$result.= "wsi_dailymotion: ".           $this->splashImageBean->getWsi_dailymotion()."<br />";
-		$result.= "wsi_metacafe: ".              $this->splashImageBean->getWsi_metacafe()."<br />";
-		$result.= "wsi_swf: ".                   $this->splashImageBean->getWsi_swf()."<br />";
-		$result.= "wsi_html: ".                  $this->splashImageBean->getWsi_html()."<br />";
+		$result.= "id: ".                         $this->splashImageBean->getId()."<br />";
+		$result.= "wsi_display_always: ".         $this->splashImageBean->isWsi_display_always()."<br />";
+		$result.= "wsi_hide_on_mobile_devices: ". $this->splashImageBean->isWsi_hide_on_mobile_devices()."<br />";
+		$result.= "wsi_idle_time: ".              $this->splashImageBean->getWsi_idle_time()."<br />";
+		$result.= "url_splash_image: ".           $this->splashImageBean->getUrl_splash_image()."<br />";
+		$result.= "splash_image_width: ".         $this->splashImageBean->getSplash_image_width()."<br />";
+		$result.= "splash_image_height: ".        $this->splashImageBean->getSplash_image_height()."<br />";
+		$result.= "wsi_margin_top: ".             $this->splashImageBean->getWsi_margin_top()."<br />";
+		$result.= "splash_color: ".               $this->splashImageBean->getSplash_color()."<br />";
+		$result.= "datepicker_start: ".           $this->splashImageBean->getDatepicker_start()."<br />";
+		$result.= "datepicker_end: ".             $this->splashImageBean->getDatepicker_end()."<br />";
+		$result.= "wsi_display_time: ".           $this->splashImageBean->getWsi_display_time()."<br />";
+		$result.= "wsi_fixed_splash: ".           $this->splashImageBean->isWsi_fixed_splash()."<br />";
+		$result.= "wsi_picture_link_url: ".       $this->splashImageBean->getWsi_picture_link_url()."<br />";
+		$result.= "wsi_picture_link_target: ".    $this->splashImageBean->getWsi_picture_link_target()."<br />";
+		$result.= "wsi_include_url: ".            $this->splashImageBean->getWsi_include_url()."<br />";
+		$result.= "wsi_close_on_esc_function: ".  $this->splashImageBean->isWsi_close_on_esc_function()."<br />";
+		$result.= "wsi_close_on_click_function: ".$this->splashImageBean->isWsi_close_on_click_function()."<br />";
+		$result.= "wsi_hide_cross: ".             $this->splashImageBean->isWsi_hide_cross()."<br />";
+		$result.= "wsi_disable_shadow_border: ".  $this->splashImageBean->isWsi_disable_shadow_border()."<br />";
+		$result.= "wsi_type: ".                   $this->splashImageBean->getWsi_type()."<br />";
+		$result.= "wsi_opacity: ".                $this->splashImageBean->getWsi_opacity()."<br />";
+		$result.= "wsi_youtube: ".                $this->splashImageBean->getWsi_youtube()."<br />";
+		$result.= "wsi_youtube_autoplay: ".       $this->splashImageBean->isWsi_youtube_autoplay()."<br />";
+		$result.= "wsi_youtube_loop: ".           $this->splashImageBean->isWsi_youtube_loop()."<br />";
+		$result.= "wsi_yahoo: ".                  $this->splashImageBean->getWsi_yahoo()."<br />";
+		$result.= "wsi_dailymotion: ".            $this->splashImageBean->getWsi_dailymotion()."<br />";
+		$result.= "wsi_metacafe: ".               $this->splashImageBean->getWsi_metacafe()."<br />";
+		$result.= "wsi_swf: ".                    $this->splashImageBean->getWsi_swf()."<br />";
+		$result.= "wsi_html: ".                   $this->splashImageBean->getWsi_html()."<br />";
 		return $result;
 	}
 	

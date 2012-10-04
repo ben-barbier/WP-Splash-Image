@@ -203,6 +203,15 @@ class MainManager {
 				$wpdb->query($sql_update);
 				
 			case "2.3":
+
+				$table_name_splashimage = SplashImageManager::tableName();
+				$wpdb->query("ALTER TABLE ".$table_name_splashimage." ADD COLUMN wsi_close_on_click_function BOOLEAN NULL;");
+				$wpdb->query("UPDATE ".     $table_name_splashimage." SET wsi_close_on_click_function = 0;");
+				$wpdb->query("ALTER TABLE ".$table_name_splashimage." DROP wsi_close_esc_function;");
+				$wpdb->query("ALTER TABLE ".$table_name_splashimage." ADD COLUMN wsi_close_on_esc_function BOOLEAN NULL;");
+				$wpdb->query("UPDATE ".     $table_name_splashimage." SET wsi_close_on_esc_function = 0;");
+				
+			case "2.4":
 				//nothing for the moment (it is the current version)
 					
 			case "3.0":
