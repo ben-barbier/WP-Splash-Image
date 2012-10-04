@@ -96,6 +96,7 @@ Vous pouvez également m'envoyer par mail le code source de la page sur laquel v
 
 = 2.7.1 =
 * Update wsi close methods.
+* Display server time.
 
 = 2.7.0 =
 * Add option to hide splash image on mobile devices.
