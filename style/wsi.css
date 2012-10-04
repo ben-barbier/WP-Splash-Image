@@ -70,3 +70,7 @@
 #info_img, #feedback_img, #buyMeABeer_img {
 	cursor: pointer;
 }
+
+.warning {
+	font-weight:bold;
+}
