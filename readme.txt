@@ -35,45 +35,25 @@ Others:
 
 * Update translations.
 * Update Documentation.
-* Upload JQuery Tools functions. 
-* Add Validator on main form.
 * Add option for "exclude" some pages (for flash conflict for exemple).
 * Manage reporting (number of views, number of clicks, ...).
 * Add an event system to know when to start WSI (ex: when site is loading, when comment is send ...).
-* Rendre le "test mode" uniquement appliquable aux admin (les users normaux ne verrons rien).
 
 = Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
 
 **NO !**   
 If we use WSI with the standards options, the splah screen will appear once by user everywhere on your website (WSI save the last display time in user HTTP Session).
-If the user close his browser and if he returns on your website, the WSI returns come back.   
-I'll working to an option for "exclude" some pages.   
+If the user close his browser and if he returns on your website, the WSI come back.   
+I'll working to an option for "exclude" some pages.
 For exemple, we can use this future option for have no confict with some pages with flash.
 
 = Can I use the splash screen once only when first loading to the site, and not repeating with each page I visit? =
 
 **Yes, we can ! ;-)**
-We just need to disable the "test mode" (this mode display the splash screen on each page).
 We can use the Idle Time to select the time of inactivity between 2 splash screen.
 For example, if the "idle time" is "30", the user come on your website and see the splash screen.
 If he navigate on your website, he don't show the splash screen a second time.
 But if he wait 30 minutes with no click, the splash screen come a second time if he returns to the website.
-
-= None of the tabs not working. What's happend ? =
-I worked on the loading javascript scripts using the [best practices](http://codex.wordpress.org/Function_Reference/wp_enqueue_script) described in the codex.   
-However, all the wordpress plugins that do not use these best practices for loading scripts, some problems may actually occur.   
-Try disabling your other plugins to determine the one (or ones) that cause problems and reactivating one by one.
-
-If we have too many plugins, find it problematic can be really difficult, here's a hint:
-
-1. Go to the configuration page of WSI.
-1. View the source of the page.
-1. Search "jQuery".
-
-For information, WSI uses: http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=3.0 (through [wp_register_script() and wp_enqueue_script()](http://codex.wordpress.org/Function_Reference/wp_enqueue_script).   
-If you see other jquery, look what plugin they are stored and try to disable the plugin.
-
-Good luck.
 
 = I have a problem with others javascripts functions of my theme. What can I do for resolve it ? =
 
@@ -84,7 +64,7 @@ Use code `<?php wp_head(); ?>` before your others scripts imports like `<script 
 Yes, verify if `<?php wp_head(); ?>` and `<?php wp_footer(); ?>` exist in your theme...    
 These two methods are necessary for the proper functioning of WSI.
 
-This plugins not working with WP-Splah-Image :
+List of plugins not working with WP-Splah-Image :
 * [nivo-slider-for-wordpress](http://wordpress.org/extend/plugins/nivo-slider-for-wordpress/)
 
 = Sometimes, my splash image is not well centered. Idea ? =
