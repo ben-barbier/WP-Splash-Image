@@ -70,21 +70,21 @@ List of plugins not working with WP-Splah-Image :
 = Sometimes, my splash image is not well centered. Idea ? =
 Yes, verify if "Splash height" and "Splash width" properties are properly filled.
 
-= Malgrés toutes ces informations, mon problème persiste... quoi faire ? =
-1. Dans le cas d'une mise à jour, essayez de désinstaller/réinstaller le plugin.
-1. Si cela ne fonctionne toujours pas, créez un ticket dans la page du support : http://wordpress.org/support/plugin/wsi
-1. Envoyez moi également un message à partir du plugin (menu feedback) en prenant soin de cocher la case "Send infos".
+= Despite all this information, my problem persists... What to do ? =
+1. In the case of an update, try uninstall / reinstall the plugin.
+1. If that does not work, create a ticket in the [support page](http://wordpress.org/support/plugin/wsi).
+1. Also send me a message from the plugin (menu feedback) taking care to check the "Send Info" option.
 
-* Si le problème concerne la page d'administration du plugin :
-1. Désactivez tout vos autres plugins et retesez.
-1. Si cela fonctionne, réactivez un plugin et retestez.
-1. Répétez l'opération jusqu'à identifier le plugin non compatible avec wsi.
-1. Une fois identifié, transmettez moi le nom du plugin ainsi que sa version via la page de support : http://wordpress.org/support/plugin/wsi
-Si, losque vous avez désactivé tous vos plugin, il y a encore un problème dans la page d'administration, c'est peut être votre thème qui est à l'origine du problème.
-Transmettez moi le nom de votre thème ainsi que sa version via la page de support : http://wordpress.org/support/plugin/wsi
+*If the problem is in the plugin administration page :*
+1. Disable all your other plugins and test again.
+1. If it works, enable one plugin and test again.
+1. Repeat until you identify the plugin is not compatible with wsi.
+1. Once identified, send me the name and the version of the not compatible plugin by the [support page](http://wordpress.org/support/plugin/wsi).
+If there is still a problem in the admin page even after disabling all your plugins, this may be your theme is causing the problem.
+Send me the name and the version of the not compatible theme by the [support page](http://wordpress.org/support/plugin/wsi).
 
-* Si le problème concerne l'affichage de la splash image dans votre site :
-Vous pouvez également m'envoyer par mail le code source de la page sur laquel vous vous attendiez à voir la splash iamge (feedback@dark-sides.com)
+*If the problem concerns the display of the WSI into your website :*
+You can also email me the source code of the page on which you expect to see the splash image (feedback@dark-sides.com).
 
 == Screenshots ==
  
@@ -318,73 +318,5 @@ Vous pouvez également m'envoyer par mail le code source de la page sur laquel v
 * popup by jquery
 * Image configurable
 * Activation configurable
-
-== Upgrade Notice ==
-
-= 1.2.4 =
-* RAS
-
-= 1.2.3 =
-* RAS
-
-= 1.2.2 =
-* RAS
-
-= 1.2.1 =
-* RAS
-
-= 1.2.0 =
-* RAS
-
-= 1.1.2 =
-* RAS
-
-= 1.1.1 =
-* RAS
-
-= 1.1.0 =
-* RAS
-
-= 1.0.1 =
-* RAS
-
-= 1.0.0 =
-* RAS
-
-= 0.9.2 =
-* RAS
-
-= 0.9.1 =
-* RAS
-
-= 0.9 =
-* RAS
-
-= 0.8 =
-* RAS
-
-= 0.7 =
-* RAS
-
-= 0.6.1 =
-* RAS
-
-= 0.6 =
-* RAS
-
-= 0.5 =
-* RAS
-
-= 0.4 =
-* RAS
-
-= 0.3 =
-* RAS
-
-= 0.2 =
-* RAS
-
-= 0.1 =
-* Init
 
 `<?php code(); // goes in backticks ?>`
