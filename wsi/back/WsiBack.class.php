@@ -392,7 +392,6 @@ class WsiBack {
 			
 			// Activation du curseur pour la durée d'affichage
 			$jwsitools("input[name=wsi_opacity]").rangeinput();
-			$jwsitools("input[name=wsi_display_time]").rangeinput();
 			
 			// Color on select input radio
 			function color_box(boxId) {

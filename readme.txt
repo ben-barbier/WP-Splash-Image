@@ -94,6 +94,9 @@ You can also email me the source code of the page on which you expect to see the
  
 == Changelog ==
 
+= 2.7.2 =
+* Change display time to new input type "number" (no limit).
+
 = 2.7.1 =
 * Update wsi close methods.
 * Display server time.

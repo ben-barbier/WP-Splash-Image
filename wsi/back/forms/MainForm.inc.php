@@ -200,7 +200,7 @@
 		<tr>
 			<td><?php echo __('Display time','wp-splash-image'); ?> : </td>
 			<td colspan="3" style="white-space: nowrap;">
-				<input type="range" name="wsi_display_time" min="0" max="30" value="<?php echo $siBean->getWsi_display_time(); ?>" />&nbsp;
+				<input type="number" name="wsi_display_time" min="0" value="<?php echo $siBean->getWsi_display_time(); ?>" />&nbsp;
 				<?php echo __('seconds','wp-splash-image'); ?>&nbsp;
 				<?php echo __("(0 don't close automaticly the splash image)",'wp-splash-image'); ?>
 			</td>
