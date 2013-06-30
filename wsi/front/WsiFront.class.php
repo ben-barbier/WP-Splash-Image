@@ -92,10 +92,10 @@ class WsiFront {
 			wp_register_style('overlay-basic', WsiCommons::getURL().'/style/jqueryTools/overlay-basic.css'); /*Style pour la splash image */
 	
 			// Déclaration des scripts de la partie front end.
-			wp_register_script('jquery.tools.front', WsiCommons::getURL().'/js/jQueryTools/jquery.tools.min.wp-front.v'.JQUERY_TOOLS_FILES_VERSION.'.js'); /*[overlay, toolbox.expose]*/
-	
+			wp_register_script('jquery.tools.front', 'http://cdn.jquerytools.org/1.2.7/all/jquery.tools.min.js'); /*[overlay, toolbox.expose]*/
 			// JQuery Tools
-			wp_enqueue_script('jquery.tools.front');
+			wp_enqueue_script('jquery');
+			wp_enqueue_script('jquery.tools.front',array('jquery'),FALSE,FALSE);
 			
 			// Chargement des styles du front end.
 			wp_enqueue_style('overlay-basic');
