@@ -197,12 +197,14 @@ class WsiBack {
 		$reseted = false;
 		$feedbacked = false;
 
-		switch ($_POST ['action']) {
-			case 'update'    : require("actions/UpdateAction.inc.php");    $updated = true;     break;
-			case 'reset'     : require("actions/ResetAction.inc.php");     $reseted = true;     break;
-			case 'feedback'  : require("actions/FeedbackAction.inc.php");  $feedbacked = true;  break;
-		}
-		
+        if (isset($_POST['action'])) {
+            switch ($_POST['action']) {
+                case 'update'    : require("actions/UpdateAction.inc.php");    $updated = true;     break;
+                case 'reset'     : require("actions/ResetAction.inc.php");     $reseted = true;     break;
+                case 'feedback'  : require("actions/FeedbackAction.inc.php");  $feedbacked = true;  break;
+            }
+        }
+
 		// Pour le moment on ne charge que le 1er splash screen
 		$configBean = ConfigManager::getInstance()->get();
 		$siBean = SplashImageManager::getInstance()->get(1);
@@ -288,7 +290,7 @@ class WsiBack {
 			});
 					
 			// Récupération du type de splash
-			<?php if ($_POST['wsi_type'] != "") { ?>
+			<?php if (isset($_POST['wsi_type'])) { ?>
 				var wsi_type = '<?php echo $_POST['wsi_type']; ?>';
 				<?php $wsi_type = $_POST['wsi_type']; ?>
 			<?php } else if($siBean->getWsi_type() != "") { ?>	

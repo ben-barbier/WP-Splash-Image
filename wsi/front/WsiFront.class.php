@@ -85,7 +85,10 @@ class WsiFront {
 		if (!is_admin()) {
 	
 			// On stocke le timestamp du dernier affichage et on le met à jour.
-			$this->last_display = $_COOKIE['last_display'];
+			$this->last_display = 0;
+            if(isset($_COOKIE['last_display'])) {
+			    $this->last_display = $_COOKIE['last_display'];
+            }
 			setCookie('last_display',time(),time()+24*3600);
 			
 			// Déclaration des styles de la partie front end.

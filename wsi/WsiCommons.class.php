@@ -42,34 +42,34 @@ class WsiCommons {
 		$today = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
 	
 		// En cas de modication des paramètres dans la partie admin
-		if ($_POST ['action'] == 'update') {
-			if ($_POST['datepicker_start']!='') {
+		if (isset($_POST ['action']) && $_POST ['action'] == 'update') {
+			if (isset($_POST['datepicker_start'])) {
 				$dpStart = strtotime($_POST['datepicker_start']);
 				if ($today < $dpStart) {
 					return "false";
 				}
 			}
-			if ($_POST['datepicker_end']!='') {
+			if (isset($_POST['datepicker_end'])) {
 				$dpEnd = strtotime($_POST['datepicker_end']);
 				if ($today > $dpEnd) {
 					return "false";
 				}
 			}
 		// Sinon (front office)
-		} else {
-			if ($siBean->getDatepicker_start()!='') {
-				$dpStart = strtotime($siBean->getDatepicker_start());
-				if ($today < $dpStart) {
-					return "false";
-				}
-			}
-			if ($siBean->getDatepicker_end()!='') {
-				$dpEnd = strtotime($siBean->getDatepicker_end());
-				if ($today > $dpEnd) {
-					return "false";
-				}
-			}
-		}
+        } else {
+            if ($siBean->getDatepicker_start() != '') {
+                $dpStart = strtotime($siBean->getDatepicker_start());
+                if ($today < $dpStart) {
+                    return "false";
+                }
+            }
+            if ($siBean->getDatepicker_end() != '') {
+                $dpEnd = strtotime($siBean->getDatepicker_end());
+                if ($today > $dpEnd) {
+                    return "false";
+                }
+            }
+        }
 		return "true";
 	}
 	
@@ -96,11 +96,11 @@ class WsiCommons {
 	 * @return boolean, true if a new version of WSI exists
 	 */
 	public static function has_a_new_version() {
-		
+
 		$compare = version_compare(
 				self::getCurrentPluginVersion(),
 				self::getLastestPluginVersion());
-		
+
 		if ($compare == -1) {
 			// Use old version
 			return true;
@@ -112,7 +112,7 @@ class WsiCommons {
 			return false; 
 		}
 		return false;
-		
+
 	}
 	
 	/**
@@ -160,7 +160,7 @@ class WsiCommons {
 		return $deactivate_url;
 				
 	}
-	
+
 	/**
 	 * Returns current plugin version.
 	 * The information come from the wp-splash-image.php header comment.
