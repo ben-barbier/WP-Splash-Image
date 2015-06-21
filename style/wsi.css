@@ -59,18 +59,18 @@
 }
 
 #github_img1 {
-	margin: -4px -15px 0 0;	
+    margin: -10px -20px 0 0;
 }
 
 #github_img2 {
-	display: none;
-	margin: -4px -141px 0 0;
+    display: none;
+    margin: -10px -141px 0 0;
 }
 
 #info_img, #feedback_img, #buyMeABeer_img {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .warning {
-	font-weight:bold;
+    font-weight: bold;
 }
