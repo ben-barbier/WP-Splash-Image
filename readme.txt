@@ -3,8 +3,8 @@ Contributors: agent022
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CKGNM6TBHU72C
 Tags: Splash, Image, LightBox, Picture, Video, HTML, Start, Open, Screen, Welcome, Message, popup, pop-up
 Requires at least: 3.3
-Tested up to: 3.4.2
-Stable tag: 2.7.2
+Tested up to: 4.2.2
+Stable tag: 3.0.0
 
 WP Splash Image is a plugin for Wordpress to display picture, video or html code with a lightbox effect at the opening of the blog.
  
@@ -28,24 +28,24 @@ If you have to upgrade manually simply repeat the installation steps and re-enab
 
 = What's next ? =
 
-* (2.8.0) Customize the borders (facebook style, ...).
-* (3.0.0) Manage WSI date ranges.
+* (3.0.X) Fix users requests (no new features before it).
+* (3.1.0) Add feature to upload images.
 
 Others:
 
-* Update translations.
 * Update Documentation.
 * Add option for "exclude" some pages (for flash conflict for exemple).
 * Manage reporting (number of views, number of clicks, ...).
 * Add an event system to know when to start WSI (ex: when site is loading, when comment is send ...).
+* Customize the borders (facebook style, ...).
 
 = Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
 
 **NO !**   
 If we use WSI with the standards options, the splah screen will appear once by user everywhere on your website (WSI save the last display time in user HTTP Session).
 If the user close his browser and if he returns on your website, the WSI come back.   
-I'll working to an option for "exclude" some pages.
-For exemple, we can use this future option for have no confict with some pages with flash.
+I'll working to an option to "exclude" some pages.
+For exemple, we can use this future option to have no confict with some pages with flash.
 
 = Can I use the splash screen once only when first loading to the site, and not repeating with each page I visit? =
 
@@ -96,6 +96,14 @@ You can also email me the source code of the page on which you expect to see the
 6. Style setting
 
 == Changelog ==
+
+= 3.0.0 =
+* Update plugin compatibility to wordpress 4.2.2
+* Change admin design (with [MaterializeCSS](http://materializecss.com/))
+* Optimize jQuery integration
+* Update translations
+* Add [Gitter](https://gitter.im/ben-barbier/WP-Splash-Image) integration
+* Change wordpress banner
 
 = 2.7.2 =
 * Change display time to new input type "number" (no limit).
