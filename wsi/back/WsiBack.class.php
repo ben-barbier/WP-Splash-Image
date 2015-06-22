@@ -11,13 +11,15 @@ class WsiBack {
 	 */
 	private static $_instance = null;
 	private function __construct() {}
+
 	/**
 	 * @return WsiBack
 	 */
 	public static function getInstance() {
 		if(is_null(self::$_instance)) {
 			self::$_instance = new WsiBack();
-		} return self::$_instance;
+		}
+        return self::$_instance;
 	}
 	
 	/**
@@ -300,7 +302,7 @@ class WsiBack {
 			<?php } ?>
 			
 			// Chargement des onglets
-			var index_tab = new Array() ;
+			var index_tab = [];
 			index_tab["picture"]     = 0;
 			index_tab["youtube"]     = 1;
 			index_tab["yahoo"]       = 1;

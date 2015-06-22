@@ -91,18 +91,14 @@ class WsiFront {
             }
 			setCookie('last_display',time(),time()+24*3600);
 			
-			// Déclaration des styles de la partie front end.
-			wp_register_style('overlay-basic', WsiCommons::getURL().'/style/jqueryTools/overlay-basic.css'); /*Style pour la splash image */
-	
-			// Déclaration des scripts de la partie front end.
+			// Déclaration et chargement des scripts de la partie front end.
 			wp_register_script('jquery.tools.front', WsiCommons::getURL().'/js/jQueryTools/jquery.tools.min.wp-front.v'.JQUERY_TOOLS_FILES_VERSION.'.js'); /*[overlay, toolbox.expose]*/
-	
-			// JQuery Tools
 			wp_enqueue_script('jquery.tools.front');
-			
-			// Chargement des styles du front end.
+
+			// Déclaration et chargement des styles de la partie front end.
+			wp_register_style('overlay-basic', WsiCommons::getURL().'/style/jqueryTools/overlay-basic.css'); /*Style pour la splash image */
 			wp_enqueue_style('overlay-basic');
-	
+
 		}
 		
 	}
