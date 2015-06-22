@@ -167,7 +167,7 @@ class WsiCommons {
 	 *
 	 * @return string current Plugin version
 	 */
-	function getCurrentPluginVersion() {
+    static function getCurrentPluginVersion() {
 
 		$plugin_data = get_plugin_data( WP_PLUGIN_DIR."/wsi/wp-splash-image.php" );
 		$plugin_version = $plugin_data['Version'];
@@ -180,11 +180,32 @@ class WsiCommons {
 	 *
 	 * @return string lastest Plugin version
 	 */
-	public static function getLastestPluginVersion() {
-		
-		$current = get_site_transient( 'update_plugins' );
-		$r = $current->response[ "wsi/wp-splash-image.php" ];
-		return $r->new_version;
+	static function getLastestPluginVersion() {
+
+        if ( ! function_exists( 'plugins_api' ) ) {
+            require_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
+        }
+
+        $args = array(
+            'slug' => 'wsi',
+            'fields' => array(
+                'version' => true,
+                // do not load big and unused properties
+                'compatibility' => false,
+                'sections' => false,
+                'tags' => false
+            )
+        );
+
+        /** Prepare our query */
+        $call_api = plugins_api( 'plugin_information', $args );
+
+        /** Check for Errors & Display the results */
+        if ( !is_wp_error( $call_api ) ) {
+            return $call_api->version;
+        } else {
+            return 0;
+        }
 		
 	}
 	
