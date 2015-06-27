@@ -7,7 +7,7 @@
 class WsiCommons {
 
 	public static $pluginMainFile = "wsi/wp-splash-image.php";
-	
+
 	/**
 	 * URL du plugin
 	 */
@@ -28,19 +28,19 @@ class WsiCommons {
 	 */
 	public static function getWsiTablesList() {
 		return array(
-				ConfigManager::tableName(), 
+				ConfigManager::tableName(),
 				SplashImageManager::tableName());
 	}
-	
+
 	/**
 	 * Si la Splash Image n'est pas dans sa plage de validité, on retourne false (sinon true)
 	 */
 	public static function getdate_is_in_validities_dates() {
-	
+
 		$siBean = SplashImageManager::getInstance()->get(1);
-		
+
 		$today = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
-	
+
 		// En cas de modication des paramètres dans la partie admin
 		if (isset($_POST ['action']) && $_POST ['action'] == 'update') {
 			if (isset($_POST['datepicker_start'])) {
@@ -72,26 +72,26 @@ class WsiCommons {
         }
 		return "true";
 	}
-	
+
 	/**
 	 * Retourne true, si la période d'inactivité de l'utilisateur a été atteinte.
 	 */
 	public static function enough_idle_to_splash($lastSplash) {
-		
+
 		$siBean = SplashImageManager::getInstance()->get(1);
-		
+
 		// Si la variable n'est pas settée, c'est que l'utilisateur vient pour la 1ere fois.
 		if (!isset($lastSplash)) return true;
-		
+
 		$endIdle = $lastSplash + ($siBean->getWsi_idle_time() * 60);
 		if (time() > $endIdle) {
 			return true;
 		} else {
 			return false;
 		}
-		
+
 	}
-	
+
 	/**
 	 * @return boolean, true if a new version of WSI exists
 	 */
@@ -109,12 +109,12 @@ class WsiCommons {
 			return false;
 		} else if ($compare == 1) {
 			// Use beta version
-			return false; 
+			return false;
 		}
 		return false;
 
 	}
-	
+
 	/**
 	 * Generic function to show a message to the user using WP's
 	 * standard CSS classes to make use of the already-defined
@@ -134,31 +134,31 @@ class WsiCommons {
 		}
 		echo "<p><strong>$message</strong></p></div>";
 	}
-	
+
 	/**
 	 * @return string the URL used to update the wp-splash-image plugin.
 	 */
 	public static function getUpdateURL() {
-		
+
 		$update_url = self_admin_url('update.php?action=upgrade-plugin&plugin=' . self::$pluginMainFile);
 		if(function_exists('wp_nonce_url')) {
 			$update_url = wp_nonce_url($update_url, 'upgrade-plugin_' . self::$pluginMainFile);
 		}
 		return $update_url;
-		
+
 	}
-	
+
 	/**
 	 * @return string the URL used to deactivate the wp-splash-image plugin.
 	 */
 	public static function getDeactivateURL() {
-		
+
 		$deactivate_url = self_admin_url('plugins.php?action=deactivate&plugin=' . self::$pluginMainFile);
 		if(function_exists('wp_nonce_url')) {
 			$deactivate_url = wp_nonce_url($deactivate_url, 'deactivate-plugin_' . self::$pluginMainFile);
 		}
 		return $deactivate_url;
-				
+
 	}
 
 	/**
@@ -172,9 +172,9 @@ class WsiCommons {
 		$plugin_data = get_plugin_data( WP_PLUGIN_DIR."/wsi/wp-splash-image.php" );
 		$plugin_version = $plugin_data['Version'];
 		return $plugin_version;
-		
+
 	}
-	
+
 	/**
 	 * Returns lastest plugin version.
 	 *
@@ -206,20 +206,24 @@ class WsiCommons {
         } else {
             return 0;
         }
-		
+
 	}
-	
+
 	/**
 	 * @return string the name and the version of the current theme.
 	 */
 	public static function getCurrentTheme() {
-		
-		$currentTheme = current_theme_info();
-		$result = $currentTheme->name." v".$currentTheme->version; 
-		return $result;
-		
+
+		if (function_exists('wp_get_theme')) { //Since WP 3.4
+			$currentTheme = wp_get_theme();
+			return $currentTheme->get( 'Name' ) . " v" . $currentTheme->get( 'Version' );
+		} else {
+			$currentTheme = current_theme_info();
+			return $currentTheme->name." v".$currentTheme->version;
+		}
+
 	}
-	
+
 }
 
 ?>
