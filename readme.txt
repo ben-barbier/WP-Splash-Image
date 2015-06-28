@@ -91,7 +91,10 @@ You can also email me the source code of the page on which you expect to see the
 1. Administration
 2. Menu
 3. Splash Image
- 
+4. Dates settings
+5. Closure methods setting
+6. Style setting
+
 == Changelog ==
 
 = 2.7.2 =
