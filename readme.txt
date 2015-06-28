@@ -323,3 +323,4 @@ You can also email me the source code of the page on which you expect to see the
 * Activation configurable
 
 `<?php code(); // goes in backticks ?>`
+Join the chat at https://gitter.im/ben-barbier/WP-Splash-Image
