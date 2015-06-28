@@ -41,7 +41,7 @@ class WsiBack {
 	
 		// Chargement de l' I18n
 		if (function_exists('load_plugin_textdomain')) {
-			load_plugin_textdomain('wp-splash-image', WsiCommons::getURL().'/languages', $wsi_plugin_dir.'/languages' );
+			load_plugin_textdomain('wp-splash-image', WsiCommons::getURL().'/languages', '/languages/' );
 		}
 	
 	}
