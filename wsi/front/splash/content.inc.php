@@ -12,9 +12,9 @@
     <?php break; case "youtube": ?>
 
 		<object width="<?php echo $siBean->getSplash_image_width(); ?>" height="<?php echo $siBean->getSplash_image_height(); ?>">
-			<param name="movie" value="http://www.youtube.com/v/<?php echo $siBean->getWsi_youtube(); ?>&hl=<?php echo get_locale(); ?>&fs=1&rel=0"></param>
-			<param name="allowFullScreen" value="true"></param>
-			<param name="allowscriptaccess" value="always"></param>
+			<param name="movie" value="http://www.youtube.com/v/<?php echo $siBean->getWsi_youtube(); ?>&hl=<?php echo get_locale(); ?>&fs=1&rel=0" />
+			<param name="allowFullScreen" value="true" />
+			<param name="allowscriptaccess" value="always" />
 			<embed src="http://www.youtube.com/v/<?php echo $siBean->getWsi_youtube(); ?>&hl=<?php echo get_locale(); ?>&fs=1&rel=0<?php if($siBean->isWsi_youtube_autoplay()=='true'){ ?>&autoplay=1<?php } if($siBean->isWsi_youtube_loop()=='true'){ ?>&loop=1<?php } ?>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="<?php echo $siBean->getSplash_image_width(); ?>" height="<?php echo $siBean->getSplash_image_height(); ?>"></embed>
 		</object>
 		    
@@ -31,9 +31,9 @@
 	<?php break; case "dailymotion": ?>
 	
 		<object width="<?php echo $siBean->getSplash_image_width(); ?>" height="<?php echo $siBean->getSplash_image_height(); ?>">
-			<param name="movie" value="http://www.dailymotion.com/swf/video/<?php echo $siBean->getWsi_dailymotion(); ?>"></param>
-			<param name="allowFullScreen" value="true"></param>
-			<param name="allowScriptAccess" value="always"></param>
+			<param name="movie" value="http://www.dailymotion.com/swf/video/<?php echo $siBean->getWsi_dailymotion(); ?>" />
+			<param name="allowFullScreen" value="true" />
+			<param name="allowScriptAccess" value="always" />
 			<embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/<?php echo $siBean->getWsi_dailymotion(); ?>" width="<?php echo $siBean->getSplash_image_width(); ?>" height="<?php echo $siBean->getSplash_image_height(); ?>" allowfullscreen="true" allowscriptaccess="always"></embed>
 		</object>
 		

@@ -11,9 +11,9 @@
 	    <?php break; case "youtube": ?>
 
 			<object width="<?php echo $_POST['splash_image_width']; ?>" height="<?php echo $_POST['splash_image_height']; ?>">
-				<param name="movie" value="http://www.youtube.com/v/<?php echo $_POST['wsi_youtube']; ?>&hl=en_US&fs=1&rel=0"></param>
-				<param name="allowFullScreen" value="true"></param>
-				<param name="allowscriptaccess" value="always"></param>
+				<param name="movie" value="http://www.youtube.com/v/<?php echo $_POST['wsi_youtube']; ?>&hl=en_US&fs=1&rel=0" />
+				<param name="allowFullScreen" value="true" />
+				<param name="allowscriptaccess" value="always" />
 				<embed src="http://www.youtube.com/v/<?php echo $_POST['wsi_youtube']; ?>&hl=en_US&fs=1&rel=0<?php if($_POST['wsi_youtube_autoplay']=='true'){ ?>&autoplay=1<?php } if($_POST['wsi_youtube_loop']=='true'){ ?>&loop=1<?php } ?>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="<?php echo $_POST['splash_image_width']; ?>" height="<?php echo $_POST['splash_image_height']; ?>"></embed>
 			</object>
 			    
@@ -30,9 +30,9 @@
 		<?php break; case "dailymotion": ?>
 		
 			<object width="<?php echo $_POST['splash_image_width']; ?>" height="<?php echo $_POST['splash_image_height']; ?>">
-				<param name="movie" value="http://www.dailymotion.com/swf/video/<?php echo $_POST['wsi_dailymotion']; ?>"></param>
-				<param name="allowFullScreen" value="true"></param>
-				<param name="allowScriptAccess" value="always"></param>
+				<param name="movie" value="http://www.dailymotion.com/swf/video/<?php echo $_POST['wsi_dailymotion']; ?>" />
+				<param name="allowFullScreen" value="true" />
+				<param name="allowScriptAccess" value="always" />
 				<embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/<?php echo $_POST['wsi_dailymotion']; ?>" width="<?php echo $_POST['splash_image_width']; ?>" height="<?php echo $_POST['splash_image_height']; ?>" allowfullscreen="true" allowscriptaccess="always"></embed>
 			</object>
 			
