@@ -173,7 +173,7 @@ msgstr "Message:"
 
 #: wp-splash-image.php:733
 msgid "Send Feedback"
-msgstr "Options"
+msgstr "Envoyer"
 
 #: wp-splash-image.php:765
 msgid "Picture height"

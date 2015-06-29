@@ -13,7 +13,7 @@
 }
 .esc_button {
 	height:20px;
-	margin-bottom:-4px;	
+	margin-bottom:-4px;
 }
 
 #tabs {
@@ -27,10 +27,13 @@
 
 #splash_color_demo {
 	border-radius:4px;
-	margin: 0px 5px;
+	margin: 0 5px;
 	height:20px;
 	width:20px;
 	border:1px solid black;
+    display: inline-block;
+    position: relative;
+    top: 5px;
 }
 
 #display_info {
@@ -51,7 +54,7 @@
 
 #display_info, #display_feedback, #display_reset, #display_buyMeABeer {
 	margin-top:5px;
-	position: absolute;	
+	position: absolute;
 }
 
 #github_img1, #github_img2 {
@@ -71,6 +74,138 @@
     cursor: pointer;
 }
 
+#box_datepickers_warning {
+	padding: 5px;
+	margin-left: 20px;
+	border: 2px solid rgb(255, 0, 0);
+	background-color: rgb(255, 139, 136);
+	display: none;
+}
+
 .warning {
     font-weight: bold;
+}
+
+#wsi_first_load_mode_info {
+    position: relative;
+    top: 3px;
+}
+
+.wsi-back h3 {
+    font-size: initial;
+    font-weight: 600;
+}
+.wsi-back input[type=text],
+.wsi-back input[type=number],
+.wsi-back input[type=url] {
+    margin: 0;
+    height: 25px;
+}
+.wsi-back input[type=range] {
+    margin: 0;
+}
+.wsi-back input[name=wsi_display_time],
+.wsi-back input[name=wsi_idle_time],
+.wsi-back input[name=splash_image_height],
+.wsi-back input[name=splash_image_width],
+.wsi-back input[name=wsi_margin_top] {
+    width: 50px;
+    text-align: center;
+}
+.wsi-back input[name=splash_color] {
+    width: 70px;
+    text-align: center;
+}
+.wsi-back select[name=wsi_picture_link_target] {
+    width: 100px;
+}
+.wsi-back input[name=wsi_opacity] {
+    width: 150px;
+}
+.wsi-back input[name=wsi_include_url] {
+    width: 500px;
+}
+.wsi-back input[name=datepicker_start],
+.wsi-back input[name=datepicker_end] {
+    width: 200px;
+}
+
+.wsi-back .range-field {
+    padding: 4px 0 3px 0;
+}
+
+#tabs-container {
+    width: 750px;
+}
+
+.tabs-icon {
+    position: relative;
+    top: 5px;
+    right: 5px;
+}
+.wsi-back .card-panel {
+    padding: 0;
+}
+
+.wsi-back .tab {
+    padding: 20px;
+}
+
+.wsi-back .tab a {
+    box-shadow: none;
+}
+
+.wsi-back #box_html #wp-wsi_html-wrap {
+	padding: 10px;
+}
+
+.wsi-back #box_html #wp-wsi_html-editor-container .wp-editor-area {
+    height: 200px;
+}
+
+.wsi-back .video-code {
+    width: 175px;
+}
+
+.wsi-back .modal#wsi_youtube_info_modal {
+	width: 400px;
+}
+
+.wsi-back .modal#wsi_first_load_mode_info_modal {
+	width: 421px;
+	text-align: justify;
+    text-justify: inter-word;
+}
+
+.wsi-back #wsi_swf {
+    width: 450px;
+}
+
+.wsi-back .collapsible {
+	width: 750px;
+}
+
+.wsi-back .collapsible li {
+	margin-bottom: 0;
+}
+
+.wsi-back .collapsible-body p {
+  margin: 10px 0;
+  padding: 0 0 10px 20px;
+}
+
+.wsi-back .switch label {
+	font-size: 1rem;
+}
+
+.wsi-back #tabs-container td {
+	padding: 5px;
+}
+
+.wsi-back .nowrap {
+	white-space: nowrap;
+}
+
+.wsi-back #box_include {
+	padding: 15px;
 }

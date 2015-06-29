@@ -80,57 +80,36 @@ msgstr ""
 msgid "Error deleting option '%s'."
 msgstr ""
 
-#: wsi/back/forms/DocumentationForm.inc.php:11
 #: wsi/back/forms/MainForm.inc.php:13
 msgid "Splash image activated"
 msgstr ""
 
-#: wsi/back/forms/DocumentationForm.inc.php:12
 #: wsi/back/forms/MainForm.inc.php:159
 msgid "End date"
 msgstr ""
 
-#: wsi/back/forms/DocumentationForm.inc.php:13
 #: wsi/back/forms/MainForm.inc.php:145
 msgid "Start date"
 msgstr ""
 
-#: wsi/back/forms/DocumentationForm.inc.php:16
 #: wsi/back/forms/MainForm.inc.php:114
 msgid "Background color"
 msgstr ""
 
-#: wsi/back/forms/DocumentationForm.inc.php:17
-#: wsi/back/forms/DocumentationForm.inc.php:23
 #: wsi/back/forms/MainForm.inc.php:59
 msgid "Close esc function"
 msgstr ""
 
-#: wsi/back/forms/DocumentationForm.inc.php:20
 #: wsi/back/forms/MainForm.inc.php:68
 msgid "Hide"
 msgstr ""
 
-#: wsi/back/forms/DocumentationForm.inc.php:24
 #: wsi/back/forms/tabs/PictureTab.inc.php:14
 msgid "Picture link URL"
 msgstr ""
 
-#: wsi/back/forms/DocumentationForm.inc.php:30
-msgid "Picture height"
-msgstr ""
-
-#: wsi/back/forms/DocumentationForm.inc.php:32
-msgid "Picture width"
-msgstr ""
-
-#: wsi/back/forms/DocumentationForm.inc.php:34
 #: wsi/back/forms/MainForm.inc.php:137
 msgid "Display time"
-msgstr ""
-
-#: wsi/back/forms/DocumentationForm.inc.php:37
-msgid "For information:"
 msgstr ""
 
 #: wsi/back/forms/FeedbackForm.inc.php:16
