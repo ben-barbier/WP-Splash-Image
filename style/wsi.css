@@ -58,7 +58,9 @@
 }
 
 #github_img1, #github_img2 {
-	float: right;
+    position: fixed;
+    top: 38px;
+    right: 20px;
 }
 
 #github_img1 {
