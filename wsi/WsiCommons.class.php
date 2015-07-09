@@ -197,13 +197,17 @@ class WsiCommons {
             )
         );
 
-        /** Prepare our query */
-        $call_api = plugins_api( 'plugin_information', $args );
+        try {
+            $call_api = plugins_api( 'plugin_information', $args );
 
-        /** Check for Errors & Display the results */
-        if ( !is_wp_error( $call_api ) ) {
-            return $call_api->version;
-        } else {
+            /** Check for Errors & Display the results */
+            if ( !is_wp_error( $call_api ) ) {
+                return $call_api->version;
+            } else {
+                return 0;
+            }
+
+        } catch (Exception $e) {
             return 0;
         }
 
