@@ -7,7 +7,7 @@
     function selectActiveTab($type, $index) {
 
         // Chargement des onglets
-        $index_tab = [];
+        $index_tab = array();
         $index_tab["picture"]     = 0;
         $index_tab["youtube"]     = 1;
         $index_tab["yahoo"]       = 1;
