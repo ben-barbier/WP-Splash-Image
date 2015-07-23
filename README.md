@@ -1,3 +1,4 @@
+[![GitHub version](https://badge.fury.io/gh/ben-barbier%2Fwp-splash-image.svg)](http://badge.fury.io/gh/ben-barbier%2Fwp-splash-image)
 [![Join the chat at https://gitter.im/ben-barbier/WP-Splash-Image](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ben-barbier/WP-Splash-Image?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # WP Splash Image
