@@ -7,13 +7,13 @@ Tested up to: 4.2.2
 Stable tag: 3.0.1
 
 WP Splash Image is a plugin for Wordpress to display picture, video or html code with a lightbox effect at the opening of the blog.
- 
+
 == Description ==
 
 **WP Splash Image** is a plugin for Wordpress to display picture, video (youtube, yahoo video, dailymotion, metacafe, your own swf file) or html code with a lightbox effect at the opening of the blog.
 
 == Installation ==
- 
+
 You can use the built in installer and upgrader, or you can install the plugin manually.
 
 1. You can either use the automatic plugin installer or your FTP program to upload it to your wp-content/plugins directory the top-level folder. Don't just upload all the php files and put them in /wp-content/plugins/.
@@ -39,11 +39,11 @@ Others:
 * Add an event system to know when to start WSI (ex: when site is loading, when comment is send ...).
 * Customize the borders (facebook style, ...).
 
-= Hy, can you add an option for open the Splash image ONLY on the first / Home page? =
+= Hey, can you add an option for open the Splash image ONLY on the first / Home page? =
 
-**NO !**   
+**NO !**  
 If we use WSI with the standards options, the splah screen will appear once by user everywhere on your website (WSI save the last display time in user HTTP Session).
-If the user close his browser and if he returns on your website, the WSI come back.   
+If the user close his browser and if he returns on your website, the WSI come back.  
 I'll working to an option to "exclude" some pages.
 For exemple, we can use this future option to have no confict with some pages with flash.
 
@@ -55,20 +55,20 @@ For example, if the "idle time" is "30", the user come on your website and see t
 If he navigate on your website, he don't show the splash screen a second time.
 But if he wait 30 minutes with no click, the splash screen come a second time if he returns to the website.
 
-= I have a problem with others javascripts functions of my theme. What can I do for resolve it ? =
+= I have a problem with other javascripts functions of my theme. What can I do to resolve it ? =
 
 Use code `<?php wp_head(); ?>` before your others scripts imports like `<script type="text/javascript" src="<?php bloginfo('template_directory');?>/scripts/jquery.cycle.all.min.js"></script>`.
 
 = In my blog, nothing happens. Idea? =
 
-Yes, verify if `<?php wp_head(); ?>` and `<?php wp_footer(); ?>` exist in your theme...    
-These two methods are necessary for the proper functioning of WSI.
+Yes, verify if `<?php wp_head(); ?>` and `<?php wp_footer(); ?>` exists in your theme...   
+These two methods are necessary for the correct functioning of WSI.
 
 List of plugins not working with WP-Splah-Image :
 * [nivo-slider-for-wordpress](http://wordpress.org/extend/plugins/nivo-slider-for-wordpress/)
 
-= Sometimes, my splash image is not well centered. Idea ? =
-Yes, verify if "Splash height" and "Splash width" properties are properly filled.
+= Sometimes, my splash image is not centered. Idea ? =
+Yes, verify if "Splash height" and "Splash width" properties are correctly entered.
 
 = Despite all this information, my problem persists... What to do ? =
 1. In the case of an update, try uninstall / reinstall the plugin.
@@ -78,16 +78,16 @@ Yes, verify if "Splash height" and "Splash width" properties are properly filled
 *If the problem is in the plugin administration page :*
 1. Disable all your other plugins and test again.
 1. If it works, enable one plugin and test again.
-1. Repeat until you identify the plugin is not compatible with wsi.
-1. Once identified, send me the name and the version of the not compatible plugin by the [support page](http://wordpress.org/support/plugin/wsi).
-If there is still a problem in the admin page even after disabling all your plugins, this may be your theme is causing the problem.
-Send me the name and the version of the not compatible theme by the [support page](http://wordpress.org/support/plugin/wsi).
+1. Repeat until you identify the plugin that is not compatible with wsi.
+1. Once identified, send me the name and the version of the non compatible plugin via the [support page](http://wordpress.org/support/plugin/wsi).
+If there is still a problem in the admin page even after disabling all your plugins, it may be your theme is causing the problem.
+Send me the name and the version of the non compatible theme via the [support page](http://wordpress.org/support/plugin/wsi).
 
 *If the problem concerns the display of the WSI into your website :*
 You can also email me the source code of the page on which you expect to see the splash image (feedback@dark-sides.com).
 
 == Screenshots ==
- 
+
 1. Administration
 2. Menu
 3. Splash Image
@@ -143,7 +143,7 @@ You can also email me the source code of the page on which you expect to see the
 * Add a new option to manage the border-top of the splash image.
 
 = 2.5.4 =
-* Fix HTML include problem (increase the HTML content field size from 255 to 4294967295 (LONGTEXT) caracters max). 
+* Fix HTML include problem (increase the HTML content field size from 255 to 4294967295 (LONGTEXT) caracters max).
 
 = 2.5.3 =
 * Fix YouTube "Live Preview" error (don't display).
@@ -207,7 +207,7 @@ You can also email me the source code of the page on which you expect to see the
 
 = 1.9.0 =
 * Add "Fixed" option to fix the splashcreen to scrollbars.
-* Add "Default value" manager. 
+* Add "Default value" manager.
 * Fix Background color problem.
 
 = 1.8.0 =
@@ -261,7 +261,7 @@ You can also email me the source code of the page on which you expect to see the
 * Correct the bug with "HTML" options and "\" added.
 
 = 1.2.1 =
-* Add option for choise the picture link destination (_blank or _self) 
+* Add option for choise the picture link destination (_blank or _self)
 
 = 1.2.0 =
 * Add uninstall option
@@ -279,7 +279,7 @@ You can also email me the source code of the page on which you expect to see the
 = 1.0.1 =
 * Correct date-input display & behavior bug
 * Add Correct French translation
-* Adding a warning when the current date is not between the dates of validities.
+* Adding a warning when the current date is not between the validity dates.
 * Compatibility with [Mystique](http://wordpress.org/extend/themes/mystique) (pb with footer and settings)
 
 = 1.0.0 =
@@ -305,7 +305,7 @@ You can also email me the source code of the page on which you expect to see the
 * add feedback form
 
 = 0.7 =
-* add option for close automaticly the splash image
+* add option to close automatically the splash image
 * Restrict the range of selectable dates
 
 = 0.6.1 =
@@ -329,7 +329,7 @@ You can also email me the source code of the page on which you expect to see the
 * Image size configurable (with calandar)
 * Background color configurable (with color picker)
 * Mise en place de l'I18N (FR/EN)
- 
+
 = 0.1 =
 * Init
 * popup by jquery
